@@ -1,0 +1,30 @@
+name: Spec bug / contradiction
+description: Report an internal contradiction, incorrect value, or factual error in the spec
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: location
+    attributes:
+      label: Location in HIG.md
+      description: Section number, heading, or line reference
+      placeholder: e.g. Section 3.1 — --focus-ring contrast value
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What is wrong?
+      description: Describe the error or contradiction
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should the spec say or require?
+    validations:
+      required: true

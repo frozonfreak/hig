@@ -1,0 +1,56 @@
+name: Spec change proposal
+description: Propose a change, clarification, or correction to the HIG contract
+title: "[Spec] "
+labels:
+  - spec
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the Modern Web HIG. Please describe the change and which layer(s) it affects.
+
+  - type: dropdown
+    id: layer
+    attributes:
+      label: Affected layer(s)
+      multiple: true
+      options:
+        - Layer 0 — Applicability & Scope
+        - Layer 1 — UX Principles
+        - Layer 2 — Information Architecture
+        - Layer 3 — Design Tokens
+        - Layer 4 — Interaction & State
+        - Layer 5 — Accessibility
+        - Layer 6 — Performance
+        - Layer 7 — AI & Agent Enforcement
+        - Layer 8 — QA & CI/CD
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or gap
+      description: What is unclear, missing, or contradictory today?
+      placeholder: e.g. The contrast gate for --text-muted fails in dark mode when used on raised surfaces...
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+      description: What should the spec say instead?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: semver
+    attributes:
+      label: Expected version impact
+      options:
+        - Patch (clarification / typo)
+        - Minor (new backward-compatible guidance)
+        - Major (breaking change to mandatory rules)
+    validations:
+      required: true
