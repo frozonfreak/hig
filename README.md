@@ -2,7 +2,7 @@
 
 A universal Human Interface Guidelines (HIG) and product-engine contract for modern web applications, commerce sites, and content platforms.
 
-**Current version:** [v1.4.0](./HIG.md)
+**Current version:** [v1.5.0](./HIG.md)
 
 ## What is this?
 
@@ -11,7 +11,7 @@ The Modern Web HIG defines design principles, information architecture, state ma
 | Layer | Focus |
 |---|---|
 | 0 | Applicability & Scope — page archetypes and mandatory rule matrix |
-| 1 | UX Principles — motion, density, spatial ergonomics |
+| 1 | UX Principles — motion, functional micro-animations, density, spatial ergonomics |
 | 2 | Information Architecture — document fundamentals, navigation, i18n/RTL |
 | 3 | Visual & Design Tokens — contrast-verified three-tier token system |
 | 4 | Interaction & State — state machines, optimistic UI, data protection |

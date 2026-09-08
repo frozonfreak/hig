@@ -1,21 +1,22 @@
-# Modern Web HIG & Product Engine Contract — v1.4.0
+# Modern Web HIG & Product Engine Contract — v1.5.0
 
 ## Executive Summary
 
-The Modern Web Human Interface Guidelines (HIG) v1.4.0 define design principles, information architecture, state machines, interaction rules, accessibility standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+The Modern Web Human Interface Guidelines (HIG) v1.5.0 define design principles, information architecture, state machines, interaction rules, accessibility standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
-This release upgrades the contract to v1.4.0 by incorporating modern architecture paradigms:
+This release upgrades the contract to v1.5.0 by incorporating modern architecture paradigms:
 
-1. **Server-Driven UI & Partial Hydration Architecture (Layer 4):** Standardizes Server Components (RSC), streaming boundary skeletons, and Server Actions state handling.
-2. **Container-First Responsive Systems (Layer 3):** Shifts component tokens and layout rules from viewport media queries (`@media`) to CSS Container Queries (`@container`).
-3. **Native View Transitions API (Layer 1):** Defines standards for multi-page and client-side page route animations without heavy JS animation frameworks.
+1. **Functional Micro-Animations (Layer 1):** Constrains micro-motion to user-triggered feedback with duration tokens, compositor-safe properties, and a decorative deny list — preserving INP and reduced-motion guarantees.
+2. **Server-Driven UI & Partial Hydration Architecture (Layer 4):** Standardizes Server Components (RSC), streaming boundary skeletons, and Server Actions state handling.
+3. **Container-First Responsive Systems (Layer 3):** Shifts component tokens and layout rules from viewport media queries (`@media`) to CSS Container Queries (`@container`).
+4. **Native View Transitions API (Layer 1):** Defines standards for multi-page and client-side page route animations without heavy JS animation frameworks.
 
 This contract is organized into a **9-Layer Governance Framework**:
 
 * **Layer 0: Applicability & Scope** — Page archetypes and which layers are mandatory per archetype.
 
 
-* **Layer 1: UX Principles** — Ergonomic, spatial, motion, reduced-motion, and View Transitions guidelines.
+* **Layer 1: UX Principles** — Ergonomic, spatial, motion, functional micro-animations, reduced-motion, and View Transitions guidelines.
 
 
 * **Layer 2: Information Architecture & Product Standards** — Hierarchy, document fundamentals, progressive disclosure, empty states, onboarding, i18n/RTL.
@@ -65,7 +66,7 @@ Not every rule applies to every page. A blog post does not need an async mutatio
 
 | Capability | Content/Marketing | Commerce | Application | Auth/Account |
 | --- | --- | --- | --- | --- |
-| Layer 1 UX, motion & View Transitions | ✅ | ✅ | ✅ | ✅ |
+| Layer 1 UX, motion, micro-animations & View Transitions | ✅ | ✅ | ✅ | ✅ |
 | Layer 2 Document fundamentals (lang, landmarks, metadata) | ✅ | ✅ | ✅ | ✅ |
 | Layer 2 SEO / structured data | ✅ | ✅ | ⚪ Optional | ⚪ |
 | Layer 2 URL-as-state sync | ⚪ (filters if present) | ✅ (facets/pagination) | ✅ | ⚪ |
@@ -93,7 +94,7 @@ Accessibility (Layer 5), tokens/typography (Layer 3), and Web Vitals (Layer 6) a
 * **Physics-Based Curves:** Use non-linear cubic-bezier momentum curves (`cubic-bezier(0.16, 1, 0.3, 1)`) rather than linear or basic `ease-in-out` transitions. Never animate `transition: all` — enumerate the specific properties being animated.
 
 
-* **Input Feedback Threshold:** Every user interaction must produce an immediate local visual acknowledgement (hover, active press state, focus ring, or pending loader) without waiting for asynchronous network I/O.
+* **Input Feedback Threshold:** Every user interaction must produce an immediate local visual acknowledgement (hover, active press state, focus ring, or pending loader) without waiting for asynchronous network I/O. Prefer functional micro-animations (§1.4) over instant jumps when motion is allowed.
 
 
 
@@ -105,8 +106,8 @@ For SPA route navigation and MPA document transitions, use the native View Trans
 /* Standard cross-fade transition fallback */
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 180ms;
-  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-duration: var(--duration-base); /* 180ms */
+  animation-timing-function: var(--ease-out-momentum);
 }
 
 /* Explicit element morphing */
@@ -146,6 +147,39 @@ Motion is an enhancement, never a dependency. Respect `prefers-reduced-motion: r
 
 
 * Disable parallax, auto-playing carousels, native View Transitions morphing, and decorative looping motion.
+
+
+### 1.4 Functional Micro-Animations
+
+Micro-animations are **functional feedback only** — never decorative flourish. They exist to acknowledge input, clarify state change, or communicate progress. Brand personality may live in timing tokens and easing, not in idle ornament.
+
+#### Allowlist (required when the control exists)
+
+| Interaction | Duration token | Typical duration | Notes |
+| --- | --- | --- | --- |
+| Hover / focus affordance | `--duration-fast` | 100–150 ms | Must not block pointer travel across dense controls |
+| Press / active acknowledgment | `--duration-fast` | 100–150 ms | Tied to Input Feedback Threshold (§1.1) |
+| Toggle / checkbox / switch | `--duration-base` | 150–200 ms | Show the state transition clearly |
+| Inline validation appear/dismiss | `--duration-base` | 150–200 ms | Prefer opacity; avoid layout shift |
+| Pending / loading indicator | continuous only while pending | — | Must stop immediately when settled |
+| Toast / snackbar enter | `--duration-slow` | 200–250 ms | Exit faster than enter (`--duration-base`) |
+| Modal / overlay open | `--duration-slow` | 200–250 ms | Close at `--duration-base` (150–200 ms) |
+
+#### Deny list
+
+* Decorative loops, idle wiggles, continuous brand ornaments, and autoplay attention-grabbers.
+* Parallax, scroll-jacking, and large-field oscillations.
+* Micro-animations longer than **300 ms** (sluggish; harms perceived responsiveness and INP budgets).
+* JS main-thread animation libraries for micro-feedback when CSS transitions/animations suffice.
+* Animating layout properties (`width`, `height`, `top`, `left`, `margin`, `padding`, `border-width`) for micro-feedback.
+
+#### Implementation rules
+
+* **Compositor-safe properties only:** animate `transform` and `opacity`. This keeps micro-motion off the layout/paint path and protects Layer 6 INP gates.
+* **Tokenized timing:** reference Layer 3 motion tokens (`--duration-*`, `--ease-out-momentum`) — do not invent per-component millisecond values.
+* **CSS-first:** prefer CSS transitions/animations over `requestAnimationFrame` or JS tween libraries for allowlisted micro-feedback.
+* **Reduced motion:** §1.3 still applies — under `prefers-reduced-motion: reduce`, replace spatial micro-motion with instant state changes or a minimal opacity fade.
+* **One job:** a micro-animation must communicate exactly one of: affordance, acknowledgment, state change, or progress. If removing it loses no information and no feedback, it belongs on the deny list.
 
 
 
@@ -256,6 +290,13 @@ Tokens follow a **true three-tier structure**: **Global (Raw) → Semantic → C
   --size-radius-lg: 16px;
   --size-measure-max: 75ch;
 
+  /* Tier 1: Motion primitives (functional micro-animations §1.4) */
+  --duration-instant: 0ms;
+  --duration-fast: 100ms;
+  --duration-base: 180ms;
+  --duration-slow: 250ms;
+  --ease-out-momentum: cubic-bezier(0.16, 1, 0.3, 1);
+
   /* Tier 2: Semantic Tokens (Light Baseline) */
   --surface-base: #ffffff;
   --surface-raised: var(--pr-slate-100);
@@ -281,6 +322,11 @@ Tokens follow a **true three-tier structure**: **Global (Raw) → Semantic → C
   --radius-md: var(--size-radius-md);
   --radius-lg: var(--size-radius-lg);
   --line-measure-max: var(--size-measure-max);
+
+  --motion-duration-fast: var(--duration-fast);
+  --motion-duration-base: var(--duration-base);
+  --motion-duration-slow: var(--duration-slow);
+  --motion-ease-out: var(--ease-out-momentum);
 
   /* Tier 3: Component Tokens */
   --button-bg: var(--brand-primary);
@@ -444,6 +490,10 @@ agent_enforcement_rules:
     require_semantic_or_component_tokens: true
     prohibit_transition_all: true            # ban `transition: all`
     require_cubic_bezier_curves: true
+    require_motion_duration_tokens: true     # use --duration-* / --motion-duration-*
+    prohibit_decorative_micro_animations: true
+    micro_animation_max_ms: 300
+    animate_compositor_properties_only: true # transform + opacity for micro-feedback
     require_container_queries_for_components: true # enforce @container over @media inside components
     require_logical_properties: true         # margin-inline, inset-inline-start
     require_reduced_motion_media_query: true
@@ -467,9 +517,10 @@ agent_enforcement_rules:
 
 **ESLint (`eslint-plugin-hig`):**
 
-* `hig/enforce-container-queries` *(new)* — flags `@media` usage inside component CSS files/styled-components where parent width checks should use `@container`.
-* `hig/rsc-suspense-boundary` *(new)* — verifies that async Server Components are wrapped in a framework `<Suspense>` boundary with a fallback skeleton.
+* `hig/enforce-container-queries` *(new in v1.4)* — flags `@media` usage inside component CSS files/styled-components where parent width checks should use `@container`.
+* `hig/rsc-suspense-boundary` *(new in v1.4)* — verifies that async Server Components are wrapped in a framework `<Suspense>` boundary with a fallback skeleton.
 * `hig/no-unlabeled-icon-buttons` — flags any `<button>` containing only an icon without an `aria-label`.
+* `hig/micro-animation-budget` *(new in v1.5)* — flags transition/animation durations above 300 ms on allowlisted micro-feedback selectors, and flags non-`transform`/`opacity` properties in micro-animation declarations.
 
 
 * `hig/no-optimistic-destructive` — errors when a delete/remove mutation is wrapped in optimistic rendering without an undo window.
@@ -508,6 +559,7 @@ agent_enforcement_rules:
 
 ### 8.1 Version History
 
+* **v1.5.0 (2026-09-08):** Added Layer 1 functional micro-animations contract (allowlist, deny list, ≤300 ms cap, compositor-safe properties). Introduced motion duration/easing tokens in Layer 3 and matching Layer 7 agent enforcement rules.
 * **v1.4.0 (2026-09-07):** Integrated Server-Driven UI & Partial Hydration standards (RSC, Streaming Suspense skeletons, Server Actions states). Replaced viewport media queries with CSS Container Queries (`@container`) for component tokens. Adopted native View Transitions API (`document.startViewTransition`) for page routes. Added ESLint rules for container queries and RSC Suspense boundaries.
 * **v1.3.0 (2026-09-07):** Added Layer 0: Applicability & Scope page-archetype matrix. Fixed token contrast issues and status token split. Added WCAG 2.2 criteria, optimistic UI reversibility rule, logical properties, and field vs. lab metric definitions.
 
