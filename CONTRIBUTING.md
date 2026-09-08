@@ -26,8 +26,8 @@ Good contributions include:
 
 This contract follows [Semantic Versioning](https://semver.org/):
 
-- **Patch** (e.g. 1.3.1) — typo fixes, clarifications that do not change meaning
-- **Minor** (e.g. 1.4.0) — new rules, new criteria, or expanded guidance that is backward-compatible
+- **Patch** (e.g. 1.5.1) — typo fixes, clarifications that do not change meaning
+- **Minor** (e.g. 1.6.0) — new rules, new criteria, or expanded guidance that is backward-compatible
 - **Major** (e.g. 2.0.0) — breaking changes to mandatory requirements or token semantics
 
 Update the version number in the `HIG.md` title and add an entry to the version history table when bumping.
