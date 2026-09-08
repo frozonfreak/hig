@@ -477,6 +477,8 @@ Server Action and Server-driven mutations must follow an explicit status wrapper
 
 Deterministic, machine-readable rules for system prompts, AI coding workflows (Cursor, Claude Code, GitHub Copilot), and automated analysis.
 
+**Product-repo adoption:** see [INTEGRATION.md](./INTEGRATION.md) for an efficient workflow (pin the contract → archetype map → thin agent rules → PR checklist → CI). Copy-paste templates live in [examples/agent-rules/](./examples/agent-rules/).
+
 ### 7.1 AI Coding Agent Guardrails
 
 ```yaml

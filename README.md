@@ -33,6 +33,22 @@ The Modern Web HIG defines design principles, information architecture, state ma
 3. Apply the Layer 0 applicability matrix to determine which rules are mandatory for your context
 4. Wire the Layer 7 ESLint/Stylelint rules and Layer 8 CI gates into your pipeline
 
+## Integrate into your workflow
+
+For product teams and coding agents, follow **[INTEGRATION.md](./INTEGRATION.md)** — an efficient path that avoids dumping the full HIG into every prompt:
+
+1. **Pin** `HIG.md` in the product repo (vendor copy, submodule, or tagged URL)
+2. **Declare archetypes** once (`docs/hig-scope.md` — see [examples/hig-scope.example.md](./examples/hig-scope.example.md))
+3. **Wire agents** with the copy-paste templates in [examples/agent-rules/](./examples/agent-rules/) (Cursor, Claude Code, Copilot, `AGENTS.md`)
+4. **Add a PR checklist**, then Layer 8 lint/CI when you can automate Layer 7
+
+| Tool | Template |
+|---|---|
+| Cursor | [examples/agent-rules/cursor-hig.mdc](./examples/agent-rules/cursor-hig.mdc) → `.cursor/rules/hig.mdc` |
+| Claude Code | [examples/agent-rules/CLAUDE-hig.md](./examples/agent-rules/CLAUDE-hig.md) → merge into `CLAUDE.md` |
+| GitHub Copilot | [examples/agent-rules/copilot-instructions-hig.md](./examples/agent-rules/copilot-instructions-hig.md) → `.github/copilot-instructions.md` |
+| Multi-agent | [examples/agent-rules/AGENTS-hig.md](./examples/agent-rules/AGENTS-hig.md) → `AGENTS.md` |
+
 ## Contributing
 
 Contributions are welcome. Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a pull request.
