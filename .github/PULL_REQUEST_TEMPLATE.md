@@ -12,6 +12,7 @@
 
 - [ ] Version number updated in `HIG.md` title (if substantive)
 - [ ] Entry added to version history (Section 8.1) (if substantive)
+- [ ] `RELEASE_NOTES.md` updated (minor/major bumps)
 - [ ] Cross-references updated where related sections are affected
 - [ ] Layer 0 applicability matrix updated (if archetype scope changed)
 - [ ] I have read the [Contributing Guide](../CONTRIBUTING.md)
