@@ -13,6 +13,7 @@ Good contributions include:
 - Correcting contrast-verified token values
 - Expanding the Layer 0 applicability matrix for new page archetypes
 - Improving machine-readable enforcement specs (YAML, ESLint/Stylelint configs)
+- Improving [INTEGRATION.md](./INTEGRATION.md) or the copy-paste templates under `examples/agent-rules/`
 
 ## How to propose a change
 
