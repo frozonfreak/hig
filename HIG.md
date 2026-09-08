@@ -1,10 +1,10 @@
-# Modern Web HIG & Product Engine Contract — v1.4.0
+# Modern Web HIG & Product Engine Contract — v1.5.0
 
 ## Executive Summary
 
-The Modern Web Human Interface Guidelines (HIG) v1.4.0 define design principles, information architecture, state machines, interaction rules, accessibility standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+The Modern Web Human Interface Guidelines (HIG) v1.5.0 define design principles, information architecture, state machines, interaction rules, accessibility standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
-This release upgrades the contract to v1.4.0 by incorporating modern architecture paradigms:
+This release advances the contract to v1.5.0, incorporating modern architecture paradigms:
 
 1. **Server-Driven UI & Partial Hydration Architecture (Layer 4):** Standardizes Server Components (RSC), streaming boundary skeletons, and Server Actions state handling.
 2. **Container-First Responsive Systems (Layer 3):** Shifts component tokens and layout rules from viewport media queries (`@media`) to CSS Container Queries (`@container`).
@@ -508,6 +508,7 @@ agent_enforcement_rules:
 
 ### 8.1 Version History
 
+* **v1.5.0 (2026-09-08):** Aligned all repository documentation to the v1.5.0 reference (README, SECURITY supported versions, CONTRIBUTING versioning examples, and HIG title/summary).
 * **v1.4.0 (2026-09-07):** Integrated Server-Driven UI & Partial Hydration standards (RSC, Streaming Suspense skeletons, Server Actions states). Replaced viewport media queries with CSS Container Queries (`@container`) for component tokens. Adopted native View Transitions API (`document.startViewTransition`) for page routes. Added ESLint rules for container queries and RSC Suspense boundaries.
 * **v1.3.0 (2026-09-07):** Added Layer 0: Applicability & Scope page-archetype matrix. Fixed token contrast issues and status token split. Added WCAG 2.2 criteria, optimistic UI reversibility rule, logical properties, and field vs. lab metric definitions.
 

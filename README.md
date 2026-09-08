@@ -2,7 +2,7 @@
 
 A universal Human Interface Guidelines (HIG) and product-engine contract for modern web applications, commerce sites, and content platforms.
 
-**Current version:** [v1.4.0](./HIG.md)
+**Current version:** [v1.5.0](./HIG.md)
 
 ## What is this?
 
