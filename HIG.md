@@ -559,6 +559,8 @@ agent_enforcement_rules:
 
 ### 8.1 Version History
 
+Expanded release notes for each version: **[RELEASE_NOTES.md](./RELEASE_NOTES.md)**.
+
 * **v1.5.0 (2026-09-08):** Added Layer 1 functional micro-animations contract (allowlist, deny list, ≤300 ms cap, compositor-safe properties). Introduced motion duration/easing tokens in Layer 3 and matching Layer 7 agent enforcement rules.
 * **v1.4.0 (2026-09-07):** Integrated Server-Driven UI & Partial Hydration standards (RSC, Streaming Suspense skeletons, Server Actions states). Replaced viewport media queries with CSS Container Queries (`@container`) for component tokens. Adopted native View Transitions API (`document.startViewTransition`) for page routes. Added ESLint rules for container queries and RSC Suspense boundaries.
 * **v1.3.0 (2026-09-07):** Added Layer 0: Applicability & Scope page-archetype matrix. Fixed token contrast issues and status token split. Added WCAG 2.2 criteria, optimistic UI reversibility rule, logical properties, and field vs. lab metric definitions.

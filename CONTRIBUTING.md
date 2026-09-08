@@ -20,7 +20,8 @@ Good contributions include:
 2. **Open an issue** describing the problem, the proposed change, and which layer(s) it affects.
 3. **Fork the repo** and create a branch from `main`.
 4. **Edit `HIG.md`** — keep changes focused and update the version history (Section 8.1) when the change is substantive.
-5. **Open a pull request** using the provided template.
+5. **Update [RELEASE_NOTES.md](./RELEASE_NOTES.md)** for minor and major bumps — expand the §8.1 summary with highlights, layer impact, and adoption notes.
+6. **Open a pull request** using the provided template.
 
 ## Versioning guidelines
 
@@ -30,7 +31,7 @@ This contract follows [Semantic Versioning](https://semver.org/):
 - **Minor** (e.g. 1.6.0) — new rules, new criteria, or expanded guidance that is backward-compatible
 - **Major** (e.g. 2.0.0) — breaking changes to mandatory requirements or token semantics
 
-Update the version number in the `HIG.md` title and add an entry to the version history table when bumping.
+Update the version number in the `HIG.md` title, add an entry to the version history (Section 8.1), and add a matching section to `RELEASE_NOTES.md` when bumping.
 
 ## Writing style
 
