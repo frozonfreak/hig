@@ -1,6 +1,12 @@
 # HIG scope for this product (example)
 
-Pinned contract: Modern Web HIG v1.6.0 (`docs/hig/HIG.md`)
+Pinned contract: Modern Web HIG v1.7.0
+
+| File | Purpose |
+| --- | --- |
+| `docs/hig/HIG-LITE.md` | Default agent context (Level 1) |
+| `docs/hig/HIG.md` | Full specification (Level 3) |
+| `docs/hig/rules/manifest.yaml` | Topic-triggered loading (Level 2) |
 
 | Route / area | Archetype | Notes |
 | --- | --- | --- |

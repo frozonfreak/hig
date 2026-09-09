@@ -1,15 +1,21 @@
 # Agent instructions — Modern Web HIG
 
-Pinned contract: `docs/hig/HIG.md`  
+Pinned contract: Modern Web HIG v1.7.0  
+Default context: `docs/hig/HIG-LITE.md`  
+Topic index: `docs/hig/rules/manifest.yaml`  
+Full spec: `docs/hig/HIG.md` (edge cases only)  
 Archetype map: `docs/hig-scope.md`
 
 ## Mandatory workflow for UI / CSS / front-end tasks
 
 1. **Archetype first** — `content` | `commerce` | `application` | `auth`
-2. **Layer 0 matrix** — only enforce mandatory/conditional rules for that archetype
-3. **Layer 7 guardrails** — see YAML below (source of truth for agent behavior)
-4. **Deep detail** — open the pinned HIG for the specific layer; do not invent conflicting rules
-5. **Simplicity** — prefer the simplest implementation that satisfies applicable requirements (HIG-SIM-001)
+2. **Level 1** — read `HIG-LITE.md` for essential rules
+3. **Level 2** — match task against `rules/manifest.yaml`; load referenced HIG sections
+4. **Layer 0 matrix** — only enforce mandatory/conditional rules for that archetype
+5. **Layer 7 guardrails** — see YAML below (source of truth for agent behavior)
+6. **Level 3** — open full `HIG.md` only for edge cases or spec conflicts
+7. **Simplicity** — prefer the simplest implementation that satisfies applicable requirements (HIG-SIM-001)
+8. **Cite rule IDs** when declining conflicting requests
 
 ```yaml
 agent_enforcement_rules:
@@ -17,6 +23,12 @@ agent_enforcement_rules:
     resolve_archetype_first: true
     apply_layer0_matrix: true
     prefer_simplest_compliant_implementation: true
+    default_context: HIG-LITE.md
+    progressive_loading:
+      level_0: HIG-CORE.md
+      level_1: HIG-LITE.md
+      level_2: rules/manifest.yaml
+      level_3: HIG.md
   styling_constraints:
     - id: HIG-TOK-001
       rule: disallow_raw_hex_colors_outside_token_files

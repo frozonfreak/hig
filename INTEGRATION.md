@@ -1,8 +1,26 @@
 # Integrating Modern Web HIG into your development workflow
 
-This guide shows an **efficient** way to adopt the Modern Web HIG in a product repo: thin agent rules first, then lint/CI, without pasting the full contract into every prompt.
+This guide shows an **efficient** way to adopt the Modern Web HIG in a product repo: progressive loading, thin agent rules, then lint/CI — without pasting the full contract into every prompt.
 
-**Current contract:** [HIG.md](./HIG.md) (see README for version).
+**Current contract:** [HIG.md](./HIG.md) v1.7.0 (see README for version).
+
+---
+
+## Progressive loading levels
+
+| Level | File | Load when |
+| --- | --- | --- |
+| **0** | [HIG-CORE.md](./HIG-CORE.md) | Session start — philosophy, vocabulary, archetypes |
+| **1** | [HIG-LITE.md](./HIG-LITE.md) | **Every UI/CSS/front-end task** (default) |
+| **2** | [rules/INDEX.md](./rules/INDEX.md) + [rules/manifest.yaml](./rules/manifest.yaml) | Task matches a topic (combobox, forms, SSR, security…) |
+| **3** | [HIG.md](./HIG.md) | Edge cases, spec conflicts, full normative detail |
+
+**Do not** dump all of `HIG.md` into every system prompt. Agents work better with:
+
+1. [HIG-LITE.md](./HIG-LITE.md) as default context (Level 1)
+2. Topic-triggered lookups via [rules/manifest.yaml](./rules/manifest.yaml) (Level 2)
+3. A short always-on agent rule (archetype + Layer 7 YAML)
+4. CI as the hard backstop (Layer 8)
 
 ---
 
@@ -10,18 +28,12 @@ This guide shows an **efficient** way to adopt the Modern Web HIG in a product r
 
 | Stage | Effort | What you get |
 | --- | --- | --- |
-| **1. Agent rules** | Minutes | Coding agents resolve archetype + apply Layer 7 guardrails before writing UI |
+| **1. Agent rules** | Minutes | Agents use HIG-LITE by default; load Level 2 modules on topic match |
 | **2. Scope doc** | Minutes | Humans and agents share one archetype map for the product |
 | **3. PR checklist** | Minutes | Reviewers catch HIG regressions without waiting on custom linters |
 | **4. Lint + CI** | Hours | Layer 8 gates fail the build on a11y/perf/token violations |
 
 Do stages 1–3 on day one. Add stage 4 when you can automate the Layer 7 rules (custom ESLint/Stylelint or equivalent).
-
-**Do not** dump all of `HIG.md` into every system prompt. Agents work better with:
-
-1. A short always-on rule (archetype + Layer 7 YAML)
-2. A pointer to the pinned `HIG.md` for deep lookups
-3. CI as the hard backstop
 
 ---
 
@@ -31,11 +43,20 @@ Pick one pinning strategy and stick to it:
 
 | Strategy | When to use |
 | --- | --- |
-| **Vendor copy** | Fastest: copy `HIG.md` into e.g. `docs/hig/HIG.md` and note the version in your README |
+| **Vendor copy** | Fastest: copy `HIG.md`, `HIG-LITE.md`, and `rules/` into e.g. `docs/hig/` and note the version in your README |
 | **Git submodule / subtree** | You want upstream pulls without manual copy |
-| **Raw URL pin** | Agent rules link to a tagged release file (e.g. `.../blob/v1.5.0/HIG.md`) |
+| **Raw URL pin** | Agent rules link to tagged release files (e.g. `.../blob/v1.7.0/HIG-LITE.md`) |
 
-Record the pinned version next to the file (e.g. `docs/hig/VERSION` containing `1.6.0`) so upgrades are intentional.
+**Minimum pin set for agents:**
+
+| File | Purpose |
+| --- | --- |
+| `HIG-LITE.md` | Default daily context |
+| `HIG.md` | Full specification (Level 3) |
+| `rules/manifest.yaml` | Topic-triggered loading |
+| `rules/INDEX.md` | Human-readable rule index |
+
+Record the pinned version next to the files (e.g. `docs/hig/VERSION` containing `1.7.0`) so upgrades are intentional.
 
 ---
 
@@ -46,7 +67,10 @@ Create a short product-local scope file (example: `docs/hig-scope.md`):
 ```markdown
 # HIG scope for this product
 
-Pinned contract: Modern Web HIG v1.6.0 (`docs/hig/HIG.md`)
+Pinned contract: Modern Web HIG v1.7.0
+- Daily context: `docs/hig/HIG-LITE.md`
+- Full spec: `docs/hig/HIG.md`
+- Topic index: `docs/hig/rules/manifest.yaml`
 
 | Route / area | Archetype | Notes |
 | --- | --- | --- |
@@ -58,19 +82,27 @@ Pinned contract: Modern Web HIG v1.6.0 (`docs/hig/HIG.md`)
 Default for new UI: Application unless the route map says otherwise.
 ```
 
-Agents and humans should resolve archetype **before** applying Layers 1–8 (see HIG Layer 0).
+Agents and humans should resolve archetype **before** applying Layers 1–9 (see HIG Layer 0).
 
 ---
 
 ## Step 3 — Wire coding agents
 
-Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) into your product repo. Keep the always-on rule **short**; link out to the full HIG for detail.
+Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) into your product repo. Keep the always-on rule **short**; default to HIG-LITE, not the full HIG.
+
+### Loading workflow for agents
+
+1. **Always:** Read `HIG-LITE.md` (Level 1) + resolve archetype from scope doc
+2. **On topic match:** Consult `rules/manifest.yaml` → open matching HIG section(s) (Level 2)
+3. **On edge case:** Open `HIG.md` (Level 3)
+4. **Always:** Apply Layer 7 YAML guardrails from the agent rule file
+5. **Cite rule IDs** when declining conflicting requests (e.g. `HIG-A11Y-003`)
 
 ### Cursor
 
 1. Copy `examples/agent-rules/cursor-hig.mdc` → `.cursor/rules/hig.mdc`
 2. Set `alwaysApply: true`, or use globs such as `**/*.{tsx,jsx,css,scss}`
-3. Point the rule at your pinned `HIG.md` and `docs/hig-scope.md`
+3. Point the rule at your pinned `HIG-LITE.md`, `HIG.md`, `rules/manifest.yaml`, and `docs/hig-scope.md`
 
 ### Claude Code
 
@@ -92,11 +124,13 @@ Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) into
 When starting a UI task, prepend:
 
 ```text
-Follow Modern Web HIG (pinned docs/hig/HIG.md).
+Follow Modern Web HIG v1.7.0.
+Default context: docs/hig/HIG-LITE.md (Level 1).
+Load docs/hig/rules/manifest.yaml Level 2 modules when task matches a topic.
 Archetype: <content|commerce|application|auth> per docs/hig-scope.md.
-Apply Layer 0 matrix, then Layer 7 guardrails. Prefer tokens, @container, server-rendering-by-default,
-functional micro-feedback ≤300ms (transform/opacity preferred), WCAG 2.2 AA conformance.
+Apply Layer 0 matrix + Layer 7 guardrails. Cite rule IDs on conflicts.
 Prefer simplest compliant implementation (HIG-SIM-001).
+Escalate to docs/hig/HIG.md only for edge cases.
 ```
 
 ---
@@ -147,9 +181,9 @@ Until a shared `eslint-plugin-hig` package is available in your stack, approxima
 
 A product repo is integrated when:
 
-1. A **pinned** `HIG.md` (or tagged URL) exists
+1. **Pinned** `HIG-LITE.md`, `HIG.md`, and `rules/` exist
 2. **`hig-scope.md`** (or equivalent) maps routes → archetypes
-3. At least one **agent rule file** loads Layer 7 on UI work
+3. At least one **agent rule file** defaults to Level 1 and loads Level 2 on topic match
 4. PRs use the **HIG checklist** (and CI gates when automated)
 
 That sequence keeps agent context small, enforcement deterministic, and upgrades explicit.

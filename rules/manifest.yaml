@@ -1,0 +1,349 @@
+# Modern Web HIG — Progressive loading manifest
+# Version: 1.7.0
+# Human-readable index: rules/INDEX.md
+
+version: "1.7.0"
+
+levels:
+  0:
+    file: HIG-CORE.md
+    description: Philosophy, vocabulary, archetypes, simplicity rule
+    load: session_start
+  1:
+    file: HIG-LITE.md
+    description: Default daily agent context — compressed executable summary
+    load: all_ui_tasks
+  2:
+    file: rules/INDEX.md
+    description: Topic-triggered deep sections (currently HIG.md anchors)
+    load: on_topic_match
+  3:
+    file: HIG.md
+    description: Complete normative specification
+    load: edge_cases_and_conflicts
+
+modules:
+  accessibility:
+    triggers:
+      - combobox
+      - dialog
+      - modal
+      - focus trap
+      - aria
+      - keyboard
+      - tabs
+      - menu
+      - listbox
+      - accordion
+      - skip link
+      - contrast
+      - screen reader
+      - wcag
+      - target size
+    rules:
+      - HIG-A11Y-001
+      - HIG-A11Y-002
+      - HIG-A11Y-003
+      - HIG-A11Y-004
+      - HIG-A11Y-005
+      - HIG-A11Y-006
+      - HIG-A11Y-007
+      - HIG-A11Y-008
+    source: HIG.md
+    sections:
+      - "§5.1"
+      - "§5.2"
+      - "§5.3"
+      - "§5.4"
+      - "§5.5"
+    # Phase 2: rules/accessibility.md
+
+  ux:
+    triggers:
+      - hierarchy
+      - primary action
+      - dead end
+      - navigation
+      - deep link
+      - command palette
+      - destructive
+      - undo
+      - breadcrumb
+    rules:
+      - HIG-MUT-001
+      - HIG-SIM-001
+    source: HIG.md
+    sections:
+      - "§1.1"
+      - "§2.1"
+      - "§2.2"
+      - "§2.3"
+      - "§2.4"
+
+  states:
+    triggers:
+      - loading
+      - skeleton
+      - empty
+      - error state
+      - stale
+      - offline
+      - network failure
+      - optimistic
+      - degraded
+    rules:
+      - HIG-ERR-001
+      - HIG-EMP-001
+      - HIG-LOD-001
+    source: HIG.md
+    sections:
+      - "§2.5"
+      - "§2.6"
+      - "§2.7"
+      - "§4.3"
+      - "§4.4"
+      - "§4.6"
+
+  forms:
+    triggers:
+      - form
+      - label
+      - validation
+      - autocomplete
+      - multi-step
+      - error summary
+      - checkout
+      - password
+    rules:
+      - HIG-FRM-001
+    source: HIG.md
+    sections:
+      - "§2.11"
+
+  tokens:
+    triggers:
+      - color
+      - typography
+      - spacing
+      - dark mode
+      - design token
+      - semantic token
+      - primitive token
+    rules:
+      - HIG-TOK-001
+      - HIG-TOK-002
+    source: HIG.md
+    sections:
+      - "§3.1"
+
+  responsive:
+    triggers:
+      - container query
+      - breakpoint
+      - layout adaptation
+      - reflow
+      - zoom
+      - responsive
+    rules:
+      - HIG-CQ-001
+    source: HIG.md
+    sections:
+      - "§3.2"
+
+  data-density:
+    triggers:
+      - data table
+      - grid
+      - virtualization
+      - bulk action
+      - truncation
+      - dashboard
+      - density
+      - sticky header
+    rules: []
+    source: HIG.md
+    sections:
+      - "§3.3"
+
+  animation:
+    triggers:
+      - transition
+      - micro-animation
+      - view transition
+      - motion token
+      - reduced motion
+      - animation
+      - easing
+    rules:
+      - HIG-MOT-001
+      - HIG-MOT-002
+      - HIG-MOT-003
+      - HIG-MOT-004
+      - HIG-MOT-005
+      - HIG-VT-001
+      - HIG-A11Y-001
+    source: HIG.md
+    sections:
+      - "§1.1"
+      - "§1.2"
+      - "§1.3"
+      - "§1.4"
+
+  architecture:
+    triggers:
+      - ssr
+      - rsc
+      - server action
+      - streaming
+      - suspense
+      - hydration
+      - client component
+      - server rendering
+      - partial hydration
+    rules:
+      - HIG-SSR-001
+      - HIG-SSR-002
+      - HIG-SSR-003
+    source: HIG.md
+    sections:
+      - "§4.1"
+      - "§4.2"
+    # Phase 2: rules/architecture.md, framework/*.md
+
+  mutations:
+    triggers:
+      - delete
+      - optimistic ui
+      - idempotency
+      - conflict
+      - concurrency
+      - mutation
+    rules:
+      - HIG-MUT-001
+      - HIG-MUT-002
+    source: HIG.md
+    sections:
+      - "§2.4"
+      - "§4.5"
+
+  performance:
+    triggers:
+      - lcp
+      - inp
+      - cls
+      - ttfb
+      - bundle
+      - lazy load
+      - core web vitals
+      - performance budget
+    rules: []
+    source: HIG.md
+    sections:
+      - "§6.1"
+      - "§6.2"
+      - "§6.3"
+      - "§6.4"
+      - "§6.5"
+
+  search:
+    triggers:
+      - search
+      - autocomplete
+      - facet
+      - filter
+      - debounce
+      - no results
+    rules: []
+    source: HIG.md
+    sections:
+      - "§2.9"
+
+  notifications:
+    triggers:
+      - toast
+      - snackbar
+      - banner
+      - alert
+      - inline status
+      - notification
+    rules:
+      - HIG-NTF-001
+    source: HIG.md
+    sections:
+      - "§2.10"
+
+  i18n:
+    triggers:
+      - locale
+      - rtl
+      - pluralization
+      - translation
+      - i18n
+      - localization
+      - bidirectional
+    rules:
+      - HIG-I18N-001
+      - HIG-UX-001
+    source: HIG.md
+    sections:
+      - "§2.8"
+
+  security:
+    triggers:
+      - csp
+      - xss
+      - csrf
+      - cookie
+      - pii
+      - auth ux
+      - session
+      - secret
+      - secure storage
+    rules:
+      - HIG-SEC-001
+      - HIG-SEC-002
+      - HIG-SEC-003
+      - HIG-SEC-004
+    source: HIG.md
+    sections:
+      - "§9.1"
+      - "§9.2"
+      - "§9.3"
+      - "§9.4"
+      - "§9.5"
+      - "§9.6"
+      - "§9.7"
+
+  ai-enforcement:
+    triggers:
+      - agent rule
+      - linter
+      - ci gate
+      - rule id
+      - eslint
+      - stylelint
+    rules:
+      - HIG-SIM-001
+    source: HIG.md
+    sections:
+      - "§7.1"
+      - "§7.2"
+      - "§7.3"
+      - "§8"
+
+  framework:
+    triggers:
+      - react
+      - vue
+      - next
+      - nuxt
+      - astro
+      - framework adapter
+    rules:
+      - HIG-SSR-001
+      - HIG-SSR-002
+      - HIG-SSR-003
+    source: HIG.md
+    sections:
+      - "§4.1"
+    # Phase 2: framework/react.md, framework/next.md, etc.

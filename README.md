@@ -2,7 +2,7 @@
 
 A universal Human Interface Guidelines (HIG) and product-engine contract for modern web applications, commerce sites, and content platforms.
 
-**Current version:** [v1.6.0](./HIG.md) · [Release notes](./RELEASE_NOTES.md)
+**Current version:** [v1.7.0](./HIG.md) · [Release notes](./RELEASE_NOTES.md)
 
 ## What is this?
 
@@ -21,6 +21,37 @@ The Modern Web HIG defines design principles, information architecture, state ma
 | 8 | Quality Assurance — blocking/warning/observation CI/CD gates |
 | 9 | Security & Privacy — CSP, XSS/CSRF, PII handling, auth UX, audit logging |
 
+## Progressive loading (v1.7.0+)
+
+The HIG is layered for token-efficient agent and team workflows:
+
+```
+                    MODERN WEB HIG
+                          │
+             ┌────────────┼────────────┐
+             │            │            │
+       HIG-CORE.md   HIG-LITE.md     HIG.md
+        Level 0       Level 1       Level 3
+       Philosophy    AI default     Complete
+       + archetypes  daily context  specification
+                          │
+                    rules/INDEX.md
+                    rules/manifest.yaml
+                       Level 2
+                    Topic-triggered
+                    deep lookups
+```
+
+| File | Use |
+|---|---|
+| [HIG-CORE.md](./HIG-CORE.md) | Session preamble — vocabulary, archetypes, HIG-SIM-001 |
+| [HIG-LITE.md](./HIG-LITE.md) | **Default agent context** — essential rules with rule ID links |
+| [rules/INDEX.md](./rules/INDEX.md) | Human-readable topic index and rule ID registry |
+| [rules/manifest.yaml](./rules/manifest.yaml) | Machine-readable load triggers for Level 2 modules |
+| [HIG.md](./HIG.md) | Full normative contract — edge cases and deep reference |
+
+HIG-LITE is a compressed summary of HIG — not a separate standard. Every Lite rule maps to a canonical rule ID in the full specification.
+
 ## Who is this for?
 
 - **Designers and engineers** building web apps, dashboards, commerce flows, or marketing sites
@@ -29,18 +60,19 @@ The Modern Web HIG defines design principles, information architecture, state ma
 
 ## Quick start
 
-1. Read the full contract: **[HIG.md](./HIG.md)**
+1. Read the essential rules: **[HIG-LITE.md](./HIG-LITE.md)** (most tasks)
 2. Identify your page archetype (Content/Marketing, Commerce, Application, or Auth/Account)
 3. Apply the Layer 0 applicability matrix to determine which rules are mandatory for your context
-4. Wire the Layer 7 ESLint/Stylelint rules and Layer 8 CI gates into your pipeline
+4. Open **[HIG.md](./HIG.md)** for full detail when needed
+5. Wire the Layer 7 ESLint/Stylelint rules and Layer 8 CI gates into your pipeline
 
 ## Integrate into your workflow
 
 For product teams and coding agents, follow **[INTEGRATION.md](./INTEGRATION.md)** — an efficient path that avoids dumping the full HIG into every prompt:
 
-1. **Pin** `HIG.md` in the product repo (vendor copy, submodule, or tagged URL)
+1. **Pin** `HIG.md` + `HIG-LITE.md` in the product repo (vendor copy, submodule, or tagged URL)
 2. **Declare archetypes** once (`docs/hig-scope.md` — see [examples/hig-scope.example.md](./examples/hig-scope.example.md))
-3. **Wire agents** with the copy-paste templates in [examples/agent-rules/](./examples/agent-rules/) (Cursor, Claude Code, Copilot, `AGENTS.md`)
+3. **Wire agents** with Level 1 default context + Layer 7 YAML from [examples/agent-rules/](./examples/agent-rules/)
 4. **Add a PR checklist**, then Layer 8 lint/CI when you can automate Layer 7
 
 | Tool | Template |

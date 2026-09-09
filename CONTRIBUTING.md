@@ -14,13 +14,15 @@ Good contributions include:
 - Expanding the Layer 0 applicability matrix for new page archetypes
 - Improving machine-readable enforcement specs (YAML, ESLint/Stylelint configs)
 - Improving [INTEGRATION.md](./INTEGRATION.md) or the copy-paste templates under `examples/agent-rules/`
+- Updating [HIG-LITE.md](./HIG-LITE.md) when adding high-frequency rules (every Lite rule MUST map to a canonical rule ID in `HIG.md`)
+- Expanding [rules/INDEX.md](./rules/INDEX.md) and [rules/manifest.yaml](./rules/manifest.yaml) when adding new topic modules
 
 ## How to propose a change
 
 1. **Search existing issues** to avoid duplicate work.
 2. **Open an issue** describing the problem, the proposed change, and which layer(s) it affects.
 3. **Fork the repo** and create a branch from `main`.
-4. **Edit `HIG.md`** — keep changes focused and update the version history (Section 8.1) when the change is substantive.
+4. **Edit `HIG.md`** — keep changes focused and update the version history (Section 8.1) when the change is substantive. If the change affects high-frequency agent rules, also update `HIG-LITE.md` and `rules/INDEX.md` / `rules/manifest.yaml`.
 5. **Update [RELEASE_NOTES.md](./RELEASE_NOTES.md)** for minor and major bumps — expand the §8.1 summary with highlights, layer impact, and adoption notes.
 6. **Open a pull request** using the provided template.
 

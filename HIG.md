@@ -1,10 +1,19 @@
-# Modern Web HIG & Product Engine Contract — v1.6.0
+# Modern Web HIG & Product Engine Contract — v1.7.0
 
 ## Executive Summary
 
-The Modern Web Human Interface Guidelines (HIG) v1.6.0 define design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+The Modern Web Human Interface Guidelines (HIG) v1.7.0 define design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
-This release adds the P2 capability expansion:
+This release adds progressive loading for AI agents and teams:
+
+1. **[HIG-CORE.md](./HIG-CORE.md) (Level 0)** — Philosophy, normative vocabulary, archetype resolution, and HIG-SIM-001.
+2. **[HIG-LITE.md](./HIG-LITE.md) (Level 1)** — Compressed executable summary with canonical rule ID cross-links. Default agent context.
+3. **[rules/INDEX.md](./rules/INDEX.md) + [rules/manifest.yaml](./rules/manifest.yaml) (Level 2)** — Topic-triggered loading index mapping rule IDs to HIG sections.
+4. **HIG.md (Level 3)** — Complete normative specification (this document).
+
+HIG-LITE is a summary of HIG — not a separate standard. Every Lite rule maps to a canonical rule ID here.
+
+The v1.6.0 P2 capability expansion remains in force:
 
 1. **Layer 9: Security & Privacy** — CSP, XSS/CSRF mitigation, secure cookies, PII handling, auth UX, session management, and audit logging.
 2. **Product UX taxonomies** — Error, empty-state, loading-state, notification, and search standards with explicit state-machine contracts.
@@ -16,6 +25,14 @@ This release adds the P2 capability expansion:
 
 ```
 MODERN WEB HIG
+│
+├── HIG-CORE.md              ← Level 0: philosophy + critical rules (~500 tokens)
+├── HIG-LITE.md              ← Level 1: AI default context (~1–2k tokens)
+├── HIG.md                     ← Level 3: complete specification (this file)
+│
+├── rules/
+│   ├── INDEX.md               ← Level 2: topic index + rule ID registry
+│   └── manifest.yaml          ← Level 2: machine-readable load triggers
 │
 ├── Normative Vocabulary & Exception System
 ├── Layer 0: Applicability & Scope (Archetype Matrix)
@@ -839,7 +856,7 @@ Absolute thresholds alone are insufficient. PRs that increase initial JS by >10%
 
 Deterministic, machine-readable rules for system prompts, AI coding workflows (Cursor, Claude Code, GitHub Copilot), and automated analysis.
 
-**Product-repo adoption:** see [INTEGRATION.md](./INTEGRATION.md) for an efficient workflow (pin the contract → archetype map → thin agent rules → PR checklist → CI). Copy-paste templates live in [examples/agent-rules/](./examples/agent-rules/).
+**Product-repo adoption:** see [INTEGRATION.md](./INTEGRATION.md) for an efficient workflow (pin the contract → archetype map → **HIG-LITE default context** → thin agent rules → PR checklist → CI). Copy-paste templates live in [examples/agent-rules/](./examples/agent-rules/). Agents should load [HIG-LITE.md](./HIG-LITE.md) by default and use [rules/manifest.yaml](./rules/manifest.yaml) for topic-triggered deep lookups — not the full HIG on every task.
 
 ### 7.1 Rule Schema
 
@@ -1140,6 +1157,7 @@ Logs MUST include timestamp, actor, action, and resource — but MUST NOT includ
 
 Expanded release notes for each version: **[RELEASE_NOTES.md](./RELEASE_NOTES.md)**.
 
+* **v1.7.0 (2026-09-09):** Progressive loading architecture (Phase 1). Added HIG-CORE.md (Level 0), HIG-LITE.md (Level 1), rules/INDEX.md and rules/manifest.yaml (Level 2). HIG-LITE is a compressed summary with canonical rule ID cross-links — not a divergent standard. Updated INTEGRATION.md and agent templates to default to Level 1 context.
 * **v1.6.0 (2026-09-09):** P2 capability expansion. Added Layer 9 Security & Privacy. Added error, empty-state, loading-state, notification, and search taxonomies (§2.5–2.10). Added forms contract (§2.11), i18n/localization with logical layout properties (§2.8), data density standards (§3.3), and browser permissions UX (§5.5). Expanded Layer 0 matrix, Layer 7 rule IDs, and Layer 8 security CI alignment.
 * **v1.5.1 (2026-09-09):** Corrections and clarifications to v1.5.0. Added normative vocabulary (MUST/SHOULD/MAY) and exception governance. Made Layer 4 framework-neutral with universal reference architecture and separate framework adapters. Split lab vs. field performance; corrected Core Web Vitals table (TTFB as supporting metric); field INP as SLO not CI gate. Fixed WCAG 2.3.3 AAA classification, focus trapping semantics, target size exceptions, accessible name computation, destructive action models, and metadata archetype awareness. Added stale data, network failure, conflict, idempotency, and offline state definitions. Expanded Layer 7 with rule IDs, severity, applicability, and autofix safety. Expanded Layer 8 with blocking/warning/observation gates, security CI, visual regression, and cross-browser testing.
 * **v1.5.0 (2026-09-08):** Added Layer 1 functional micro-animations contract (allowlist, deny list, ≤300 ms cap, compositor-safe properties). Introduced motion duration/easing tokens in Layer 3 and matching Layer 7 agent enforcement rules.

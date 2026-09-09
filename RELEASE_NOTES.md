@@ -6,6 +6,34 @@ Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
 ---
 
+## [v1.7.0](./HIG.md) — 2026-09-09
+
+Progressive loading architecture (Phase 1) — token-efficient agent workflows without weakening the standard.
+
+### Highlights
+
+- **[HIG-CORE.md](./HIG-CORE.md) (Level 0)** — Philosophy, normative vocabulary, archetype resolution, and HIG-SIM-001 (~500 tokens).
+- **[HIG-LITE.md](./HIG-LITE.md) (Level 1)** — Compressed executable summary with canonical rule ID cross-links. Default agent context (~1–2k tokens).
+- **[rules/INDEX.md](./rules/INDEX.md) + [rules/manifest.yaml](./rules/manifest.yaml) (Level 2)** — Topic-triggered loading index. Modules currently point to HIG.md sections; Phase 2 will extract standalone rule files.
+- **HIG.md remains Level 3** — Complete normative specification. Existing pins to `HIG.md` continue to work.
+
+### Layer impact
+
+| Layer | Change |
+| --- | --- |
+| — | New layered file structure (CORE, LITE, rules/) |
+| 7 | Agent workflow now defaults to HIG-LITE; manifest-driven Level 2 lookups |
+| — | INTEGRATION.md, README, and all agent templates updated |
+
+### Adoption notes
+
+- Pin `HIG-LITE.md` and `rules/` alongside `HIG.md` in product repos.
+- Update agent rules to reference Level 1 default context and `rules/manifest.yaml`.
+- HIG-LITE is a summary of HIG — not a divergent standard. Every Lite bullet maps to a rule ID in the full spec.
+- No breaking changes to mandatory requirements or token semantics.
+
+---
+
 ## [v1.6.0](./HIG.md) — 2026-09-09
 
 P2 capability expansion — product UX taxonomies, forms contract, i18n, data density, and a dedicated Security & Privacy layer.
