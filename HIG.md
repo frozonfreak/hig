@@ -885,7 +885,7 @@ Absolute thresholds alone are insufficient. PRs that increase initial JS by >10%
 
 Deterministic, machine-readable rules for system prompts, AI coding workflows (Cursor, Claude Code, GitHub Copilot), and automated analysis.
 
-**Product-repo adoption:** see [INTEGRATION.md](./INTEGRATION.md) for an efficient workflow (pin the contract → archetype map → **HIG-LITE default context** → **rules/*.md on topic match** → thin agent rules → PR checklist → CI). Copy-paste templates live in [examples/agent-rules/](./examples/agent-rules/). Agents should load [HIG-LITE.md](./HIG-LITE.md) by default, then [rules/manifest.yaml](./rules/manifest.yaml) modules — not the full HIG on every task.
+**Product-repo adoption:** see [INTEGRATION.md](./INTEGRATION.md) for an efficient workflow (pin the contract → archetype map → **HIG-QUICK default context** → **HIG-LITE + rules/*.md on feature work** → thin agent rules → PR checklist → CI). Copy-paste templates live in [examples/agent-rules/](./examples/agent-rules/). Agents should load [HIG-QUICK.md](./HIG-QUICK.md) by default, then [HIG-LITE.md](./HIG-LITE.md) and [rules/manifest.yaml](./rules/manifest.yaml) modules — not the full HIG on every task.
 
 ### 7.1 Rule Schema
 

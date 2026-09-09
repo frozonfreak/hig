@@ -22,7 +22,7 @@ Modern Web HIG defines how web interfaces should:
 
 A behavioral and interaction standard for the Web.
 
-**[Read the Standard](./HIG.md)** · **[Quick Reference](./HIG-LITE.md)** · **[Use with AI](./INTEGRATION.md)** · **[Contribute](./CONTRIBUTING.md)**
+**[Quick Reference](./HIG-QUICK.md)** · **[Read the Standard](./HIG.md)** · **[Use with AI](./INTEGRATION.md)** · **[Contribute](./CONTRIBUTING.md)**
 
 **Current version:** [v1.9.0](./HIG.md) · [Release notes](./RELEASE_NOTES.md) · [Documentation site](https://frozonfreak.github.io/hig/)
 

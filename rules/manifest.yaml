@@ -4,23 +4,27 @@
 
 version: "1.9.0"
 
-levels:
-  0:
-    file: HIG-CORE.md
-    description: Philosophy, vocabulary, archetypes, simplicity rule
-    load: session_start
+layers:
   1:
-    file: HIG-LITE.md
-    description: Default daily agent context — compressed executable summary
+    file: HIG-QUICK.md
+    description: Quick Reference — 98 rules, ~5 minutes. Default agent context.
     load: all_ui_tasks
   2:
-    file: rules/
-    description: Topic-triggered standalone rule modules
-    load: on_topic_match
+    files:
+      - HIG-LITE.md
+      - rules/
+      - framework/
+    description: Practical documentation — rule IDs, topic modules, archetype packs
+    load: feature_work_and_topic_match
   3:
     file: HIG.md
     description: Complete normative specification
     load: edge_cases_and_conflicts
+
+preamble:
+  file: HIG-CORE.md
+  description: Philosophy, vocabulary, archetypes, simplicity rule
+  load: session_start
 
 modules:
   applicability:

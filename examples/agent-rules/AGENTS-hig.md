@@ -1,7 +1,8 @@
 # Agent instructions — Web HIG
 
 Pinned contract: Web HIG v1.9.0  
-Default context: `docs/hig/HIG-LITE.md`  
+Default context: `docs/hig/HIG-QUICK.md` — *Follow Modern Web HIG Quick Reference.*  
+Practical guide: `docs/hig/HIG-LITE.md`  
 Topic index: `docs/hig/rules/manifest.yaml`  
 Full spec: `docs/hig/HIG.md` (edge cases only)  
 Archetype map: `docs/hig-scope.md`
@@ -9,14 +10,15 @@ Archetype map: `docs/hig-scope.md`
 ## Mandatory workflow for UI / CSS / front-end tasks
 
 1. **Archetype first** — `content` | `commerce` | `application` | `auth`
-2. **Level 1** — read `HIG-LITE.md` for essential rules
-3. **Level 1.5** — load `rules/archetypes/<archetype>.md` → preload default modules
-4. **Level 2** — match task against `rules/manifest.yaml`; load referenced `rules/*.md` module (and `framework/*.md` if applicable)
-5. **Layer 0 matrix** — only enforce mandatory/conditional rules for that archetype (`rules/applicability.md`)
-6. **Layer 7 guardrails** — see YAML below (source of truth for agent behavior)
-7. **Level 3** — open full `HIG.md` only for edge cases or spec conflicts
-8. **Simplicity** — prefer the simplest implementation that satisfies applicable requirements (HIG-SIM-001)
-9. **Cite rule IDs** when declining conflicting requests
+2. **Layer 1** — read `HIG-QUICK.md` for the 98-rule Quick Reference
+3. **Layer 2** — open `HIG-LITE.md` when building features or you need rule ID links
+4. **Archetype pack** — load `rules/archetypes/<archetype>.md` → preload default modules
+5. **Layer 2 modules** — match task against `rules/manifest.yaml`; load referenced `rules/*.md` module (and `framework/*.md` if applicable)
+6. **Layer 0 matrix** — only enforce mandatory/conditional rules for that archetype (`rules/applicability.md`)
+7. **Layer 7 guardrails** — see YAML below (source of truth for agent behavior)
+8. **Layer 3** — open full `HIG.md` only for edge cases or spec conflicts
+9. **Simplicity** — prefer the simplest implementation that satisfies applicable requirements (HIG-SIM-001)
+10. **Cite rule IDs** when declining conflicting requests
 
 ```yaml
 agent_enforcement_rules:
@@ -24,13 +26,14 @@ agent_enforcement_rules:
     resolve_archetype_first: true
     apply_layer0_matrix: true
     prefer_simplest_compliant_implementation: true
-    default_context: HIG-LITE.md
+    default_context: HIG-QUICK.md
     progressive_loading:
-      level_0: HIG-CORE.md
-      level_1: HIG-LITE.md
-      level_1_5: rules/archetypes/{archetype}.md
-      level_2: rules/manifest.yaml
-      level_3: HIG.md
+      layer_1: HIG-QUICK.md
+      layer_2: HIG-LITE.md
+      layer_2_modules: rules/manifest.yaml
+      layer_2_archetypes: rules/archetypes/{archetype}.md
+      layer_3: HIG.md
+      preamble: HIG-CORE.md
   styling_constraints:
     - id: HIG-TOK-001
       rule: disallow_raw_hex_colors_outside_token_files

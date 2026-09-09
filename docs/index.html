@@ -72,7 +72,7 @@
           <span>This is not a UI component library (like MUI or Bootstrap). It is a set of governance rules for your existing design system and AI agents.</span>
         </div>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md">Read HIG-LITE (5 min)</a>
+          <a class="btn btn-primary" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Read Quick Reference (5 min)</a>
           <a class="btn btn-secondary" href="#quick-start">Quick start</a>
           <a class="btn btn-ghost" href="#architecture">Full details</a>
         </div>
@@ -91,6 +91,10 @@
           <div class="stat">
             <div class="stat-value">10</div>
             <div class="stat-label">Governance layers (0–9)</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">98</div>
+            <div class="stat-label">Quick Reference rules</div>
           </div>
           <div class="stat">
             <div class="stat-value">16</div>
@@ -113,7 +117,7 @@
           </div>
           <div class="card">
             <h3>How you use it</h3>
-            <p>Pin it in your repo, map routes to page types, start with HIG-LITE, open topic guides when needed.</p>
+            <p>Pin it in your repo, map routes to page types, start with the Quick Reference, open practical guides when needed.</p>
           </div>
           <div class="card">
             <h3>Who benefits</h3>
@@ -136,11 +140,11 @@
           </div>
           <div class="card">
             <h3>AI coding agents</h3>
-            <p>Token-efficient progressive loading — HIG-LITE by default, deep modules on topic match.</p>
+            <p>Token-efficient three-layer model — Quick Reference by default, practical docs on feature work, full spec for edge cases.</p>
           </div>
           <div class="card">
             <h3>First-time contributors</h3>
-            <p>Start with HIG-LITE and the essential rules checklist below. Open the full spec only when needed.</p>
+            <p>Start with the Quick Reference and the essential rules checklist below. Open the full spec only when needed.</p>
           </div>
         </div>
       </section>
@@ -160,7 +164,9 @@
           <li><strong>Security basics</strong> — no secrets in client code; PII masked; CSP configured</li>
         </ul>
         <p>
-          Full short guide:
+          Full Quick Reference (98 rules):
+          <a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">HIG-QUICK.md</a>
+          · Practical guide:
           <a href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md">HIG-LITE.md</a>
         </p>
       </section>
@@ -171,8 +177,8 @@
         <p class="section-intro">Get value in one session — no need to read the entire specification.</p>
         <ol class="steps">
           <li>
-            <strong>Read HIG-LITE</strong> — the 5-minute essential rules summary
-            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md">Open HIG-LITE.md →</a></span>
+            <strong>Read the Quick Reference</strong> — 98 rules, ~5 minutes
+            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Open HIG-QUICK.md →</a></span>
           </li>
           <li>
             <strong>Pick your page type</strong> — Content, Commerce, Application, or Auth
@@ -183,7 +189,7 @@
             <span class="step-meta"><a href="https://github.com/frozonfreak/hig/blob/main/rules/INDEX.md">Browse modules →</a></span>
           </li>
           <li>
-            <strong>Pin in your product repo</strong> when ready — copy HIG-LITE, HIG.md, rules/, VERSION
+            <strong>Pin in your product repo</strong> when ready — copy HIG-QUICK, HIG-LITE, HIG.md, rules/, VERSION
             <span class="step-meta"><a href="#integration">Integration guide →</a></span>
           </li>
         </ol>
@@ -193,74 +199,66 @@
 
       <!-- ARCHITECTURE -->
       <section id="architecture" class="section-block">
-        <h2>Progressive loading architecture</h2>
+        <h2>Three consumption layers</h2>
         <p class="section-intro">
-          The HIG is layered so humans and AI agents load only what they need — not the entire 15–30k token specification every time.
+          Pick your depth. Tell an AI: <em>"Follow Modern Web HIG Quick Reference."</em> — pin HIG-QUICK instead of the 20,000-token full document.
         </p>
 
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
-                <th>Level</th>
+                <th>Layer</th>
                 <th>Document</th>
                 <th>When to load</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>0</strong></td>
-                <td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-CORE.md">HIG-CORE.md</a></td>
-                <td>Session start — vocabulary, archetypes, simplicity rule</td>
+                <td><strong>1 — Quick Reference</strong></td>
+                <td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">HIG-QUICK.md</a></td>
+                <td><strong>Default</strong> for every UI / CSS / front-end task (~5 min, 98 rules)</td>
               </tr>
               <tr>
-                <td><strong>1</strong></td>
-                <td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md">HIG-LITE.md</a></td>
-                <td><strong>Default</strong> for every UI / CSS / front-end task</td>
+                <td><strong>2 — Practical</strong></td>
+                <td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md">HIG-LITE.md</a> + <a href="https://github.com/frozonfreak/hig/tree/main/rules">rules/</a></td>
+                <td>Building features — rule IDs, topic modules, archetype packs</td>
               </tr>
               <tr>
-                <td><strong>1.5</strong></td>
-                <td><a href="https://github.com/frozonfreak/hig/tree/main/rules/archetypes">Archetype packs</a></td>
-                <td>After page type resolved — preload default modules</td>
-              </tr>
-              <tr>
-                <td><strong>2</strong></td>
-                <td><a href="https://github.com/frozonfreak/hig/tree/main/rules">rules/*.md</a></td>
-                <td>Topic match — combobox → accessibility, checkout → forms</td>
-              </tr>
-              <tr>
-                <td><strong>3</strong></td>
+                <td><strong>3 — Full specification</strong></td>
                 <td><a href="https://github.com/frozonfreak/hig/blob/main/HIG.md">HIG.md</a></td>
-                <td>Edge cases, spec conflicts, full normative detail</td>
+                <td>Edge cases, spec conflicts, CI gate definitions</td>
               </tr>
             </tbody>
           </table>
         </div>
 
-        <pre><code>                    WEB HIG
-                          │
-             ┌────────────┼────────────┐
-             │            │            │
-       HIG-CORE.md   HIG-LITE.md     HIG.md
-        Level 0       Level 1       Level 3
-                          │
-              rules/archetypes/  (Level 1.5)
-                          │
-              rules/*.md + framework/*.md  (Level 2)</code></pre>
+        <pre><code>                         WEB HIG
+                             │
+          ┌──────────────────┼──────────────────┐
+          │                  │                  │
+    HIG-QUICK.md       HIG-LITE.md           HIG.md
+      Layer 1            Layer 2             Layer 3
+    ~5 minutes         Practical           Full
+    98 rules           documentation       specification
+          │                  │
+          │            rules/ + framework/
+          │            archetype packs
+          └──────────────────┴──► All rules map to HIG.md</code></pre>
 
         <p>
           Topic loading is driven by
           <a href="https://github.com/frozonfreak/hig/blob/main/rules/manifest.yaml">rules/manifest.yaml</a>.
-          HIG-LITE is a compressed summary — every rule maps to a canonical ID in the full spec.
+          Session preamble: <a href="https://github.com/frozonfreak/hig/blob/main/HIG-CORE.md">HIG-CORE.md</a>.
         </p>
 
         <h3>Example workflow</h3>
         <div class="flow">
           <span class="flow-step">Resolve archetype</span>
           <span class="flow-arrow">→</span>
-          <span class="flow-step">HIG-LITE</span>
+          <span class="flow-step">HIG-QUICK</span>
           <span class="flow-arrow">→</span>
-          <span class="flow-step">Archetype pack</span>
+          <span class="flow-step">HIG-LITE + pack</span>
           <span class="flow-arrow">→</span>
           <span class="flow-step">Topic module</span>
           <span class="flow-arrow">→</span>
@@ -455,9 +453,10 @@
       <section id="file-structure" class="section-block">
         <h2>Repository structure</h2>
         <pre><code>web-hig/
-├── HIG-CORE.md              Level 0 — philosophy + archetypes
-├── HIG-LITE.md              Level 1 — default agent context
-├── HIG.md                   Level 3 — complete specification
+├── HIG-QUICK.md             Layer 1 — Quick Reference (98 rules, ~5 min)
+├── HIG-LITE.md              Layer 2 — practical guide with rule IDs
+├── HIG-CORE.md              Session preamble — philosophy + archetypes
+├── HIG.md                   Layer 3 — complete specification
 ├── VERSION                  Single version pin
 ├── rules/
 │   ├── manifest.yaml        Machine-readable load triggers
@@ -477,7 +476,7 @@
         <p class="section-intro">Adopt gradually — most teams start in one afternoon.</p>
         <ol class="steps">
           <li>
-            <strong>Pin the contract</strong> — copy HIG-LITE, HIG.md, VERSION, rules/, framework/ into <code>docs/hig/</code>
+            <strong>Pin the contract</strong> — copy HIG-QUICK, HIG-LITE, HIG.md, VERSION, rules/, framework/ into <code>docs/hig/</code>
             <span class="step-meta">~10 minutes</span>
           </li>
           <li>
@@ -506,15 +505,16 @@
       <!-- AI AGENTS -->
       <section id="ai-agents" class="section-block">
         <h2>AI agent workflow</h2>
-        <p class="section-intro">Do not paste the entire HIG into every prompt. Use progressive loading instead.</p>
+        <p class="section-intro">Do not paste the entire HIG into every prompt. Pin HIG-QUICK and say: <em>"Follow Modern Web HIG Quick Reference."</em></p>
         <ol class="steps">
           <li><strong>Resolve page archetype</strong> from product scope doc</li>
-          <li><strong>Read HIG-LITE</strong> (Level 1) — default context for every UI task</li>
-          <li><strong>Load archetype pack</strong> (Level 1.5) — preload default modules</li>
-          <li><strong>Match topic</strong> via manifest.yaml → open rules/*.md (Level 2)</li>
+          <li><strong>Read HIG-QUICK</strong> (Layer 1) — default context for every UI task</li>
+          <li><strong>Open HIG-LITE</strong> (Layer 2) when building features or you need rule ID links</li>
+          <li><strong>Load archetype pack</strong> — preload default modules</li>
+          <li><strong>Match topic</strong> via manifest.yaml → open rules/*.md</li>
           <li><strong>Load framework adapter</strong> when stack-specific (React, Next, …)</li>
           <li><strong>Apply Layer 7 YAML</strong> guardrails from agent rule file</li>
-          <li><strong>Escalate to HIG.md</strong> only for edge cases — cite rule IDs on conflicts</li>
+          <li><strong>Escalate to HIG.md</strong> (Layer 3) only for edge cases — cite rule IDs on conflicts</li>
         </ol>
       </section>
 
@@ -539,7 +539,8 @@
               </tr>
             </thead>
             <tbody>
-              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md"><strong>HIG-LITE.md</strong></a></td><td>Essential rules — read first (~5 min)</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md"><strong>HIG-QUICK.md</strong></a></td><td>Quick Reference — read first (~5 min, 98 rules)</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md"><strong>HIG-LITE.md</strong></a></td><td>Practical guide with rule IDs and checklists (Layer 2)</td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/HIG.md"><strong>HIG.md</strong></a></td><td>Complete normative specification</td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-CORE.md">HIG-CORE.md</a></td><td>Philosophy, vocabulary, archetypes</td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/INTEGRATION.md">INTEGRATION.md</a></td><td>Product repo adoption guide</td></tr>
@@ -562,7 +563,8 @@
             <tbody>
               <tr><td><strong>Archetype</strong></td><td>Page category (marketing, shop, app, login) that determines required rules</td></tr>
               <tr><td><strong>Design token</strong></td><td>Named design value (e.g. <code>--color-primary</code>) instead of hard-coded values</td></tr>
-              <tr><td><strong>HIG-LITE</strong></td><td>Short essential-rules document — default context for daily work</td></tr>
+              <tr><td><strong>HIG-QUICK</strong></td><td>98-rule Quick Reference — default context for daily work and AI agents</td></tr>
+              <tr><td><strong>HIG-LITE</strong></td><td>Practical guide with rule IDs — Layer 2 documentation</td></tr>
               <tr><td><strong>Rule ID</strong></td><td>Stable code like <code>HIG-A11Y-003</code> identifying one specific requirement</td></tr>
               <tr><td><strong>WCAG 2.2 AA</strong></td><td>International accessibility standard — our compliance target</td></tr>
               <tr><td><strong>Core Web Vitals</strong></td><td>Google metrics: load speed (LCP), responsiveness (INP), stability (CLS)</td></tr>
@@ -600,6 +602,7 @@
       <footer class="site-footer">
         <div class="footer-links">
           <a href="https://github.com/frozonfreak/hig">GitHub</a>
+          <a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Quick Reference</a>
           <a href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md">HIG-LITE</a>
           <a href="https://github.com/frozonfreak/hig/blob/main/HIG.md">Full spec</a>
           <a href="https://github.com/frozonfreak/hig/blob/main/LICENSE">MIT License</a>

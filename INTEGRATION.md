@@ -6,22 +6,23 @@ This guide shows an **efficient** way to adopt the Web HIG in a product repo: pr
 
 ---
 
-## Progressive loading levels
+## Three consumption layers
 
-| Level | File | Load when |
+| Layer | File | Load when |
 | --- | --- | --- |
-| **0** | [HIG-CORE.md](./HIG-CORE.md) | Session start — philosophy, vocabulary, archetypes |
-| **1** | [HIG-LITE.md](./HIG-LITE.md) | **Every UI/CSS/front-end task** (default) |
-| **1.5** | [rules/archetypes/](./rules/archetypes/) | After archetype resolved — preload default modules |
-| **2** | [rules/*.md](./rules/) + [framework/*.md](./framework/) via [manifest.yaml](./rules/manifest.yaml) | Task matches a topic (combobox, forms, SSR, security…) |
-| **3** | [HIG.md](./HIG.md) | Edge cases, spec conflicts, full normative detail |
+| **1 — Quick Reference** | [HIG-QUICK.md](./HIG-QUICK.md) | **Every UI/CSS/front-end task** (default, ~5 min) |
+| **2 — Practical** | [HIG-LITE.md](./HIG-LITE.md) + [rules/](./rules/) + [framework/](./framework/) | Building features — rule IDs, topic modules, archetype packs |
+| **3 — Full specification** | [HIG.md](./HIG.md) | Edge cases, spec conflicts, normative detail |
+
+**Preamble:** [HIG-CORE.md](./HIG-CORE.md) — session start (philosophy, vocabulary, archetypes).
 
 **Do not** dump all of `HIG.md` into every system prompt. Agents work better with:
 
-1. [HIG-LITE.md](./HIG-LITE.md) as default context (Level 1)
-2. Topic-triggered lookups via [rules/manifest.yaml](./rules/manifest.yaml) (Level 2)
+1. [HIG-QUICK.md](./HIG-QUICK.md) as default context (Layer 1) — *"Follow Modern Web HIG Quick Reference."*
+2. [HIG-LITE.md](./HIG-LITE.md) + topic modules when building features (Layer 2)
 3. A short always-on agent rule (archetype + Layer 7 YAML)
-4. CI as the hard backstop (Layer 8)
+4. [HIG.md](./HIG.md) only for edge cases (Layer 3)
+5. CI as the hard backstop (Layer 8)
 
 ---
 
@@ -29,7 +30,7 @@ This guide shows an **efficient** way to adopt the Web HIG in a product repo: pr
 
 | Stage | Effort | What you get |
 | --- | --- | --- |
-| **1. Agent rules** | Minutes | Agents use HIG-LITE by default; load Level 2 modules on topic match |
+| **1. Agent rules** | Minutes | Agents use HIG-QUICK by default; escalate to HIG-LITE + modules on topic match |
 | **2. Scope doc** | Minutes | Humans and agents share one archetype map for the product |
 | **3. PR checklist** | Minutes | Reviewers catch HIG regressions without waiting on custom linters |
 | **4. Lint + CI** | Hours | Layer 8 gates fail the build on a11y/perf/token violations |
@@ -44,7 +45,7 @@ Pick one pinning strategy and stick to it:
 
 | Strategy | When to use |
 | --- | --- |
-| **Vendor copy** | Fastest: copy `HIG.md`, `HIG-LITE.md`, `VERSION`, `rules/`, and `framework/` into e.g. `docs/hig/` |
+| **Vendor copy** | Fastest: copy `HIG-QUICK.md`, `HIG-LITE.md`, `HIG.md`, `VERSION`, `rules/`, and `framework/` into e.g. `docs/hig/` |
 | **Git submodule / subtree** | You want upstream pulls without manual copy |
 | **Raw URL pin** | Agent rules link to tagged release files (e.g. `.../blob/v1.9.0/HIG-LITE.md`) |
 
@@ -52,8 +53,9 @@ Pick one pinning strategy and stick to it:
 
 | File | Purpose |
 | --- | --- |
-| `HIG-LITE.md` | Default daily context |
-| `HIG.md` | Full specification (Level 3) |
+| `HIG-QUICK.md` | Default daily context (Layer 1, ~5 min) |
+| `HIG-LITE.md` | Practical guide with rule IDs (Layer 2) |
+| `HIG.md` | Full specification (Layer 3) |
 | `rules/manifest.yaml` | Topic-triggered loading |
 | `rules/*.md` | Standalone topic modules |
 | `framework/*.md` | Framework adapters (React, Next, Vue, Nuxt, Astro) |
@@ -71,7 +73,8 @@ Create a short product-local scope file (example: `docs/hig-scope.md`):
 # HIG scope for this product
 
 Pinned contract: Web HIG v1.9.0
-- Daily context: `docs/hig/HIG-LITE.md`
+- Quick Reference: `docs/hig/HIG-QUICK.md`
+- Practical guide: `docs/hig/HIG-LITE.md`
 - Full spec: `docs/hig/HIG.md`
 - Topic index: `docs/hig/rules/manifest.yaml`
 
@@ -91,22 +94,23 @@ Agents and humans should resolve archetype **before** applying Layers 1–9 (see
 
 ## Step 3 — Wire coding agents
 
-Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) into your product repo. Keep the always-on rule **short**; default to HIG-LITE, not the full HIG.
+Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) into your product repo. Keep the always-on rule **short**; default to HIG-QUICK, not the full HIG.
 
 ### Loading workflow for agents
 
-1. **Always:** Read `HIG-LITE.md` (Level 1) + resolve archetype from scope doc
-2. **Archetype pack:** Load `rules/archetypes/<archetype>.md` → preload default modules (Level 1.5)
-3. **On topic match:** Consult `rules/manifest.yaml` → open matching `rules/*.md` module (Level 2); load `framework/*.md` when stack-specific
-4. **On edge case:** Open `HIG.md` (Level 3)
-5. **Always:** Apply Layer 7 YAML guardrails from the agent rule file
-6. **Cite rule IDs** when declining conflicting requests (e.g. `HIG-A11Y-003`)
+1. **Always:** Read `HIG-QUICK.md` (Layer 1) + resolve archetype from scope doc
+2. **On feature work:** Open `HIG-LITE.md` (Layer 2) for rule ID links and checklists
+3. **Archetype pack:** Load `rules/archetypes/<archetype>.md` → preload default modules
+4. **On topic match:** Consult `rules/manifest.yaml` → open matching `rules/*.md` module; load `framework/*.md` when stack-specific
+5. **On edge case:** Open `HIG.md` (Layer 3)
+6. **Always:** Apply Layer 7 YAML guardrails from the agent rule file
+7. **Cite rule IDs** when declining conflicting requests (e.g. `HIG-A11Y-003`)
 
 ### Cursor
 
 1. Copy `examples/agent-rules/cursor-hig.mdc` → `.cursor/rules/hig.mdc`
 2. Set `alwaysApply: true`, or use globs such as `**/*.{tsx,jsx,css,scss}`
-3. Point the rule at your pinned `HIG-LITE.md`, `HIG.md`, `rules/manifest.yaml`, and `docs/hig-scope.md`
+3. Point the rule at your pinned `HIG-QUICK.md`, `HIG-LITE.md`, `HIG.md`, `rules/manifest.yaml`, and `docs/hig-scope.md`
 
 ### Claude Code
 
@@ -128,15 +132,15 @@ Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) into
 When starting a UI task, prepend:
 
 ```text
-Follow Web HIG v1.9.0.
-Default context: docs/hig/HIG-LITE.md (Level 1).
-Archetype pack: docs/hig/rules/archetypes/<content|commerce|application|auth>.md (Level 1.5).
+Follow Modern Web HIG Quick Reference (docs/hig/HIG-QUICK.md) — Layer 1.
+Open docs/hig/HIG-LITE.md (Layer 2) when building features or you need rule ID links.
+Archetype pack: docs/hig/rules/archetypes/<content|commerce|application|auth>.md.
 Load docs/hig/rules/<module>.md from manifest.yaml when task matches a topic.
 Load docs/hig/framework/<stack>.md when framework-specific.
 Archetype: <content|commerce|application|auth> per docs/hig-scope.md.
 Apply Layer 0 matrix + Layer 7 guardrails. Cite rule IDs on conflicts.
 Prefer simplest compliant implementation (HIG-SIM-001).
-Escalate to docs/hig/HIG.md only for edge cases.
+Escalate to docs/hig/HIG.md (Layer 3) only for edge cases.
 ```
 
 ---
@@ -187,9 +191,9 @@ Until a shared `eslint-plugin-hig` package is available in your stack, approxima
 
 A product repo is integrated when:
 
-1. **Pinned** `HIG-LITE.md`, `HIG.md`, and `rules/` exist
+1. **Pinned** `HIG-QUICK.md`, `HIG-LITE.md`, `HIG.md`, and `rules/` exist
 2. **`hig-scope.md`** (or equivalent) maps routes → archetypes
-3. At least one **agent rule file** defaults to Level 1 and loads Level 2 on topic match
+3. At least one **agent rule file** defaults to Layer 1 (Quick Reference) and loads Layer 2 on topic match
 4. PRs use the **HIG checklist** (and CI gates when automated)
 
 That sequence keeps agent context small, enforcement deterministic, and upgrades explicit.

@@ -6,7 +6,7 @@ Product listings, PDPs, cart, checkout. Conversion-critical, payment-sensitive.
 
 ---
 
-## Default modules (load after HIG-LITE)
+## Default modules (load after HIG-QUICK)
 
 | Module | Why |
 | --- | --- |

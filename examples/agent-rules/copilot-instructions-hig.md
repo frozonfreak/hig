@@ -2,15 +2,15 @@
 
 Follow Web HIG v1.9.0.
 
-- **Default context:** `docs/hig/HIG-LITE.md` (Level 1) — do not load full HIG unless needed
-- **Topic modules:** `docs/hig/rules/manifest.yaml` (Level 2) — load matching `rules/*.md` on topic match; `framework/*.md` when stack-specific
-- **Full spec:** `docs/hig/HIG.md` (Level 3) — edge cases only
+- **Quick Reference:** `docs/hig/HIG-QUICK.md` (Layer 1) — *Follow Modern Web HIG Quick Reference.* Do not load full HIG unless needed.
+- **Practical guide:** `docs/hig/HIG-LITE.md` + `docs/hig/rules/manifest.yaml` (Layer 2) — load matching `rules/*.md` on topic match; `framework/*.md` when stack-specific
+- **Full spec:** `docs/hig/HIG.md` (Layer 3) — edge cases only
 - **Archetype map:** `docs/hig-scope.md`
 
 ## Workflow
 
 1. Resolve page archetype first, then apply Layer 0 matrix (`rules/applicability.md`).
-2. Read HIG-LITE for essential rules; cite rule IDs on conflicts.
+2. Read HIG-QUICK for the 98-rule Quick Reference; open HIG-LITE when you need rule IDs; cite rule IDs on conflicts.
 3. Load archetype pack (`rules/archetypes/<archetype>.md`) → preload default modules.
 4. Match task keywords against manifest.yaml → open referenced `rules/*.md` module.
 

@@ -5,12 +5,13 @@ Pinned contract: Web HIG v1.9.0
 | File | Purpose |
 | --- | --- |
 | `docs/hig/VERSION` | Version pin (currently 1.9.0) |
-| `docs/hig/HIG-LITE.md` | Default agent context (Level 1) |
-| `docs/hig/rules/archetypes/*.md` | Archetype packs (Level 1.5) |
-| `docs/hig/rules/*.md` | Topic modules (Level 2) |
+| `docs/hig/HIG-QUICK.md` | Quick Reference — default agent context (Layer 1) |
+| `docs/hig/HIG-LITE.md` | Practical guide with rule IDs (Layer 2) |
+| `docs/hig/rules/archetypes/*.md` | Archetype packs |
+| `docs/hig/rules/*.md` | Topic modules (Layer 2) |
 | `docs/hig/framework/*.md` | Framework adapters |
 | `docs/hig/rules/manifest.yaml` | Topic-triggered loading index |
-| `docs/hig/HIG.md` | Full specification (Level 3) |
+| `docs/hig/HIG.md` | Full specification (Layer 3) |
 
 | Route / area | Archetype | Notes |
 | --- | --- | --- |
@@ -20,3 +21,5 @@ Pinned contract: Web HIG v1.9.0
 | `/login`, `/signup`, `/settings` | Auth / Account | Security-sensitive; no decorative motion |
 
 **Default for new UI:** Application unless this table says otherwise.
+
+**Agent one-liner:** *Follow Modern Web HIG Quick Reference (`docs/hig/HIG-QUICK.md`).*

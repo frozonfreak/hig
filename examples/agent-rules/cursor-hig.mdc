@@ -9,14 +9,15 @@ Before writing or changing UI, CSS, or front-end architecture:
 
 1. Read the product archetype map (`docs/hig-scope.md` if present).
 2. Resolve the page archetype: `content` | `commerce` | `application` | `auth`.
-3. Apply **Level 1** default context: `docs/hig/HIG-LITE.md` (or repo `HIG-LITE.md`).
-4. Load **Level 1.5** archetype pack: `docs/hig/rules/archetypes/<archetype>.md` → preload default modules.
-5. On topic match, load **Level 2** module from `docs/hig/rules/manifest.yaml` (e.g. `rules/accessibility.md`). Load `framework/*.md` when stack-specific.
-6. Escalate to **Level 3** full spec (`docs/hig/HIG.md` or repo `HIG.md`) only for edge cases or conflicts.
-7. Apply the Layer 0 mandatory/optional matrix from `rules/applicability.md`.
-8. Obey the Layer 7 guardrails below. Prefer tokens and semantic HTML over one-off styles.
-9. Prefer the simplest implementation that satisfies applicable HIG requirements (HIG-SIM-001).
-10. Cite rule IDs when declining conflicting requests (e.g. `HIG-A11Y-003`).
+3. Apply **Layer 1** default context: `docs/hig/HIG-QUICK.md` (or repo `HIG-QUICK.md`) — follow Modern Web HIG Quick Reference.
+4. Open **Layer 2** practical guide (`docs/hig/HIG-LITE.md`) when building features or you need rule ID links.
+5. Load archetype pack: `docs/hig/rules/archetypes/<archetype>.md` → preload default modules.
+6. On topic match, load Layer 2 module from `docs/hig/rules/manifest.yaml` (e.g. `rules/accessibility.md`). Load `framework/*.md` when stack-specific.
+7. Escalate to **Layer 3** full spec (`docs/hig/HIG.md` or repo `HIG.md`) only for edge cases or conflicts.
+8. Apply the Layer 0 mandatory/optional matrix from `rules/applicability.md`.
+9. Obey the Layer 7 guardrails below. Prefer tokens and semantic HTML over one-off styles.
+10. Prefer the simplest implementation that satisfies applicable HIG requirements (HIG-SIM-001).
+11. Cite rule IDs when declining conflicting requests (e.g. `HIG-A11Y-003`).
 
 ```yaml
 agent_enforcement_rules:
@@ -24,13 +25,14 @@ agent_enforcement_rules:
     resolve_archetype_first: true
     apply_layer0_matrix: true
     prefer_simplest_compliant_implementation: true
-    default_context: HIG-LITE.md
+    default_context: HIG-QUICK.md
     progressive_loading:
-      level_0: HIG-CORE.md
-      level_1: HIG-LITE.md
-      level_1_5: rules/archetypes/{archetype}.md
-      level_2: rules/manifest.yaml
-      level_3: HIG.md
+      layer_1: HIG-QUICK.md
+      layer_2: HIG-LITE.md
+      layer_2_modules: rules/manifest.yaml
+      layer_2_archetypes: rules/archetypes/{archetype}.md
+      layer_3: HIG.md
+      preamble: HIG-CORE.md
 
   styling_constraints:
     - id: HIG-TOK-001

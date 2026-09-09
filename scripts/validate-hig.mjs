@@ -51,6 +51,7 @@ const manifestVersion = manifestYaml.match(/^version:\s*"([^"]+)"/m)?.[1];
 const higVersion = extractVersionFromTitle(read('HIG.md'));
 const liteVersion = read('HIG-LITE.md').match(/\*\*Version:\*\*\s+v(\d+\.\d+\.\d+)/)?.[1];
 const coreVersion = read('HIG-CORE.md').match(/\*\*Version:\*\*\s+v(\d+\.\d+\.\d+)/)?.[1];
+const quickVersion = read('HIG-QUICK.md').match(/\*\*Version:\*\*\s+v(\d+\.\d+\.\d+)/)?.[1];
 
 if (!manifestVersion) fail('manifest.yaml: missing version field');
 if (versionFile !== manifestVersion) {
@@ -64,6 +65,12 @@ if (liteVersion !== versionFile) {
 }
 if (coreVersion !== versionFile) {
   fail(`HIG-CORE.md (${coreVersion}) !== VERSION (${versionFile})`);
+}
+if (quickVersion !== versionFile) {
+  fail(`HIG-QUICK.md (${quickVersion}) !== VERSION (${versionFile})`);
+}
+if (!exists('HIG-QUICK.md')) {
+  fail('missing HIG-QUICK.md (Layer 1 Quick Reference)');
 }
 
 // --- Referenced files exist ---

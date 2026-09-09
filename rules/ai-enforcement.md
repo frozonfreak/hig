@@ -8,9 +8,9 @@
 
 ## Agent loading contract
 
-1. **Level 1 default:** [HIG-LITE.md](../HIG-LITE.md) for every UI task.
-2. **Level 2 on topic match:** load module from [manifest.yaml](./manifest.yaml).
-3. **Level 3 edge cases:** full [HIG.md](../HIG.md).
+1. **Layer 1 default:** [HIG-QUICK.md](../HIG-QUICK.md) for every UI task.
+2. **Layer 2 on feature work:** [HIG-LITE.md](../HIG-LITE.md) + module from [manifest.yaml](./manifest.yaml).
+3. **Layer 3 edge cases:** full [HIG.md](../HIG.md).
 4. **Cite rule IDs** when declining conflicting requests.
 
 ## 7.1 Rule Schema

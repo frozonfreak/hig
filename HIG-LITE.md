@@ -115,7 +115,7 @@ Check applicable items:
 
 ---
 
-## Archetype packs (Level 1.5)
+## Archetype packs (Layer 2)
 
 After resolving archetype, preload the default module set:
 

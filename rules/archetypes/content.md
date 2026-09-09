@@ -6,7 +6,7 @@ Landing pages, blogs, docs, campaigns. Read-mostly, SEO-critical, server-rendere
 
 ---
 
-## Default modules (load after HIG-LITE)
+## Default modules (load after HIG-QUICK)
 
 | Module | Why |
 | --- | --- |

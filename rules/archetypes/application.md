@@ -6,7 +6,7 @@ Authenticated tools, admin panels, data workflows. Write-heavy, state-heavy, RBA
 
 ---
 
-## Default modules (load after HIG-LITE)
+## Default modules (load after HIG-QUICK)
 
 Load **all** topic modules except those marked conditional below:
 

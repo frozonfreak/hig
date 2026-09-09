@@ -12,7 +12,9 @@ Progressive loading Phase 3 — archetype rule packs and contract validation.
 
 ### Highlights
 
-- **Archetype packs** (`rules/archetypes/`) — content, commerce, application, auth bundles that preload the correct Level 2 modules per page type.
+- **[HIG-QUICK.md](./HIG-QUICK.md) (Layer 1)** — 98-rule Quick Reference (~5 min). Default agent context. Tell AI: *"Follow Modern Web HIG Quick Reference."*
+- **Three consumption layers** — Quick Reference (Layer 1) → Practical docs (Layer 2: HIG-LITE + rules/) → Full spec (Layer 3: HIG.md).
+- **Archetype packs** (`rules/archetypes/`) — content, commerce, application, auth bundles that preload the correct Layer 2 modules per page type.
 - **[rules/applicability.md](./rules/applicability.md)** — Layer 0 extract with matrix and agent workflow.
 - **[VERSION](./VERSION)** — single version pin file for product repos and CI.
 - **[scripts/validate-hig.mjs](./scripts/validate-hig.mjs)** — validates VERSION sync, manifest file references, archetype packs, and rule ID consistency.

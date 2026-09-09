@@ -1,19 +1,20 @@
 # Web HIG — Rule Index (Level 2)
 
-**Version:** v1.9.0 · **Machine-readable:** [manifest.yaml](./manifest.yaml) · **Daily summary:** [HIG-LITE.md](../HIG-LITE.md) · **Full spec:** [HIG.md](../HIG.md)
+**Version:** v1.9.0 · **Machine-readable:** [manifest.yaml](./manifest.yaml) · **Quick Reference:** [HIG-QUICK.md](../HIG-QUICK.md) · **Practical:** [HIG-LITE.md](../HIG-LITE.md) · **Full spec:** [HIG.md](../HIG.md)
 
-This index maps rule IDs to standalone Level 2 modules and tells agents **when** to load them. Each module is a self-contained extract; [HIG.md](../HIG.md) remains the complete normative contract (Level 3).
+This index maps rule IDs to standalone Layer 2 modules and tells agents **when** to load them. Each module is a self-contained extract; [HIG.md](../HIG.md) remains the complete normative contract (Layer 3).
 
 ---
 
 ## How to use
 
-1. Start with [HIG-LITE.md](../HIG-LITE.md) (Level 1) for every UI task.
-2. Resolve archetype → load [archetype pack](./archetypes/) (Level 1.5).
-3. Preload **default modules** from the archetype pack.
-4. Match task keywords against the **Load when** column below (or [manifest.yaml](./manifest.yaml) triggers).
-5. Open the **Module file** for normative detail on that topic.
-6. Escalate to full [HIG.md](../HIG.md) only for edge cases or conflicts.
+1. Start with [HIG-QUICK.md](../HIG-QUICK.md) (Layer 1) for every UI task — ~5 minutes.
+2. Open [HIG-LITE.md](../HIG-LITE.md) (Layer 2) when you need rule IDs and checklists.
+3. Resolve archetype → load [archetype pack](./archetypes/).
+4. Preload **default modules** from the archetype pack.
+5. Match task keywords against the **Load when** column below (or [manifest.yaml](./manifest.yaml) triggers).
+6. Open the **Module file** for normative detail on that topic.
+7. Escalate to full [HIG.md](../HIG.md) only for edge cases or conflicts.
 
 ---
 
@@ -23,7 +24,7 @@ This index maps rule IDs to standalone Level 2 modules and tells agents **when**
 | --- | --- | --- |
 | **applicability** | [applicability.md](./applicability.md) | Layer 0 matrix, archetype resolution |
 
-## Archetype packs (Level 1.5)
+## Archetype packs (Layer 2)
 
 | Archetype | Pack | Default module count |
 | --- | --- | --- |

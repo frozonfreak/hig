@@ -46,7 +46,7 @@ Legend: ✅ Mandatory · ⚪ Conditional (when feature exists) · ❌ Not applic
 ## Agent workflow
 
 1. Resolve archetype from product scope doc (`docs/hig-scope.md`).
-2. Load [HIG-LITE.md](../HIG-LITE.md) (Level 1).
+2. Load [HIG-QUICK.md](../HIG-QUICK.md) (Layer 1); open [HIG-LITE.md](../HIG-LITE.md) (Layer 2) when building features.
 3. Load archetype pack → preload **default modules** for that archetype.
 4. Load additional modules on topic match via [manifest.yaml](./manifest.yaml).
 5. Escalate to [HIG.md](../HIG.md) only for edge cases.

@@ -6,7 +6,7 @@ Sign-in, sign-up, recovery, settings. Security- and privacy-sensitive.
 
 ---
 
-## Default modules (load after HIG-LITE)
+## Default modules (load after HIG-QUICK)
 
 | Module | Why |
 | --- | --- |

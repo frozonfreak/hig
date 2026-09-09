@@ -5,6 +5,7 @@ Copy these into a **product** repository — they are not loaded by this HIG rep
 | File | Destination in product repo |
 | --- | --- |
 | [hig-scope.example.md](./hig-scope.example.md) | `docs/hig-scope.md` (edit routes) |
+| [../HIG-QUICK.md](../HIG-QUICK.md) | `docs/hig/HIG-QUICK.md` |
 | [../HIG-LITE.md](../HIG-LITE.md) | `docs/hig/HIG-LITE.md` |
 | [../HIG.md](../HIG.md) | `docs/hig/HIG.md` |
 | [../VERSION](../VERSION) | `docs/hig/VERSION` |
