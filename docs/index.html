@@ -3,30 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The HIG for AI-native web development — governance rules for accessible, performant, and consistent web experiences. Overview and full specification guide.">
-  <title>The HIG for AI-native web development — Overview &amp; Documentation</title>
+  <meta name="description" content="The Web HIG — an AI-native behavioral standard for modern web applications. A rulebook and engineering contract that humans and AI coding agents can follow and validate.">
+  <title>The Web HIG — AI-native behavioral standard for the modern web</title>
   <link rel="stylesheet" href="css/site.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="layout">
     <nav class="sidebar" aria-label="Documentation navigation">
-      <a class="brand" href="#top">The HIG</a>
+      <a class="brand" href="#top">The Web HIG</a>
       <span class="version-badge">v1.9.0</span>
 
       <div class="nav-group">
-        <div class="nav-label">Overview</div>
+        <div class="nav-label">Discover</div>
         <ul>
           <li><a href="#top">Introduction</a></li>
-          <li><a href="#what">What</a></li>
-          <li><a href="#why">Why</a></li>
-          <li><a href="#how">How</a></li>
-          <li><a href="#at-a-glance">At a glance</a></li>
-          <li><a href="#who-its-for">Who it's for</a></li>
-          <li><a href="#essential-rules">Essential rules</a></li>
-          <li><a href="#quick-start">Quick start</a></li>
+          <li><a href="#why">Why another standard?</a></li>
+          <li><a href="#three-levels">Three levels</a></li>
+          <li><a href="#ai-workflow">Humans &amp; AI</a></li>
+          <li><a href="#start-here">Start here</a></li>
+          <li><a href="#how">Try it</a></li>
         </ul>
       </div>
 
@@ -35,13 +33,11 @@
       <div class="nav-group">
         <div class="nav-label">Full specification</div>
         <ul>
-          <li><a href="#architecture">Architecture</a></li>
           <li><a href="#layers">10-layer framework</a></li>
           <li><a href="#archetypes">Page archetypes</a></li>
+          <li><a href="#architecture">Architecture</a></li>
           <li><a href="#rule-ids">Rule IDs</a></li>
-          <li><a href="#file-structure">File structure</a></li>
           <li><a href="#integration">Integration</a></li>
-          <li><a href="#ai-agents">AI agents</a></li>
           <li><a href="#validation">Validation</a></li>
         </ul>
       </div>
@@ -61,45 +57,91 @@
     </nav>
 
     <main id="top">
-      <!-- HERO / INTRO -->
+      <!-- HERO -->
       <header class="hero">
-        <p class="hero-eyebrow">AI-native web development</p>
-        <h1>The HIG for AI-native web development.</h1>
+        <p class="hero-eyebrow">The Web HIG</p>
+        <h1>AI-native behavioral standard for the modern web.</h1>
         <p class="lead">
           An open, vendor-neutral standard for how web interfaces should behave —
           for your team, your design system, and your AI coding tools.
         </p>
+
+        <div class="hero-proposition">
+          <p class="proposition-line">Design systems define <em>what</em> your UI looks like.</p>
+          <p class="proposition-line proposition-accent">The Web HIG defines <em>how</em> it behaves.</p>
+        </div>
+
+        <p class="hero-sub">
+          Unlike traditional UX guidelines, every requirement can be referenced, loaded selectively,
+          and eventually enforced by tooling and AI agents.
+        </p>
+
+        <div class="hero-callout">
+          <strong>Not a component library.</strong>
+          A behavioral contract for modern web applications that humans and AI coding agents can follow and validate.
+        </div>
+
+        <div class="pillar-tags" aria-label="What the HIG covers">
+          <span>Accessibility</span>
+          <span>Performance</span>
+          <span>States</span>
+          <span>Forms</span>
+          <span>Security</span>
+          <span>Responsive UX</span>
+          <span>AI enforcement</span>
+        </div>
+
         <div class="hero-actions">
-          <a class="btn btn-primary" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Read Quick Reference (5 min)</a>
-          <a class="btn btn-secondary" href="#how">Get started</a>
-          <a class="btn btn-ghost" href="#architecture">Full details</a>
+          <a class="btn btn-primary" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Read the 5-minute Quick Reference</a>
+          <a class="btn btn-secondary" href="https://github.com/frozonfreak/hig">View on GitHub</a>
         </div>
       </header>
 
-      <!-- WHAT / WHY / HOW -->
-      <section id="what" class="section-block">
-        <h2>What</h2>
-        <p class="section-intro">
-          The Web HIG is an open, vendor-neutral standard for how web interfaces should behave —
-          covering accessibility, performance, forms, loading states, security, and interactions.
-        </p>
-        <p>
-          It is a <strong>rulebook and engineering contract</strong>, not a component library.
-          You keep your design system, framework, and components; the HIG defines how they should work together.
-        </p>
-        <p>
-          Start with the
-          <a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Quick Reference</a>
-          (~5 minutes, 98 rules).
-        </p>
-      </section>
-
-      <section id="why" class="section-block">
-        <h2>Why</h2>
+      <!-- WHY -->
+      <section id="why" class="section-block section-prominent">
+        <h2>Why another standard?</h2>
         <p class="section-intro">
           The web already has HTML standards, WCAG guidelines, CSS conventions, and design systems —
           but nothing ties them into one shared behavioral contract for modern apps.
         </p>
+
+        <div class="comparison-grid">
+          <div class="comparison-item">
+            <div class="comparison-source">WCAG</div>
+            <div class="comparison-arrow">→</div>
+            <div class="comparison-result">Accessibility</div>
+          </div>
+          <div class="comparison-item">
+            <div class="comparison-source">Design systems</div>
+            <div class="comparison-arrow">→</div>
+            <div class="comparison-result">Visual consistency</div>
+          </div>
+          <div class="comparison-item">
+            <div class="comparison-source">Frameworks</div>
+            <div class="comparison-arrow">→</div>
+            <div class="comparison-result">Implementation</div>
+          </div>
+          <div class="comparison-item comparison-item-highlight">
+            <div class="comparison-source">Web HIG</div>
+            <div class="comparison-arrow">→</div>
+            <div class="comparison-result">Behavioral contract</div>
+          </div>
+        </div>
+
+        <h3>Where this fits</h3>
+        <div class="stack-diagram" role="img" aria-label="Web HIG sits between design systems and your application, with AI and CI validation below">
+          <div class="stack-layer">Web platform — HTML / CSS / JS</div>
+          <div class="stack-connector"></div>
+          <div class="stack-layer">Accessibility — WCAG</div>
+          <div class="stack-connector"></div>
+          <div class="stack-layer">Design system — MUI / shadcn / custom</div>
+          <div class="stack-connector"></div>
+          <div class="stack-layer stack-layer-accent">Web HIG — behavior, states, UX, performance, security, enforcement</div>
+          <div class="stack-connector"></div>
+          <div class="stack-layer">Application</div>
+          <div class="stack-connector"></div>
+          <div class="stack-layer stack-layer-muted">AI / CI validation</div>
+        </div>
 
         <div class="table-wrap">
           <table>
@@ -135,15 +177,213 @@
           </table>
         </div>
 
-        <p>
+        <p class="why-close">
           The Web HIG fills that gap: a versioned, lintable standard that teams and AI coding agents
           can pin in any product repo — without replacing your stack.
         </p>
       </section>
 
+      <!-- THREE LEVELS -->
+      <section id="three-levels" class="section-block">
+        <h2>One standard. Three levels.</h2>
+        <p class="section-intro">Progressive disclosure — load only what you need. Pin HIG-QUICK instead of the 20,000-token full document.</p>
+
+        <div class="levels-grid">
+          <a class="level-card" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">
+            <div class="level-tier">Quick</div>
+            <div class="level-stat">98 rules</div>
+            <p>~5 minutes. Default for daily work and AI agents.</p>
+            <span class="level-doc">HIG-QUICK.md →</span>
+          </a>
+          <a class="level-card" href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md">
+            <div class="level-tier">Practical</div>
+            <div class="level-stat">Rule modules</div>
+            <p>Building features — rule IDs, topic modules, archetype packs.</p>
+            <span class="level-doc">HIG-LITE.md + rules/ →</span>
+          </a>
+          <a class="level-card" href="https://github.com/frozonfreak/hig/blob/main/HIG.md">
+            <div class="level-tier">Full</div>
+            <div class="level-stat">Complete spec</div>
+            <p>Edge cases, spec conflicts, CI gate definitions.</p>
+            <span class="level-doc">HIG.md →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- AI WORKFLOW -->
+      <section id="ai-workflow" class="section-block">
+        <h2>Built for humans and AI agents</h2>
+        <p class="section-intro">
+          Do not paste the entire HIG into every prompt. Pin HIG-QUICK and say:
+          <em>"Follow Modern Web HIG Quick Reference."</em>
+        </p>
+
+        <div class="pipeline">
+          <span class="pipeline-step">Developer</span>
+          <span class="pipeline-arrow">→</span>
+          <span class="pipeline-step pipeline-step-accent">HIG</span>
+          <span class="pipeline-arrow">→</span>
+          <span class="pipeline-step">AI agent</span>
+          <span class="pipeline-arrow">→</span>
+          <span class="pipeline-step">Code</span>
+          <span class="pipeline-arrow">→</span>
+          <span class="pipeline-step">Validation</span>
+          <span class="pipeline-arrow">→</span>
+          <span class="pipeline-step">CI</span>
+        </div>
+
+        <div class="two-col">
+          <div class="card">
+            <h3>For developers &amp; designers</h3>
+            <p>Shared standards for UX, accessibility, tokens, and performance. Written for humans first — AI sections are optional extras.</p>
+          </div>
+          <div class="card">
+            <h3>For AI coding agents</h3>
+            <p>Token-efficient three-layer model. Stable rule IDs agents can cite. YAML guardrails for Cursor, Copilot, and Claude Code.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LAYERS (compact) -->
+      <section id="layers" class="section-block">
+        <h2>10 governance layers</h2>
+        <p class="section-intro">
+          Layer 0 defines <em>which</em> rules apply. Layers 1–9 define the rules themselves.
+        </p>
+
+        <div class="layer-strip">
+          <div class="layer-chip" title="Applicability &amp; Scope">0 Scope</div>
+          <div class="layer-chip" title="UX Principles">1 UX</div>
+          <div class="layer-chip" title="Information Architecture">2 IA</div>
+          <div class="layer-chip" title="Visual &amp; Design Tokens">3 Tokens</div>
+          <div class="layer-chip" title="Interaction &amp; State">4 State</div>
+          <div class="layer-chip" title="Accessibility">5 A11y</div>
+          <div class="layer-chip" title="Performance">6 Perf</div>
+          <div class="layer-chip layer-chip-accent" title="AI &amp; Agent Enforcement">7 AI</div>
+          <div class="layer-chip" title="Quality Assurance">8 QA</div>
+          <div class="layer-chip" title="Security &amp; Privacy">9 Sec</div>
+        </div>
+
+        <details class="layers-expand">
+          <summary>View all 10 layers in detail</summary>
+          <div class="layer-grid">
+            <div class="layer-row">
+              <div class="layer-num">0</div>
+              <div>
+                <h3>Applicability &amp; Scope</h3>
+                <p class="technical">Archetype matrix — mandatory vs optional rules per page type</p>
+                <p class="plain">Decide what's required before you build — a blog post doesn't need checkout rules.</p>
+              </div>
+            </div>
+            <div class="layer-row">
+              <div class="layer-num">1</div>
+              <div>
+                <h3>UX Principles</h3>
+                <p class="technical">Motion, micro-animations, spatial ergonomics, reduced motion</p>
+                <p class="plain">Functional feedback on click; no decorative animation; respect "reduce motion."</p>
+              </div>
+            </div>
+            <div class="layer-row">
+              <div class="layer-num">2</div>
+              <div>
+                <h3>Information Architecture</h3>
+                <p class="technical">Document fundamentals, navigation, forms, states, search, i18n</p>
+                <p class="plain">Page titles, error messages, empty states, URL-as-state, form validation.</p>
+              </div>
+            </div>
+            <div class="layer-row">
+              <div class="layer-num">3</div>
+              <div>
+                <h3>Visual &amp; Design Tokens</h3>
+                <p class="technical">Three-tier tokens, container queries, data density</p>
+                <p class="plain">Named design values; components adapt to container size, not just screen width.</p>
+              </div>
+            </div>
+            <div class="layer-row">
+              <div class="layer-num">4</div>
+              <div>
+                <h3>Interaction &amp; State</h3>
+                <p class="technical">Server rendering, mutations, optimistic UI, offline, data protection</p>
+                <p class="plain">How save/delete works; undo for destructive actions; loading during server calls.</p>
+              </div>
+            </div>
+            <div class="layer-row">
+              <div class="layer-num">5</div>
+              <div>
+                <h3>Accessibility</h3>
+                <p class="technical">WCAG 2.2 AA, keyboard patterns, focus, target sizes</p>
+                <p class="plain">Works for keyboard, screen readers, and touch — always required.</p>
+              </div>
+            </div>
+            <div class="layer-row">
+              <div class="layer-num">6</div>
+              <div>
+                <h3>Performance</h3>
+                <p class="technical">Core Web Vitals — LCP, INP, CLS; lab vs field metrics</p>
+                <p class="plain">Fast load, responsive interactions, no layout jumping.</p>
+              </div>
+            </div>
+            <div class="layer-row">
+              <div class="layer-num">7</div>
+              <div>
+                <h3>AI &amp; Agent Enforcement</h3>
+                <p class="technical">Rule IDs, severity, YAML guardrails for coding agents</p>
+                <p class="plain">Machine-readable rules agents and linters can enforce.</p>
+              </div>
+            </div>
+            <div class="layer-row">
+              <div class="layer-num">8</div>
+              <div>
+                <h3>Quality Assurance</h3>
+                <p class="technical">Blocking / warning / observation CI gates</p>
+                <p class="plain">Automated checks that fail the build on critical violations.</p>
+              </div>
+            </div>
+            <div class="layer-row">
+              <div class="layer-num">9</div>
+              <div>
+                <h3>Security &amp; Privacy</h3>
+                <p class="technical">CSP, XSS/CSRF, PII, auth UX, secure cookies</p>
+                <p class="plain">Login flows, data masking, content security policy — always required.</p>
+              </div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+      <!-- START HERE -->
+      <section id="start-here" class="section-block">
+        <h2>Start here</h2>
+        <p class="section-intro">Pick the path that matches how you work.</p>
+
+        <div class="start-grid">
+          <a class="start-card" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">
+            <h3>I'm a developer</h3>
+            <p>Read the 98-rule Quick Reference (~5 min), then pin it in your repo.</p>
+            <span class="start-link">Open HIG-QUICK.md →</span>
+          </a>
+          <a class="start-card" href="#essential-rules">
+            <h3>I'm a designer</h3>
+            <p>Start with essential rules for states, tokens, accessibility, and motion.</p>
+            <span class="start-link">View essential rules →</span>
+          </a>
+          <a class="start-card" href="https://github.com/frozonfreak/hig/tree/main/examples/agent-rules">
+            <h3>I'm building with AI</h3>
+            <p>Copy agent rule templates for Cursor, Copilot, or Claude Code.</p>
+            <span class="start-link">Agent templates →</span>
+          </a>
+          <a class="start-card" href="#integration">
+            <h3>I want to adopt the standard</h3>
+            <p>Pin the contract, map your routes, wire your tools — one afternoon.</p>
+            <span class="start-link">Integration guide →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- HOW / TRY -->
       <section id="how" class="section-block">
-        <h2>How</h2>
-        <p class="section-intro">Add the HIG to an existing project in one afternoon.</p>
+        <h2>Try it in one afternoon</h2>
+        <p class="section-intro">Add the HIG to an existing project without reading the entire specification.</p>
         <ol class="steps">
           <li>
             <strong>Pin the contract</strong> — copy HIG-QUICK, HIG-LITE, HIG.md, rules/, and VERSION into your repo (e.g. <code>docs/hig/</code>)
@@ -162,81 +402,6 @@
             <span class="step-meta"><a href="#integration">Full integration guide →</a></span>
           </li>
         </ol>
-        <p>
-          Full guide:
-          <a href="https://github.com/frozonfreak/hig/blob/main/INTEGRATION.md">INTEGRATION.md</a>
-        </p>
-      </section>
-
-      <!-- AT A GLANCE -->
-      <section id="at-a-glance" class="section-block">
-        <h2>At a glance</h2>
-        <p class="section-intro">Everything you need to know in thirty seconds.</p>
-
-        <div class="stats">
-          <div class="stat">
-            <div class="stat-value">v1.9.0</div>
-            <div class="stat-label">Current version</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">10</div>
-            <div class="stat-label">Governance layers (0–9)</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">98</div>
-            <div class="stat-label">Quick Reference rules</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">16</div>
-            <div class="stat-label">Topic modules</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value">4</div>
-            <div class="stat-label">Page archetypes</div>
-          </div>
-        </div>
-
-        <div class="two-col">
-          <div class="card">
-            <h3>What it covers</h3>
-            <p>UX, accessibility (WCAG 2.2 AA), performance, forms, security, server rendering, state machines, and CI enforcement.</p>
-          </div>
-          <div class="card">
-            <h3>What it is not</h3>
-            <p>Not a UI framework, component library, or design system — a behavioral standard that works alongside all of them.</p>
-          </div>
-          <div class="card">
-            <h3>Three layers</h3>
-            <p>Quick Reference (~5 min) for daily work, practical guides for features, full spec for edge cases.</p>
-          </div>
-          <div class="card">
-            <h3>Who benefits</h3>
-            <p>Designers, front-end engineers, platform teams, and AI agents (Cursor, Copilot, Claude Code).</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- WHO ITS FOR -->
-      <section id="who-its-for" class="section-block">
-        <h2>Who it's for</h2>
-        <div class="card-grid">
-          <div class="card">
-            <h3>Designers &amp; engineers</h3>
-            <p>Shared standards for UX, accessibility, tokens, and performance across products and teams.</p>
-          </div>
-          <div class="card">
-            <h3>Platform &amp; lead engineers</h3>
-            <p>Versioned contract with rule IDs, CI gates, and archetype-scoped applicability matrices.</p>
-          </div>
-          <div class="card">
-            <h3>AI coding agents</h3>
-            <p>Token-efficient three-layer model — Quick Reference by default, practical docs on feature work, full spec for edge cases.</p>
-          </div>
-          <div class="card">
-            <h3>First-time contributors</h3>
-            <p>Start with the Quick Reference and the essential rules checklist below. Open the full spec only when needed.</p>
-          </div>
-        </div>
       </section>
 
       <!-- ESSENTIAL RULES -->
@@ -256,196 +421,10 @@
         <p>
           Full Quick Reference (98 rules):
           <a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">HIG-QUICK.md</a>
-          · Practical guide:
-          <a href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md">HIG-LITE.md</a>
         </p>
-      </section>
-
-      <!-- QUICK START -->
-      <section id="quick-start" class="section-block">
-        <h2>Quick start</h2>
-        <p class="section-intro">Get value in one session — no need to read the entire specification.</p>
-        <ol class="steps">
-          <li>
-            <strong>Read the Quick Reference</strong> — 98 rules, ~5 minutes
-            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Open HIG-QUICK.md →</a></span>
-          </li>
-          <li>
-            <strong>Pick your page type</strong> — Content, Commerce, Application, or Auth
-            <span class="step-meta"><a href="#archetypes">See archetypes below →</a></span>
-          </li>
-          <li>
-            <strong>Open the topic guide</strong> you need — forms, accessibility, performance, etc.
-            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/blob/main/rules/INDEX.md">Browse modules →</a></span>
-          </li>
-          <li>
-            <strong>Pin in your product repo</strong> when ready — copy HIG-QUICK, HIG-LITE, HIG.md, rules/, VERSION
-            <span class="step-meta"><a href="#integration">Integration guide →</a></span>
-          </li>
-        </ol>
       </section>
 
       <div class="section-divider">Full specification</div>
-
-      <!-- ARCHITECTURE -->
-      <section id="architecture" class="section-block">
-        <h2>Three consumption layers</h2>
-        <p class="section-intro">
-          Pick your depth. Tell an AI: <em>"Follow Modern Web HIG Quick Reference."</em> — pin HIG-QUICK instead of the 20,000-token full document.
-        </p>
-
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Layer</th>
-                <th>Document</th>
-                <th>When to load</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>1 — Quick Reference</strong></td>
-                <td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">HIG-QUICK.md</a></td>
-                <td><strong>Default</strong> for every UI / CSS / front-end task (~5 min, 98 rules)</td>
-              </tr>
-              <tr>
-                <td><strong>2 — Practical</strong></td>
-                <td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md">HIG-LITE.md</a> + <a href="https://github.com/frozonfreak/hig/tree/main/rules">rules/</a></td>
-                <td>Building features — rule IDs, topic modules, archetype packs</td>
-              </tr>
-              <tr>
-                <td><strong>3 — Full specification</strong></td>
-                <td><a href="https://github.com/frozonfreak/hig/blob/main/HIG.md">HIG.md</a></td>
-                <td>Edge cases, spec conflicts, CI gate definitions</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <pre><code>                         WEB HIG
-                             │
-          ┌──────────────────┼──────────────────┐
-          │                  │                  │
-    HIG-QUICK.md       HIG-LITE.md           HIG.md
-      Layer 1            Layer 2             Layer 3
-    ~5 minutes         Practical           Full
-    98 rules           documentation       specification
-          │                  │
-          │            rules/ + framework/
-          │            archetype packs
-          └──────────────────┴──► All rules map to HIG.md</code></pre>
-
-        <p>
-          Topic loading is driven by
-          <a href="https://github.com/frozonfreak/hig/blob/main/rules/manifest.yaml">rules/manifest.yaml</a>.
-          Session preamble: <a href="https://github.com/frozonfreak/hig/blob/main/HIG-CORE.md">HIG-CORE.md</a>.
-        </p>
-
-        <h3>Example workflow</h3>
-        <div class="flow">
-          <span class="flow-step">Resolve archetype</span>
-          <span class="flow-arrow">→</span>
-          <span class="flow-step">HIG-QUICK</span>
-          <span class="flow-arrow">→</span>
-          <span class="flow-step">HIG-LITE + pack</span>
-          <span class="flow-arrow">→</span>
-          <span class="flow-step">Topic module</span>
-          <span class="flow-arrow">→</span>
-          <span class="flow-step">HIG.md (if needed)</span>
-        </div>
-      </section>
-
-      <!-- LAYERS -->
-      <section id="layers" class="section-block">
-        <h2>10-layer governance framework</h2>
-        <p class="section-intro">
-          Layer 0 defines <em>which</em> rules apply. Layers 1–9 define the rules themselves.
-        </p>
-
-        <div class="layer-grid">
-          <div class="layer-row">
-            <div class="layer-num">0</div>
-            <div>
-              <h3>Applicability &amp; Scope</h3>
-              <p class="technical">Archetype matrix — mandatory vs optional rules per page type</p>
-              <p class="plain">Decide what's required before you build — a blog post doesn't need checkout rules.</p>
-            </div>
-          </div>
-          <div class="layer-row">
-            <div class="layer-num">1</div>
-            <div>
-              <h3>UX Principles</h3>
-              <p class="technical">Motion, micro-animations, spatial ergonomics, reduced motion</p>
-              <p class="plain">Functional feedback on click; no decorative animation; respect "reduce motion."</p>
-            </div>
-          </div>
-          <div class="layer-row">
-            <div class="layer-num">2</div>
-            <div>
-              <h3>Information Architecture</h3>
-              <p class="technical">Document fundamentals, navigation, forms, states, search, i18n</p>
-              <p class="plain">Page titles, error messages, empty states, URL-as-state, form validation.</p>
-            </div>
-          </div>
-          <div class="layer-row">
-            <div class="layer-num">3</div>
-            <div>
-              <h3>Visual &amp; Design Tokens</h3>
-              <p class="technical">Three-tier tokens, container queries, data density</p>
-              <p class="plain">Named design values; components adapt to container size, not just screen width.</p>
-            </div>
-          </div>
-          <div class="layer-row">
-            <div class="layer-num">4</div>
-            <div>
-              <h3>Interaction &amp; State</h3>
-              <p class="technical">Server rendering, mutations, optimistic UI, offline, data protection</p>
-              <p class="plain">How save/delete works; undo for destructive actions; loading during server calls.</p>
-            </div>
-          </div>
-          <div class="layer-row">
-            <div class="layer-num">5</div>
-            <div>
-              <h3>Accessibility</h3>
-              <p class="technical">WCAG 2.2 AA, keyboard patterns, focus, target sizes</p>
-              <p class="plain">Works for keyboard, screen readers, and touch — always required.</p>
-            </div>
-          </div>
-          <div class="layer-row">
-            <div class="layer-num">6</div>
-            <div>
-              <h3>Performance</h3>
-              <p class="technical">Core Web Vitals — LCP, INP, CLS; lab vs field metrics</p>
-              <p class="plain">Fast load, responsive interactions, no layout jumping.</p>
-            </div>
-          </div>
-          <div class="layer-row">
-            <div class="layer-num">7</div>
-            <div>
-              <h3>AI &amp; Agent Enforcement</h3>
-              <p class="technical">Rule IDs, severity, YAML guardrails for coding agents</p>
-              <p class="plain">Machine-readable rules agents and linters can enforce.</p>
-            </div>
-          </div>
-          <div class="layer-row">
-            <div class="layer-num">8</div>
-            <div>
-              <h3>Quality Assurance</h3>
-              <p class="technical">Blocking / warning / observation CI gates</p>
-              <p class="plain">Automated checks that fail the build on critical violations.</p>
-            </div>
-          </div>
-          <div class="layer-row">
-            <div class="layer-num">9</div>
-            <div>
-              <h3>Security &amp; Privacy</h3>
-              <p class="technical">CSP, XSS/CSRF, PII, auth UX, secure cookies</p>
-              <p class="plain">Login flows, data masking, content security policy — always required.</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <!-- ARCHETYPES -->
       <section id="archetypes" class="section-block">
@@ -494,15 +473,67 @@
           </table>
         </div>
 
-        <h3>Topic modules (Level 2)</h3>
         <p>
-          accessibility · ux · states · forms · tokens · responsive · data-density · animation ·
-          architecture · mutations · performance · search · notifications · i18n · security · ai-enforcement
-        </p>
-        <p>
+          16 topic modules · 4 archetypes ·
           Framework adapters: React, Next.js, Vue, Nuxt, Astro —
           <a href="https://github.com/frozonfreak/hig/tree/main/framework">framework/</a>
         </p>
+      </section>
+
+      <!-- ARCHITECTURE -->
+      <section id="architecture" class="section-block">
+        <h2>Architecture</h2>
+        <p class="section-intro">
+          Tell an AI: <em>"Follow Modern Web HIG Quick Reference."</em> — pin HIG-QUICK instead of the 20,000-token full document.
+        </p>
+
+        <pre><code>                         WEB HIG
+                             │
+          ┌──────────────────┼──────────────────┐
+          │                  │                  │
+    HIG-QUICK.md       HIG-LITE.md           HIG.md
+      Layer 1            Layer 2             Layer 3
+    ~5 minutes         Practical           Full
+    98 rules           documentation       specification
+          │                  │
+          │            rules/ + framework/
+          │            archetype packs
+          └──────────────────┴──► All rules map to HIG.md</code></pre>
+
+        <div class="flow">
+          <span class="flow-step">Resolve archetype</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">HIG-QUICK</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">HIG-LITE + pack</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">Topic module</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-step">HIG.md (if needed)</span>
+        </div>
+
+        <p>
+          Topic loading: <a href="https://github.com/frozonfreak/hig/blob/main/rules/manifest.yaml">rules/manifest.yaml</a>
+          · Session preamble: <a href="https://github.com/frozonfreak/hig/blob/main/HIG-CORE.md">HIG-CORE.md</a>
+        </p>
+
+        <h3>Repository structure</h3>
+        <pre><code>web-hig/
+├── HIG-QUICK.md             Layer 1 — Quick Reference (98 rules, ~5 min)
+├── HIG-LITE.md              Layer 2 — practical guide with rule IDs
+├── HIG-CORE.md              Session preamble — philosophy + archetypes
+├── HIG.md                   Layer 3 — complete specification
+├── VERSION                  Single version pin
+├── rules/
+│   ├── manifest.yaml        Machine-readable load triggers
+│   ├── INDEX.md             Rule ID registry
+│   ├── applicability.md     Layer 0 matrix
+│   ├── accessibility.md …   16 topic modules
+│   └── archetypes/          content, commerce, application, auth
+├── framework/               React, Next, Vue, Nuxt, Astro
+├── examples/agent-rules/    Cursor, Claude, Copilot templates
+├── scripts/validate-hig.mjs Contract validation
+└── INTEGRATION.md           Product repo adoption guide</code></pre>
       </section>
 
       <!-- RULE IDS -->
@@ -539,27 +570,6 @@
         </p>
       </section>
 
-      <!-- FILE STRUCTURE -->
-      <section id="file-structure" class="section-block">
-        <h2>Repository structure</h2>
-        <pre><code>web-hig/
-├── HIG-QUICK.md             Layer 1 — Quick Reference (98 rules, ~5 min)
-├── HIG-LITE.md              Layer 2 — practical guide with rule IDs
-├── HIG-CORE.md              Session preamble — philosophy + archetypes
-├── HIG.md                   Layer 3 — complete specification
-├── VERSION                  Single version pin
-├── rules/
-│   ├── manifest.yaml        Machine-readable load triggers
-│   ├── INDEX.md             Rule ID registry
-│   ├── applicability.md     Layer 0 matrix
-│   ├── accessibility.md …   16 topic modules
-│   └── archetypes/          content, commerce, application, auth
-├── framework/               React, Next, Vue, Nuxt, Astro
-├── examples/agent-rules/    Cursor, Claude, Copilot templates
-├── scripts/validate-hig.mjs Contract validation
-└── INTEGRATION.md           Product repo adoption guide</code></pre>
-      </section>
-
       <!-- INTEGRATION -->
       <section id="integration" class="section-block">
         <h2>Integration into your product</h2>
@@ -590,22 +600,6 @@
           Full guide:
           <a href="https://github.com/frozonfreak/hig/blob/main/INTEGRATION.md">INTEGRATION.md</a>
         </p>
-      </section>
-
-      <!-- AI AGENTS -->
-      <section id="ai-agents" class="section-block">
-        <h2>AI agent workflow</h2>
-        <p class="section-intro">Do not paste the entire HIG into every prompt. Pin HIG-QUICK and say: <em>"Follow Modern Web HIG Quick Reference."</em></p>
-        <ol class="steps">
-          <li><strong>Resolve page archetype</strong> from product scope doc</li>
-          <li><strong>Read HIG-QUICK</strong> (Layer 1) — default context for every UI task</li>
-          <li><strong>Open HIG-LITE</strong> (Layer 2) when building features or you need rule ID links</li>
-          <li><strong>Load archetype pack</strong> — preload default modules</li>
-          <li><strong>Match topic</strong> via manifest.yaml → open rules/*.md</li>
-          <li><strong>Load framework adapter</strong> when stack-specific (React, Next, …)</li>
-          <li><strong>Apply Layer 7 YAML</strong> guardrails from agent rule file</li>
-          <li><strong>Escalate to HIG.md</strong> (Layer 3) only for edge cases — cite rule IDs on conflicts</li>
-        </ol>
       </section>
 
       <!-- VALIDATION -->
@@ -669,7 +663,7 @@
         <h2>FAQ</h2>
         <details>
           <summary>Is this a component library?</summary>
-          <p>No. It defines how components and pages should behave. You implement UI in your own framework. It governs your design system — it doesn't replace it.</p>
+          <p>No. It is a <strong>rulebook and engineering contract</strong>, not a component library. You keep your design system, framework, and components; the HIG defines how they should work together.</p>
         </details>
         <details>
           <summary>Do I need to follow every rule?</summary>
@@ -697,7 +691,7 @@
           <a href="https://github.com/frozonfreak/hig/blob/main/HIG.md">Full spec</a>
           <a href="https://github.com/frozonfreak/hig/blob/main/LICENSE">MIT License</a>
         </div>
-        <p>The HIG v1.9.0 — an open standard for AI-native web development.</p>
+        <p>The Web HIG v1.9.0 — an open standard for AI-native web development.</p>
       </footer>
     </main>
   </div>
