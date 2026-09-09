@@ -15,14 +15,16 @@ Good contributions include:
 - Improving machine-readable enforcement specs (YAML, ESLint/Stylelint configs)
 - Improving [INTEGRATION.md](./INTEGRATION.md) or the copy-paste templates under `examples/agent-rules/`
 - Updating [HIG-LITE.md](./HIG-LITE.md) when adding high-frequency rules (every Lite rule MUST map to a canonical rule ID in `HIG.md`)
+- Updating the corresponding [rules/*.md](./rules/) module when changing layer content — keep modules synchronized with `HIG.md`
 - Expanding [rules/INDEX.md](./rules/INDEX.md) and [rules/manifest.yaml](./rules/manifest.yaml) when adding new topic modules
+- Adding or updating [framework/*.md](./framework/) adapters when framework guidance changes
 
 ## How to propose a change
 
 1. **Search existing issues** to avoid duplicate work.
 2. **Open an issue** describing the problem, the proposed change, and which layer(s) it affects.
 3. **Fork the repo** and create a branch from `main`.
-4. **Edit `HIG.md`** — keep changes focused and update the version history (Section 8.1) when the change is substantive. If the change affects high-frequency agent rules, also update `HIG-LITE.md` and `rules/INDEX.md` / `rules/manifest.yaml`.
+4. **Edit `HIG.md`** — keep changes focused and update the version history (Section 8.1) when the change is substantive. If the change affects high-frequency agent rules, also update `HIG-LITE.md`, the relevant `rules/*.md` module, and `rules/INDEX.md` / `rules/manifest.yaml`.
 5. **Update [RELEASE_NOTES.md](./RELEASE_NOTES.md)** for minor and major bumps — expand the §8.1 summary with highlights, layer impact, and adoption notes.
 6. **Open a pull request** using the provided template.
 

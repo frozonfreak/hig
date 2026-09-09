@@ -1,6 +1,6 @@
 # Modern Web HIG
 
-This project follows the Modern Web HIG v1.7.0.
+This project follows the Modern Web HIG v1.8.0.
 
 - **Default context (Level 1):** `docs/hig/HIG-LITE.md` (or repo `HIG-LITE.md`)
 - **Topic index (Level 2):** `docs/hig/rules/manifest.yaml`
@@ -11,7 +11,7 @@ This project follows the Modern Web HIG v1.7.0.
 
 1. Resolve archetype (`content` | `commerce` | `application` | `auth`) from the scope map.
 2. Read HIG-LITE.md for essential rules.
-3. Match task keywords against `rules/manifest.yaml` → load matching HIG sections.
+3. Match task keywords against `rules/manifest.yaml` → load matching `rules/*.md` module (and `framework/*.md` if applicable).
 4. Apply Layer 0 matrix from the pinned HIG.
 5. Enforce Layer 7 rules below.
 6. Prefer the simplest compliant implementation (HIG-SIM-001).

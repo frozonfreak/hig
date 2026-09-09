@@ -1,6 +1,6 @@
 # Modern Web HIG — Core (Level 0)
 
-**Version:** v1.7.0 · **Canonical contract:** [HIG.md](./HIG.md) · **Daily agent context:** [HIG-LITE.md](./HIG-LITE.md)
+**Version:** v1.8.0 · **Canonical contract:** [HIG.md](./HIG.md) · **Daily agent context:** [HIG-LITE.md](./HIG-LITE.md)
 
 Level 0 is the non-negotiable preamble: philosophy, vocabulary, archetype resolution, and simplicity rule. Load this once per session or merge with Level 1 for new agents.
 

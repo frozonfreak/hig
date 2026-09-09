@@ -1,6 +1,6 @@
 # Modern Web HIG — Essential Rules (Level 1)
 
-**Version:** v1.7.0 · **Core:** [HIG-CORE.md](./HIG-CORE.md) · **Full spec:** [HIG.md](./HIG.md) · **Topic index:** [rules/INDEX.md](./rules/INDEX.md)
+**Version:** v1.8.0 · **Core:** [HIG-CORE.md](./HIG-CORE.md) · **Full spec:** [HIG.md](./HIG.md) · **Topic index:** [rules/INDEX.md](./rules/INDEX.md)
 
 Default agent context. Each rule links to a canonical rule ID and section in [HIG.md](./HIG.md). Load [rules/manifest.yaml](./rules/manifest.yaml) Level 2 modules when the task requires detail beyond this summary.
 
@@ -112,17 +112,18 @@ Check applicable items:
 
 ## When to load more
 
-| Task signal | Load |
+| Task signal | Load (Level 2 module) |
 | --- | --- |
-| Combobox, dialog, tabs, keyboard widget | [rules/INDEX.md](./rules/INDEX.md) → `accessibility` |
-| Form, validation, checkout | `forms` |
-| Data table, dashboard density | `data-density` |
-| SSR, RSC, streaming, mutations | `architecture` |
-| Toast, banner, notification | `notifications` |
-| Search, facets, filters | `search` |
-| i18n, RTL, locale | `i18n` |
-| CSP, auth, PII, cookies | `security` |
-| Animation, view transitions | `animation` |
+| Combobox, dialog, tabs, keyboard widget | [rules/accessibility.md](./rules/accessibility.md) |
+| Form, validation, checkout | [rules/forms.md](./rules/forms.md) |
+| Data table, dashboard density | [rules/data-density.md](./rules/data-density.md) |
+| SSR, RSC, streaming, mutations | [rules/architecture.md](./rules/architecture.md) + [framework/](./framework/) |
+| Toast, banner, notification | [rules/notifications.md](./rules/notifications.md) |
+| Search, facets, filters | [rules/search.md](./rules/search.md) |
+| i18n, RTL, locale | [rules/i18n.md](./rules/i18n.md) |
+| CSP, auth, PII, cookies | [rules/security.md](./rules/security.md) |
+| Animation, view transitions | [rules/animation.md](./rules/animation.md) |
+| Loading, empty, error states | [rules/states.md](./rules/states.md) |
 | Edge case or spec conflict | [HIG.md](./HIG.md) (Level 3) |
 
-See [rules/manifest.yaml](./rules/manifest.yaml) for machine-readable triggers and rule ID mappings.
+See [rules/manifest.yaml](./rules/manifest.yaml) for machine-readable triggers and [rules/INDEX.md](./rules/INDEX.md) for the full module registry.

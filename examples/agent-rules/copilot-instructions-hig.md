@@ -1,9 +1,9 @@
 # Modern Web HIG — Copilot instructions
 
-Follow Modern Web HIG v1.7.0.
+Follow Modern Web HIG v1.8.0.
 
 - **Default context:** `docs/hig/HIG-LITE.md` (Level 1) — do not load full HIG unless needed
-- **Topic index:** `docs/hig/rules/manifest.yaml` (Level 2) — load matching HIG sections on topic match
+- **Topic modules:** `docs/hig/rules/manifest.yaml` (Level 2) — load matching `rules/*.md` on topic match; `framework/*.md` when stack-specific
 - **Full spec:** `docs/hig/HIG.md` (Level 3) — edge cases only
 - **Archetype map:** `docs/hig-scope.md`
 
@@ -11,7 +11,7 @@ Follow Modern Web HIG v1.7.0.
 
 1. Resolve page archetype first, then apply Layer 0 matrix.
 2. Read HIG-LITE for essential rules; cite rule IDs on conflicts.
-3. Match task keywords against manifest.yaml → open referenced sections.
+3. Match task keywords against manifest.yaml → open referenced `rules/*.md` module.
 
 ## Essential rules (from HIG-LITE)
 

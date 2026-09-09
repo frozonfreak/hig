@@ -2,7 +2,7 @@
 
 A universal Human Interface Guidelines (HIG) and product-engine contract for modern web applications, commerce sites, and content platforms.
 
-**Current version:** [v1.7.0](./HIG.md) · [Release notes](./RELEASE_NOTES.md)
+**Current version:** [v1.8.0](./HIG.md) · [Release notes](./RELEASE_NOTES.md)
 
 ## What is this?
 
@@ -21,7 +21,7 @@ The Modern Web HIG defines design principles, information architecture, state ma
 | 8 | Quality Assurance — blocking/warning/observation CI/CD gates |
 | 9 | Security & Privacy — CSP, XSS/CSRF, PII handling, auth UX, audit logging |
 
-## Progressive loading (v1.7.0+)
+## Progressive loading (v1.7.0+ / modules v1.8.0+)
 
 The HIG is layered for token-efficient agent and team workflows:
 
@@ -48,6 +48,8 @@ The HIG is layered for token-efficient agent and team workflows:
 | [HIG-LITE.md](./HIG-LITE.md) | **Default agent context** — essential rules with rule ID links |
 | [rules/INDEX.md](./rules/INDEX.md) | Human-readable topic index and rule ID registry |
 | [rules/manifest.yaml](./rules/manifest.yaml) | Machine-readable load triggers for Level 2 modules |
+| [rules/*.md](./rules/) | Standalone topic modules (accessibility, forms, architecture, …) |
+| [framework/*.md](./framework/) | React, Next.js, Vue, Nuxt, Astro adapters |
 | [HIG.md](./HIG.md) | Full normative contract — edge cases and deep reference |
 
 HIG-LITE is a compressed summary of HIG — not a separate standard. Every Lite rule maps to a canonical rule ID in the full specification.

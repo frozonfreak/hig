@@ -1,17 +1,17 @@
-# Modern Web HIG & Product Engine Contract — v1.7.0
+# Modern Web HIG & Product Engine Contract — v1.8.0
 
 ## Executive Summary
 
-The Modern Web Human Interface Guidelines (HIG) v1.7.0 define design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+The Modern Web Human Interface Guidelines (HIG) v1.8.0 define design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
-This release adds progressive loading for AI agents and teams:
+This release adds standalone Level 2 rule modules and framework adapters (Phase 2):
 
 1. **[HIG-CORE.md](./HIG-CORE.md) (Level 0)** — Philosophy, normative vocabulary, archetype resolution, and HIG-SIM-001.
 2. **[HIG-LITE.md](./HIG-LITE.md) (Level 1)** — Compressed executable summary with canonical rule ID cross-links. Default agent context.
-3. **[rules/INDEX.md](./rules/INDEX.md) + [rules/manifest.yaml](./rules/manifest.yaml) (Level 2)** — Topic-triggered loading index mapping rule IDs to HIG sections.
+3. **[rules/*.md](./rules/) (Level 2)** — Standalone topic modules (accessibility, forms, architecture, security, etc.) + [framework/*.md](./framework/) adapters.
 4. **HIG.md (Level 3)** — Complete normative specification (this document).
 
-HIG-LITE is a summary of HIG — not a separate standard. Every Lite rule maps to a canonical rule ID here.
+HIG-LITE and Level 2 modules are extracts of HIG — not separate standards. Every rule maps to a canonical rule ID here. When editing modules, keep them synchronized with this document.
 
 The v1.6.0 P2 capability expansion remains in force:
 
@@ -32,7 +32,13 @@ MODERN WEB HIG
 │
 ├── rules/
 │   ├── INDEX.md               ← Level 2: topic index + rule ID registry
-│   └── manifest.yaml          ← Level 2: machine-readable load triggers
+│   ├── manifest.yaml          ← Level 2: machine-readable load triggers
+│   ├── accessibility.md       ← Level 2 modules (16 topics)
+│   ├── ux.md, forms.md, states.md, tokens.md, responsive.md, …
+│   └── …
+│
+├── framework/
+│   ├── react.md, next.md, vue.md, nuxt.md, astro.md
 │
 ├── Normative Vocabulary & Exception System
 ├── Layer 0: Applicability & Scope (Archetype Matrix)
@@ -142,6 +148,8 @@ Accessibility (Layer 5), tokens/typography (Layer 3), and performance (Layer 6) 
 
 ## Layer 1: Universal UX Principles
 
+> **Level 2 module:** [rules/animation.md](./rules/animation.md)
+
 ### 1.1 Direct Manipulation & Motion Ergonomics
 
 * **Spatial Origin:** UI elements MUST originate from their logical trigger point (modals expand out from the clicked button; slide-overs anchor to the active edge).
@@ -229,6 +237,8 @@ Micro-animations are **functional feedback only** — never decorative flourish.
 ---
 
 ## Layer 2: Information Architecture & Product Standards
+
+> **Level 2 modules:** [rules/ux.md](./rules/ux.md) · [rules/states.md](./rules/states.md) · [rules/forms.md](./rules/forms.md) · [rules/search.md](./rules/search.md) · [rules/notifications.md](./rules/notifications.md) · [rules/i18n.md](./rules/i18n.md)
 
 ### 2.1 Document Fundamentals
 
@@ -405,6 +415,8 @@ Forms MUST follow these standards (Commerce checkout, Application settings, Auth
 ---
 
 ## Layer 3: Visual, Design Token System & Container Engine
+
+> **Level 2 modules:** [rules/tokens.md](./rules/tokens.md) · [rules/responsive.md](./rules/responsive.md) · [rules/data-density.md](./rules/data-density.md)
 
 ### 3.1 Design Token Architecture
 
@@ -605,6 +617,8 @@ Additional requirements:
 
 ## Layer 4: Interaction, State Architecture & Data Protection
 
+> **Level 2 modules:** [rules/architecture.md](./rules/architecture.md) · [rules/mutations.md](./rules/mutations.md) · [framework/](./framework/)
+
 ### 4.1 Server-Driven & Progressive Rendering Architecture
 
 Modern hybrid web applications MUST separate server rendering from interactive client islands. This is a **framework-neutral reference architecture** — not all frameworks implement it as React Server Components (RSC).
@@ -725,6 +739,8 @@ Applications that support offline operation MUST define sync, conflict resolutio
 
 ## Layer 5: Accessibility (a11y) & Keyboard Navigation
 
+> **Level 2 module:** [rules/accessibility.md](./rules/accessibility.md)
+
 ### 5.1 Standards Baseline
 
 * **Conformance:** WCAG 2.2 Level AA conformance is mandatory across all public and internal interfaces. The HIG does not redefine individual success criteria — refer to the [official WCAG 2.2 specification](https://www.w3.org/TR/WCAG22/) and [Understanding documents](https://www.w3.org/WAI/WCAG22/Understanding/). AAA is targeted where practical (e.g. reduced motion per §1.3).
@@ -792,6 +808,8 @@ Permission prompts MUST NOT appear without prior in-app explanation. Denied perm
 
 ## Layer 6: Performance & Web Vitals
 
+> **Level 2 module:** [rules/performance.md](./rules/performance.md)
+
 Performance requirements are split into **lab (CI)** and **field (RUM)** contexts. Synthetic lab tests measure interaction latency but are **not equivalent** to field Interaction to Next Paint (INP).
 
 ### 6.1 Core Web Vitals & Supporting Performance Metrics
@@ -854,9 +872,11 @@ Absolute thresholds alone are insufficient. PRs that increase initial JS by >10%
 
 ## Layer 7: AI & Agent Enforcement Contract
 
+> **Level 2 module:** [rules/ai-enforcement.md](./rules/ai-enforcement.md)
+
 Deterministic, machine-readable rules for system prompts, AI coding workflows (Cursor, Claude Code, GitHub Copilot), and automated analysis.
 
-**Product-repo adoption:** see [INTEGRATION.md](./INTEGRATION.md) for an efficient workflow (pin the contract → archetype map → **HIG-LITE default context** → thin agent rules → PR checklist → CI). Copy-paste templates live in [examples/agent-rules/](./examples/agent-rules/). Agents should load [HIG-LITE.md](./HIG-LITE.md) by default and use [rules/manifest.yaml](./rules/manifest.yaml) for topic-triggered deep lookups — not the full HIG on every task.
+**Product-repo adoption:** see [INTEGRATION.md](./INTEGRATION.md) for an efficient workflow (pin the contract → archetype map → **HIG-LITE default context** → **rules/*.md on topic match** → thin agent rules → PR checklist → CI). Copy-paste templates live in [examples/agent-rules/](./examples/agent-rules/). Agents should load [HIG-LITE.md](./HIG-LITE.md) by default, then [rules/manifest.yaml](./rules/manifest.yaml) modules — not the full HIG on every task.
 
 ### 7.1 Rule Schema
 
@@ -1090,6 +1110,8 @@ CI gates are classified by enforcement level:
 
 ## Layer 9: Security & Privacy
 
+> **Level 2 module:** [rules/security.md](./rules/security.md)
+
 Security and privacy requirements apply to all archetypes. Layer 9 complements Layer 8 security CI gates with product-level standards.
 
 ### 9.1 Content Security Policy (CSP)
@@ -1157,6 +1179,7 @@ Logs MUST include timestamp, actor, action, and resource — but MUST NOT includ
 
 Expanded release notes for each version: **[RELEASE_NOTES.md](./RELEASE_NOTES.md)**.
 
+* **v1.8.0 (2026-09-09):** Progressive loading Phase 2. Extracted 16 standalone Level 2 rule modules in `rules/` and 5 framework adapters in `framework/`. Updated manifest to point to module files. HIG.md remains the complete normative contract with module cross-links.
 * **v1.7.0 (2026-09-09):** Progressive loading architecture (Phase 1). Added HIG-CORE.md (Level 0), HIG-LITE.md (Level 1), rules/INDEX.md and rules/manifest.yaml (Level 2). HIG-LITE is a compressed summary with canonical rule ID cross-links — not a divergent standard. Updated INTEGRATION.md and agent templates to default to Level 1 context.
 * **v1.6.0 (2026-09-09):** P2 capability expansion. Added Layer 9 Security & Privacy. Added error, empty-state, loading-state, notification, and search taxonomies (§2.5–2.10). Added forms contract (§2.11), i18n/localization with logical layout properties (§2.8), data density standards (§3.3), and browser permissions UX (§5.5). Expanded Layer 0 matrix, Layer 7 rule IDs, and Layer 8 security CI alignment.
 * **v1.5.1 (2026-09-09):** Corrections and clarifications to v1.5.0. Added normative vocabulary (MUST/SHOULD/MAY) and exception governance. Made Layer 4 framework-neutral with universal reference architecture and separate framework adapters. Split lab vs. field performance; corrected Core Web Vitals table (TTFB as supporting metric); field INP as SLO not CI gate. Fixed WCAG 2.3.3 AAA classification, focus trapping semantics, target size exceptions, accessible name computation, destructive action models, and metadata archetype awareness. Added stale data, network failure, conflict, idempotency, and offline state definitions. Expanded Layer 7 with rule IDs, severity, applicability, and autofix safety. Expanded Layer 8 with blocking/warning/observation gates, security CI, visual regression, and cross-browser testing.

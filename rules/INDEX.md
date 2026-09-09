@@ -1,82 +1,95 @@
 # Modern Web HIG — Rule Index (Level 2)
 
-**Version:** v1.7.0 · **Machine-readable:** [manifest.yaml](./manifest.yaml) · **Daily summary:** [HIG-LITE.md](../HIG-LITE.md) · **Full spec:** [HIG.md](../HIG.md)
+**Version:** v1.8.0 · **Machine-readable:** [manifest.yaml](./manifest.yaml) · **Daily summary:** [HIG-LITE.md](../HIG-LITE.md) · **Full spec:** [HIG.md](../HIG.md)
 
-This index maps rule IDs to canonical sections and tells agents **when** to load deeper detail. In v1.7.0, Level 2 modules point to sections in [HIG.md](../HIG.md). Phase 2 will extract these into standalone `rules/<topic>.md` files.
+This index maps rule IDs to standalone Level 2 modules and tells agents **when** to load them. Each module is a self-contained extract; [HIG.md](../HIG.md) remains the complete normative contract (Level 3).
 
 ---
 
 ## How to use
 
 1. Start with [HIG-LITE.md](../HIG-LITE.md) (Level 1) for every UI task.
-2. Match task keywords against the **Load when** column below.
-3. Open the referenced HIG section(s) for normative detail.
+2. Match task keywords against the **Load when** column below (or [manifest.yaml](./manifest.yaml) triggers).
+3. Open the **Module file** for normative detail on that topic.
 4. Escalate to full [HIG.md](../HIG.md) only for edge cases or conflicts.
 
 ---
 
-## Topics (Level 2 modules)
+## Topic modules
 
-| Module | Load when task involves… | Primary HIG sections | Key rule IDs |
+| Module | File | Load when task involves… | Key rule IDs |
 | --- | --- | --- | --- |
-| **accessibility** | combobox, dialog, modal, focus trap, aria, keyboard, tabs, menu, listbox, accordion, skip link, contrast, screen reader | §5.1–5.5 | HIG-A11Y-001–008 |
-| **ux** | hierarchy, primary action, dead ends, navigation, deep link, command palette, destructive action, undo | §1.1, §2.1–2.4 | HIG-MUT-001, HIG-SIM-001 |
-| **states** | loading, skeleton, empty, error, stale, offline, network failure, optimistic UI | §2.5–2.7, §4.3–4.6 | HIG-ERR-001, HIG-EMP-001, HIG-LOD-001 |
-| **forms** | form, label, validation, autocomplete, multi-step, error summary, checkout fields | §2.11 | HIG-FRM-001 |
-| **tokens** | color, typography, spacing, dark mode, semantic token, primitive token | §3.1 | HIG-TOK-001, HIG-TOK-002 |
-| **responsive** | container query, breakpoint, layout adaptation, reflow, zoom | §3.2 | HIG-CQ-001 |
-| **data-density** | data table, grid, virtualization, bulk action, truncation, dashboard density | §3.3 | — |
-| **animation** | transition, micro-animation, view transition, motion token, reduced motion | §1.1–1.4 | HIG-MOT-001–005, HIG-VT-001, HIG-A11Y-001 |
-| **architecture** | SSR, RSC, server action, streaming, suspense, hydration, client component | §4.1–4.2 | HIG-SSR-001–003 |
-| **mutations** | delete, optimistic UI, idempotency, conflict, concurrency | §2.4, §4.5 | HIG-MUT-001, HIG-MUT-002 |
-| **performance** | LCP, INP, CLS, TTFB, bundle budget, lazy load, Core Web Vitals | §6.1–6.5 | — |
-| **search** | search, autocomplete, facets, filters, debounce, no results | §2.9 | — |
-| **notifications** | toast, snackbar, banner, alert, inline status | §2.10 | HIG-NTF-001 |
-| **i18n** | locale, RTL, pluralization, translation, logical properties | §2.8 | HIG-I18N-001, HIG-UX-001 |
-| **security** | CSP, XSS, CSRF, cookie, PII, auth UX, session, secrets | §9.1–9.7 | HIG-SEC-001–004 |
-| **ai-enforcement** | agent rules, linter, CI gate, rule ID, severity | §7.1–7.3, §8 | HIG-SIM-001 + all Layer 7 IDs |
-| **framework** | React, Vue, Next, Nuxt, Astro adapter | §4.1 (adapters) | HIG-SSR-001–003 |
+| **accessibility** | [accessibility.md](./accessibility.md) | combobox, dialog, focus trap, aria, keyboard, tabs, menu, contrast | HIG-A11Y-001–008 |
+| **ux** | [ux.md](./ux.md) | hierarchy, navigation, deep link, command palette, destructive action, SEO | HIG-MUT-001, HIG-SIM-001 |
+| **states** | [states.md](./states.md) | loading, skeleton, empty, error, stale, offline, network failure | HIG-ERR-001, HIG-EMP-001, HIG-LOD-001 |
+| **forms** | [forms.md](./forms.md) | form, label, validation, autocomplete, multi-step, checkout | HIG-FRM-001 |
+| **tokens** | [tokens.md](./tokens.md) | color, typography, spacing, dark mode, design token | HIG-TOK-001, HIG-TOK-002 |
+| **responsive** | [responsive.md](./responsive.md) | container query, breakpoint, layout adaptation, reflow | HIG-CQ-001 |
+| **data-density** | [data-density.md](./data-density.md) | data table, grid, virtualization, bulk action, dashboard | — |
+| **animation** | [animation.md](./animation.md) | transition, micro-animation, view transition, reduced motion | HIG-MOT-001–005, HIG-VT-001 |
+| **architecture** | [architecture.md](./architecture.md) | SSR, RSC, server action, streaming, suspense, hydration | HIG-SSR-001–003 |
+| **mutations** | [mutations.md](./mutations.md) | delete, optimistic UI, idempotency, conflict | HIG-MUT-001, HIG-MUT-002 |
+| **performance** | [performance.md](./performance.md) | LCP, INP, CLS, TTFB, bundle budget, Core Web Vitals | — |
+| **search** | [search.md](./search.md) | search, autocomplete, facets, filters, debounce | — |
+| **notifications** | [notifications.md](./notifications.md) | toast, snackbar, banner, alert, inline status | HIG-NTF-001 |
+| **i18n** | [i18n.md](./i18n.md) | locale, RTL, pluralization, translation | HIG-I18N-001, HIG-UX-001 |
+| **security** | [security.md](./security.md) | CSP, XSS, CSRF, cookie, PII, auth UX, secrets | HIG-SEC-001–004 |
+| **ai-enforcement** | [ai-enforcement.md](./ai-enforcement.md) | agent rules, linter, CI gate, rule ID | HIG-SIM-001 + Layer 7 |
+
+---
+
+## Framework adapters
+
+Load alongside **architecture** when the task is framework-specific:
+
+| Framework | File | Triggers |
+| --- | --- | --- |
+| React | [../framework/react.md](../framework/react.md) | react, jsx, tsx, use client |
+| Next.js | [../framework/next.md](../framework/next.md) | next.js, app router, server action |
+| Vue | [../framework/vue.md](../framework/vue.md) | vue, .vue |
+| Nuxt | [../framework/nuxt.md](../framework/nuxt.md) | nuxt |
+| Astro | [../framework/astro.md](../framework/astro.md) | astro, .astro, client:* |
 
 ---
 
 ## Complete rule ID registry
 
-| Rule ID | Summary | HIG section | Severity |
+| Rule ID | Summary | Module | HIG section |
 | --- | --- | --- | --- |
-| HIG-SIM-001 | Prefer simplest compliant implementation | Exception System, §7.2 | — |
-| HIG-UX-001 | Logical CSS properties | §2.8 | error |
-| HIG-TOK-001 | No raw hex outside token files | §3.1 | error |
-| HIG-TOK-002 | Semantic/component tokens | §3.1 | error |
-| HIG-CQ-001 | Container queries for component layout | §3.2 | error |
-| HIG-MOT-001 | No `transition: all` in app CSS | §1.1 | error |
-| HIG-MOT-002 | Motion duration tokens | §3.1 | error |
-| HIG-MOT-003 | No decorative micro-animations | §1.4 | error |
-| HIG-MOT-004 | Micro-feedback ≤300 ms | §1.4 | error |
-| HIG-MOT-005 | Prefer transform/opacity | §1.4 | warning |
-| HIG-VT-001 | Unique view-transition-name | §1.2 | error |
-| HIG-SSR-001 | Default to server rendering | §4.1 | error |
-| HIG-SSR-002 | Streaming boundary for slow async | §4.1 | warning |
-| HIG-SSR-003 | Pending UI on server mutations | §4.2 | error |
-| HIG-A11Y-001 | Reduced motion media query | §1.3 | error |
-| HIG-A11Y-002 | WCAG 2.2 AA | §5.1 | error |
-| HIG-A11Y-003 | Native HTML over ARIA | §5.2 | error |
-| HIG-A11Y-004 | Accessible name on icon buttons | §5.2 | error |
-| HIG-A11Y-005 | Alt text on images | §5.2 | error |
-| HIG-A11Y-006 | Visible focus styles | §5.3 | error |
-| HIG-A11Y-007 | Min 24×24 px targets | §5.4 | error |
-| HIG-A11Y-008 | Modal focus containment | §5.3 | error |
-| HIG-MUT-001 | No optimistic destructive confirmation | §2.4 | error |
-| HIG-MUT-002 | Idempotency for critical mutations | §4.5 | warning |
-| HIG-ERR-001 | Error states use taxonomy | §2.5 | warning |
-| HIG-EMP-001 | Empty states use taxonomy | §2.6 | warning |
-| HIG-LOD-001 | Loading states use taxonomy | §2.7 | warning |
-| HIG-FRM-001 | Forms have labels and error summary | §2.11 | error |
-| HIG-I18N-001 | Logical properties for layout | §2.8 | error |
-| HIG-NTF-001 | Notifications use taxonomy | §2.10 | warning |
-| HIG-SEC-001 | No secrets in client code | §9.4 | error |
-| HIG-SEC-002 | CSP headers configured | §9.1 | error |
-| HIG-SEC-003 | PII masked in UI and logs | §9.4 | error |
-| HIG-SEC-004 | Secure cookie attributes | §9.3 | error |
+| HIG-SIM-001 | Prefer simplest compliant implementation | ai-enforcement | Exception System, §7.2 |
+| HIG-UX-001 | Logical CSS properties | i18n | §2.8 |
+| HIG-TOK-001 | No raw hex outside token files | tokens | §3.1 |
+| HIG-TOK-002 | Semantic/component tokens | tokens | §3.1 |
+| HIG-CQ-001 | Container queries for component layout | responsive | §3.2 |
+| HIG-MOT-001 | No `transition: all` in app CSS | animation | §1.1 |
+| HIG-MOT-002 | Motion duration tokens | animation | §3.1 |
+| HIG-MOT-003 | No decorative micro-animations | animation | §1.4 |
+| HIG-MOT-004 | Micro-feedback ≤300 ms | animation | §1.4 |
+| HIG-MOT-005 | Prefer transform/opacity | animation | §1.4 |
+| HIG-VT-001 | Unique view-transition-name | animation | §1.2 |
+| HIG-SSR-001 | Default to server rendering | architecture | §4.1 |
+| HIG-SSR-002 | Streaming boundary for slow async | architecture | §4.1 |
+| HIG-SSR-003 | Pending UI on server mutations | architecture | §4.2 |
+| HIG-A11Y-001 | Reduced motion media query | animation | §1.3 |
+| HIG-A11Y-002 | WCAG 2.2 AA | accessibility | §5.1 |
+| HIG-A11Y-003 | Native HTML over ARIA | accessibility | §5.2 |
+| HIG-A11Y-004 | Accessible name on icon buttons | accessibility | §5.2 |
+| HIG-A11Y-005 | Alt text on images | accessibility | §5.2 |
+| HIG-A11Y-006 | Visible focus styles | accessibility | §5.3 |
+| HIG-A11Y-007 | Min 24×24 px targets | accessibility | §5.4 |
+| HIG-A11Y-008 | Modal focus containment | accessibility | §5.3 |
+| HIG-MUT-001 | No optimistic destructive confirmation | mutations | §2.4 |
+| HIG-MUT-002 | Idempotency for critical mutations | mutations | §4.5 |
+| HIG-ERR-001 | Error states use taxonomy | states | §2.5 |
+| HIG-EMP-001 | Empty states use taxonomy | states | §2.6 |
+| HIG-LOD-001 | Loading states use taxonomy | states | §2.7 |
+| HIG-FRM-001 | Forms have labels and error summary | forms | §2.11 |
+| HIG-I18N-001 | Logical properties for layout | i18n | §2.8 |
+| HIG-NTF-001 | Notifications use taxonomy | notifications | §2.10 |
+| HIG-SEC-001 | No secrets in client code | security | §9.4 |
+| HIG-SEC-002 | CSP headers configured | security | §9.1 |
+| HIG-SEC-003 | PII masked in UI and logs | security | §9.4 |
+| HIG-SEC-004 | Secure cookie attributes | security | §9.3 |
 
 ---
 

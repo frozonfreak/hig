@@ -1,6 +1,6 @@
 # Agent instructions — Modern Web HIG
 
-Pinned contract: Modern Web HIG v1.7.0  
+Pinned contract: Modern Web HIG v1.8.0  
 Default context: `docs/hig/HIG-LITE.md`  
 Topic index: `docs/hig/rules/manifest.yaml`  
 Full spec: `docs/hig/HIG.md` (edge cases only)  
@@ -10,7 +10,7 @@ Archetype map: `docs/hig-scope.md`
 
 1. **Archetype first** — `content` | `commerce` | `application` | `auth`
 2. **Level 1** — read `HIG-LITE.md` for essential rules
-3. **Level 2** — match task against `rules/manifest.yaml`; load referenced HIG sections
+3. **Level 2** — match task against `rules/manifest.yaml`; load referenced `rules/*.md` module (and `framework/*.md` if applicable)
 4. **Layer 0 matrix** — only enforce mandatory/conditional rules for that archetype
 5. **Layer 7 guardrails** — see YAML below (source of truth for agent behavior)
 6. **Level 3** — open full `HIG.md` only for edge cases or spec conflicts

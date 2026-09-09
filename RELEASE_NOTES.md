@@ -6,6 +6,34 @@ Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
 ---
 
+## [v1.8.0](./HIG.md) — 2026-09-09
+
+Progressive loading Phase 2 — standalone rule modules and framework adapters.
+
+### Highlights
+
+- **16 Level 2 rule modules** in `rules/` — accessibility, ux, states, forms, tokens, responsive, data-density, animation, architecture, mutations, performance, search, notifications, i18n, security, ai-enforcement.
+- **5 framework adapters** in `framework/` — React, Next.js, Vue, Nuxt, Astro.
+- **[rules/manifest.yaml](./rules/manifest.yaml)** updated to point to module files (not HIG.md section anchors).
+- **HIG.md remains Level 3** — complete normative contract with module cross-links at each layer.
+
+### Layer impact
+
+| Area | Change |
+| --- | --- |
+| rules/ | 16 standalone topic modules extracted from HIG layers |
+| framework/ | New adapter files for major frameworks |
+| manifest | `file` field per module; `framework_adapters` section added |
+| HIG.md | Module banners at layer headers; v1.8.0 |
+
+### Adoption notes
+
+- Pin `rules/*.md` and `framework/*.md` alongside existing HIG-LITE/HIG.md pins.
+- Agents now load `rules/accessibility.md` (etc.) directly instead of parsing full HIG.md sections.
+- When contributing, keep `rules/*.md` synchronized with `HIG.md` — modules are extracts, not divergent standards.
+
+---
+
 ## [v1.7.0](./HIG.md) — 2026-09-09
 
 Progressive loading architecture (Phase 1) — token-efficient agent workflows without weakening the standard.

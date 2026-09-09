@@ -1,8 +1,8 @@
 # Modern Web HIG — Progressive loading manifest
-# Version: 1.7.0
+# Version: 1.8.0
 # Human-readable index: rules/INDEX.md
 
-version: "1.7.0"
+version: "1.8.0"
 
 levels:
   0:
@@ -14,8 +14,8 @@ levels:
     description: Default daily agent context — compressed executable summary
     load: all_ui_tasks
   2:
-    file: rules/INDEX.md
-    description: Topic-triggered deep sections (currently HIG.md anchors)
+    file: rules/
+    description: Topic-triggered standalone rule modules
     load: on_topic_match
   3:
     file: HIG.md
@@ -24,6 +24,7 @@ levels:
 
 modules:
   accessibility:
+    file: rules/accessibility.md
     triggers:
       - combobox
       - dialog
@@ -49,16 +50,15 @@ modules:
       - HIG-A11Y-006
       - HIG-A11Y-007
       - HIG-A11Y-008
-    source: HIG.md
-    sections:
+    hig_sections:
       - "§5.1"
       - "§5.2"
       - "§5.3"
       - "§5.4"
       - "§5.5"
-    # Phase 2: rules/accessibility.md
 
   ux:
+    file: rules/ux.md
     triggers:
       - hierarchy
       - primary action
@@ -69,18 +69,19 @@ modules:
       - destructive
       - undo
       - breadcrumb
+      - document fundamentals
+      - seo
     rules:
       - HIG-MUT-001
       - HIG-SIM-001
-    source: HIG.md
-    sections:
-      - "§1.1"
+    hig_sections:
       - "§2.1"
       - "§2.2"
       - "§2.3"
       - "§2.4"
 
   states:
+    file: rules/states.md
     triggers:
       - loading
       - skeleton
@@ -95,8 +96,7 @@ modules:
       - HIG-ERR-001
       - HIG-EMP-001
       - HIG-LOD-001
-    source: HIG.md
-    sections:
+    hig_sections:
       - "§2.5"
       - "§2.6"
       - "§2.7"
@@ -105,6 +105,7 @@ modules:
       - "§4.6"
 
   forms:
+    file: rules/forms.md
     triggers:
       - form
       - label
@@ -116,11 +117,11 @@ modules:
       - password
     rules:
       - HIG-FRM-001
-    source: HIG.md
-    sections:
+    hig_sections:
       - "§2.11"
 
   tokens:
+    file: rules/tokens.md
     triggers:
       - color
       - typography
@@ -132,11 +133,12 @@ modules:
     rules:
       - HIG-TOK-001
       - HIG-TOK-002
-    source: HIG.md
-    sections:
+      - HIG-MOT-002
+    hig_sections:
       - "§3.1"
 
   responsive:
+    file: rules/responsive.md
     triggers:
       - container query
       - breakpoint
@@ -146,11 +148,11 @@ modules:
       - responsive
     rules:
       - HIG-CQ-001
-    source: HIG.md
-    sections:
+    hig_sections:
       - "§3.2"
 
   data-density:
+    file: rules/data-density.md
     triggers:
       - data table
       - grid
@@ -161,11 +163,11 @@ modules:
       - density
       - sticky header
     rules: []
-    source: HIG.md
-    sections:
+    hig_sections:
       - "§3.3"
 
   animation:
+    file: rules/animation.md
     triggers:
       - transition
       - micro-animation
@@ -182,14 +184,14 @@ modules:
       - HIG-MOT-005
       - HIG-VT-001
       - HIG-A11Y-001
-    source: HIG.md
-    sections:
+    hig_sections:
       - "§1.1"
       - "§1.2"
       - "§1.3"
       - "§1.4"
 
   architecture:
+    file: rules/architecture.md
     triggers:
       - ssr
       - rsc
@@ -204,13 +206,12 @@ modules:
       - HIG-SSR-001
       - HIG-SSR-002
       - HIG-SSR-003
-    source: HIG.md
-    sections:
+    hig_sections:
       - "§4.1"
       - "§4.2"
-    # Phase 2: rules/architecture.md, framework/*.md
 
   mutations:
+    file: rules/mutations.md
     triggers:
       - delete
       - optimistic ui
@@ -221,12 +222,12 @@ modules:
     rules:
       - HIG-MUT-001
       - HIG-MUT-002
-    source: HIG.md
-    sections:
+    hig_sections:
       - "§2.4"
       - "§4.5"
 
   performance:
+    file: rules/performance.md
     triggers:
       - lcp
       - inp
@@ -237,8 +238,7 @@ modules:
       - core web vitals
       - performance budget
     rules: []
-    source: HIG.md
-    sections:
+    hig_sections:
       - "§6.1"
       - "§6.2"
       - "§6.3"
@@ -246,6 +246,7 @@ modules:
       - "§6.5"
 
   search:
+    file: rules/search.md
     triggers:
       - search
       - autocomplete
@@ -254,11 +255,11 @@ modules:
       - debounce
       - no results
     rules: []
-    source: HIG.md
-    sections:
+    hig_sections:
       - "§2.9"
 
   notifications:
+    file: rules/notifications.md
     triggers:
       - toast
       - snackbar
@@ -268,11 +269,11 @@ modules:
       - notification
     rules:
       - HIG-NTF-001
-    source: HIG.md
-    sections:
+    hig_sections:
       - "§2.10"
 
   i18n:
+    file: rules/i18n.md
     triggers:
       - locale
       - rtl
@@ -284,11 +285,11 @@ modules:
     rules:
       - HIG-I18N-001
       - HIG-UX-001
-    source: HIG.md
-    sections:
+    hig_sections:
       - "§2.8"
 
   security:
+    file: rules/security.md
     triggers:
       - csp
       - xss
@@ -304,8 +305,7 @@ modules:
       - HIG-SEC-002
       - HIG-SEC-003
       - HIG-SEC-004
-    source: HIG.md
-    sections:
+    hig_sections:
       - "§9.1"
       - "§9.2"
       - "§9.3"
@@ -315,6 +315,7 @@ modules:
       - "§9.7"
 
   ai-enforcement:
+    file: rules/ai-enforcement.md
     triggers:
       - agent rule
       - linter
@@ -324,26 +325,27 @@ modules:
       - stylelint
     rules:
       - HIG-SIM-001
-    source: HIG.md
-    sections:
+    hig_sections:
       - "§7.1"
       - "§7.2"
       - "§7.3"
       - "§8"
 
-  framework:
-    triggers:
-      - react
-      - vue
-      - next
-      - nuxt
-      - astro
-      - framework adapter
-    rules:
-      - HIG-SSR-001
-      - HIG-SSR-002
-      - HIG-SSR-003
-    source: HIG.md
-    sections:
-      - "§4.1"
-    # Phase 2: framework/react.md, framework/next.md, etc.
+framework_adapters:
+  react:
+    file: framework/react.md
+    triggers: [react, jsx, tsx, use client]
+  next:
+    file: framework/next.md
+    triggers: [next.js, nextjs, app router, server action]
+    extends: react
+  vue:
+    file: framework/vue.md
+    triggers: [vue, vue 3, .vue]
+  nuxt:
+    file: framework/nuxt.md
+    triggers: [nuxt, nuxt 3]
+    extends: vue
+  astro:
+    file: framework/astro.md
+    triggers: [astro, .astro, client:load, client:visible]

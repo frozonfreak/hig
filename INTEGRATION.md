@@ -2,7 +2,7 @@
 
 This guide shows an **efficient** way to adopt the Modern Web HIG in a product repo: progressive loading, thin agent rules, then lint/CI — without pasting the full contract into every prompt.
 
-**Current contract:** [HIG.md](./HIG.md) v1.7.0 (see README for version).
+**Current contract:** [HIG.md](./HIG.md) v1.8.0 (see README for version).
 
 ---
 
@@ -12,7 +12,7 @@ This guide shows an **efficient** way to adopt the Modern Web HIG in a product r
 | --- | --- | --- |
 | **0** | [HIG-CORE.md](./HIG-CORE.md) | Session start — philosophy, vocabulary, archetypes |
 | **1** | [HIG-LITE.md](./HIG-LITE.md) | **Every UI/CSS/front-end task** (default) |
-| **2** | [rules/INDEX.md](./rules/INDEX.md) + [rules/manifest.yaml](./rules/manifest.yaml) | Task matches a topic (combobox, forms, SSR, security…) |
+| **2** | [rules/*.md](./rules/) + [framework/*.md](./framework/) via [manifest.yaml](./rules/manifest.yaml) | Task matches a topic (combobox, forms, SSR, security…) |
 | **3** | [HIG.md](./HIG.md) | Edge cases, spec conflicts, full normative detail |
 
 **Do not** dump all of `HIG.md` into every system prompt. Agents work better with:
@@ -43,9 +43,9 @@ Pick one pinning strategy and stick to it:
 
 | Strategy | When to use |
 | --- | --- |
-| **Vendor copy** | Fastest: copy `HIG.md`, `HIG-LITE.md`, and `rules/` into e.g. `docs/hig/` and note the version in your README |
+| **Vendor copy** | Fastest: copy `HIG.md`, `HIG-LITE.md`, `rules/`, and `framework/` into e.g. `docs/hig/` and note the version in your README |
 | **Git submodule / subtree** | You want upstream pulls without manual copy |
-| **Raw URL pin** | Agent rules link to tagged release files (e.g. `.../blob/v1.7.0/HIG-LITE.md`) |
+| **Raw URL pin** | Agent rules link to tagged release files (e.g. `.../blob/v1.8.0/HIG-LITE.md`) |
 
 **Minimum pin set for agents:**
 
@@ -54,9 +54,11 @@ Pick one pinning strategy and stick to it:
 | `HIG-LITE.md` | Default daily context |
 | `HIG.md` | Full specification (Level 3) |
 | `rules/manifest.yaml` | Topic-triggered loading |
+| `rules/*.md` | Standalone topic modules |
+| `framework/*.md` | Framework adapters (React, Next, Vue, Nuxt, Astro) |
 | `rules/INDEX.md` | Human-readable rule index |
 
-Record the pinned version next to the files (e.g. `docs/hig/VERSION` containing `1.7.0`) so upgrades are intentional.
+Record the pinned version next to the files (e.g. `docs/hig/VERSION` containing `1.8.0`) so upgrades are intentional.
 
 ---
 
@@ -67,7 +69,7 @@ Create a short product-local scope file (example: `docs/hig-scope.md`):
 ```markdown
 # HIG scope for this product
 
-Pinned contract: Modern Web HIG v1.7.0
+Pinned contract: Modern Web HIG v1.8.0
 - Daily context: `docs/hig/HIG-LITE.md`
 - Full spec: `docs/hig/HIG.md`
 - Topic index: `docs/hig/rules/manifest.yaml`
@@ -93,7 +95,7 @@ Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) into
 ### Loading workflow for agents
 
 1. **Always:** Read `HIG-LITE.md` (Level 1) + resolve archetype from scope doc
-2. **On topic match:** Consult `rules/manifest.yaml` → open matching HIG section(s) (Level 2)
+2. **On topic match:** Consult `rules/manifest.yaml` → open matching `rules/*.md` module (Level 2); load `framework/*.md` when stack-specific
 3. **On edge case:** Open `HIG.md` (Level 3)
 4. **Always:** Apply Layer 7 YAML guardrails from the agent rule file
 5. **Cite rule IDs** when declining conflicting requests (e.g. `HIG-A11Y-003`)
@@ -124,9 +126,10 @@ Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) into
 When starting a UI task, prepend:
 
 ```text
-Follow Modern Web HIG v1.7.0.
+Follow Modern Web HIG v1.8.0.
 Default context: docs/hig/HIG-LITE.md (Level 1).
-Load docs/hig/rules/manifest.yaml Level 2 modules when task matches a topic.
+Load docs/hig/rules/<module>.md from manifest.yaml when task matches a topic.
+Load docs/hig/framework/<stack>.md when framework-specific.
 Archetype: <content|commerce|application|auth> per docs/hig-scope.md.
 Apply Layer 0 matrix + Layer 7 guardrails. Cite rule IDs on conflicts.
 Prefer simplest compliant implementation (HIG-SIM-001).
