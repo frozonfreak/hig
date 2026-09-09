@@ -7,35 +7,55 @@ This project follows the Modern Web HIG. Pin path: `docs/hig/HIG.md` (or update 
 1. Resolve archetype (`content` | `commerce` | `application` | `auth`) from the scope map.
 2. Apply Layer 0 matrix from the pinned HIG.
 3. Enforce Layer 7 rules below.
+4. Prefer the simplest compliant implementation (HIG-SIM-001).
 
 ```yaml
 agent_enforcement_rules:
   scope:
     resolve_archetype_first: true
     apply_layer0_matrix: true
+    prefer_simplest_compliant_implementation: true
   styling_constraints:
-    disallow_raw_hex_colors_outside_token_files: true
-    require_semantic_or_component_tokens: true
-    prohibit_transition_all: true
-    require_cubic_bezier_curves: true
-    require_motion_duration_tokens: true
-    prohibit_decorative_micro_animations: true
-    micro_animation_max_ms: 300
-    animate_compositor_properties_only: true
-    require_container_queries_for_components: true
-    require_logical_properties: true
-    require_reduced_motion_media_query: true
-  rsc_and_server_action_constraints:
-    default_to_server_components: true
-    require_suspense_skeletons_for_async_rsc: true
-    require_form_pending_states_on_server_actions: true
+    - id: HIG-TOK-001
+      rule: disallow_raw_hex_colors_outside_token_files
+      severity: error
+    - id: HIG-MOT-001
+      rule: prohibit_transition_all_application_css
+      severity: error
+    - id: HIG-MOT-004
+      rule: micro_animation_max_ms
+      value: 300
+      scope: micro_feedback_only
+      severity: error
+    - id: HIG-CQ-001
+      rule: require_container_queries_for_component_layout
+      severity: error
+    - id: HIG-A11Y-001
+      rule: require_reduced_motion_media_query
+      severity: error
+  server_rendering_constraints:
+    - id: HIG-SSR-001
+      rule: default_to_server_rendering
+      severity: error
+    - id: HIG-SSR-002
+      rule: require_streaming_boundary_for_slow_async_regions
+      severity: warning
   accessibility_constraints:
-    target_standard: "WCAG 2.2 AA"
-    require_aria_labels_on_icon_buttons: true
-    require_alt_text_on_images: true
-    enforce_semantic_html: true
-    require_visible_focus_styles: true
-    min_target_size_px: 24
+    - id: HIG-A11Y-002
+      rule: target_standard
+      value: "WCAG 2.2 AA"
+      severity: error
+    - id: HIG-A11Y-003
+      rule: prefer_native_html_over_aria
+      severity: error
+    - id: HIG-A11Y-007
+      rule: min_target_size_px
+      value: 24
+      severity: error
+  mutation_constraints:
+    - id: HIG-MUT-001
+      rule: no_optimistic_destructive_confirmation
+      severity: error
 ```
 
-Do not paste the entire HIG into responses. Cite the relevant layer when declining a conflicting request.
+Do not paste the entire HIG into responses. Cite the relevant rule ID when declining a conflicting request.

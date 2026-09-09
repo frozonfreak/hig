@@ -35,7 +35,7 @@ Pick one pinning strategy and stick to it:
 | **Git submodule / subtree** | You want upstream pulls without manual copy |
 | **Raw URL pin** | Agent rules link to a tagged release file (e.g. `.../blob/v1.5.0/HIG.md`) |
 
-Record the pinned version next to the file (e.g. `docs/hig/VERSION` containing `1.5.0`) so upgrades are intentional.
+Record the pinned version next to the file (e.g. `docs/hig/VERSION` containing `1.5.1`) so upgrades are intentional.
 
 ---
 
@@ -46,13 +46,13 @@ Create a short product-local scope file (example: `docs/hig-scope.md`):
 ```markdown
 # HIG scope for this product
 
-Pinned contract: Modern Web HIG v1.5.0 (`docs/hig/HIG.md`)
+Pinned contract: Modern Web HIG v1.5.1 (`docs/hig/HIG.md`)
 
 | Route / area | Archetype | Notes |
 | --- | --- | --- |
 | `/`, `/blog/*` | Content / Marketing | SEO mandatory |
 | `/products/*`, `/cart`, `/checkout` | Commerce | Checkout = unsaved-changes protection |
-| `/app/*`, `/admin/*` | Application | RSC + mutation state machines |
+| `/app/*`, `/admin/*` | Application | Server rendering + mutation state machines |
 | `/login`, `/settings` | Auth / Account | No decorative motion |
 
 Default for new UI: Application unless the route map says otherwise.
@@ -94,8 +94,9 @@ When starting a UI task, prepend:
 ```text
 Follow Modern Web HIG (pinned docs/hig/HIG.md).
 Archetype: <content|commerce|application|auth> per docs/hig-scope.md.
-Apply Layer 0 matrix, then Layer 7 guardrails. Prefer tokens, @container, RSC-by-default,
-functional micro-animations ≤300ms (transform/opacity only), WCAG 2.2 AA.
+Apply Layer 0 matrix, then Layer 7 guardrails. Prefer tokens, @container, server-rendering-by-default,
+functional micro-feedback ≤300ms (transform/opacity preferred), WCAG 2.2 AA conformance.
+Prefer simplest compliant implementation (HIG-SIM-001).
 ```
 
 ---
@@ -109,11 +110,13 @@ Add to your PR template (or use as a review checklist):
 - [ ] Archetype identified (Content / Commerce / Application / Auth)
 - [ ] Layer 0 matrix applied (no mandatory rules skipped)
 - [ ] No raw hex outside token files; semantic/component tokens used
-- [ ] No `transition: all`; motion uses duration tokens; micro-animations ≤300ms
-- [ ] Components use `@container` (not viewport `@media`) for local layout
-- [ ] Async RSC wrapped in Suspense + skeleton; Server Actions show pending UI
-- [ ] Icon-only buttons have `aria-label`; images have `alt`; focus ring visible
-- [ ] Reduced-motion path respected
+- [ ] No `transition: all` in application-authored CSS; micro-feedback uses duration tokens; ≤300ms
+- [ ] Components use `@container` for layout; `@media` only for viewport/preferences/page-level
+- [ ] Slow async server regions have streaming boundaries + skeleton; server mutations show pending UI
+- [ ] Native HTML preferred over ARIA; icon buttons have accessible names; images have `alt`
+- [ ] Modals implement focus containment (not just `aria-modal`); focus ring visible with sufficient contrast
+- [ ] Reduced-motion path respected; min 24×24px targets (44px preferred for touch)
+- [ ] No optimistic confirmation on destructive mutations without undo/soft-delete
 ```
 
 ---
@@ -124,13 +127,16 @@ When ready to automate:
 
 1. Encode Layer 7 constraints as ESLint/Stylelint rules (see HIG §7.2 for the intended `eslint-plugin-hig` rule set)
 2. Run axe-core / Playwright a11y at WCAG 2.2 AA on critical routes
-3. Fail the build on Core Web Vitals lab budgets from HIG Layer 6 / 8:
-   - INP > 200 ms
+3. **Lab/CI gates (blocking)** — synthetic interaction latency, LCP, CLS, TTFB from HIG Layer 6 / 8:
+   - Synthetic interaction latency > 200 ms
    - LCP > 2.5 s
    - CLS > 0.10
    - TTFB > 800 ms
+4. **Field RUM (observation/SLO)** — field INP, LCP, CLS monitored but not treated as deterministic CI results
+5. **Security CI (blocking)** — dependency audit, secret scanning, SAST, CSP/header checks
+6. **Visual regression (warning)** — layout, responsive, dark-mode screenshot diffs
 
-Until a shared `eslint-plugin-hig` package is available in your stack, approximate with existing rules (no raw colors, a11y plugin, ban `transition: all`) and keep the PR checklist as the gap-filler.
+Until a shared `eslint-plugin-hig` package is available in your stack, approximate with existing rules (no raw colors, a11y plugin, ban `transition: all` in app CSS) and keep the PR checklist as the gap-filler.
 
 ---
 

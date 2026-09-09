@@ -2,7 +2,7 @@
 
 A universal Human Interface Guidelines (HIG) and product-engine contract for modern web applications, commerce sites, and content platforms.
 
-**Current version:** [v1.5.0](./HIG.md) · [Release notes](./RELEASE_NOTES.md)
+**Current version:** [v1.5.1](./HIG.md) · [Release notes](./RELEASE_NOTES.md)
 
 ## What is this?
 
@@ -14,11 +14,11 @@ The Modern Web HIG defines design principles, information architecture, state ma
 | 1 | UX Principles — motion, functional micro-animations, density, spatial ergonomics |
 | 2 | Information Architecture — document fundamentals, navigation, i18n/RTL |
 | 3 | Visual & Design Tokens — contrast-verified three-tier token system |
-| 4 | Interaction & State — state machines, optimistic UI, data protection |
-| 5 | Accessibility — WCAG 2.2 AA, keyboard navigation, focus management |
-| 6 | Performance — Core Web Vitals budgets (INP, LCP, CLS, TTFB) |
-| 7 | AI & Agent Enforcement — machine-readable guardrails for coding agents |
-| 8 | Quality Assurance — CI/CD gates and automated build standards |
+| 4 | Interaction & State — server-driven rendering, state machines, optimistic UI, data protection |
+| 5 | Accessibility — WCAG 2.2 AA conformance, keyboard navigation, focus management |
+| 6 | Performance — lab & field metrics, Core Web Vitals (LCP, INP, CLS) + supporting metrics |
+| 7 | AI & Agent Enforcement — rule IDs, severity, machine-readable guardrails for coding agents |
+| 8 | Quality Assurance — blocking/warning/observation CI/CD gates |
 
 ## Who is this for?
 

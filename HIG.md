@@ -1,45 +1,82 @@
-# Modern Web HIG & Product Engine Contract — v1.5.0
+# Modern Web HIG & Product Engine Contract — v1.5.1
 
 ## Executive Summary
 
-The Modern Web Human Interface Guidelines (HIG) v1.5.0 define design principles, information architecture, state machines, interaction rules, accessibility standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+The Modern Web Human Interface Guidelines (HIG) v1.5.1 define design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
-This release upgrades the contract to v1.5.0 by incorporating modern architecture paradigms:
+This release corrects and clarifies v1.5.0 by:
 
-1. **Functional Micro-Animations (Layer 1):** Constrains micro-motion to user-triggered feedback with duration tokens, compositor-safe properties, and a decorative deny list — preserving INP and reduced-motion guarantees.
-2. **Server-Driven UI & Partial Hydration Architecture (Layer 4):** Standardizes Server Components (RSC), streaming boundary skeletons, and Server Actions state handling.
-3. **Container-First Responsive Systems (Layer 3):** Shifts component tokens and layout rules from viewport media queries (`@media`) to CSS Container Queries (`@container`).
-4. **Native View Transitions API (Layer 1):** Defines standards for multi-page and client-side page route animations without heavy JS animation frameworks.
+1. **Normative vocabulary & exception governance** — MUST/SHOULD/MAY keywords, rule IDs, severity levels, and documented deviation paths for AI and CI enforcement.
+2. **Framework-neutral Layer 4 architecture** — Universal server-driven rendering model with separate framework adapters (React/Next, Vue/Nuxt, Astro, etc.).
+3. **Lab vs. field performance split** — Synthetic CI metrics separated from field RUM/SLO gates; Core Web Vitals table corrected.
+4. **Accessibility & WCAG precision** — WCAG 2.2 AA conformance referenced (not redefined); WCAG 2.3.3 correctly classified as AAA; focus trapping, target sizes, and accessible-name computation clarified.
 
-This contract is organized into a **9-Layer Governance Framework**:
+### Document Structure
+
+```
+MODERN WEB HIG
+│
+├── Normative Vocabulary & Exception System
+├── Layer 0: Applicability & Scope (Archetype Matrix)
+├── Layer 1: UX Principles
+├── Layer 2: Information Architecture & Product Standards
+├── Layer 3: Visual, Design Token System & Container Engine
+├── Layer 4: Reference Architecture, State Machines & Framework Adapters
+├── Layer 5: Accessibility & Keyboard Navigation
+├── Layer 6: Performance (Lab & Field)
+├── Layer 7: AI & Agent Enforcement Contract
+├── Layer 8: Quality Assurance & CI/CD Gates
+└── Appendix: Planned Capabilities (v1.6+)
+```
+
+This contract is organized into a **9-Layer Governance Framework** (Layers 0–8):
 
 * **Layer 0: Applicability & Scope** — Page archetypes and which layers are mandatory per archetype.
-
-
 * **Layer 1: UX Principles** — Ergonomic, spatial, motion, functional micro-animations, reduced-motion, and View Transitions guidelines.
-
-
 * **Layer 2: Information Architecture & Product Standards** — Hierarchy, document fundamentals, progressive disclosure, empty states, onboarding, i18n/RTL.
+* **Layer 3: Visual, Design Token System & Container Engine** — Typography, contrast-verified semantic combinations, container queries, fluid layouts, and three-tier token architecture.
+* **Layer 4: Interaction, State Architecture & Data Protection** — Universal server-driven rendering model, state machines, optimistic UI, data persistence, and friction models.
+* **Layer 5: Accessibility (a11y) & Keyboard Navigation** — WCAG 2.2 Level AA conformance, focus management, target sizes, and keyboard interaction patterns.
+* **Layer 6: Performance & Web Vitals** — Lab vs. field metrics, Core Web Vitals, supporting metrics, and budget thresholds.
+* **Layer 7: AI & Agent Enforcement Contract** — Rule IDs, severity, applicability, deterministic logic, and system-prompt contracts for AI coding agents.
+* **Layer 8: Quality Assurance & CI/CD Gates** — Blocking, warning, and observation gates.
 
+---
 
-* **Layer 3: Visual, Design Token System & Container Engine** — Typography, contrast-verified color scales, container queries, fluid layouts, and three-tier token architecture.
+## Normative Vocabulary
 
+All requirements in this document use [RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119) keywords:
 
-* **Layer 4: Interaction, State Architecture, Server Actions & Data Protection** — Formal state machines, RSC/streaming boundaries, optimistic UI, data persistence, and friction models.
+| Keyword | Meaning |
+| --- | --- |
+| **MUST** | Mandatory — non-compliance is a defect |
+| **MUST NOT** | Prohibited |
+| **SHOULD** | Default recommendation — deviate only with documented justification |
+| **SHOULD NOT** | Strongly discouraged |
+| **MAY** | Permitted |
+| **EXCEPTION** | Documented deviation from a rule (see Exception System below) |
 
+---
 
-* **Layer 5: Accessibility (a11y) & Keyboard Navigation** — Full WCAG 2.2 AA criteria, focus management, target sizes, and touch targets.
+## Exception System
 
+Every machine-enforceable rule MUST support legitimate deviation. Exceptions require explicit justification and MUST NOT be used to bypass security, accessibility, or data-protection requirements.
 
-* **Layer 6: Performance & Web Vitals** — Field vs. lab metrics, current Core Web Vitals, and budget thresholds.
+```yaml
+rule:
+  id: HIG-CQ-001
+  severity: error
+  requirement: component_responsiveness_uses_container_queries
+  exceptions:
+    allowed:
+      - accessibility_preference    # e.g. prefers-reduced-motion
+      - viewport_navigation         # page-level layout
+      - print
+      - external_vendor_code
+    requires_justification: true
+```
 
-
-* **Layer 7: AI & Agent Enforcement Contract** — Deterministic logic, linting rules, and system-prompt contracts for AI coding agents.
-
-
-* **Layer 8: Quality Assurance & CI/CD Gates** — Automated build-failure standards and performance budgets.
-
-
+**Agent rule:** The simplest implementation that satisfies applicable HIG requirements MUST be preferred. Do not satisfy a HIG rule by introducing unnecessary complexity (extra Suspense boundaries, containers, animations, ARIA, or client components).
 
 ---
 
@@ -50,17 +87,9 @@ Not every rule applies to every page. A blog post does not need an async mutatio
 ### 0.1 Page Archetypes
 
 * **Content / Marketing** — Landing pages, blogs, docs, campaign pages. Read-mostly, SEO-critical, often server-rendered.
-
-
 * **Commerce** — Product listings, PDPs, cart, checkout. Mixed read/write, conversion-critical, payment-sensitive.
-
-
 * **Application / Dashboard** — Authenticated tools, admin panels, data workflows. Write-heavy, state-heavy, RBAC-governed.
-
-
 * **Auth / Account** — Sign-in, sign-up, recovery, settings. Security- and privacy-sensitive.
-
-
 
 ### 0.2 Applicability Matrix
 
@@ -72,15 +101,15 @@ Not every rule applies to every page. A blog post does not need an async mutatio
 | Layer 2 URL-as-state sync | ⚪ (filters if present) | ✅ (facets/pagination) | ✅ | ⚪ |
 | Layer 2 Unsaved-changes protection | ⚪ | ✅ (checkout) | ✅ | ✅ (settings) |
 | Layer 3 Tokens, typography & Container Queries | ✅ | ✅ | ✅ | ✅ |
-| Layer 4 Global state machine & RSC Streaming | ⚪ | ✅ (dynamic views) | ✅ | ✅ |
-| Layer 4 Optimistic mutation / Server Action model | ❌ | ⚪ (cart only) | ✅ | ⚪ |
+| Layer 4 Global state machine & streaming boundaries | ⚪ | ✅ (dynamic views) | ✅ | ✅ |
+| Layer 4 Optimistic mutation / server mutation model | ❌ | ⚪ (cart only) | ✅ | ⚪ |
 | Layer 4 RBAC visibility guardrails | ❌ | ⚪ | ✅ | ✅ |
 | Layer 5 WCAG 2.2 AA | ✅ | ✅ | ✅ | ✅ |
-| Layer 6 Core Web Vitals | ✅ | ✅ | ✅ | ✅ |
+| Layer 6 Performance (lab + field) | ✅ | ✅ | ✅ | ✅ |
 
 Legend: ✅ Mandatory · ⚪ Conditional (apply where the feature exists) · ❌ Not applicable.
 
-Accessibility (Layer 5), tokens/typography (Layer 3), and Web Vitals (Layer 6) are **universal** and never optional.
+Accessibility (Layer 5), tokens/typography (Layer 3), and performance (Layer 6) are **universal** and never optional.
 
 ---
 
@@ -88,15 +117,9 @@ Accessibility (Layer 5), tokens/typography (Layer 3), and Web Vitals (Layer 6) a
 
 ### 1.1 Direct Manipulation & Motion Ergonomics
 
-* **Spatial Origin:** UI elements must originate from their logical trigger point (modals expand out from the clicked button; slide-overs anchor to the active edge).
-
-
-* **Physics-Based Curves:** Use non-linear cubic-bezier momentum curves (`cubic-bezier(0.16, 1, 0.3, 1)`) rather than linear or basic `ease-in-out` transitions. Never animate `transition: all` — enumerate the specific properties being animated.
-
-
-* **Input Feedback Threshold:** Every user interaction must produce an immediate local visual acknowledgement (hover, active press state, focus ring, or pending loader) without waiting for asynchronous network I/O. Prefer functional micro-animations (§1.4) over instant jumps when motion is allowed.
-
-
+* **Spatial Origin:** UI elements MUST originate from their logical trigger point (modals expand out from the clicked button; slide-overs anchor to the active edge).
+* **Physics-Based Curves:** Use non-linear cubic-bezier momentum curves (`cubic-bezier(0.16, 1, 0.3, 1)`) rather than linear or basic `ease-in-out` transitions. Application-authored CSS MUST NOT use `transition: all` — enumerate the specific properties being animated. (External/vendor CSS is out of scope.)
+* **Input Feedback Threshold:** Every user interaction MUST produce an immediate local visual acknowledgement (hover, active press state, focus ring, or pending loader) without waiting for asynchronous network I/O. Prefer functional micro-animations (§1.4) over instant jumps when motion is allowed.
 
 ### 1.2 Native View Transitions API
 
@@ -114,14 +137,13 @@ For SPA route navigation and MPA document transitions, use the native View Trans
 .card-hero {
   view-transition-name: hero-card-active;
 }
-
 ```
 
-* **Rule:** Never apply `view-transition-name` dynamically to more than one visible element simultaneously to avoid layout engine animation collisions.
+* **Rule (HIG-VT-001):** A `view-transition-name` MUST uniquely identify an element within a single transition capture unless an intentional grouping strategy is being used. Duplicate names within the same capture context cause layout engine animation collisions.
 
-### 1.3 Reduced Motion (WCAG 2.3.3)
+### 1.3 Reduced Motion & Animation Safety
 
-Motion is an enhancement, never a dependency. Respect `prefers-reduced-motion: reduce`:
+Motion is an enhancement, never a dependency. Respect `prefers-reduced-motion: reduce` as a **mandatory HIG requirement**. This exceeds the minimum WCAG 2.2 AA baseline. [WCAG 2.3.3 Animation from Interactions](https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html) is a Level **AAA** criterion — the HIG treats reduced-motion support as mandatory regardless.
 
 ```css
 @media (prefers-reduced-motion: reduce) {
@@ -133,35 +155,31 @@ Motion is an enhancement, never a dependency. Respect `prefers-reduced-motion: r
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
+
   ::view-transition-group(*),
   ::view-transition-old(*),
   ::view-transition-new(*) {
     animation: none !important;
   }
 }
-
 ```
 
 * Replace transform/momentum animations with instant state changes or a minimal opacity fade.
-
-
 * Disable parallax, auto-playing carousels, native View Transitions morphing, and decorative looping motion.
-
 
 ### 1.4 Functional Micro-Animations
 
-Micro-animations are **functional feedback only** — never decorative flourish. They exist to acknowledge input, clarify state change, or communicate progress. Brand personality may live in timing tokens and easing, not in idle ornament.
+Micro-animations are **functional feedback only** — never decorative flourish. They exist to acknowledge input, clarify state change, or communicate progress. Brand personality MAY live in timing tokens and easing, not in idle ornament.
 
 #### Allowlist (required when the control exists)
 
 | Interaction | Duration token | Typical duration | Notes |
 | --- | --- | --- | --- |
-| Hover / focus affordance | `--duration-fast` | 100–150 ms | Must not block pointer travel across dense controls |
+| Hover / focus affordance | `--duration-fast` | 100–150 ms | MUST NOT block pointer travel across dense controls |
 | Press / active acknowledgment | `--duration-fast` | 100–150 ms | Tied to Input Feedback Threshold (§1.1) |
 | Toggle / checkbox / switch | `--duration-base` | 150–200 ms | Show the state transition clearly |
 | Inline validation appear/dismiss | `--duration-base` | 150–200 ms | Prefer opacity; avoid layout shift |
-| Pending / loading indicator | continuous only while pending | — | Must stop immediately when settled |
+| Pending / loading indicator | continuous only while pending | — | MUST stop immediately when settled |
 | Toast / snackbar enter | `--duration-slow` | 200–250 ms | Exit faster than enter (`--duration-base`) |
 | Modal / overlay open | `--duration-slow` | 200–250 ms | Close at `--duration-base` (150–200 ms) |
 
@@ -169,94 +187,81 @@ Micro-animations are **functional feedback only** — never decorative flourish.
 
 * Decorative loops, idle wiggles, continuous brand ornaments, and autoplay attention-grabbers.
 * Parallax, scroll-jacking, and large-field oscillations.
-* Micro-animations longer than **300 ms** (sluggish; harms perceived responsiveness and INP budgets).
+* **Micro-feedback** MUST NOT exceed **300 ms** unless an explicit exception is documented. (Page transitions, large overlays, complex spatial transitions, and accessibility-oriented transitions are not subject to this cap.)
 * JS main-thread animation libraries for micro-feedback when CSS transitions/animations suffice.
 * Animating layout properties (`width`, `height`, `top`, `left`, `margin`, `padding`, `border-width`) for micro-feedback.
 
 #### Implementation rules
 
-* **Compositor-safe properties only:** animate `transform` and `opacity`. This keeps micro-motion off the layout/paint path and protects Layer 6 INP gates.
+* **Micro-feedback properties:** Micro-feedback SHOULD use `transform` and `opacity` whenever practical. Other properties require explicit justification. This keeps micro-motion off the layout/paint path and protects interaction latency budgets.
 * **Tokenized timing:** reference Layer 3 motion tokens (`--duration-*`, `--ease-out-momentum`) — do not invent per-component millisecond values.
 * **CSS-first:** prefer CSS transitions/animations over `requestAnimationFrame` or JS tween libraries for allowlisted micro-feedback.
 * **Reduced motion:** §1.3 still applies — under `prefers-reduced-motion: reduce`, replace spatial micro-motion with instant state changes or a minimal opacity fade.
-* **One job:** a micro-animation must communicate exactly one of: affordance, acknowledgment, state change, or progress. If removing it loses no information and no feedback, it belongs on the deny list.
-
-
+* **One job:** a micro-animation MUST communicate exactly one of: affordance, acknowledgment, state change, or progress. If removing it loses no information and no feedback, it belongs on the deny list.
 
 ---
 
 ## Layer 2: Information Architecture & Product Standards
 
-### 2.1 Document Fundamentals (Universal)
+### 2.1 Document Fundamentals
 
-Every page, regardless of archetype, must ship these:
+#### Universal (all archetypes)
+
+Every page MUST ship:
 
 * **Language:** `<html lang="…">` set correctly (and `dir` where relevant).
+* **Landmarks:** A document MUST contain exactly one primary `<main>` landmark. Nested browsing contexts (e.g. iframes) are separate documents with their own landmark sets. Use `<header>`, `<nav>`, `<footer>`, `<aside>`, etc. when their corresponding semantic regions exist — they are not universally mandatory. Interactive elements MUST use native semantics (`<button>`, `<a>`), never `<div onClick>`.
+* **Title:** A unique, descriptive `<title>`.
+* **Viewport:** Responsive viewport meta tag.
+* **Responsive images (CLS-safe):** Every `<img>` declares intrinsic `width`/`height` or an `aspect-ratio`; use `srcset`/`sizes` for resolution switching. Lazy-load non-critical images where appropriate; avoid lazy-loading the LCP candidate and other immediately needed content. The LCP candidate SHOULD be discoverable early and MAY use `fetchpriority="high"` when appropriate.
+* **Fonts:** Fonts MUST use `font-display: swap` or `optional`. Preload only critical font resources when field/lab evidence demonstrates a benefit — preloading every font can hurt performance.
 
+#### SEO / shareable (Content, Commerce — where applicable)
 
-* **Landmarks:** Exactly one `<main>`, plus `<header>`, `<nav>`, `<footer>` as appropriate. Interactive elements use native semantics (`<button>`, `<a>`), never `<div onClick>`.
-
-
-* **Title & metadata:** A unique, descriptive `<title>`; a meta description; a canonical URL where duplication is possible.
-
-
-* **Social/structured data:** Open Graph/Twitter tags for shareable pages; JSON-LD structured data (`Article`, `Product`, `BreadcrumbList`, `Organization`) where the archetype warrants it (Content/Commerce).
-
-
-* **Responsive images (CLS-safe):** Every `<img>` declares intrinsic `width`/`height` or an `aspect-ratio`; use `srcset`/`sizes` for resolution switching; `loading="lazy"` below the fold, eager for the LCP image; `fetchpriority="high"` on the LCP image.
-
-
-* **Fonts:** `font-display: swap` (or `optional`), preloaded and subset to prevent invisible-text and layout shift.
-
-
+* Meta description and canonical URL where duplication is possible.
+* Open Graph and platform-specific social metadata for shareable pages.
+* JSON-LD structured data (`Article`, `Product`, `BreadcrumbList`, `Organization`) where the archetype warrants it.
 
 ### 2.2 Container-Aware Component Layouts
 
-* **Primary Content Prominence:** Primary tasks and core operational data occupy the reading-order start — the **block-start / inline-start** region (top-left on LTR, top-right on RTL).
-
-
-* **3-Click Navigation Depth:** Any core feature or document must be reachable within a maximum of 3 navigation clicks, or via the global command palette.
-
-
-* **Progressive Disclosure:** Complex settings, deep parameters, and secondary metadata are deferred to expandable accordions, secondary tabs, or drill-down slide-over sheets.
-
-
+* **Primary Content Prominence:** Primary tasks and core operational data occupy the reading-order start — the **block-start / inline-start** region (not physical top-left/top-right coordinates).
+* **Navigation Depth:** Core features SHOULD be reachable through a predictable and discoverable navigation path, targeting ≤3 user navigation steps where practical. A global command palette MAY supplement but MUST NOT be the sole path to a feature.
+* **Progressive Disclosure:** Complex settings, deep parameters, and secondary metadata SHOULD be deferred to expandable accordions, secondary tabs, or drill-down slide-over sheets.
 
 ### 2.3 Navigation Architecture, Command Palette & Deep-Linking
 
-* **URL as Single Source of Truth:** Every distinct layout view, active tab, page filter, search query, and pagination offset must be bidirectionally synced with URL query parameters (e.g., `/orders?status=shipped&page=2&sort=date_desc`).
-
-
-* **Command Palette:** A global command palette by the `Cmd/Ctrl+K` convention is permitted as a documented exception to Layer 5's conflict rule. It must activate only when the document has focus and no input is capturing text, must never be the sole path to a feature, and must provide a visible trigger button.
-
-
+* **URL as Single Source of Truth:** Every distinct layout view, active tab, page filter, search query, and pagination offset MUST be bidirectionally synced with URL query parameters (e.g., `/orders?status=shipped&page=2&sort=date_desc`).
+* **Command Palette:** A global command palette by the `Cmd/Ctrl+K` convention is permitted as a documented exception to Layer 5's conflict rule. It MUST activate only when the document has focus and no input is capturing text, MUST NOT be the sole path to a feature, and MUST provide a visible trigger button.
 * **Unsaved Changes & Data-Loss Protection** (Commerce/App/Auth):
-* Track form dirty state dynamically.
-
-
-* Use SPA route guards or framework navigation blockers as primary interception.
-
-
-* Use `beforeunload` as a secondary backstop for tab close / external reload.
-
-
-* Implement `localStorage`/`IndexedDB` auto-save drafts for multi-step forms.
-
-
-
-
+  * Track form dirty state dynamically.
+  * Use SPA route guards or framework navigation blockers as primary interception.
+  * Use `beforeunload` as a secondary backstop for tab close / external reload.
+  * Implement `localStorage`/`IndexedDB` auto-save drafts for multi-step forms.
 
 ### 2.4 Destructive Actions & Permission Guardrails
 
 * **Role-Based Visibility** (App/Auth): Hide or explicitly disable actions that exceed a user's RBAC permissions. If disabled due to permissions, explain required administrative privileges on focus/hover.
+* **Destructive Flow Friction:** Irreversible operations MUST require an intentional multi-step modal with explicit confirmation input (typing the resource name or `DELETE`).
+* **Deletion models** — distinguish by severity:
 
+```
+User requests delete
+       ↓
+Soft delete / reversible state
+       ↓
+Undo window
+       ↓
+Permanent commit
+```
 
-* **Destructive Flow Friction:** Irreversible operations require an intentional multi-step modal with explicit confirmation input (typing the resource name or `DELETE`).
+| Type | Pattern |
+| --- | --- |
+| **Reversible deletion** | MAY use optimistic removal when the system supports reliable rollback or soft deletion |
+| **Soft deletion** | Hide from UI; retain recoverable state server-side |
+| **Irreversible deletion** | Multi-step confirmation; MUST NOT use conventional optimistic confirmation |
+| **Financial / legal action** | Explicit confirmation; idempotency protection required (§4.5) |
 
-
-* **Undo over optimism for destruction:** Destructive actions are **not** eligible for optimistic UI. Use an **optimistic-remove-with-undo** pattern: hide the row immediately, hold the commit for a 5–10s undo window surfaced in a toast, and only then finalize.
-
-
+Destructive mutations MUST NOT use conventional optimistic confirmation. Reversible deletion MAY use optimistic removal with an undo window (5–10 s toast) when the system supports reliable rollback or soft deletion — the backend need not literally delay the mutation if soft-delete semantics provide reversibility.
 
 ---
 
@@ -264,7 +269,14 @@ Every page, regardless of archetype, must ship these:
 
 ### 3.1 Design Token Architecture
 
-Tokens follow a **true three-tier structure**: **Global (Raw) → Semantic → Component**. Raw scale values live in Tier 1 as primitives; components consume Tier 3, which maps to Tier 2. All tokens are contrast-verified.
+Tokens follow a **true three-tier structure**: **Global (Raw) → Semantic → Component**. Raw scale values live in Tier 1 as primitives; components consume Tier 3, which maps to Tier 2.
+
+**Contrast verification** applies to semantic foreground/background and UI-state **combinations** — not to raw tokens in isolation. A token like `--pr-blue-500` has no contrast ratio by itself; contrast is a relationship. All semantic foreground/background and UI-state combinations MUST be contrast-verified using WCAG 2.2 contrast algorithms for:
+
+* Text/background combinations
+* Interactive states (hover, active, disabled)
+* Focus indicators
+* Meaningful graphical objects
 
 ```css
 :root {
@@ -285,10 +297,40 @@ Tokens follow a **true three-tier structure**: **Global (Raw) → Semantic → C
   --pr-red-600:     #dc2626;
   --pr-red-700:     #b91c1c;
 
+  /* Spacing, layout, elevation */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
   --size-radius-sm: 6px;
   --size-radius-md: 10px;
   --size-radius-lg: 16px;
   --size-measure-max: 75ch;
+  --size-control-height-sm: 32px;
+  --size-control-height-md: 40px;
+  --size-control-height-lg: 48px;
+  --size-border-width: 1px;
+  --size-border-width-focus: 3px;
+
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.10);
+
+  --breakpoint-page-sm: 640px;
+  --breakpoint-page-md: 768px;
+  --breakpoint-page-lg: 1024px;
+  --breakpoint-page-xl: 1280px;
 
   /* Tier 1: Motion primitives (functional micro-animations §1.4) */
   --duration-instant: 0ms;
@@ -338,44 +380,44 @@ Tokens follow a **true three-tier structure**: **Global (Raw) → Semantic → C
   --card-radius: var(--radius-md);
 }
 
+/* System preference (default) */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --surface-base: #090d16;
     --surface-raised: #1e293b;
     --surface-overlay: rgba(15, 23, 42, 0.90);
-
     --text-primary: #f8fafc;
     --text-secondary: #cbd5e1;
     --text-muted: var(--pr-slate-400);
-
     --brand-primary: #3b82f6;
     --brand-hover: #60a5fa;
     --focus-ring: #60a5fa;
-
     --status-success: #34d399;
     --status-warning: #fbbf24;
     --status-danger:  #f87171;
-
     --status-success-text: #34d399;
     --status-warning-text: #fbbf24;
     --status-danger-text:  #f87171;
   }
 }
 
+/* Explicit application-level theme selection */
+:root[data-theme="dark"] { /* same dark overrides */ }
+:root[data-theme="light"] { /* light overrides */ }
 ```
+
+Applications SHOULD support system preference by default, while allowing application-level theme selection (`system` / `light` / `dark`) where appropriate.
 
 ### 3.2 Container Queries Engine
 
-Reusable UI components (cards, tables, form groups) must respond to their immediate parent container width rather than the screen viewport.
+Reusable UI components (cards, tables, form groups) MUST respond to their immediate parent container width rather than the screen viewport.
 
 ```css
-/* Container declaration */
 .component-container {
   container-type: inline-size;
   container-name: card-grid;
 }
 
-/* Container-aware component layouts */
 .product-card {
   display: flex;
   flex-direction: column;
@@ -388,49 +430,137 @@ Reusable UI components (cards, tables, form groups) must respond to their immedi
     align-items: center;
   }
 }
-
 ```
 
-* **Rule:** Do not use `@media` queries for internal component styling. Media queries are restricted to root layout grids, navigation bars, and page-level structural wrappers.
+**Responsive query roles (HIG-CQ-001):**
+
+| Query type | Purpose |
+| --- | --- |
+| `@container` | Component-size adaptation |
+| `@media` (viewport) | Page layout, navigation structure |
+| `@media` (preferences) | Accessibility (`prefers-reduced-motion`), user preferences (`prefers-color-scheme`), print, environment/device conditions |
+
+`@media (prefers-reduced-motion: reduce)` and similar preference queries are legitimate even inside component stylesheets. Component layout adaptation SHOULD use `@container`; viewport `@media` is for page-level concerns.
 
 ---
 
-## Layer 4: Interaction, State Architecture, Server Actions & Data Protection
+## Layer 4: Interaction, State Architecture & Data Protection
 
-### 4.1 Server-Driven UI & Hydration Boundaries (RSC Architecture)
+### 4.1 Server-Driven & Progressive Rendering Architecture
 
-In modern hybrid web applications (Next.js App Router, Remix, Nuxt, Astro), data fetching and rendering must strictly separate Server Components from Client Components.
+Modern hybrid web applications MUST separate server rendering from interactive client islands. This is a **framework-neutral reference architecture** — not all frameworks implement it as React Server Components (RSC).
 
 ```
 [Incoming Request]
         │
         ▼
-[Server Component (RSC)] ──(Stream HTML + Skeleton)──> [Client Viewport]
-        │                                                     │
-        ├── Fetch async data on server                         │ (Hydrate Interactive Islands)
-        └── Render static HTML & UI boundaries                 ▼
-                                                   [Client Island Hydrated]
-
+[Server Rendering]
+        │
+        ▼
+[Progressive / Streaming Rendering]
+        │
+        ▼
+[Hydration Boundaries]
+        │
+        ▼
+[Interactive Client Islands]
+        │
+        ▼
+[Server Mutation]
+        │
+        ▼
+[Pending]
+        │
+        ▼
+[Optimistic (when eligible)]
+        │
+        ▼
+[Confirmed / Failed]
 ```
 
-**RSC Standards:**
+**Universal standards:**
 
-1. **Server First:** Components are React Server Components (or server-rendered framework equivalents) by default. Add `'use client'` only when attaching state, browser event listeners (`onClick`), or lifecycle effects.
-2. **Streaming Suspense Boundaries:** Every async Server Component fetching data must be wrapped in a `<Suspense>` boundary displaying an explicit layout-matching skeleton state to eliminate TTFB bottlenecks and avoid CLS.
+1. **Server First:** Default to server rendering. Add client interactivity only when attaching state, browser event listeners, or lifecycle effects.
+2. **Streaming boundaries:** Every independently slow, progressively renderable, or failure-isolatable asynchronous UI region SHOULD have an explicit loading/streaming boundary with a layout-matching skeleton. Do not add meaningless Suspense/streaming wrappers around fast or atomic regions.
+
+#### Framework Adapters
+
+| Universal concept | React / Next.js | Vue / Nuxt | Astro |
+| --- | --- | --- | --- |
+| Server rendering | React Server Components | SSR / server components | `.astro` server components |
+| Client interactivity | `'use client'` directive | `<ClientOnly>` / `.client.vue` | `client:*` islands |
+| Streaming boundary | `<Suspense fallback={…}>` | `<Suspense>` (Vue 3) | slot streaming |
+| Server mutation | Server Actions | server API routes + form actions | server endpoints |
+| Pending state | `useFormStatus`, `useActionState` | form pending refs | island pending UI |
+| Optimistic update | `useOptimistic` | manual optimistic state | island-level state |
+
+RSC is the React/Next.js implementation of server-driven rendering — not a universal label for all hybrid rendering.
 
 ### 4.2 Async Mutation & Server Action State Model
 
-Server Action and Server-driven mutations must follow an explicit status wrapper:
+Server-driven mutations MUST follow an explicit status wrapper:
 
 ```
 [idle] ──> [submitting / pending] ──> [optimistic_render] ──┬──> [confirmed / revalidated]
                                                              │
                                                              └──> [failed] ──> [rollback + toast_retry]
-
 ```
 
-* **Server Action Form States:** Forms executing Server Actions must handle native pending states (`useActionState` / `useFormStatus`) and supply immediate visual feedback (disabling submit triggers, displaying pending spinners) without waiting for server response round-trips.
-* **Optimistic Eligibility:** Optimistic rendering via Server Action hooks (`useOptimistic`) is allowed **only for low-consequence, reversible mutations** (toggles, likes, cart item counts).
+* **Form pending states:** Forms executing server mutations MUST handle native pending states and supply immediate visual feedback (disabling submit triggers, displaying pending spinners) without waiting for server response round-trips.
+* **Optimistic eligibility:** Optimistic rendering is allowed **only for low-consequence, reversible mutations** (toggles, likes, cart item counts). Destructive mutations MUST NOT use conventional optimistic confirmation (§2.4).
+
+### 4.3 Data Freshness & Stale States
+
+Dashboards and data-heavy views MUST handle explicit freshness states:
+
+| State | UI behavior |
+| --- | --- |
+| **Fresh** | Display current data; no indicator needed |
+| **Stale** | Show data with subtle staleness indicator; background refresh permitted |
+| **Refreshing** | Show non-blocking refresh indicator; preserve existing data |
+| **Failed refresh** | Retain stale data with error indicator and retry action |
+
+### 4.4 Network & Error States
+
+Applications MUST define UI behavior for:
+
+| Failure type | Minimum UI |
+| --- | --- |
+| **Offline** | Degraded mode indicator; queue local mutations where supported |
+| **Timeout** | Retry with backoff; preserve user input |
+| **Server error (5xx)** | Error message with retry; do not lose form state |
+| **Rate limited (429)** | Inform user; suggest wait/retry |
+| **Authorization failure (401/403)** | Redirect or inline permission message |
+| **Conflict (409)** | Present conflict resolution UI (see §4.5) |
+| **Partial failure** | Show per-item error states; do not fail the entire view silently |
+
+### 4.5 Concurrency, Conflict & Idempotency
+
+**Conflict handling** (collaborative/operational applications):
+
+```
+User A updates ──> User B updates ──> Conflict detected ──> Resolve / merge / overwrite
+```
+
+**Idempotency:** Important mutations (payments, orders, deletes, publishes, invites) SHOULD use idempotency keys at the product/API layer to protect against double-clicks, retries, network failures, and mobile reconnection.
+
+**Retry rules:**
+
+| Mutation type | Retry policy |
+| --- | --- |
+| Idempotent reads | Safe to retry |
+| Idempotent writes (with key) | Safe to retry |
+| Non-idempotent mutations | MUST NOT blind-retry |
+| Destructive actions | MUST NOT auto-retry |
+| Payments | Idempotency key required; no blind retry |
+
+### 4.6 Offline & Degraded Mode (Application/Dashboard)
+
+```
+online ──> degraded ──> offline ──> local pending mutation ──> sync ──> conflict ──> resolved
+```
+
+Applications that support offline operation MUST define sync, conflict resolution, and user-visible status for each stage.
 
 ---
 
@@ -438,38 +568,113 @@ Server Action and Server-driven mutations must follow an explicit status wrapper
 
 ### 5.1 Standards Baseline
 
-* **Conformance:** WCAG 2.2 Level AA is the mandatory minimum across all public and internal interfaces. AAA is targeted where practical.
-
-
+* **Conformance:** WCAG 2.2 Level AA conformance is mandatory across all public and internal interfaces. The HIG does not redefine individual success criteria — refer to the [official WCAG 2.2 specification](https://www.w3.org/TR/WCAG22/) and [Understanding documents](https://www.w3.org/WAI/WCAG22/Understanding/). AAA is targeted where practical (e.g. reduced motion per §1.3).
 * **Text Contrast:** Standard text ≥4.5:1; large text (≥24px, or ≥18.66px bold) ≥3:1. Non-text UI (icons, borders, focus indicators, status fills) ≥3:1.
+* **Zoom & reflow:** Content MUST remain usable at 200% text zoom. Where applicable, support 400% reflow without horizontal scrolling for standard content layouts. Text MUST be resizable without loss of content or functionality.
 
+### 5.2 Native HTML Over ARIA
 
+Native semantic HTML MUST be preferred over ARIA when equivalent native semantics exist. Example: use `<button>` instead of `<div role="button">`.
 
-### 5.2 Keyboard Focus & Shortcuts
+**Accessible name computation** — prefer in order:
 
-* **Visible Focus Indicator:** All interactive controls display an explicit, high-contrast indicator (`outline: 3px solid var(--focus-ring); outline-offset: 2px;`). Never `outline: none` without a custom equivalent.
+1. Visible text content
+2. Accessible name from content (e.g. `<img alt>`, `<input>` associated with `<label>`)
+3. `aria-labelledby`
+4. `aria-label` (when visible text is insufficient)
 
+Avoid unnecessary ARIA.
 
-* **Focus Trapping:** Active modals and slide-overs trap Tab within the overlay (`aria-modal="true"`).
+### 5.3 Keyboard Focus & Interaction
 
-
-* **Focus Restoration:** Closing a dialog/popover returns focus to the originating trigger.
-
-
+* **Visible Focus Indicator:** All interactive controls MUST display an explicit, high-contrast indicator (`outline: 3px solid var(--focus-ring); outline-offset: 2px;`). The focus ring itself MUST have sufficient contrast against adjacent backgrounds and MUST NOT be obscured by adjacent elements. Never `outline: none` without a custom equivalent.
+* **Focus Trapping:** Modal dialogs MUST implement actual focus containment:
+  * Focus MUST move into the dialog when opened.
+  * Focus MUST NOT escape the dialog while it is active (Tab/Shift+Tab cycle within).
+  * Focus MUST return to the originating control when closed.
+  * `aria-modal="true"` communicates modality to assistive technologies but does **not** itself create a focus trap.
+* **Focus Restoration:** Closing a dialog/popover MUST return focus to the originating trigger.
 * **Skip Links:** Provide a "Skip to main content" link as the first tabbable element.
 
+**Keyboard interaction patterns** — implementations MUST follow platform conventions for:
 
+| Widget | Expected behavior |
+| --- | --- |
+| Dialog | Escape closes; focus trap; initial focus on first focusable or title |
+| Menu | Arrow keys navigate; Escape closes; typeahead |
+| Tabs | Arrow keys switch tabs; Tab moves to panel |
+| Combobox | Arrow keys + typeahead; Enter selects |
+| Listbox | Arrow keys navigate; multi-select with modifier |
+| Accordion / disclosure | Enter/Space toggles; arrow keys between headers |
+| Sortable table | Keyboard-accessible sort controls |
+| Drag/drop | Keyboard alternative MUST exist |
+
+### 5.4 Target Sizes
+
+* **Minimum interactive target:** 24×24 CSS px, except where a [WCAG-defined exception](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html) applies.
+* **Preferred touch target:** 44×44 CSS px for primary touch interactions (ergonomic recommendation, not a compliance floor).
 
 ---
 
 ## Layer 6: Performance & Web Vitals
 
-| Core Web Vital | Excellent | Good | CI Gate Failure |
+Performance requirements are split into **lab (CI)** and **field (RUM)** contexts. Synthetic lab tests measure interaction latency but are **not equivalent** to field Interaction to Next Paint (INP).
+
+### 6.1 Core Web Vitals & Supporting Performance Metrics
+
+#### Core Web Vitals (field RUM / SLO monitoring)
+
+| Metric | HIG Target | HIG Acceptable | Gate type |
 | --- | --- | --- | --- |
-| Interaction to Next Paint (INP) | ≤ 100 ms | ≤ 200 ms | > 200 ms |
-| Largest Contentful Paint (LCP) | ≤ 1.2 s | ≤ 2.5 s | > 2.5 s |
-| Cumulative Layout Shift (CLS) | ≤ 0.02 | ≤ 0.10 | > 0.10 |
-| Time to First Byte (TTFB) | ≤ 200 ms | ≤ 800 ms | > 800 ms |
+| Interaction to Next Paint (INP) | ≤ 100 ms | ≤ 200 ms | Field SLO |
+| Largest Contentful Paint (LCP) | ≤ 1.2 s | ≤ 2.5 s | Lab + Field |
+| Cumulative Layout Shift (CLS) | ≤ 0.02 | ≤ 0.10 | Lab + Field |
+
+#### Supporting metrics
+
+| Metric | HIG Target | HIG Acceptable | Gate type |
+| --- | --- | --- | --- |
+| Time to First Byte (TTFB) | ≤ 200 ms | ≤ 800 ms | Lab + Field |
+| Synthetic interaction latency | ≤ 100 ms | ≤ 200 ms | Lab / CI |
+
+TTFB is **not** a Core Web Vital. It is a supporting performance metric.
+
+### 6.2 Lab Performance (CI)
+
+Lab/CI gates SHOULD enforce:
+
+* Synthetic interaction latency (not field INP)
+* LCP, CLS, TTFB (synthetic)
+* JS execution time
+* Bundle size budgets
+
+### 6.3 Field Performance (RUM)
+
+Field monitoring/SLO gates SHOULD track:
+
+* INP, LCP, CLS, TTFB (real user measurements)
+
+Field INP MUST be treated as a monitoring/SLO gate — not as a deterministic build-failure result from synthetic tests.
+
+### 6.4 Performance Budgets
+
+Beyond Web Vitals, projects SHOULD define budgets for:
+
+| Budget | Purpose |
+| --- | --- |
+| Initial JS | First-load JavaScript weight |
+| Total JS | Aggregate JavaScript |
+| CSS | Stylesheet weight |
+| Image weight | Per-page image payload |
+| Font weight | Font file payload |
+| Third-party JS | External script weight |
+| Hydration time | Client island hydration duration |
+| Long tasks | Main-thread blocking |
+| DOM size | Node count limits |
+
+### 6.5 Regression-Based Gates
+
+Absolute thresholds alone are insufficient. PRs that increase initial JS by >10% (or other project-defined regression thresholds) SHOULD fail unless explicitly approved — even when the application remains below the absolute limit.
 
 ---
 
@@ -479,59 +684,149 @@ Deterministic, machine-readable rules for system prompts, AI coding workflows (C
 
 **Product-repo adoption:** see [INTEGRATION.md](./INTEGRATION.md) for an efficient workflow (pin the contract → archetype map → thin agent rules → PR checklist → CI). Copy-paste templates live in [examples/agent-rules/](./examples/agent-rules/).
 
-### 7.1 AI Coding Agent Guardrails
+### 7.1 Rule Schema
+
+Every machine rule MUST include:
+
+```yaml
+rules:
+  - id: HIG-UX-001
+    rule: logical_properties
+    severity: error          # error | warning | info
+    requirement: "Use CSS logical properties (margin-inline, inset-inline-start)"
+    archetypes: [content, commerce, application, auth]
+    autofix:
+      allowed: false
+      requires_review: true
+    exceptions:
+      allowed: [external_vendor_code]
+      requires_justification: true
+```
+
+**Severity levels:**
+
+| Level | CI behavior |
+| --- | --- |
+| `error` | Blocking — fails build/PR |
+| `warning` | Advisory — reported, does not block |
+| `info` | Observation — logged for tracking |
+
+### 7.2 AI Coding Agent Guardrails
 
 ```yaml
 agent_enforcement_rules:
   scope:
-    resolve_archetype_first: true            # content | commerce | application | auth
+    resolve_archetype_first: true
     apply_layer0_matrix: true
+    prefer_simplest_compliant_implementation: true  # HIG-SIM-001
 
   styling_constraints:
-    disallow_raw_hex_colors_outside_token_files: true
-    require_semantic_or_component_tokens: true
-    prohibit_transition_all: true            # ban `transition: all`
-    require_cubic_bezier_curves: true
-    require_motion_duration_tokens: true     # use --duration-* / --motion-duration-*
-    prohibit_decorative_micro_animations: true
-    micro_animation_max_ms: 300
-    animate_compositor_properties_only: true # transform + opacity for micro-feedback
-    require_container_queries_for_components: true # enforce @container over @media inside components
-    require_logical_properties: true         # margin-inline, inset-inline-start
-    require_reduced_motion_media_query: true
+    - id: HIG-TOK-001
+      rule: disallow_raw_hex_colors_outside_token_files
+      severity: error
+    - id: HIG-TOK-002
+      rule: require_semantic_or_component_tokens
+      severity: error
+    - id: HIG-MOT-001
+      rule: prohibit_transition_all_application_css
+      severity: error
+      note: "Application-authored CSS only; vendor CSS excluded"
+    - id: HIG-MOT-002
+      rule: require_motion_duration_tokens
+      severity: error
+    - id: HIG-MOT-003
+      rule: prohibit_decorative_micro_animations
+      severity: error
+    - id: HIG-MOT-004
+      rule: micro_animation_max_ms
+      value: 300
+      scope: micro_feedback_only
+      severity: error
+    - id: HIG-MOT-005
+      rule: micro_feedback_prefers_transform_opacity
+      severity: warning
+    - id: HIG-CQ-001
+      rule: require_container_queries_for_component_layout
+      severity: error
+    - id: HIG-UX-001
+      rule: require_logical_properties
+      severity: error
+    - id: HIG-A11Y-001
+      rule: require_reduced_motion_media_query
+      severity: error
 
-  rsc_and_server_action_constraints:
-    default_to_server_components: true      # do not add 'use client' unless state/effects required
-    require_suspense_skeletons_for_async_rsc: true
-    require_form_pending_states_on_server_actions: true
+  server_rendering_constraints:
+    - id: HIG-SSR-001
+      rule: default_to_server_rendering
+      severity: error
+      archetypes: [commerce, application, auth]
+    - id: HIG-SSR-002
+      rule: require_streaming_boundary_for_slow_async_regions
+      severity: warning
+      note: "Only for independently slow/progressively renderable regions"
+    - id: HIG-SSR-003
+      rule: require_form_pending_states_on_server_mutations
+      severity: error
+      archetypes: [commerce, application, auth]
 
   accessibility_constraints:
-    target_standard: "WCAG 2.2 AA"
-    require_aria_labels_on_icon_buttons: true
-    require_alt_text_on_images: true
-    enforce_semantic_html: true
-    require_visible_focus_styles: true
-    min_target_size_px: 24
+    - id: HIG-A11Y-002
+      rule: target_standard
+      value: "WCAG 2.2 AA"
+      severity: error
+    - id: HIG-A11Y-003
+      rule: prefer_native_html_over_aria
+      severity: error
+    - id: HIG-A11Y-004
+      rule: require_accessible_name_on_icon_buttons
+      severity: error
+    - id: HIG-A11Y-005
+      rule: require_alt_text_on_images
+      severity: error
+    - id: HIG-A11Y-006
+      rule: require_visible_focus_styles
+      severity: error
+    - id: HIG-A11Y-007
+      rule: min_target_size_px
+      value: 24
+      severity: error
+      note: "WCAG exceptions apply; preferred touch target 44px"
+    - id: HIG-A11Y-008
+      rule: modal_focus_containment
+      severity: error
 
+  mutation_constraints:
+    - id: HIG-MUT-001
+      rule: no_optimistic_destructive_confirmation
+      severity: error
+    - id: HIG-MUT-002
+      rule: idempotency_for_critical_mutations
+      severity: warning
+      archetypes: [commerce, application]
 ```
 
-### 7.2 Programmatic Linter Specifications
+### 7.3 Programmatic Linter Specifications
 
 **ESLint (`eslint-plugin-hig`):**
 
-* `hig/enforce-container-queries` *(new in v1.4)* — flags `@media` usage inside component CSS files/styled-components where parent width checks should use `@container`.
-* `hig/rsc-suspense-boundary` *(new in v1.4)* — verifies that async Server Components are wrapped in a framework `<Suspense>` boundary with a fallback skeleton.
-* `hig/no-unlabeled-icon-buttons` — flags any `<button>` containing only an icon without an `aria-label`.
-* `hig/micro-animation-budget` *(new in v1.5)* — flags transition/animation durations above 300 ms on allowlisted micro-feedback selectors, and flags non-`transform`/`opacity` properties in micro-animation declarations.
-
-
-* `hig/no-optimistic-destructive` — errors when a delete/remove mutation is wrapped in optimistic rendering without an undo window.
-
-
+* `hig/enforce-container-queries` — flags viewport `@media` for component layout where `@container` should be used.
+* `hig/streaming-boundary` — verifies slow async server regions have explicit loading/streaming boundaries with fallback skeletons.
+* `hig/no-unlabeled-icon-buttons` — flags `<button>` containing only an icon without an accessible name.
+* `hig/micro-animation-budget` — flags micro-feedback durations above 300 ms and non-`transform`/`opacity` properties without justification.
+* `hig/no-optimistic-destructive` — errors when a delete/remove mutation uses optimistic confirmation without undo/soft-delete support.
+* `hig/no-transition-all` — flags `transition: all` in application-authored CSS.
 
 ---
 
 ## Layer 8: Quality Assurance & CI/CD Gates
+
+CI gates are classified by enforcement level:
+
+| Level | Behavior | Examples |
+| --- | --- | --- |
+| **BLOCKING** | Fails build/PR | TypeScript errors, critical a11y violations, security violations, HIG MUST violations |
+| **WARNING** | Reported, does not block | Performance regression, non-critical a11y, animation issues |
+| **OBSERVATION** | Logged for tracking | Field INP, field LCP, field CLS |
 
 ```
 [Developer Git Push / PR Created]
@@ -541,21 +836,62 @@ agent_enforcement_rules:
                │
                ├── 0. Resolve archetype & load Layer 0 matrix
                │
-               ├── 1. Static Analysis (ESLint + Stylelint + HIG Plugin)
+               ├── 1. Static Analysis (ESLint + Stylelint + HIG Plugin) ── BLOCKING
                │      ├── Container Query Validation
-               │      └── RSC / Client Component Boundaries
+               │      └── Server/Client Rendering Boundaries
                │
-               ├── 2. Accessibility Audit (Axe-core / Playwright a11y, WCAG 2.2 AA)
+               ├── 2. Security Audit ── BLOCKING
+               │      ├── Dependency vulnerability audit
+               │      ├── Secret scanning
+               │      ├── SAST
+               │      └── CSP / security header checks
                │
-               ├── 3. Synthetic Core Web Vitals Audit (lab)
-               │      ├── INP  > 200ms ───> ❌ FAIL BUILD
-               │      ├── LCP  > 2.5s ────> ❌ FAIL BUILD
-               │      ├── CLS  > 0.10 ────> ❌ FAIL BUILD
-               │      └── TTFB > 800ms ───> ❌ FAIL BUILD
+               ├── 3. Accessibility Audit (Axe-core / Playwright a11y, WCAG 2.2 AA) ── BLOCKING
                │
-               └── 4. All Gates Passed ─────────────────────────────────> ✅ BUILD APPROVED
-
+               ├── 4. Visual Regression (Playwright screenshots) ── WARNING
+               │      ├── Layout regression
+               │      ├── Responsive breakpoint regression
+               │      └── Dark-mode regression
+               │
+               ├── 5. Cross-Browser Testing ── WARNING
+               │      ├── Chromium, Safari/WebKit, Firefox
+               │      └── Mobile Safari, Mobile Chromium
+               │
+               ├── 6. Lab Performance Audit ── BLOCKING (absolute) / WARNING (regression)
+               │      ├── Synthetic interaction latency > 200ms ──> ❌ FAIL BUILD
+               │      ├── LCP  > 2.5s ──────────────────────────> ❌ FAIL BUILD
+               │      ├── CLS  > 0.10 ──────────────────────────> ❌ FAIL BUILD
+               │      ├── TTFB > 800ms ─────────────────────────> ❌ FAIL BUILD
+               │      └── JS bundle regression > threshold ──────> ⚠️ WARNING
+               │
+               ├── 7. Field RUM Monitoring ── OBSERVATION
+               │      ├── Field INP SLO
+               │      ├── Field LCP SLO
+               │      └── Field CLS SLO
+               │
+               └── 8. All Blocking Gates Passed ──────────────────> ✅ BUILD APPROVED
 ```
+
+**Supported browser policy:** Projects MUST define a supported browser matrix. At minimum, test representative viewports: mobile, tablet, desktop, wide desktop. Do not turn viewport sizes into arbitrary fixed breakpoints for component logic — use container queries (§3.2).
+
+---
+
+## Appendix: Planned Capabilities (v1.6+)
+
+The following domains are recognized gaps planned for future releases. They are not blockers for v1.5.x adoption.
+
+| Domain | Scope |
+| --- | --- |
+| **Security & Privacy layer** | CSP, XSS, CSRF, secure cookies, SameSite, permissions, PII masking, browser storage, privacy-safe analytics, audit logging, auth UX, session expiry |
+| **Error UX taxonomy** | Validation, auth, authorization, network, timeout, conflict, rate limit, server, offline, partial failure, unknown |
+| **Empty-state taxonomy** | First-use, no results, filtered, permission, error, offline, completed |
+| **Loading-state taxonomy** | Initial, background refresh, mutation pending, skeleton, progressive stream, pagination, infinite scroll |
+| **Internationalization** | Pluralization, date/time/number/currency formatting, timezone, locale sorting, text expansion, CJK typography, bidirectional text |
+| **Data density standards** | Table density, row heights, truncation, numeric alignment, sticky headers, bulk actions, virtualization |
+| **Forms contract** | Field grouping, validation timing, autocomplete, password managers, multi-step, draft persistence, error summary |
+| **Search standard** | Debounce, pending, results, no results, error, keyboard nav, URL sync |
+| **Notifications taxonomy** | Toast, inline status, banner, modal, system notification |
+| **Browser permissions UX** | Camera, microphone, clipboard, geolocation, notifications, file system, downloads |
 
 ---
 
@@ -563,15 +899,10 @@ agent_enforcement_rules:
 
 Expanded release notes for each version: **[RELEASE_NOTES.md](./RELEASE_NOTES.md)**.
 
+* **v1.5.1 (2026-09-09):** Corrections and clarifications to v1.5.0. Added normative vocabulary (MUST/SHOULD/MAY) and exception governance. Made Layer 4 framework-neutral with universal reference architecture and separate framework adapters. Split lab vs. field performance; corrected Core Web Vitals table (TTFB as supporting metric); field INP as SLO not CI gate. Fixed WCAG 2.3.3 AAA classification, focus trapping semantics, target size exceptions, accessible name computation, destructive action models, and metadata archetype awareness. Added stale data, network failure, conflict, idempotency, and offline state definitions. Expanded Layer 7 with rule IDs, severity, applicability, and autofix safety. Expanded Layer 8 with blocking/warning/observation gates, security CI, visual regression, and cross-browser testing.
 * **v1.5.0 (2026-09-08):** Added Layer 1 functional micro-animations contract (allowlist, deny list, ≤300 ms cap, compositor-safe properties). Introduced motion duration/easing tokens in Layer 3 and matching Layer 7 agent enforcement rules.
 * **v1.4.0 (2026-09-07):** Integrated Server-Driven UI & Partial Hydration standards (RSC, Streaming Suspense skeletons, Server Actions states). Replaced viewport media queries with CSS Container Queries (`@container`) for component tokens. Adopted native View Transitions API (`document.startViewTransition`) for page routes. Added ESLint rules for container queries and RSC Suspense boundaries.
 * **v1.3.0 (2026-09-07):** Added Layer 0: Applicability & Scope page-archetype matrix. Fixed token contrast issues and status token split. Added WCAG 2.2 criteria, optimistic UI reversibility rule, logical properties, and field vs. lab metric definitions.
-
-
 * **v1.2.0 (2026-09-07):** Re-architected into 8-Layer Framework. Adjusted WCAG targets to 2.2 AA mandatory, redefined 16ms rule to visual acknowledgment, added async state machines and Product IA standards.
-
-
 * **v1.1.0 (2026-09-07):** Introduced 3-tier token architecture, motion, optimistic UI, mobile ergonomics, and AI enforcement guardrails.
-
-
 * **v1.0.0 (2026-09-07):** Initial base HIG release.

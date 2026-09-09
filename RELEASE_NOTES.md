@@ -6,6 +6,43 @@ Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
 ---
 
+## [v1.5.1](./HIG.md) — 2026-09-09
+
+Corrections and clarifications to v1.5.0. This is a **standards-accuracy release** — it fixes incorrect WCAG classifications, performance metric semantics, focus-trapping guidance, and framework-neutral architecture without changing the overall 9-layer structure.
+
+### Highlights
+
+- **Normative vocabulary** — MUST/SHOULD/MAY keywords (RFC 2119) and exception governance with rule IDs, severity, applicability, and autofix safety.
+- **Framework-neutral Layer 4** — Universal server-driven rendering reference architecture with separate React/Next, Vue/Nuxt, and Astro adapters. RSC is now correctly scoped as a React implementation detail.
+- **Lab vs. field performance** — Synthetic interaction latency in CI; field INP as RUM/SLO monitoring (not a deterministic build gate). TTFB correctly classified as a supporting metric, not a Core Web Vital.
+- **Accessibility precision** — WCAG 2.3.3 correctly classified as AAA; focus trapping requires actual containment (not just `aria-modal`); accessible name computation order; native HTML preferred over ARIA; keyboard interaction patterns; zoom/reflow requirements.
+- **Expanded state architecture** — Stale data, network failure, conflict, idempotency, retry rules, and offline/degraded mode definitions.
+- **CI gate classification** — Blocking, warning, and observation levels; security CI, visual regression, and cross-browser testing added to Layer 8.
+
+### Layer impact
+
+| Layer | Change |
+| --- | --- |
+| — | New normative vocabulary and exception system sections |
+| 1 | WCAG 2.3.3 AAA fix; view-transition uniqueness; micro-feedback 300ms scope; application-authored `transition: all` |
+| 2 | Archetype-aware metadata; navigation depth as SHOULD; destructive action models clarified |
+| 3 | Contrast as combination verification; spacing/elevation/z-index tokens; theme selection; @container/@media roles |
+| 4 | Framework-neutral architecture; streaming boundary nuance; stale/error/conflict/offline states |
+| 5 | Focus trapping; accessible names; keyboard patterns; target size exceptions (24px min, 44px preferred) |
+| 6 | Lab/field split; HIG Target/Acceptable thresholds; regression gates; performance budgets |
+| 7 | Rule IDs, severity, applicability, autofix; prefer simplest compliant implementation |
+| 8 | Blocking/warning/observation gates; security CI; visual regression; cross-browser testing |
+| Appendix | P2 planned capabilities listed for v1.6+ |
+
+### Adoption notes
+
+- Update agent rules to reference v1.5.1 and the new rule ID schema (HIG-XXX-NNN).
+- Replace "field INP fails build" CI gates with synthetic interaction latency for lab/CI and field INP for RUM/SLO monitoring.
+- Review Layer 4 implementations against the universal reference architecture — RSC-specific language should map to framework adapters.
+- Use the exception system when deviating from container-query or media-query rules.
+
+---
+
 ## [v1.5.0](./HIG.md) — 2026-09-08
 
 Functional micro-animations become a first-class Layer 1 contract: motion is feedback, not decoration.
@@ -57,9 +94,9 @@ The contract expands for server-driven UI, container-first layout, and native pa
 
 ### Adoption notes
 
-- Wrap async Server Components in layout-matching `<Suspense>` skeletons.
-- Prefer `@container` for component-level breakpoints; reserve `@media` for true viewport/device concerns.
-- Limit simultaneous `view-transition-name` usage to one visible element to avoid animation collisions.
+- Wrap slow async server regions in layout-matching streaming boundaries with skeletons.
+- Prefer `@container` for component-level breakpoints; reserve `@media` for viewport, preferences, and page-level concerns.
+- Ensure `view-transition-name` values are unique within each transition capture context.
 
 ---
 
@@ -71,13 +108,13 @@ First open-source contract release: a universal 9-layer HIG with explicit page-a
 
 - **Layer 0 Applicability & Scope** — Content/Marketing, Commerce, Application, and Auth archetypes with a mandatory/optional matrix.
 - **Token contrast fixes** — corrected muted text and focus-ring values; status colors split into fill vs. text variants.
-- **WCAG 2.2 AA** criteria, optimistic UI reversibility, CSS logical properties, and field vs. lab Web Vitals definitions.
+- **WCAG 2.2 AA** conformance requirement, optimistic UI reversibility, CSS logical properties, and field vs. lab Web Vitals definitions.
 - Repo scaffolding: README, CONTRIBUTING, Code of Conduct, Security policy, and issue/PR templates.
 
 ### Adoption notes
 
 - Start at Layer 0: pick an archetype, then apply only the mandatory rows in the matrix.
-- Treat Accessibility, tokens/typography, and Web Vitals as universal — never optional.
+- Treat Accessibility, tokens/typography, and performance as universal — never optional.
 
 ---
 
