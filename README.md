@@ -2,11 +2,11 @@
 
 A universal Human Interface Guidelines (HIG) and product-engine contract for modern web applications, commerce sites, and content platforms.
 
-**Current version:** [v1.5.1](./HIG.md) · [Release notes](./RELEASE_NOTES.md)
+**Current version:** [v1.6.0](./HIG.md) · [Release notes](./RELEASE_NOTES.md)
 
 ## What is this?
 
-The Modern Web HIG defines design principles, information architecture, state machines, interaction rules, accessibility standards, and programmatic execution constraints for building high-quality web experiences. It is organized as a **9-Layer Governance Framework**:
+The Modern Web HIG defines design principles, information architecture, state machines, interaction rules, accessibility standards, and programmatic execution constraints for building high-quality web experiences. It is organized as a **10-Layer Governance Framework**:
 
 | Layer | Focus |
 |---|---|
@@ -19,6 +19,7 @@ The Modern Web HIG defines design principles, information architecture, state ma
 | 6 | Performance — lab & field metrics, Core Web Vitals (LCP, INP, CLS) + supporting metrics |
 | 7 | AI & Agent Enforcement — rule IDs, severity, machine-readable guardrails for coding agents |
 | 8 | Quality Assurance — blocking/warning/observation CI/CD gates |
+| 9 | Security & Privacy — CSP, XSS/CSRF, PII handling, auth UX, audit logging |
 
 ## Who is this for?
 

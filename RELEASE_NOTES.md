@@ -6,6 +6,43 @@ Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
 ---
 
+## [v1.6.0](./HIG.md) — 2026-09-09
+
+P2 capability expansion — product UX taxonomies, forms contract, i18n, data density, and a dedicated Security & Privacy layer.
+
+### Highlights
+
+- **Layer 9: Security & Privacy** — CSP, XSS/CSRF mitigation, secure cookies, PII masking, auth UX, session management, third-party script governance, and audit logging.
+- **Error UX taxonomy (§2.5)** — 11 error categories with prescribed UI behavior (validation, auth, network, conflict, offline, etc.).
+- **Empty-state taxonomy (§2.6)** — First-use, no results, filtered, permission, error, offline, and completed states.
+- **Loading-state taxonomy (§2.7)** — Initial, background refresh, mutation pending, skeleton, progressive stream, pagination, infinite scroll.
+- **Internationalization (§2.8)** — Pluralization, locale formatting, CJK typography, bidirectional text; logical layout properties mandatory.
+- **Search standard (§2.9)** — Debounce → pending → results/no-results/error state machine with keyboard nav and URL sync.
+- **Notifications taxonomy (§2.10)** — Toast, inline status, banner, modal, system notification with duration and stacking rules.
+- **Forms contract (§2.11)** — Labels, validation timing, autocomplete, password managers, multi-step, draft persistence, error summary.
+- **Data density standards (§3.3)** — Compact/default/comfortable row heights, numeric alignment, truncation, sticky headers, bulk actions, virtualization.
+- **Browser permissions UX (§5.5)** — Camera, clipboard, geolocation, notifications, file system with graceful degradation.
+
+### Layer impact
+
+| Layer | Change |
+| --- | --- |
+| 0 | Matrix expanded for error/empty/loading, forms, search, i18n, data density, permissions, security |
+| 2 | §2.5–2.11: error, empty, loading, i18n, search, notifications, forms |
+| 3 | §3.3: data density standards for Application/Dashboard |
+| 5 | §5.5: browser permissions UX |
+| 7 | New rule IDs: HIG-ERR, HIG-EMP, HIG-LOD, HIG-FRM, HIG-I18N, HIG-NTF, HIG-SEC |
+| 9 | New layer: Security & Privacy |
+
+### Adoption notes
+
+- Map existing error/empty/loading UI to the new taxonomies; gaps become actionable backlog items.
+- Audit forms against §2.11 — especially checkout and settings flows.
+- Review Layer 9 against your security posture: CSP headers, cookie attributes, PII in logs/analytics.
+- Use logical CSS properties for all new layout work (§2.8).
+
+---
+
 ## [v1.5.1](./HIG.md) — 2026-09-09
 
 Corrections and clarifications to v1.5.0. This is a **standards-accuracy release** — it fixes incorrect WCAG classifications, performance metric semantics, focus-trapping guidance, and framework-neutral architecture without changing the overall 9-layer structure.

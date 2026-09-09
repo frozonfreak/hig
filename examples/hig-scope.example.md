@@ -1,6 +1,6 @@
 # HIG scope for this product (example)
 
-Pinned contract: Modern Web HIG v1.5.1 (`docs/hig/HIG.md`)
+Pinned contract: Modern Web HIG v1.6.0 (`docs/hig/HIG.md`)
 
 | Route / area | Archetype | Notes |
 | --- | --- | --- |

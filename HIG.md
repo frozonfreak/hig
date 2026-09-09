@@ -1,15 +1,16 @@
-# Modern Web HIG & Product Engine Contract — v1.5.1
+# Modern Web HIG & Product Engine Contract — v1.6.0
 
 ## Executive Summary
 
-The Modern Web Human Interface Guidelines (HIG) v1.5.1 define design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+The Modern Web Human Interface Guidelines (HIG) v1.6.0 define design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
-This release corrects and clarifies v1.5.0 by:
+This release adds the P2 capability expansion:
 
-1. **Normative vocabulary & exception governance** — MUST/SHOULD/MAY keywords, rule IDs, severity levels, and documented deviation paths for AI and CI enforcement.
-2. **Framework-neutral Layer 4 architecture** — Universal server-driven rendering model with separate framework adapters (React/Next, Vue/Nuxt, Astro, etc.).
-3. **Lab vs. field performance split** — Synthetic CI metrics separated from field RUM/SLO gates; Core Web Vitals table corrected.
-4. **Accessibility & WCAG precision** — WCAG 2.2 AA conformance referenced (not redefined); WCAG 2.3.3 correctly classified as AAA; focus trapping, target sizes, and accessible-name computation clarified.
+1. **Layer 9: Security & Privacy** — CSP, XSS/CSRF mitigation, secure cookies, PII handling, auth UX, session management, and audit logging.
+2. **Product UX taxonomies** — Error, empty-state, loading-state, notification, and search standards with explicit state-machine contracts.
+3. **Forms contract** — Field grouping, validation timing, autocomplete, multi-step flows, and error summaries.
+4. **Internationalization** — Pluralization, locale formatting, bidirectional text, and logical (not physical) layout coordinates.
+5. **Data density standards** — Table density, truncation, virtualization, and bulk actions for Application/Dashboard archetypes.
 
 ### Document Structure
 
@@ -26,10 +27,10 @@ MODERN WEB HIG
 ├── Layer 6: Performance (Lab & Field)
 ├── Layer 7: AI & Agent Enforcement Contract
 ├── Layer 8: Quality Assurance & CI/CD Gates
-└── Appendix: Planned Capabilities (v1.6+)
+└── Layer 9: Security & Privacy
 ```
 
-This contract is organized into a **9-Layer Governance Framework** (Layers 0–8):
+This contract is organized into a **10-Layer Governance Framework** (Layers 0–9):
 
 * **Layer 0: Applicability & Scope** — Page archetypes and which layers are mandatory per archetype.
 * **Layer 1: UX Principles** — Ergonomic, spatial, motion, functional micro-animations, reduced-motion, and View Transitions guidelines.
@@ -40,6 +41,7 @@ This contract is organized into a **9-Layer Governance Framework** (Layers 0–8
 * **Layer 6: Performance & Web Vitals** — Lab vs. field metrics, Core Web Vitals, supporting metrics, and budget thresholds.
 * **Layer 7: AI & Agent Enforcement Contract** — Rule IDs, severity, applicability, deterministic logic, and system-prompt contracts for AI coding agents.
 * **Layer 8: Quality Assurance & CI/CD Gates** — Blocking, warning, and observation gates.
+* **Layer 9: Security & Privacy** — CSP, XSS/CSRF, secure storage, PII masking, auth UX, session expiry, and audit logging.
 
 ---
 
@@ -104,8 +106,16 @@ Not every rule applies to every page. A blog post does not need an async mutatio
 | Layer 4 Global state machine & streaming boundaries | ⚪ | ✅ (dynamic views) | ✅ | ✅ |
 | Layer 4 Optimistic mutation / server mutation model | ❌ | ⚪ (cart only) | ✅ | ⚪ |
 | Layer 4 RBAC visibility guardrails | ❌ | ⚪ | ✅ | ✅ |
+| Layer 2 Error / empty / loading taxonomies | ⚪ | ✅ | ✅ | ✅ |
+| Layer 2 Forms contract | ⚪ | ✅ (checkout) | ✅ | ✅ (settings) |
+| Layer 2 Search standard | ⚪ | ✅ | ✅ | ⚪ |
+| Layer 2 Notifications taxonomy | ⚪ | ✅ | ✅ | ✅ |
+| Layer 2 i18n / localization | ⚪ | ✅ | ✅ | ⚪ |
+| Layer 3 Data density standards | ❌ | ⚪ | ✅ | ⚪ |
 | Layer 5 WCAG 2.2 AA | ✅ | ✅ | ✅ | ✅ |
+| Layer 5 Browser permissions UX | ⚪ | ⚪ | ✅ | ⚪ |
 | Layer 6 Performance (lab + field) | ✅ | ✅ | ✅ | ✅ |
+| Layer 9 Security & Privacy | ✅ | ✅ | ✅ | ✅ |
 
 Legend: ✅ Mandatory · ⚪ Conditional (apply where the feature exists) · ❌ Not applicable.
 
@@ -262,6 +272,118 @@ Permanent commit
 | **Financial / legal action** | Explicit confirmation; idempotency protection required (§4.5) |
 
 Destructive mutations MUST NOT use conventional optimistic confirmation. Reversible deletion MAY use optimistic removal with an undo window (5–10 s toast) when the system supports reliable rollback or soft deletion — the backend need not literally delay the mutation if soft-delete semantics provide reversibility.
+
+### 2.5 Error UX Taxonomy
+
+Every error state MUST map to a defined category with prescribed UI behavior:
+
+| Category | UI behavior |
+| --- | --- |
+| **Validation** | Inline field errors; focus first invalid field; preserve user input |
+| **Authentication** | Clear re-auth prompt; do not expose whether account exists |
+| **Authorization** | Explain insufficient permissions; offer escalation path if applicable |
+| **Network** | Retry action; preserve form state; indicate connectivity status |
+| **Timeout** | Retry with backoff; show elapsed wait if helpful |
+| **Conflict** | Present diff/merge/overwrite options (§4.5) |
+| **Rate limit** | Inform user of wait period; disable submit until eligible |
+| **Server (5xx)** | Generic error message; retry; log correlation ID internally |
+| **Offline** | Degraded mode indicator; queue actions where supported (§4.6) |
+| **Partial failure** | Per-item error states; summarize success/failure counts |
+| **Unknown** | Fallback error with retry and support contact; never silent failure |
+
+Errors MUST NOT rely on color alone. Each error MUST include text and, where applicable, an icon or pattern.
+
+### 2.6 Empty-State Taxonomy
+
+Empty states MUST be categorized and designed accordingly:
+
+| Type | Purpose | Required elements |
+| --- | --- | --- |
+| **First-use** | Onboard new users | Explanation, primary CTA to create/add |
+| **No results** | Search/filter returned nothing | Clear message, suggest broadening criteria |
+| **Filtered empty** | Active filters exclude all items | Show active filters; offer clear-filters action |
+| **Permission empty** | User lacks access | Explain required permission; no misleading CTAs |
+| **Error empty** | Data failed to load | Error message with retry |
+| **Offline empty** | No connectivity | Offline indicator; queued actions if supported |
+| **Completed** | All tasks done | Positive confirmation; suggest next action |
+
+### 2.7 Loading-State Taxonomy
+
+Loading states MUST be differentiated — never use a generic spinner for all async operations:
+
+| Type | When | UI pattern |
+| --- | --- | --- |
+| **Initial loading** | First page/data fetch | Full-page or region skeleton matching final layout |
+| **Background refresh** | Stale-while-revalidate | Subtle indicator; preserve existing content (§4.3) |
+| **Mutation pending** | Form submit / action in flight | Disable trigger; inline spinner on action |
+| **Skeleton** | Known layout, unknown content | Layout-matching placeholder shapes |
+| **Progressive stream** | Streaming server render | Incremental content reveal at boundaries |
+| **Pagination loading** | Next/previous page fetch | Inline loader in pagination control or table footer |
+| **Infinite-scroll loading** | Scroll-triggered fetch | Bottom sentinel with loader; preserve scroll position |
+
+### 2.8 Internationalization & Localization
+
+Applications with multiple locales MUST support:
+
+* **Pluralization** — locale-aware plural rules (not hard-coded English forms).
+* **Date/time formatting** — locale-aware display; store/transmit in ISO 8601 UTC.
+* **Number & currency formatting** — locale decimal separators, grouping, currency symbols.
+* **Timezone** — display in user's timezone; store in UTC.
+* **Locale-aware sorting** — use `Intl.Collator` or equivalent, not ASCII sort.
+* **Text expansion** — layouts MUST accommodate 30–40% longer translated strings without breaking.
+* **CJK typography** — appropriate line-height, word-break, and font fallbacks for CJK scripts.
+* **Bidirectional text** — support RTL locales with `dir="rtl"` and logical CSS properties.
+
+**Layout coordinates MUST use logical properties** — `block-start`, `inline-start`, `margin-inline`, `padding-block` — not physical `top`/`left`/`right`/`bottom` for layout rules. Physical coordinates MAY appear only in non-localizable decorative contexts.
+
+### 2.9 Search Standard (Commerce / Application)
+
+Search flows MUST follow this state machine:
+
+```
+[input] ──debounce──> [pending] ──┬──> [results]
+                                  ├──> [no results]
+                                  └──> [error]
+```
+
+Requirements:
+
+* Debounce input (typically 200–400 ms); show pending indicator after debounce threshold.
+* Results MUST support keyboard navigation (arrow keys, Enter to select).
+* Search query MUST sync to URL where search is a primary navigation pattern (§2.3).
+* No-results and error states MUST follow §2.5 / §2.6 taxonomies.
+* Recent searches MAY be persisted locally; MUST respect privacy settings (Layer 9).
+
+### 2.10 Notifications Taxonomy
+
+| Type | Duration | Use when |
+| --- | --- | --- |
+| **Toast / snackbar** | 4–10 s (dismissible) | Transient success/failure feedback; undo actions |
+| **Inline status** | Persistent until resolved | Field-level or section-level status within context |
+| **Banner** | Persistent until dismissed or resolved | System-wide alerts, maintenance, policy notices |
+| **Modal** | Until user acts | Requires decision; blocks interaction |
+| **System notification** | OS-managed | Background events when tab is inactive (requires permission §5.5) |
+
+Toasts MUST NOT stack beyond 3 visible simultaneously. Critical errors SHOULD use banners or modals, not toasts alone.
+
+### 2.11 Forms Contract
+
+Forms MUST follow these standards (Commerce checkout, Application settings, Auth flows):
+
+| Concern | Requirement |
+| --- | --- |
+| **Field grouping** | Related fields grouped with `<fieldset>`/`<legend>` or visual grouping with programmatic association |
+| **Labels** | Every input MUST have a visible, programmatically associated `<label>` |
+| **Help text** | Supplementary guidance linked via `aria-describedby` |
+| **Validation timing** | Inline on blur for field-level; on submit for form-level; never validate before user interaction unless pre-filled |
+| **Server validation** | Map server errors to specific fields; preserve all user input |
+| **Autocomplete** | Use appropriate `autocomplete` tokens for common fields (name, email, address, cc-*) |
+| **Password managers** | Do not block autofill; use standard input types and `autocomplete="current-password"` / `"new-password"` |
+| **Input types** | Use semantic types (`email`, `tel`, `url`, `number`) for mobile keyboard optimization |
+| **Keyboard behavior** | Enter submits single-field forms; Tab order follows visual order |
+| **Multi-step forms** | Show progress indicator; preserve state between steps; allow back navigation |
+| **Draft persistence** | Auto-save drafts for forms >3 fields or multi-step flows (§2.3) |
+| **Error summary** | On submit failure, focus error summary linking to first invalid field |
 
 ---
 
@@ -442,6 +564,26 @@ Reusable UI components (cards, tables, form groups) MUST respond to their immedi
 
 `@media (prefers-reduced-motion: reduce)` and similar preference queries are legitimate even inside component stylesheets. Component layout adaptation SHOULD use `@container`; viewport `@media` is for page-level concerns.
 
+### 3.3 Data Density Standards (Application / Dashboard)
+
+Data-heavy interfaces MUST use tokenized density levels:
+
+| Token | Row height | Use case |
+| --- | --- | --- |
+| `--density-compact` | 32–36 px | Dense dashboards, admin tables |
+| `--density-default` | 40–48 px | Standard application tables |
+| `--density-comfortable` | 52–56 px | Primary workflows, touch-friendly |
+
+Additional requirements:
+
+* **Numeric alignment** — numbers MUST be right-aligned (or `text-align: end`); text left-aligned (`start`).
+* **Truncation** — long text truncates with ellipsis; full value available on hover/focus or expand action.
+* **Overflow** — horizontal scroll ONLY as last resort; prefer column hiding/reordering at container breakpoints.
+* **Sticky headers** — table headers SHOULD stick on scroll for datasets >10 rows.
+* **Bulk actions** — multi-select with visible selection count and batch action bar.
+* **Pagination** — preferred over infinite scroll for operational data requiring URL state (§2.3); infinite scroll permitted for feed/browse patterns.
+* **Virtualization** — datasets >100 rows SHOULD use virtual scrolling to maintain performance (Layer 6).
+
 ---
 
 ## Layer 4: Interaction, State Architecture & Data Protection
@@ -613,6 +755,21 @@ Avoid unnecessary ARIA.
 
 * **Minimum interactive target:** 24×24 CSS px, except where a [WCAG-defined exception](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html) applies.
 * **Preferred touch target:** 44×44 CSS px for primary touch interactions (ergonomic recommendation, not a compliance floor).
+
+### 5.5 Browser Permissions UX
+
+When requesting browser capabilities, applications MUST:
+
+| Permission | UX requirement |
+| --- | --- |
+| **Camera / microphone** | Explain why before prompt; show active indicator while in use; easy dismiss |
+| **Clipboard** | Request only on explicit user action (copy/paste button); show success/failure feedback |
+| **Geolocation** | Explain benefit; offer manual location entry as fallback |
+| **Notifications** | Explain value; never request on first visit; respect OS-level denial |
+| **File system** | Trigger only from explicit file picker or drag-drop zone |
+| **Downloads** | Confirm large downloads; show progress; handle blocked popups gracefully |
+
+Permission prompts MUST NOT appear without prior in-app explanation. Denied permissions MUST degrade gracefully with alternative workflows — never block core functionality silently.
 
 ---
 
@@ -803,6 +960,44 @@ agent_enforcement_rules:
       rule: idempotency_for_critical_mutations
       severity: warning
       archetypes: [commerce, application]
+
+  product_ux_constraints:
+    - id: HIG-ERR-001
+      rule: error_states_use_taxonomy
+      severity: warning
+      archetypes: [commerce, application, auth]
+    - id: HIG-EMP-001
+      rule: empty_states_use_taxonomy
+      severity: warning
+      archetypes: [commerce, application, auth]
+    - id: HIG-LOD-001
+      rule: loading_states_use_taxonomy
+      severity: warning
+    - id: HIG-FRM-001
+      rule: forms_have_labels_and_error_summary
+      severity: error
+      archetypes: [commerce, application, auth]
+    - id: HIG-I18N-001
+      rule: use_logical_properties_for_layout
+      severity: error
+    - id: HIG-NTF-001
+      rule: notifications_use_taxonomy
+      severity: warning
+
+  security_constraints:
+    - id: HIG-SEC-001
+      rule: no_secrets_in_client_code
+      severity: error
+    - id: HIG-SEC-002
+      rule: csp_headers_configured
+      severity: error
+    - id: HIG-SEC-003
+      rule: pii_masked_in_ui_and_logs
+      severity: error
+    - id: HIG-SEC-004
+      rule: secure_cookie_attributes
+      severity: error
+      archetypes: [commerce, application, auth]
 ```
 
 ### 7.3 Programmatic Linter Specifications
@@ -876,22 +1071,68 @@ CI gates are classified by enforcement level:
 
 ---
 
-## Appendix: Planned Capabilities (v1.6+)
+## Layer 9: Security & Privacy
 
-The following domains are recognized gaps planned for future releases. They are not blockers for v1.5.x adoption.
+Security and privacy requirements apply to all archetypes. Layer 9 complements Layer 8 security CI gates with product-level standards.
 
-| Domain | Scope |
+### 9.1 Content Security Policy (CSP)
+
+Applications MUST deploy a Content Security Policy that:
+
+* Restricts `script-src` to known origins; avoid `'unsafe-inline'` and `'unsafe-eval'` in production.
+* Uses nonces or hashes for any required inline scripts.
+* Restricts `frame-ancestors` to prevent clickjacking.
+* Reports violations to a monitoring endpoint (CSP report-uri/report-to).
+
+### 9.2 XSS & CSRF Mitigation
+
+* **XSS:** All user-generated content MUST be sanitized before rendering. Use framework auto-escaping; never `dangerouslySetInnerHTML` / `v-html` / `{@html}` without sanitization.
+* **CSRF:** State-changing requests MUST include CSRF protection (synchronizer token, SameSite cookies, or double-submit cookie pattern).
+* **Output encoding:** Context-appropriate encoding for HTML, URL, JavaScript, and CSS contexts.
+
+### 9.3 Secure Cookies & Storage
+
+| Attribute | Requirement |
 | --- | --- |
-| **Security & Privacy layer** | CSP, XSS, CSRF, secure cookies, SameSite, permissions, PII masking, browser storage, privacy-safe analytics, audit logging, auth UX, session expiry |
-| **Error UX taxonomy** | Validation, auth, authorization, network, timeout, conflict, rate limit, server, offline, partial failure, unknown |
-| **Empty-state taxonomy** | First-use, no results, filtered, permission, error, offline, completed |
-| **Loading-state taxonomy** | Initial, background refresh, mutation pending, skeleton, progressive stream, pagination, infinite scroll |
-| **Internationalization** | Pluralization, date/time/number/currency formatting, timezone, locale sorting, text expansion, CJK typography, bidirectional text |
-| **Data density standards** | Table density, row heights, truncation, numeric alignment, sticky headers, bulk actions, virtualization |
-| **Forms contract** | Field grouping, validation timing, autocomplete, password managers, multi-step, draft persistence, error summary |
-| **Search standard** | Debounce, pending, results, no results, error, keyboard nav, URL sync |
-| **Notifications taxonomy** | Toast, inline status, banner, modal, system notification |
-| **Browser permissions UX** | Camera, microphone, clipboard, geolocation, notifications, file system, downloads |
+| `Secure` | MUST on all session/auth cookies in production |
+| `HttpOnly` | MUST on session tokens (not accessible to JS) |
+| `SameSite` | `Strict` or `Lax` for auth cookies; `Strict` for sensitive operations |
+| `Max-Age` / `Expires` | Explicit expiry; session cookies MUST have server-side TTL |
+
+Browser storage (`localStorage`, `IndexedDB`) MUST NOT store sensitive tokens, PII, or payment data. Draft form data in storage MUST be encrypted or scoped to non-sensitive fields.
+
+### 9.4 PII & Sensitive Data Handling
+
+* **Display masking** — show partial values for sensitive fields (e.g. `••••4242` for card numbers, truncated email).
+* **Log sanitization** — PII MUST NOT appear in client-side logs, analytics events, or error reports sent to third parties.
+* **Data minimization** — collect only fields required for the current operation.
+* **Right to deletion** — provide UI path for account/data deletion where regulations require (Auth/Account archetype).
+
+### 9.5 Authentication UX
+
+* **Session expiry** — warn before timeout; offer extend-session action; redirect to login with return URL preserved.
+* **Failed login** — generic error message (do not reveal account existence); rate-limit attempts.
+* **Password requirements** — show requirements before submission; validate on blur and submit.
+* **MFA** — support TOTP/WebAuthn where security policy requires; provide recovery codes.
+* **Sign-out** — clear client state and invalidate server session; confirm on shared devices.
+
+### 9.6 Third-Party Scripts & Analytics
+
+* Third-party scripts MUST be inventory-tracked and loaded with `async`/`defer`.
+* Analytics MUST be privacy-safe: no PII in event payloads; respect Do Not Track / consent preferences where applicable.
+* Tag managers and ad scripts MUST NOT block core rendering (Layer 6 third-party JS budget).
+
+### 9.7 Audit Logging (Application / Auth)
+
+Operational applications SHOULD log security-relevant events:
+
+* Authentication success/failure
+* Authorization denials
+* Destructive mutations (§2.4)
+* Permission changes
+* Data export/download
+
+Logs MUST include timestamp, actor, action, and resource — but MUST NOT include secrets or full PII.
 
 ---
 
@@ -899,6 +1140,7 @@ The following domains are recognized gaps planned for future releases. They are 
 
 Expanded release notes for each version: **[RELEASE_NOTES.md](./RELEASE_NOTES.md)**.
 
+* **v1.6.0 (2026-09-09):** P2 capability expansion. Added Layer 9 Security & Privacy. Added error, empty-state, loading-state, notification, and search taxonomies (§2.5–2.10). Added forms contract (§2.11), i18n/localization with logical layout properties (§2.8), data density standards (§3.3), and browser permissions UX (§5.5). Expanded Layer 0 matrix, Layer 7 rule IDs, and Layer 8 security CI alignment.
 * **v1.5.1 (2026-09-09):** Corrections and clarifications to v1.5.0. Added normative vocabulary (MUST/SHOULD/MAY) and exception governance. Made Layer 4 framework-neutral with universal reference architecture and separate framework adapters. Split lab vs. field performance; corrected Core Web Vitals table (TTFB as supporting metric); field INP as SLO not CI gate. Fixed WCAG 2.3.3 AAA classification, focus trapping semantics, target size exceptions, accessible name computation, destructive action models, and metadata archetype awareness. Added stale data, network failure, conflict, idempotency, and offline state definitions. Expanded Layer 7 with rule IDs, severity, applicability, and autofix safety. Expanded Layer 8 with blocking/warning/observation gates, security CI, visual regression, and cross-browser testing.
 * **v1.5.0 (2026-09-08):** Added Layer 1 functional micro-animations contract (allowlist, deny list, ≤300 ms cap, compositor-safe properties). Introduced motion duration/easing tokens in Layer 3 and matching Layer 7 agent enforcement rules.
 * **v1.4.0 (2026-09-07):** Integrated Server-Driven UI & Partial Hydration standards (RSC, Streaming Suspense skeletons, Server Actions states). Replaced viewport media queries with CSS Container Queries (`@container`) for component tokens. Adopted native View Transitions API (`document.startViewTransition`) for page routes. Added ESLint rules for container queries and RSC Suspense boundaries.

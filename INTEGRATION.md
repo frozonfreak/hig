@@ -35,7 +35,7 @@ Pick one pinning strategy and stick to it:
 | **Git submodule / subtree** | You want upstream pulls without manual copy |
 | **Raw URL pin** | Agent rules link to a tagged release file (e.g. `.../blob/v1.5.0/HIG.md`) |
 
-Record the pinned version next to the file (e.g. `docs/hig/VERSION` containing `1.5.1`) so upgrades are intentional.
+Record the pinned version next to the file (e.g. `docs/hig/VERSION` containing `1.6.0`) so upgrades are intentional.
 
 ---
 
@@ -46,7 +46,7 @@ Create a short product-local scope file (example: `docs/hig-scope.md`):
 ```markdown
 # HIG scope for this product
 
-Pinned contract: Modern Web HIG v1.5.1 (`docs/hig/HIG.md`)
+Pinned contract: Modern Web HIG v1.6.0 (`docs/hig/HIG.md`)
 
 | Route / area | Archetype | Notes |
 | --- | --- | --- |
@@ -117,6 +117,9 @@ Add to your PR template (or use as a review checklist):
 - [ ] Modals implement focus containment (not just `aria-modal`); focus ring visible with sufficient contrast
 - [ ] Reduced-motion path respected; min 24×24px targets (44px preferred for touch)
 - [ ] No optimistic confirmation on destructive mutations without undo/soft-delete
+- [ ] Error/empty/loading states use HIG taxonomies (§2.5–2.7)
+- [ ] Forms have labels, error summary, and appropriate autocomplete (§2.11)
+- [ ] No secrets/PII in client code or logs; CSP configured (Layer 9)
 ```
 
 ---
