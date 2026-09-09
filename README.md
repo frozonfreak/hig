@@ -21,7 +21,7 @@ Unlike traditional UX guidelines, every requirement can be referenced, loaded se
 
 ## Why another standard?
 
-The web already has HTML standards, WCAG guidelines, CSS conventions, and design systems — but nothing ties them into one shared behavioral contract for modern apps.
+The web already has HTML standards, WCAG guidelines, CSS conventions, and design systems — but there is no widely adopted, vendor-neutral behavioral contract that brings these concerns together for modern web applications and AI-assisted development.
 
 | Standard | Role |
 |---|---|
