@@ -1,8 +1,8 @@
 # Web HIG — Core (Level 0)
 
-**Version:** v1.9.0 · **Canonical contract:** [HIG.md](./HIG.md) · **Daily agent context:** [HIG-LITE.md](./HIG-LITE.md)
+**Version:** v1.9.0 · **Quick Reference:** [HIG-QUICK.md](./HIG-QUICK.md) · **Practical:** [HIG-LITE.md](./HIG-LITE.md) · **Full spec:** [HIG.md](./HIG.md)
 
-Level 0 is the non-negotiable preamble: philosophy, vocabulary, archetype resolution, and simplicity rule. Load this once per session or merge with Level 1 for new agents.
+Session preamble: philosophy, vocabulary, archetype resolution, and simplicity rule. Load once per session alongside Layer 1 Quick Reference.
 
 ---
 
@@ -36,14 +36,18 @@ Apply only the mandatory and conditional rules for that archetype ([HIG.md §0.2
 
 **HIG-SIM-001:** The simplest implementation that satisfies applicable HIG requirements MUST be preferred. Do not satisfy a rule by introducing unnecessary complexity (extra Suspense boundaries, containers, animations, ARIA, or client components).
 
-## Progressive loading levels
+## Three consumption layers
 
-| Level | File | When to load |
+| Layer | File | When to load |
 | --- | --- | --- |
-| **0** | `HIG-CORE.md` (this file) | Session start, philosophy, archetype context |
-| **1** | [HIG-LITE.md](./HIG-LITE.md) | **Default** for all UI/CSS/front-end work |
-| **1.5** | [rules/archetypes/](./rules/archetypes/) | After archetype resolved — preload default module set |
-| **2** | [rules/*.md](./rules/) via [manifest.yaml](./rules/manifest.yaml) | Task matches a topic (combobox, forms, SSR, security…) |
-| **3** | [HIG.md](./HIG.md) | Edge cases, spec conflicts, full normative detail |
+| **1 — Quick Reference** | [HIG-QUICK.md](./HIG-QUICK.md) | **Default** for all UI/CSS/front-end work and AI agents (~5 min) |
+| **2 — Practical** | [HIG-LITE.md](./HIG-LITE.md) + [rules/](./rules/) + [framework/](./framework/) | Building features — rule IDs, topic modules, archetype packs |
+| **3 — Full specification** | [HIG.md](./HIG.md) | Edge cases, spec conflicts, CI gate definitions |
 
-HIG-LITE is a compressed summary of HIG — not a separate standard. Every Lite rule maps to a canonical rule ID in the full specification.
+**Preamble:** `HIG-CORE.md` (this file) — session start, philosophy, archetype context.
+
+**Archetype packs:** [rules/archetypes/](./rules/archetypes/) — preload default modules after archetype is resolved.
+
+**Topic lookup:** [rules/manifest.yaml](./rules/manifest.yaml) — load matching `rules/*.md` when the task requires depth beyond HIG-LITE.
+
+Every Quick and Lite rule maps to a canonical section in [HIG.md](./HIG.md) — not a separate standard.
