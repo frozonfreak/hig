@@ -21,7 +21,7 @@ The Modern Web HIG defines design principles, information architecture, state ma
 | 8 | Quality Assurance — blocking/warning/observation CI/CD gates |
 | 9 | Security & Privacy — CSP, XSS/CSRF, PII handling, auth UX, audit logging |
 
-## Progressive loading (v1.7.0+ / modules v1.8.0+)
+## Progressive loading (v1.8.0)
 
 The HIG is layered for token-efficient agent and team workflows:
 
