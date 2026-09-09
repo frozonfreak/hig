@@ -20,6 +20,9 @@
         <div class="nav-label">Overview</div>
         <ul>
           <li><a href="#top">Introduction</a></li>
+          <li><a href="#what">What</a></li>
+          <li><a href="#why">Why</a></li>
+          <li><a href="#how">How</a></li>
           <li><a href="#at-a-glance">At a glance</a></li>
           <li><a href="#who-its-for">Who it's for</a></li>
           <li><a href="#essential-rules">Essential rules</a></li>
@@ -63,20 +66,107 @@
         <p class="hero-eyebrow">AI-native web development</p>
         <h1>The HIG for AI-native web development.</h1>
         <p class="lead">
-          The HIG is a versioned standard for how websites and web apps should behave —
-          covering accessibility, performance, forms, security, loading states, and more.
-          Use it with your design system, your team, and your AI coding tools.
+          An open, vendor-neutral standard for how web interfaces should behave —
+          for your team, your design system, and your AI coding tools.
         </p>
-        <div class="hero-note">
-          <strong>Note:</strong>
-          <span>This is not a UI component library (like MUI or Bootstrap). It is a set of governance rules for your existing design system and AI agents.</span>
-        </div>
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Read Quick Reference (5 min)</a>
-          <a class="btn btn-secondary" href="#quick-start">Quick start</a>
+          <a class="btn btn-secondary" href="#how">Get started</a>
           <a class="btn btn-ghost" href="#architecture">Full details</a>
         </div>
       </header>
+
+      <!-- WHAT / WHY / HOW -->
+      <section id="what" class="section-block">
+        <h2>What</h2>
+        <p class="section-intro">
+          The Web HIG is an open, vendor-neutral standard for how web interfaces should behave —
+          covering accessibility, performance, forms, loading states, security, and interactions.
+        </p>
+        <p>
+          It is a <strong>rulebook and engineering contract</strong>, not a component library.
+          You keep your design system, framework, and components; the HIG defines how they should work together.
+        </p>
+        <p>
+          Start with the
+          <a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Quick Reference</a>
+          (~5 minutes, 98 rules).
+        </p>
+      </section>
+
+      <section id="why" class="section-block">
+        <h2>Why</h2>
+        <p class="section-intro">
+          The web already has HTML standards, WCAG guidelines, CSS conventions, and design systems —
+          but nothing ties them into one shared behavioral contract for modern apps.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Existing approach</th>
+                <th>What it gives you</th>
+                <th>What it misses</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Component libraries</strong><br><span class="technical">MUI, Bootstrap, shadcn/ui</span></td>
+                <td>Pre-built widgets</td>
+                <td>No shared rules for error recovery, delete flows, or token discipline</td>
+              </tr>
+              <tr>
+                <td><strong>Platform HIGs</strong><br><span class="technical">Apple, Material Design</span></td>
+                <td>Polished vendor guidance</td>
+                <td>Portability across web stacks and AI tooling</td>
+              </tr>
+              <tr>
+                <td><strong>Style guides</strong></td>
+                <td>Colors, typography, brand</td>
+                <td>Behavior, states, performance targets, security UX</td>
+              </tr>
+              <tr>
+                <td><strong>WCAG</strong></td>
+                <td>Accessibility compliance</td>
+                <td>Performance, mutations, CI enforcement, AI agent rules</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          The Web HIG fills that gap: a versioned, lintable standard that teams and AI coding agents
+          can pin in any product repo — without replacing your stack.
+        </p>
+      </section>
+
+      <section id="how" class="section-block">
+        <h2>How</h2>
+        <p class="section-intro">Add the HIG to an existing project in one afternoon.</p>
+        <ol class="steps">
+          <li>
+            <strong>Pin the contract</strong> — copy HIG-QUICK, HIG-LITE, HIG.md, rules/, and VERSION into your repo (e.g. <code>docs/hig/</code>)
+            <span class="step-meta">~10 minutes</span>
+          </li>
+          <li>
+            <strong>Map your pages</strong> — create <code>docs/hig-scope.md</code> with routes and page archetypes (Content, Commerce, Application, or Auth)
+            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/blob/main/examples/hig-scope.example.md">Example →</a> · ~15 minutes</span>
+          </li>
+          <li>
+            <strong>Wire your tools</strong> — add agent rules for Cursor, Copilot, or Claude Code
+            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/tree/main/examples/agent-rules">Templates →</a> · ~5 minutes</span>
+          </li>
+          <li>
+            <strong>Review and automate</strong> — use the Quick Reference in PRs; add ESLint/CI gates when ready
+            <span class="step-meta"><a href="#integration">Full integration guide →</a></span>
+          </li>
+        </ol>
+        <p>
+          Full guide:
+          <a href="https://github.com/frozonfreak/hig/blob/main/INTEGRATION.md">INTEGRATION.md</a>
+        </p>
+      </section>
 
       <!-- AT A GLANCE -->
       <section id="at-a-glance" class="section-block">
@@ -108,16 +198,16 @@
 
         <div class="two-col">
           <div class="card">
-            <h3>What it is</h3>
-            <p>A shared rulebook and product-engine contract. Defines <em>how</em> UI should work — not pre-built components.</p>
-          </div>
-          <div class="card">
             <h3>What it covers</h3>
             <p>UX, accessibility (WCAG 2.2 AA), performance, forms, security, server rendering, state machines, and CI enforcement.</p>
           </div>
           <div class="card">
-            <h3>How you use it</h3>
-            <p>Pin it in your repo, map routes to page types, start with the Quick Reference, open practical guides when needed.</p>
+            <h3>What it is not</h3>
+            <p>Not a UI framework, component library, or design system — a behavioral standard that works alongside all of them.</p>
+          </div>
+          <div class="card">
+            <h3>Three layers</h3>
+            <p>Quick Reference (~5 min) for daily work, practical guides for features, full spec for edge cases.</p>
           </div>
           <div class="card">
             <h3>Who benefits</h3>
