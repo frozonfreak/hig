@@ -2,6 +2,8 @@
 
 A universal Human Interface Guidelines (HIG) and product-engine contract for modern web applications, commerce sites, and content platforms.
 
+> **Note:** This is not a UI component library (like MUI or Bootstrap). It is a set of governance rules for your existing design system and AI agents.
+
 **Current version:** [v1.9.0](./HIG.md) · [Release notes](./RELEASE_NOTES.md) · **[Documentation site](https://frozonfreak.github.io/hig/)**
 
 ## What is this?

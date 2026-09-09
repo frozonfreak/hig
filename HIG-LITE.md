@@ -4,6 +4,8 @@
 
 Default agent context. Each rule links to a canonical rule ID and section in [HIG.md](./HIG.md). Load [rules/manifest.yaml](./rules/manifest.yaml) Level 2 modules when the task requires detail beyond this summary.
 
+> **Note:** This is not a UI component library (like MUI or Bootstrap). It is a set of governance rules for your existing design system and AI agents.
+
 ---
 
 ## 0. Before you start
