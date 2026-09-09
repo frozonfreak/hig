@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+  <a class="skip-link" href="#top">Skip to main content</a>
   <div class="layout">
     <nav class="sidebar" aria-label="Documentation navigation">
       <a class="brand" href="#top">The Web HIG</a>
@@ -56,7 +57,7 @@
       <a class="github-link" href="https://github.com/frozonfreak/hig">View on GitHub →</a>
     </nav>
 
-    <main id="top">
+    <main id="top" tabindex="-1">
       <!-- HERO -->
       <header class="hero">
         <p class="hero-eyebrow">The Web HIG</p>
@@ -108,22 +109,22 @@
         <div class="comparison-grid">
           <div class="comparison-item">
             <div class="comparison-source">WCAG</div>
-            <div class="comparison-arrow">→</div>
+            <div class="comparison-arrow" aria-hidden="true">→</div>
             <div class="comparison-result">Accessibility</div>
           </div>
           <div class="comparison-item">
             <div class="comparison-source">Design systems</div>
-            <div class="comparison-arrow">→</div>
+            <div class="comparison-arrow" aria-hidden="true">→</div>
             <div class="comparison-result">Visual consistency</div>
           </div>
           <div class="comparison-item">
             <div class="comparison-source">Frameworks</div>
-            <div class="comparison-arrow">→</div>
+            <div class="comparison-arrow" aria-hidden="true">→</div>
             <div class="comparison-result">Implementation</div>
           </div>
           <div class="comparison-item comparison-item-highlight">
             <div class="comparison-source">Web HIG</div>
-            <div class="comparison-arrow">→</div>
+            <div class="comparison-arrow" aria-hidden="true">→</div>
             <div class="comparison-result">Behavioral contract</div>
           </div>
         </div>
@@ -147,9 +148,9 @@
           <table>
             <thead>
               <tr>
-                <th>Existing approach</th>
-                <th>What it gives you</th>
-                <th>What it misses</th>
+                <th scope="col">Existing approach</th>
+                <th scope="col">What it gives you</th>
+                <th scope="col">What it misses</th>
               </tr>
             </thead>
             <tbody>
@@ -188,25 +189,27 @@
         <h2>One standard. Three levels.</h2>
         <p class="section-intro">Progressive disclosure — load only what you need. Pin HIG-QUICK instead of the 20,000-token full document.</p>
 
+        <div class="levels-section">
         <div class="levels-grid">
-          <a class="level-card" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">
+          <a class="level-card" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md" aria-label="Quick level: 98 rules in HIG-QUICK.md, about 5 minutes">
             <div class="level-tier">Quick</div>
             <div class="level-stat">98 rules</div>
             <p>~5 minutes. Default for daily work and AI agents.</p>
             <span class="level-doc">HIG-QUICK.md →</span>
           </a>
-          <a class="level-card" href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md">
+          <a class="level-card" href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md" aria-label="Practical level: rule modules in HIG-LITE.md and rules directory">
             <div class="level-tier">Practical</div>
             <div class="level-stat">Rule modules</div>
             <p>Building features — rule IDs, topic modules, archetype packs.</p>
             <span class="level-doc">HIG-LITE.md + rules/ →</span>
           </a>
-          <a class="level-card" href="https://github.com/frozonfreak/hig/blob/main/HIG.md">
+          <a class="level-card" href="https://github.com/frozonfreak/hig/blob/main/HIG.md" aria-label="Full level: complete specification in HIG.md">
             <div class="level-tier">Full</div>
             <div class="level-stat">Complete spec</div>
             <p>Edge cases, spec conflicts, CI gate definitions.</p>
             <span class="level-doc">HIG.md →</span>
           </a>
+        </div>
         </div>
       </section>
 
@@ -218,19 +221,14 @@
           <em>"Follow Modern Web HIG Quick Reference."</em>
         </p>
 
-        <div class="pipeline">
-          <span class="pipeline-step">Developer</span>
-          <span class="pipeline-arrow">→</span>
-          <span class="pipeline-step pipeline-step-accent">HIG</span>
-          <span class="pipeline-arrow">→</span>
-          <span class="pipeline-step">AI agent</span>
-          <span class="pipeline-arrow">→</span>
-          <span class="pipeline-step">Code</span>
-          <span class="pipeline-arrow">→</span>
-          <span class="pipeline-step">Validation</span>
-          <span class="pipeline-arrow">→</span>
-          <span class="pipeline-step">CI</span>
-        </div>
+        <ol class="pipeline" aria-label="HIG adoption workflow">
+          <li class="pipeline-item"><span class="pipeline-step">Developer</span></li>
+          <li class="pipeline-item"><span class="pipeline-step pipeline-step-accent">HIG</span></li>
+          <li class="pipeline-item"><span class="pipeline-step">AI agent</span></li>
+          <li class="pipeline-item"><span class="pipeline-step">Code</span></li>
+          <li class="pipeline-item"><span class="pipeline-step">Validation</span></li>
+          <li class="pipeline-item"><span class="pipeline-step">CI</span></li>
+        </ol>
 
         <div class="two-col">
           <div class="card">
@@ -438,10 +436,10 @@
           <table>
             <thead>
               <tr>
-                <th>Archetype</th>
-                <th>Examples</th>
-                <th>Default modules</th>
-                <th>Pack</th>
+                <th scope="col">Archetype</th>
+                <th scope="col">Examples</th>
+                <th scope="col">Default modules</th>
+                <th scope="col">Pack</th>
               </tr>
             </thead>
             <tbody>
@@ -500,17 +498,13 @@
           │            archetype packs
           └──────────────────┴──► All rules map to HIG.md</code></pre>
 
-        <div class="flow">
-          <span class="flow-step">Resolve archetype</span>
-          <span class="flow-arrow">→</span>
-          <span class="flow-step">HIG-QUICK</span>
-          <span class="flow-arrow">→</span>
-          <span class="flow-step">HIG-LITE + pack</span>
-          <span class="flow-arrow">→</span>
-          <span class="flow-step">Topic module</span>
-          <span class="flow-arrow">→</span>
-          <span class="flow-step">HIG.md (if needed)</span>
-        </div>
+        <ol class="flow" aria-label="Documentation loading workflow">
+          <li class="flow-item"><span class="flow-step">Resolve archetype</span></li>
+          <li class="flow-item"><span class="flow-step">HIG-QUICK</span></li>
+          <li class="flow-item"><span class="flow-step">HIG-LITE + pack</span></li>
+          <li class="flow-item"><span class="flow-step">Topic module</span></li>
+          <li class="flow-item"><span class="flow-step">HIG.md (if needed)</span></li>
+        </ol>
 
         <p>
           Topic loading: <a href="https://github.com/frozonfreak/hig/blob/main/rules/manifest.yaml">rules/manifest.yaml</a>
@@ -547,9 +541,9 @@
           <table>
             <thead>
               <tr>
-                <th>Prefix</th>
-                <th>Domain</th>
-                <th>Example</th>
+                <th scope="col">Prefix</th>
+                <th scope="col">Domain</th>
+                <th scope="col">Example</th>
               </tr>
             </thead>
             <tbody>
@@ -618,8 +612,8 @@
           <table>
             <thead>
               <tr>
-                <th>Document</th>
-                <th>Purpose</th>
+                <th scope="col">Document</th>
+                <th scope="col">Purpose</th>
               </tr>
             </thead>
             <tbody>
@@ -642,7 +636,7 @@
         <div class="table-wrap">
           <table>
             <thead>
-              <tr><th>Term</th><th>Meaning</th></tr>
+              <tr><th scope="col">Term</th><th scope="col">Meaning</th></tr>
             </thead>
             <tbody>
               <tr><td><strong>Archetype</strong></td><td>Page category (marketing, shop, app, login) that determines required rules</td></tr>
@@ -707,7 +701,13 @@
       }
       links.forEach(a => {
         const href = a.getAttribute('href').slice(1);
-        a.classList.toggle('active', href === current || (href === 'top' && current === 'top'));
+        const isActive = href === current || (href === 'top' && current === 'top');
+        a.classList.toggle('active', isActive);
+        if (isActive) {
+          a.setAttribute('aria-current', 'true');
+        } else {
+          a.removeAttribute('aria-current');
+        }
       });
     }
 
