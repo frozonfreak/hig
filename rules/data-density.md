@@ -1,6 +1,6 @@
 # Data Density — Level 2 Module
 
-**Version:** v1.8.0 · **Canonical spec:** [HIG.md §3.3](../HIG.md#33-data-density-standards-application--dashboard) · **Archetypes:** Application / Dashboard
+**Version:** v1.9.0 · **Canonical spec:** [HIG.md §3.3](../HIG.md#33-data-density-standards-application--dashboard) · **Archetypes:** Application / Dashboard
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 

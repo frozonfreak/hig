@@ -1,6 +1,6 @@
 # Modern Web HIG — Rule Index (Level 2)
 
-**Version:** v1.8.0 · **Machine-readable:** [manifest.yaml](./manifest.yaml) · **Daily summary:** [HIG-LITE.md](../HIG-LITE.md) · **Full spec:** [HIG.md](../HIG.md)
+**Version:** v1.9.0 · **Machine-readable:** [manifest.yaml](./manifest.yaml) · **Daily summary:** [HIG-LITE.md](../HIG-LITE.md) · **Full spec:** [HIG.md](../HIG.md)
 
 This index maps rule IDs to standalone Level 2 modules and tells agents **when** to load them. Each module is a self-contained extract; [HIG.md](../HIG.md) remains the complete normative contract (Level 3).
 
@@ -9,9 +9,28 @@ This index maps rule IDs to standalone Level 2 modules and tells agents **when**
 ## How to use
 
 1. Start with [HIG-LITE.md](../HIG-LITE.md) (Level 1) for every UI task.
-2. Match task keywords against the **Load when** column below (or [manifest.yaml](./manifest.yaml) triggers).
-3. Open the **Module file** for normative detail on that topic.
-4. Escalate to full [HIG.md](../HIG.md) only for edge cases or conflicts.
+2. Resolve archetype → load [archetype pack](./archetypes/) (Level 1.5).
+3. Preload **default modules** from the archetype pack.
+4. Match task keywords against the **Load when** column below (or [manifest.yaml](./manifest.yaml) triggers).
+5. Open the **Module file** for normative detail on that topic.
+6. Escalate to full [HIG.md](../HIG.md) only for edge cases or conflicts.
+
+---
+
+## Applicability
+
+| Module | File | Purpose |
+| --- | --- | --- |
+| **applicability** | [applicability.md](./applicability.md) | Layer 0 matrix, archetype resolution |
+
+## Archetype packs (Level 1.5)
+
+| Archetype | Pack | Default module count |
+| --- | --- | --- |
+| Content / Marketing | [archetypes/content.md](./archetypes/content.md) | 7 |
+| Commerce | [archetypes/commerce.md](./archetypes/commerce.md) | 13 |
+| Application / Dashboard | [archetypes/application.md](./archetypes/application.md) | 15 |
+| Auth / Account | [archetypes/auth.md](./archetypes/auth.md) | 12 |
 
 ---
 

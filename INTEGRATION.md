@@ -2,7 +2,7 @@
 
 This guide shows an **efficient** way to adopt the Modern Web HIG in a product repo: progressive loading, thin agent rules, then lint/CI — without pasting the full contract into every prompt.
 
-**Current contract:** [HIG.md](./HIG.md) v1.8.0 (see README for version).
+**Current contract:** [HIG.md](./HIG.md) v1.9.0 (see README for version).
 
 ---
 
@@ -12,6 +12,7 @@ This guide shows an **efficient** way to adopt the Modern Web HIG in a product r
 | --- | --- | --- |
 | **0** | [HIG-CORE.md](./HIG-CORE.md) | Session start — philosophy, vocabulary, archetypes |
 | **1** | [HIG-LITE.md](./HIG-LITE.md) | **Every UI/CSS/front-end task** (default) |
+| **1.5** | [rules/archetypes/](./rules/archetypes/) | After archetype resolved — preload default modules |
 | **2** | [rules/*.md](./rules/) + [framework/*.md](./framework/) via [manifest.yaml](./rules/manifest.yaml) | Task matches a topic (combobox, forms, SSR, security…) |
 | **3** | [HIG.md](./HIG.md) | Edge cases, spec conflicts, full normative detail |
 
@@ -43,9 +44,9 @@ Pick one pinning strategy and stick to it:
 
 | Strategy | When to use |
 | --- | --- |
-| **Vendor copy** | Fastest: copy `HIG.md`, `HIG-LITE.md`, `rules/`, and `framework/` into e.g. `docs/hig/` and note the version in your README |
+| **Vendor copy** | Fastest: copy `HIG.md`, `HIG-LITE.md`, `VERSION`, `rules/`, and `framework/` into e.g. `docs/hig/` |
 | **Git submodule / subtree** | You want upstream pulls without manual copy |
-| **Raw URL pin** | Agent rules link to tagged release files (e.g. `.../blob/v1.8.0/HIG-LITE.md`) |
+| **Raw URL pin** | Agent rules link to tagged release files (e.g. `.../blob/v1.9.0/HIG-LITE.md`) |
 
 **Minimum pin set for agents:**
 
@@ -58,7 +59,7 @@ Pick one pinning strategy and stick to it:
 | `framework/*.md` | Framework adapters (React, Next, Vue, Nuxt, Astro) |
 | `rules/INDEX.md` | Human-readable rule index |
 
-Record the pinned version next to the files (e.g. `docs/hig/VERSION` containing `1.8.0`) so upgrades are intentional.
+Copy the root [VERSION](./VERSION) file into your pin directory (e.g. `docs/hig/VERSION`) so upgrades are intentional.
 
 ---
 
@@ -69,7 +70,7 @@ Create a short product-local scope file (example: `docs/hig-scope.md`):
 ```markdown
 # HIG scope for this product
 
-Pinned contract: Modern Web HIG v1.8.0
+Pinned contract: Modern Web HIG v1.9.0
 - Daily context: `docs/hig/HIG-LITE.md`
 - Full spec: `docs/hig/HIG.md`
 - Topic index: `docs/hig/rules/manifest.yaml`
@@ -95,10 +96,11 @@ Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) into
 ### Loading workflow for agents
 
 1. **Always:** Read `HIG-LITE.md` (Level 1) + resolve archetype from scope doc
-2. **On topic match:** Consult `rules/manifest.yaml` → open matching `rules/*.md` module (Level 2); load `framework/*.md` when stack-specific
-3. **On edge case:** Open `HIG.md` (Level 3)
-4. **Always:** Apply Layer 7 YAML guardrails from the agent rule file
-5. **Cite rule IDs** when declining conflicting requests (e.g. `HIG-A11Y-003`)
+2. **Archetype pack:** Load `rules/archetypes/<archetype>.md` → preload default modules (Level 1.5)
+3. **On topic match:** Consult `rules/manifest.yaml` → open matching `rules/*.md` module (Level 2); load `framework/*.md` when stack-specific
+4. **On edge case:** Open `HIG.md` (Level 3)
+5. **Always:** Apply Layer 7 YAML guardrails from the agent rule file
+6. **Cite rule IDs** when declining conflicting requests (e.g. `HIG-A11Y-003`)
 
 ### Cursor
 
@@ -126,8 +128,9 @@ Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) into
 When starting a UI task, prepend:
 
 ```text
-Follow Modern Web HIG v1.8.0.
+Follow Modern Web HIG v1.9.0.
 Default context: docs/hig/HIG-LITE.md (Level 1).
+Archetype pack: docs/hig/rules/archetypes/<content|commerce|application|auth>.md (Level 1.5).
 Load docs/hig/rules/<module>.md from manifest.yaml when task matches a topic.
 Load docs/hig/framework/<stack>.md when framework-specific.
 Archetype: <content|commerce|application|auth> per docs/hig-scope.md.
@@ -190,3 +193,17 @@ A product repo is integrated when:
 4. PRs use the **HIG checklist** (and CI gates when automated)
 
 That sequence keeps agent context small, enforcement deterministic, and upgrades explicit.
+
+---
+
+## Step 6 — Validate contract integrity (optional)
+
+When upgrading HIG pins in a product repo, run validation from the pinned copy:
+
+```bash
+node docs/hig/scripts/validate-hig.mjs
+# or, if you vendor the full repo tooling:
+npm run validate
+```
+
+The HIG repository runs this automatically via GitHub Actions on every PR to `main`.

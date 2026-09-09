@@ -1,10 +1,12 @@
 # HIG scope for this product (example)
 
-Pinned contract: Modern Web HIG v1.8.0
+Pinned contract: Modern Web HIG v1.9.0
 
 | File | Purpose |
 | --- | --- |
+| `docs/hig/VERSION` | Version pin (currently 1.9.0) |
 | `docs/hig/HIG-LITE.md` | Default agent context (Level 1) |
+| `docs/hig/rules/archetypes/*.md` | Archetype packs (Level 1.5) |
 | `docs/hig/rules/*.md` | Topic modules (Level 2) |
 | `docs/hig/framework/*.md` | Framework adapters |
 | `docs/hig/rules/manifest.yaml` | Topic-triggered loading index |

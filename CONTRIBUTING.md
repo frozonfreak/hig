@@ -18,6 +18,8 @@ Good contributions include:
 - Updating the corresponding [rules/*.md](./rules/) module when changing layer content — keep modules synchronized with `HIG.md`
 - Expanding [rules/INDEX.md](./rules/INDEX.md) and [rules/manifest.yaml](./rules/manifest.yaml) when adding new topic modules
 - Adding or updating [framework/*.md](./framework/) adapters when framework guidance changes
+- Updating [rules/archetypes/](./rules/archetypes/) packs when the Layer 0 matrix changes
+- Running `npm run validate` before opening a PR — CI will reject contract integrity failures
 
 ## How to propose a change
 

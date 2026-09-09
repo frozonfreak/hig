@@ -2,7 +2,7 @@
 
 A universal Human Interface Guidelines (HIG) and product-engine contract for modern web applications, commerce sites, and content platforms.
 
-**Current version:** [v1.8.0](./HIG.md) · [Release notes](./RELEASE_NOTES.md)
+**Current version:** [v1.9.0](./HIG.md) · [Release notes](./RELEASE_NOTES.md)
 
 ## What is this?
 
@@ -21,7 +21,7 @@ The Modern Web HIG defines design principles, information architecture, state ma
 | 8 | Quality Assurance — blocking/warning/observation CI/CD gates |
 | 9 | Security & Privacy — CSP, XSS/CSRF, PII handling, auth UX, audit logging |
 
-## Progressive loading (v1.8.0)
+## Progressive loading (v1.9.0)
 
 The HIG is layered for token-efficient agent and team workflows:
 
@@ -46,6 +46,8 @@ The HIG is layered for token-efficient agent and team workflows:
 |---|---|
 | [HIG-CORE.md](./HIG-CORE.md) | Session preamble — vocabulary, archetypes, HIG-SIM-001 |
 | [HIG-LITE.md](./HIG-LITE.md) | **Default agent context** — essential rules with rule ID links |
+| [rules/archetypes/](./rules/archetypes/) | **Archetype packs** — preload correct modules per page type |
+| [VERSION](./VERSION) | Single version pin for product repos and CI |
 | [rules/INDEX.md](./rules/INDEX.md) | Human-readable topic index and rule ID registry |
 | [rules/manifest.yaml](./rules/manifest.yaml) | Machine-readable load triggers for Level 2 modules |
 | [rules/*.md](./rules/) | Standalone topic modules (accessibility, forms, architecture, …) |
@@ -67,6 +69,7 @@ HIG-LITE is a compressed summary of HIG — not a separate standard. Every Lite 
 3. Apply the Layer 0 applicability matrix to determine which rules are mandatory for your context
 4. Open **[HIG.md](./HIG.md)** for full detail when needed
 5. Wire the Layer 7 ESLint/Stylelint rules and Layer 8 CI gates into your pipeline
+6. Run `npm run validate` to verify contract integrity when upgrading pins
 
 ## Integrate into your workflow
 

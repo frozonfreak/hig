@@ -6,6 +6,35 @@ Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
 ---
 
+## [v1.9.0](./HIG.md) — 2026-09-09
+
+Progressive loading Phase 3 — archetype rule packs and contract validation.
+
+### Highlights
+
+- **Archetype packs** (`rules/archetypes/`) — content, commerce, application, auth bundles that preload the correct Level 2 modules per page type.
+- **[rules/applicability.md](./rules/applicability.md)** — Layer 0 extract with matrix and agent workflow.
+- **[VERSION](./VERSION)** — single version pin file for product repos and CI.
+- **[scripts/validate-hig.mjs](./scripts/validate-hig.mjs)** — validates VERSION sync, manifest file references, archetype packs, and rule ID consistency.
+- **GitHub Actions** — `validate.yml` runs on every PR to `main`.
+
+### Layer impact
+
+| Area | Change |
+| --- | --- |
+| rules/archetypes/ | 4 archetype pack files |
+| rules/applicability.md | Layer 0 module |
+| manifest.yaml | `archetype_packs` + `applicability` module |
+| CI | Contract validation workflow |
+
+### Adoption notes
+
+- After resolving archetype, load the matching pack before topic modules.
+- Copy `VERSION` alongside HIG pins in product repos.
+- Run `npm run validate` when upgrading pins.
+
+---
+
 ## [v1.8.0](./HIG.md) — 2026-09-09
 
 Progressive loading Phase 2 — standalone rule modules and framework adapters.

@@ -1,6 +1,6 @@
 # Modern Web HIG — Essential Rules (Level 1)
 
-**Version:** v1.8.0 · **Core:** [HIG-CORE.md](./HIG-CORE.md) · **Full spec:** [HIG.md](./HIG.md) · **Topic index:** [rules/INDEX.md](./rules/INDEX.md)
+**Version:** v1.9.0 · **Core:** [HIG-CORE.md](./HIG-CORE.md) · **Full spec:** [HIG.md](./HIG.md) · **Topic index:** [rules/INDEX.md](./rules/INDEX.md)
 
 Default agent context. Each rule links to a canonical rule ID and section in [HIG.md](./HIG.md). Load [rules/manifest.yaml](./rules/manifest.yaml) Level 2 modules when the task requires detail beyond this summary.
 
@@ -9,8 +9,9 @@ Default agent context. Each rule links to a canonical rule ID and section in [HI
 ## 0. Before you start
 
 1. Resolve page archetype: `content` | `commerce` | `application` | `auth` ([§0.1](./HIG.md#01-page-archetypes))
-2. Apply Layer 0 mandatory/optional matrix ([§0.2](./HIG.md#02-applicability-matrix))
-3. Prefer simplest compliant implementation (**HIG-SIM-001** → [Exception System](./HIG.md#exception-system))
+2. Load archetype pack from [rules/archetypes/](./rules/archetypes/) → preload default modules for that type
+3. Apply Layer 0 mandatory/optional matrix ([rules/applicability.md](./rules/applicability.md))
+4. Prefer simplest compliant implementation (**HIG-SIM-001** → [Exception System](./HIG.md#exception-system))
 
 ---
 
@@ -55,6 +56,8 @@ Every interactive feature MUST handle applicable states:
 | Offline / network failure | — | [§4.4](./HIG.md#44-network--error-states), [§4.6](./HIG.md#46-offline--degraded-mode-applicationdashboard) |
 
 Server mutations MUST show pending UI (**HIG-SSR-003** → [§4.2](./HIG.md#42-async-mutation--server-action-state-model)).
+
+Forms MUST have labels and error summary (**HIG-FRM-001** → [§2.11](./HIG.md#211-forms-contract)). Notifications MUST use taxonomy (**HIG-NTF-001** → [§2.10](./HIG.md#210-notifications-taxonomy)).
 
 ## 5. Interaction & motion
 
@@ -109,6 +112,17 @@ Check applicable items:
 - [ ] Visual consistency with existing components
 
 ---
+
+## Archetype packs (Level 1.5)
+
+After resolving archetype, preload the default module set:
+
+| Archetype | Pack |
+| --- | --- |
+| Content / Marketing | [rules/archetypes/content.md](./rules/archetypes/content.md) |
+| Commerce | [rules/archetypes/commerce.md](./rules/archetypes/commerce.md) |
+| Application / Dashboard | [rules/archetypes/application.md](./rules/archetypes/application.md) |
+| Auth / Account | [rules/archetypes/auth.md](./rules/archetypes/auth.md) |
 
 ## When to load more
 

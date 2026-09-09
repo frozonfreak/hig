@@ -1,6 +1,6 @@
 # Performance & Web Vitals — Level 2 Module
 
-**Version:** v1.8.0 · **Canonical spec:** [HIG.md §6](../HIG.md#layer-6-performance--web-vitals) · **Archetypes:** Universal
+**Version:** v1.9.0 · **Canonical spec:** [HIG.md §6](../HIG.md#layer-6-performance--web-vitals) · **Archetypes:** Universal
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 

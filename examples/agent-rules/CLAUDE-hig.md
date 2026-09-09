@@ -1,6 +1,6 @@
 # Modern Web HIG
 
-This project follows the Modern Web HIG v1.8.0.
+This project follows the Modern Web HIG v1.9.0.
 
 - **Default context (Level 1):** `docs/hig/HIG-LITE.md` (or repo `HIG-LITE.md`)
 - **Topic index (Level 2):** `docs/hig/rules/manifest.yaml`
@@ -11,11 +11,12 @@ This project follows the Modern Web HIG v1.8.0.
 
 1. Resolve archetype (`content` | `commerce` | `application` | `auth`) from the scope map.
 2. Read HIG-LITE.md for essential rules.
-3. Match task keywords against `rules/manifest.yaml` → load matching `rules/*.md` module (and `framework/*.md` if applicable).
-4. Apply Layer 0 matrix from the pinned HIG.
-5. Enforce Layer 7 rules below.
-6. Prefer the simplest compliant implementation (HIG-SIM-001).
-7. Cite rule IDs when declining conflicting requests.
+3. Load archetype pack from `rules/archetypes/<archetype>.md` → preload default modules.
+4. Match task keywords against `rules/manifest.yaml` → load matching `rules/*.md` module (and `framework/*.md` if applicable).
+5. Apply Layer 0 matrix from `rules/applicability.md`.
+6. Enforce Layer 7 rules below.
+7. Prefer the simplest compliant implementation (HIG-SIM-001).
+8. Cite rule IDs when declining conflicting requests.
 
 ```yaml
 agent_enforcement_rules:
@@ -27,6 +28,7 @@ agent_enforcement_rules:
     progressive_loading:
       level_0: HIG-CORE.md
       level_1: HIG-LITE.md
+      level_1_5: rules/archetypes/{archetype}.md
       level_2: rules/manifest.yaml
       level_3: HIG.md
   styling_constraints:

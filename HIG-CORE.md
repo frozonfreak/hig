@@ -1,6 +1,6 @@
 # Modern Web HIG — Core (Level 0)
 
-**Version:** v1.8.0 · **Canonical contract:** [HIG.md](./HIG.md) · **Daily agent context:** [HIG-LITE.md](./HIG-LITE.md)
+**Version:** v1.9.0 · **Canonical contract:** [HIG.md](./HIG.md) · **Daily agent context:** [HIG-LITE.md](./HIG-LITE.md)
 
 Level 0 is the non-negotiable preamble: philosophy, vocabulary, archetype resolution, and simplicity rule. Load this once per session or merge with Level 1 for new agents.
 
@@ -42,7 +42,8 @@ Apply only the mandatory and conditional rules for that archetype ([HIG.md §0.2
 | --- | --- | --- |
 | **0** | `HIG-CORE.md` (this file) | Session start, philosophy, archetype context |
 | **1** | [HIG-LITE.md](./HIG-LITE.md) | **Default** for all UI/CSS/front-end work |
-| **2** | [rules/INDEX.md](./rules/INDEX.md) + [rules/manifest.yaml](./rules/manifest.yaml) | Task matches a topic (combobox, forms, SSR, security…) |
+| **1.5** | [rules/archetypes/](./rules/archetypes/) | After archetype resolved — preload default module set |
+| **2** | [rules/*.md](./rules/) via [manifest.yaml](./rules/manifest.yaml) | Task matches a topic (combobox, forms, SSR, security…) |
 | **3** | [HIG.md](./HIG.md) | Edge cases, spec conflicts, full normative detail |
 
 HIG-LITE is a compressed summary of HIG — not a separate standard. Every Lite rule maps to a canonical rule ID in the full specification.

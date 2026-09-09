@@ -1,6 +1,6 @@
 # UX & Information Architecture — Level 2 Module
 
-**Version:** v1.8.0 · **Canonical spec:** [HIG.md §2.1–2.4](../HIG.md#layer-2-information-architecture--product-standards) · **Rule IDs:** HIG-MUT-001, HIG-SIM-001
+**Version:** v1.9.0 · **Canonical spec:** [HIG.md §2.1–2.4](../HIG.md#layer-2-information-architecture--product-standards) · **Rule IDs:** HIG-MUT-001, HIG-SIM-001
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 

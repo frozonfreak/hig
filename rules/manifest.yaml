@@ -1,8 +1,8 @@
 # Modern Web HIG — Progressive loading manifest
-# Version: 1.8.0
+# Version: 1.9.0
 # Human-readable index: rules/INDEX.md
 
-version: "1.8.0"
+version: "1.9.0"
 
 levels:
   0:
@@ -23,6 +23,19 @@ levels:
     load: edge_cases_and_conflicts
 
 modules:
+  applicability:
+    file: rules/applicability.md
+    triggers:
+      - archetype
+      - applicability
+      - scope
+      - layer 0
+      - mandatory matrix
+    rules: []
+    hig_sections:
+      - "§0.1"
+      - "§0.2"
+
   accessibility:
     file: rules/accessibility.md
     triggers:
@@ -330,6 +343,82 @@ modules:
       - "§7.2"
       - "§7.3"
       - "§8"
+
+archetype_packs:
+  content:
+    file: rules/archetypes/content.md
+    id: content
+    default_modules:
+      - ux
+      - tokens
+      - responsive
+      - animation
+      - accessibility
+      - performance
+      - security
+    conditional_modules:
+      - states
+      - architecture
+      - forms
+      - i18n
+  commerce:
+    file: rules/archetypes/commerce.md
+    id: commerce
+    default_modules:
+      - ux
+      - states
+      - forms
+      - tokens
+      - responsive
+      - animation
+      - architecture
+      - mutations
+      - search
+      - notifications
+      - accessibility
+      - performance
+      - security
+    conditional_modules:
+      - i18n
+  application:
+    file: rules/archetypes/application.md
+    id: application
+    default_modules:
+      - ux
+      - states
+      - forms
+      - tokens
+      - responsive
+      - data-density
+      - animation
+      - architecture
+      - mutations
+      - search
+      - notifications
+      - accessibility
+      - performance
+      - security
+      - ai-enforcement
+    conditional_modules:
+      - i18n
+  auth:
+    file: rules/archetypes/auth.md
+    id: auth
+    default_modules:
+      - ux
+      - states
+      - forms
+      - tokens
+      - responsive
+      - animation
+      - architecture
+      - mutations
+      - notifications
+      - accessibility
+      - performance
+      - security
+    conditional_modules:
+      - i18n
 
 framework_adapters:
   react:

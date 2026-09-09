@@ -1,15 +1,18 @@
-# Modern Web HIG & Product Engine Contract — v1.8.0
+# Modern Web HIG & Product Engine Contract — v1.9.0
 
 ## Executive Summary
 
-The Modern Web Human Interface Guidelines (HIG) v1.8.0 define design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+The Modern Web Human Interface Guidelines (HIG) v1.9.0 define design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
-This release adds standalone Level 2 rule modules and framework adapters (Phase 2):
+This release adds archetype rule packs and contract validation (Phase 3):
 
 1. **[HIG-CORE.md](./HIG-CORE.md) (Level 0)** — Philosophy, normative vocabulary, archetype resolution, and HIG-SIM-001.
 2. **[HIG-LITE.md](./HIG-LITE.md) (Level 1)** — Compressed executable summary with canonical rule ID cross-links. Default agent context.
-3. **[rules/*.md](./rules/) (Level 2)** — Standalone topic modules (accessibility, forms, architecture, security, etc.) + [framework/*.md](./framework/) adapters.
-4. **HIG.md (Level 3)** — Complete normative specification (this document).
+3. **[rules/archetypes/*.md](./rules/archetypes/) (Level 1.5)** — Archetype packs preload the correct module set per page type.
+4. **[rules/*.md](./rules/) (Level 2)** — Standalone topic modules + [framework/*.md](./framework/) adapters.
+5. **HIG.md (Level 3)** — Complete normative specification (this document).
+
+Run `npm run validate` (or `node scripts/validate-hig.mjs`) to verify VERSION, manifest, and file integrity.
 
 HIG-LITE and Level 2 modules are extracts of HIG — not separate standards. Every rule maps to a canonical rule ID here. When editing modules, keep them synchronized with this document.
 
@@ -39,6 +42,9 @@ MODERN WEB HIG
 │
 ├── framework/
 │   ├── react.md, next.md, vue.md, nuxt.md, astro.md
+│
+├── scripts/validate-hig.mjs   ← CI contract validation
+├── VERSION                    ← Single version pin
 │
 ├── Normative Vocabulary & Exception System
 ├── Layer 0: Applicability & Scope (Archetype Matrix)
@@ -106,6 +112,8 @@ rule:
 ---
 
 ## Layer 0: Applicability & Scope
+
+> **Level 2 module:** [rules/applicability.md](./rules/applicability.md) · **Archetype packs:** [rules/archetypes/](./rules/archetypes/)
 
 Not every rule applies to every page. A blog post does not need an async mutation state machine; a dashboard does. This layer defines page archetypes and the mandatory/optional matrix so that both humans and AI agents apply the correct subset.
 
@@ -1179,6 +1187,7 @@ Logs MUST include timestamp, actor, action, and resource — but MUST NOT includ
 
 Expanded release notes for each version: **[RELEASE_NOTES.md](./RELEASE_NOTES.md)**.
 
+* **v1.9.0 (2026-09-09):** Progressive loading Phase 3. Added archetype rule packs (`rules/archetypes/`), `rules/applicability.md`, `VERSION` file, `scripts/validate-hig.mjs`, and GitHub Actions validation workflow. Agents preload archetype-specific module sets after resolving page type.
 * **v1.8.0 (2026-09-09):** Progressive loading Phase 2. Extracted 16 standalone Level 2 rule modules in `rules/` and 5 framework adapters in `framework/`. Updated manifest to point to module files. HIG.md remains the complete normative contract with module cross-links.
 * **v1.7.0 (2026-09-09):** Progressive loading architecture (Phase 1). Added HIG-CORE.md (Level 0), HIG-LITE.md (Level 1), rules/INDEX.md and rules/manifest.yaml (Level 2). HIG-LITE is a compressed summary with canonical rule ID cross-links — not a divergent standard. Updated INTEGRATION.md and agent templates to default to Level 1 context.
 * **v1.6.0 (2026-09-09):** P2 capability expansion. Added Layer 9 Security & Privacy. Added error, empty-state, loading-state, notification, and search taxonomies (§2.5–2.10). Added forms contract (§2.11), i18n/localization with logical layout properties (§2.8), data density standards (§3.3), and browser permissions UX (§5.5). Expanded Layer 0 matrix, Layer 7 rule IDs, and Layer 8 security CI alignment.

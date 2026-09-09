@@ -1,6 +1,6 @@
 # Responsive Layout & Container Queries — Level 2 Module
 
-**Version:** v1.8.0 · **Canonical spec:** [HIG.md §3.2](../HIG.md#32-container-queries-engine) · **Rule ID:** HIG-CQ-001
+**Version:** v1.9.0 · **Canonical spec:** [HIG.md §3.2](../HIG.md#32-container-queries-engine) · **Rule ID:** HIG-CQ-001
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 

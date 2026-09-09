@@ -10,12 +10,13 @@ Before writing or changing UI, CSS, or front-end architecture:
 1. Read the product archetype map (`docs/hig-scope.md` if present).
 2. Resolve the page archetype: `content` | `commerce` | `application` | `auth`.
 3. Apply **Level 1** default context: `docs/hig/HIG-LITE.md` (or repo `HIG-LITE.md`).
-4. On topic match, load **Level 2** module from `docs/hig/rules/manifest.yaml` (e.g. `rules/accessibility.md`). Load `framework/*.md` when stack-specific.
-5. Escalate to **Level 3** full spec (`docs/hig/HIG.md` or repo `HIG.md`) only for edge cases or conflicts.
-6. Apply the Layer 0 mandatory/optional matrix from the pinned HIG.
-7. Obey the Layer 7 guardrails below. Prefer tokens and semantic HTML over one-off styles.
-8. Prefer the simplest implementation that satisfies applicable HIG requirements (HIG-SIM-001).
-9. Cite rule IDs when declining conflicting requests (e.g. `HIG-A11Y-003`).
+4. Load **Level 1.5** archetype pack: `docs/hig/rules/archetypes/<archetype>.md` → preload default modules.
+5. On topic match, load **Level 2** module from `docs/hig/rules/manifest.yaml` (e.g. `rules/accessibility.md`). Load `framework/*.md` when stack-specific.
+6. Escalate to **Level 3** full spec (`docs/hig/HIG.md` or repo `HIG.md`) only for edge cases or conflicts.
+7. Apply the Layer 0 mandatory/optional matrix from `rules/applicability.md`.
+8. Obey the Layer 7 guardrails below. Prefer tokens and semantic HTML over one-off styles.
+9. Prefer the simplest implementation that satisfies applicable HIG requirements (HIG-SIM-001).
+10. Cite rule IDs when declining conflicting requests (e.g. `HIG-A11Y-003`).
 
 ```yaml
 agent_enforcement_rules:
@@ -27,6 +28,7 @@ agent_enforcement_rules:
     progressive_loading:
       level_0: HIG-CORE.md
       level_1: HIG-LITE.md
+      level_1_5: rules/archetypes/{archetype}.md
       level_2: rules/manifest.yaml
       level_3: HIG.md
 
