@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Modern Web HIG — a universal Human Interface Guidelines and product-engine contract for modern web applications, commerce, and content platforms.">
+  <title>Modern Web HIG — Documentation</title>
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <div class="layout">
+    <nav class="sidebar" aria-label="Documentation">
+      <a class="brand" href="#top">Modern Web HIG</a>
+      <div class="version">v1.9.0</div>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#problem">Why it exists</a></li>
+        <li><a href="#layers">10-Layer Framework</a></li>
+        <li><a href="#progressive-loading">Progressive loading</a></li>
+        <li><a href="#archetypes">Archetype packs</a></li>
+        <li><a href="#rule-ids">Rule IDs</a></li>
+        <li><a href="#file-structure">File structure</a></li>
+        <li><a href="#integration">Integration</a></li>
+        <li><a href="#agents">AI agents</a></li>
+        <li><a href="#validation">Validation &amp; CI</a></li>
+        <li><a href="#spec">Full specification</a></li>
+      </ul>
+    </nav>
+
+    <main id="top">
+      <header class="hero">
+        <h1>Modern Web HIG</h1>
+        <p class="lead">
+          A universal Human Interface Guidelines (HIG) and <strong>product-engine contract</strong>
+          for modern web applications, commerce sites, and content platforms — designed for humans,
+          linters, CI pipelines, and AI coding agents.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md">Read HIG-LITE</a>
+          <a class="btn btn-secondary" href="https://github.com/frozonfreak/hig">View on GitHub</a>
+          <a class="btn btn-secondary" href="https://github.com/frozonfreak/hig/blob/main/INTEGRATION.md">Integration guide</a>
+        </div>
+      </header>
+
+      <section id="overview">
+        <h2>Overview</h2>
+        <p>
+          The Modern Web HIG is not a decorative style guide. It is a <strong>web engineering contract</strong>
+          that defines design principles, information architecture, state machines, interaction rules,
+          accessibility standards, security requirements, and programmatic enforcement constraints.
+        </p>
+        <p>
+          Every requirement is written to be testable — by humans during review, by automated linters where
+          possible, and by CI gates for mandatory compliance. Rule IDs (e.g. <code>HIG-A11Y-003</code>)
+          link daily agent context → full specification → future lint rules.
+        </p>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Designers &amp; engineers</h3>
+            <p>Shared UX, accessibility, performance, and security standards across products.</p>
+          </div>
+          <div class="card">
+            <h3>AI coding agents</h3>
+            <p>Deterministic, token-efficient context via HIG-LITE and progressive module loading.</p>
+          </div>
+          <div class="card">
+            <h3>Platform teams</h3>
+            <p>Archetype-scoped rules, CI gates, and a versioned contract you can pin in product repos.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="problem">
+        <h2>Why it exists</h2>
+        <p>
+          Most HIG documents grow into 15–30k token monoliths. AI agents do not need the entire specification
+          every time they create a button, a checkout form, or a data table. Loading everything wastes context
+          and increases the chance agents invent conflicting rules.
+        </p>
+        <p>
+          Modern Web HIG solves this with <strong>progressive loading</strong>: a small default context
+          (<a href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md">HIG-LITE</a>, ~1–2k tokens),
+          archetype-specific module bundles, topic-triggered deep modules, and the full
+          <a href="https://github.com/frozonfreak/hig/blob/main/HIG.md">HIG.md</a> only for edge cases.
+        </p>
+        <p class="muted">
+          HIG-LITE and Level 2 modules are <em>extracts</em> of the full specification — not a separate,
+          divergent standard. Every Lite rule maps to a canonical rule ID in HIG.md.
+        </p>
+      </section>
+
+      <section id="layers">
+        <h2>10-Layer Governance Framework</h2>
+        <p>
+          The contract is organized into layers 0–9. Layer 0 defines <em>which</em> rules apply to
+          <em>which</em> page type. Layers 1–9 define the rules themselves.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Layer</th>
+              <th>Focus</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>0</strong></td><td>Applicability &amp; Scope — page archetypes and mandatory/optional matrix</td></tr>
+            <tr><td><strong>1</strong></td><td>UX Principles — motion, functional micro-animations, spatial ergonomics</td></tr>
+            <tr><td><strong>2</strong></td><td>Information Architecture — document fundamentals, navigation, forms, states, i18n</td></tr>
+            <tr><td><strong>3</strong></td><td>Visual &amp; Design Tokens — three-tier token system, container queries, data density</td></tr>
+            <tr><td><strong>4</strong></td><td>Interaction &amp; State — server-driven rendering, mutations, optimistic UI, offline</td></tr>
+            <tr><td><strong>5</strong></td><td>Accessibility — WCAG 2.2 AA, keyboard patterns, focus management, target sizes</td></tr>
+            <tr><td><strong>6</strong></td><td>Performance — Core Web Vitals (LCP, INP, CLS), lab vs field metrics, budgets</td></tr>
+            <tr><td><strong>7</strong></td><td>AI &amp; Agent Enforcement — rule IDs, severity, YAML guardrails for coding agents</td></tr>
+            <tr><td><strong>8</strong></td><td>Quality Assurance — blocking / warning / observation CI/CD gates</td></tr>
+            <tr><td><strong>9</strong></td><td>Security &amp; Privacy — CSP, XSS/CSRF, PII, auth UX, audit logging</td></tr>
+          </tbody>
+        </table>
+        <h3>Page archetypes</h3>
+        <p>Not every rule applies to every page. Resolve archetype <em>before</em> applying rules:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Archetype</th>
+              <th>Examples</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Content / Marketing</td><td>Landing pages, blogs, docs, campaigns</td></tr>
+            <tr><td>Commerce</td><td>Product listings, PDP, cart, checkout</td></tr>
+            <tr><td>Application / Dashboard</td><td>Admin panels, authenticated tools, workflows</td></tr>
+            <tr><td>Auth / Account</td><td>Sign-in, sign-up, recovery, settings</td></tr>
+          </tbody>
+        </table>
+        <p class="muted">
+          Accessibility, design tokens, performance, and security are <strong>universal</strong> — never optional.
+        </p>
+      </section>
+
+      <section id="progressive-loading">
+        <h2>Progressive loading</h2>
+        <p>
+          Agents and teams load only what they need. Five levels, from philosophy to full spec:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Level</th>
+              <th>File</th>
+              <th>When to load</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>0</strong></td>
+              <td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-CORE.md">HIG-CORE.md</a></td>
+              <td>Session start — vocabulary, archetypes, HIG-SIM-001</td>
+            </tr>
+            <tr>
+              <td><strong>1</strong></td>
+              <td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md">HIG-LITE.md</a></td>
+              <td><strong>Default</strong> for every UI/CSS/front-end task</td>
+            </tr>
+            <tr>
+              <td><strong>1.5</strong></td>
+              <td><a href="https://github.com/frozonfreak/hig/tree/main/rules/archetypes">rules/archetypes/</a></td>
+              <td>After archetype resolved — preload default module set</td>
+            </tr>
+            <tr>
+              <td><strong>2</strong></td>
+              <td><a href="https://github.com/frozonfreak/hig/tree/main/rules">rules/*.md</a></td>
+              <td>Topic match (combobox → accessibility, checkout → forms, …)</td>
+            </tr>
+            <tr>
+              <td><strong>3</strong></td>
+              <td><a href="https://github.com/frozonfreak/hig/blob/main/HIG.md">HIG.md</a></td>
+              <td>Edge cases, spec conflicts, full normative detail</td>
+            </tr>
+          </tbody>
+        </table>
+        <pre><code>                    MODERN WEB HIG
+                          │
+             ┌────────────┼────────────┐
+             │            │            │
+       HIG-CORE.md   HIG-LITE.md     HIG.md
+        Level 0       Level 1       Level 3
+                          │
+              rules/archetypes/  (Level 1.5)
+                          │
+              rules/*.md + framework/*.md  (Level 2)</code></pre>
+        <p>
+          Topic loading is driven by
+          <a href="https://github.com/frozonfreak/hig/blob/main/rules/manifest.yaml">rules/manifest.yaml</a>
+          — a machine-readable index of triggers, rule IDs, and module files.
+        </p>
+      </section>
+
+      <section id="archetypes">
+        <h2>Archetype packs</h2>
+        <p>
+          Each archetype pack lists <strong>default modules</strong> to preload and modules to skip.
+          A landing page agent loads ~7 modules; a dashboard agent loads ~15.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Archetype</th>
+              <th>Pack</th>
+              <th>Default modules</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Content / Marketing</td>
+              <td><a href="https://github.com/frozonfreak/hig/blob/main/rules/archetypes/content.md">content.md</a></td>
+              <td>7 — ux, tokens, responsive, animation, accessibility, performance, security</td>
+            </tr>
+            <tr>
+              <td>Commerce</td>
+              <td><a href="https://github.com/frozonfreak/hig/blob/main/rules/archetypes/commerce.md">commerce.md</a></td>
+              <td>13 — adds forms, states, mutations, search, architecture, …</td>
+            </tr>
+            <tr>
+              <td>Application</td>
+              <td><a href="https://github.com/frozonfreak/hig/blob/main/rules/archetypes/application.md">application.md</a></td>
+              <td>15 — full set including data-density, ai-enforcement</td>
+            </tr>
+            <tr>
+              <td>Auth / Account</td>
+              <td><a href="https://github.com/frozonfreak/hig/blob/main/rules/archetypes/auth.md">auth.md</a></td>
+              <td>12 — security-critical; no decorative motion</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>Example: accessible combobox</h3>
+        <div class="flow">
+          <span>HIG-LITE</span>
+          <span class="arrow">→</span>
+          <span>archetype pack</span>
+          <span class="arrow">→</span>
+          <span>rules/accessibility.md</span>
+          <span class="arrow">→</span>
+          <span>HIG.md §5.3 (if needed)</span>
+        </div>
+      </section>
+
+      <section id="rule-ids">
+        <h2>Rule ID system</h2>
+        <p>
+          Every enforceable requirement has a stable ID. Agents cite IDs when declining conflicting requests;
+          linters and CI map IDs to automated checks.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Prefix</th>
+              <th>Domain</th>
+              <th>Example</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>HIG-A11Y-*</code></td><td>Accessibility</td><td><code>HIG-A11Y-003</code> — native HTML over ARIA</td></tr>
+            <tr><td><code>HIG-TOK-*</code></td><td>Design tokens</td><td><code>HIG-TOK-001</code> — no raw hex outside token files</td></tr>
+            <tr><td><code>HIG-MOT-*</code></td><td>Motion</td><td><code>HIG-MOT-001</code> — no <code>transition: all</code></td></tr>
+            <tr><td><code>HIG-CQ-*</code></td><td>Container queries</td><td><code>HIG-CQ-001</code> — component layout via <code>@container</code></td></tr>
+            <tr><td><code>HIG-SSR-*</code></td><td>Server rendering</td><td><code>HIG-SSR-001</code> — default to server rendering</td></tr>
+            <tr><td><code>HIG-MUT-*</code></td><td>Mutations</td><td><code>HIG-MUT-001</code> — no optimistic destructive confirmation</td></tr>
+            <tr><td><code>HIG-SEC-*</code></td><td>Security</td><td><code>HIG-SEC-002</code> — CSP configured</td></tr>
+            <tr><td><code>HIG-SIM-001</code></td><td>Simplicity</td><td>Prefer simplest compliant implementation</td></tr>
+          </tbody>
+        </table>
+        <p>
+          Full registry:
+          <a href="https://github.com/frozonfreak/hig/blob/main/rules/INDEX.md">rules/INDEX.md</a>
+        </p>
+      </section>
+
+      <section id="file-structure">
+        <h2>Repository structure</h2>
+        <pre><code>modern-web-hig/
+├── HIG-CORE.md              Level 0 — philosophy + archetypes
+├── HIG-LITE.md              Level 1 — default agent context
+├── HIG.md                   Level 3 — complete specification
+├── VERSION                  Single version pin (1.9.0)
+├── rules/
+│   ├── manifest.yaml        Machine-readable load triggers
+│   ├── INDEX.md             Rule ID registry
+│   ├── applicability.md     Layer 0 matrix
+│   ├── accessibility.md     … 16 topic modules
+│   └── archetypes/          content, commerce, application, auth
+├── framework/
+│   ├── react.md, next.md, vue.md, nuxt.md, astro.md
+├── examples/agent-rules/    Cursor, Claude, Copilot, AGENTS templates
+├── scripts/validate-hig.mjs Contract integrity validation
+└── INTEGRATION.md           Product repo adoption guide</code></pre>
+        <h3>Level 2 topic modules</h3>
+        <p class="muted">
+          accessibility · ux · states · forms · tokens · responsive · data-density · animation ·
+          architecture · mutations · performance · search · notifications · i18n · security · ai-enforcement
+        </p>
+      </section>
+
+      <section id="integration">
+        <h2>Integration into your product</h2>
+        <p>
+          Adopt in stages — agent rules first (minutes), lint/CI when ready (hours).
+        </p>
+        <ol class="steps">
+          <li>
+            <strong>Pin the contract</strong> — vendor-copy <code>HIG-LITE.md</code>, <code>HIG.md</code>,
+            <code>VERSION</code>, <code>rules/</code>, and <code>framework/</code> into e.g.
+            <code>docs/hig/</code> in your product repo.
+          </li>
+          <li>
+            <strong>Declare archetypes</strong> — create <code>docs/hig-scope.md</code> mapping routes to
+            Content / Commerce / Application / Auth (see
+            <a href="https://github.com/frozonfreak/hig/blob/main/examples/hig-scope.example.md">example</a>).
+          </li>
+          <li>
+            <strong>Wire agents</strong> — copy templates from
+            <a href="https://github.com/frozonfreak/hig/tree/main/examples/agent-rules">examples/agent-rules/</a>
+            for Cursor, Claude Code, Copilot, or AGENTS.md.
+          </li>
+          <li>
+            <strong>PR checklist</strong> — human review until custom linters exist.
+          </li>
+          <li>
+            <strong>Lint + CI</strong> — encode Layer 7 rules as ESLint/Stylelint; run Layer 8 gates
+            (a11y, performance, security).
+          </li>
+        </ol>
+      </section>
+
+      <section id="agents">
+        <h2>AI agent workflow</h2>
+        <p>Before writing or changing UI, CSS, or front-end architecture:</p>
+        <ol class="steps">
+          <li>Resolve page archetype from product scope doc.</li>
+          <li>Read <strong>HIG-LITE.md</strong> (Level 1).</li>
+          <li>Load <strong>archetype pack</strong> (Level 1.5) → preload default modules.</li>
+          <li>Match task keywords against <strong>manifest.yaml</strong> → load Level 2 modules.</li>
+          <li>Load <strong>framework/*.md</strong> when stack-specific (React, Next, Vue, …).</li>
+          <li>Apply Layer 7 YAML guardrails from agent rule file.</li>
+          <li>Escalate to <strong>HIG.md</strong> only for edge cases.</li>
+          <li>Cite rule IDs when declining conflicting requests.</li>
+        </ol>
+        <p class="muted">
+          Do <em>not</em> paste the entire HIG into system prompts. CI is the hard backstop for MUST violations.
+        </p>
+      </section>
+
+      <section id="validation">
+        <h2>Validation &amp; CI</h2>
+        <p>
+          The repository includes contract integrity validation to keep VERSION, manifest, modules, and
+          archetype packs synchronized.
+        </p>
+        <pre><code>npm run validate
+# or: node scripts/validate-hig.mjs</code></pre>
+        <p>Checks include:</p>
+        <ul>
+          <li><code>VERSION</code> matches <code>HIG.md</code>, <code>HIG-LITE.md</code>, and <code>manifest.yaml</code></li>
+          <li>All manifest-referenced files exist</li>
+          <li>All four archetype packs exist</li>
+          <li>Rule ID consistency between INDEX and manifest</li>
+        </ul>
+        <p>
+          GitHub Actions runs validation on every push and pull request to <code>main</code>, and deploys
+          this documentation site.
+        </p>
+      </section>
+
+      <section id="spec">
+        <h2>Full specification</h2>
+        <p>Start with the essentials, open the full contract when needed:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Document</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md">HIG-LITE.md</a></td>
+              <td>Essential rules — start here</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/frozonfreak/hig/blob/main/HIG.md">HIG.md</a></td>
+              <td>Complete normative contract</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/frozonfreak/hig/blob/main/INTEGRATION.md">INTEGRATION.md</a></td>
+              <td>Product repo adoption</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/frozonfreak/hig/blob/main/RELEASE_NOTES.md">RELEASE_NOTES.md</a></td>
+              <td>Version history and migration notes</td>
+            </tr>
+            <tr>
+              <td><a href="https://github.com/frozonfreak/hig/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a></td>
+              <td>How to propose spec changes</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <footer class="site-footer">
+        <a href="https://github.com/frozonfreak/hig">GitHub repository</a>
+        <a href="https://github.com/frozonfreak/hig/blob/main/LICENSE">MIT License</a>
+        <a href="https://github.com/frozonfreak/hig/releases">Releases</a>
+        <p>Modern Web HIG v1.9.0 — maintained as an open specification, not a component library.</p>
+      </footer>
+    </main>
+  </div>
+  <script>
+    const links = document.querySelectorAll('nav.sidebar a[href^="#"]');
+    const sections = [...links].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+    function updateActive() {
+      let current = sections[0]?.id;
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top <= 120) current = section.id;
+      }
+      links.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+      });
+    }
+
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  </script>
+</body>
+</html>

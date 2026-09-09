@@ -2,7 +2,7 @@
 
 A universal Human Interface Guidelines (HIG) and product-engine contract for modern web applications, commerce sites, and content platforms.
 
-**Current version:** [v1.9.0](./HIG.md) · [Release notes](./RELEASE_NOTES.md)
+**Current version:** [v1.9.0](./HIG.md) · [Release notes](./RELEASE_NOTES.md) · **[Documentation site](https://frozonfreak.github.io/hig/)**
 
 ## What is this?
 
