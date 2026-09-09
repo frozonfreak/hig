@@ -1,6 +1,6 @@
-# Integrating Modern Web HIG into your development workflow
+# Integrating Web HIG into your development workflow
 
-This guide shows an **efficient** way to adopt the Modern Web HIG in a product repo: progressive loading, thin agent rules, then lint/CI — without pasting the full contract into every prompt.
+This guide shows an **efficient** way to adopt the Web HIG in a product repo: progressive loading, thin agent rules, then lint/CI — without pasting the full contract into every prompt.
 
 **Current contract:** [HIG.md](./HIG.md) v1.9.0 (see README for version).
 
@@ -70,7 +70,7 @@ Create a short product-local scope file (example: `docs/hig-scope.md`):
 ```markdown
 # HIG scope for this product
 
-Pinned contract: Modern Web HIG v1.9.0
+Pinned contract: Web HIG v1.9.0
 - Daily context: `docs/hig/HIG-LITE.md`
 - Full spec: `docs/hig/HIG.md`
 - Topic index: `docs/hig/rules/manifest.yaml`
@@ -128,7 +128,7 @@ Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) into
 When starting a UI task, prepend:
 
 ```text
-Follow Modern Web HIG v1.9.0.
+Follow Web HIG v1.9.0.
 Default context: docs/hig/HIG-LITE.md (Level 1).
 Archetype pack: docs/hig/rules/archetypes/<content|commerce|application|auth>.md (Level 1.5).
 Load docs/hig/rules/<module>.md from manifest.yaml when task matches a topic.

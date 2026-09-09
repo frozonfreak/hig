@@ -1,9 +1,9 @@
 ---
-description: Enforce Modern Web HIG on UI and front-end work
+description: Enforce Web HIG on UI and front-end work
 alwaysApply: true
 ---
 
-# Modern Web HIG (agent contract)
+# Web HIG (agent contract)
 
 Before writing or changing UI, CSS, or front-end architecture:
 

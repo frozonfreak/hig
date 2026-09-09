@@ -1,6 +1,6 @@
-# Modern Web HIG — Copilot instructions
+# Web HIG — Copilot instructions
 
-Follow Modern Web HIG v1.9.0.
+Follow Web HIG v1.9.0.
 
 - **Default context:** `docs/hig/HIG-LITE.md` (Level 1) — do not load full HIG unless needed
 - **Topic modules:** `docs/hig/rules/manifest.yaml` (Level 2) — load matching `rules/*.md` on topic match; `framework/*.md` when stack-specific

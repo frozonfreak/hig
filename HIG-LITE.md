@@ -1,4 +1,4 @@
-# Modern Web HIG — Essential Rules (Level 1)
+# Web HIG — Essential Rules (Level 1)
 
 **Version:** v1.9.0 · **Core:** [HIG-CORE.md](./HIG-CORE.md) · **Full spec:** [HIG.md](./HIG.md) · **Topic index:** [rules/INDEX.md](./rules/INDEX.md)
 

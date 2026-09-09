@@ -1,6 +1,6 @@
 # Release Notes
 
-User-facing notes for each published version of the Modern Web HIG. The brief machine-oriented summary lives in [`HIG.md` §8.1](./HIG.md#81-version-history); this file expands those entries with highlights, adoption guidance, and layer impact.
+User-facing notes for each published version of the Web HIG. The brief machine-oriented summary lives in [`HIG.md` §8.1](./HIG.md#81-version-history); this file expands those entries with highlights, adoption guidance, and layer impact.
 
 Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 

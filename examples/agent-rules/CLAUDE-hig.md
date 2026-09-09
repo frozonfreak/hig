@@ -1,6 +1,6 @@
-# Modern Web HIG
+# Web HIG
 
-This project follows the Modern Web HIG v1.9.0.
+This project follows the Web HIG v1.9.0.
 
 - **Default context (Level 1):** `docs/hig/HIG-LITE.md` (or repo `HIG-LITE.md`)
 - **Topic index (Level 2):** `docs/hig/rules/manifest.yaml`

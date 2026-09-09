@@ -1,6 +1,6 @@
-# Agent instructions — Modern Web HIG
+# Agent instructions — Web HIG
 
-Pinned contract: Modern Web HIG v1.9.0  
+Pinned contract: Web HIG v1.9.0  
 Default context: `docs/hig/HIG-LITE.md`  
 Topic index: `docs/hig/rules/manifest.yaml`  
 Full spec: `docs/hig/HIG.md` (edge cases only)  

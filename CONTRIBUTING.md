@@ -1,6 +1,6 @@
-# Contributing to Modern Web HIG
+# Contributing to Web HIG
 
-Thank you for your interest in improving the Modern Web HIG. This document explains how to propose changes to the contract.
+Thank you for your interest in improving the Web HIG. This document explains how to propose changes to the contract.
 
 ## What belongs here
 

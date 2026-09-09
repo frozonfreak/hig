@@ -1,4 +1,4 @@
-# Modern Web HIG — Core (Level 0)
+# Web HIG — Core (Level 0)
 
 **Version:** v1.9.0 · **Canonical contract:** [HIG.md](./HIG.md) · **Daily agent context:** [HIG-LITE.md](./HIG-LITE.md)
 
@@ -8,7 +8,7 @@ Level 0 is the non-negotiable preamble: philosophy, vocabulary, archetype resolu
 
 ## Purpose
 
-The Modern Web HIG is a **web engineering contract** — not a decorative style guide. Every requirement is testable by humans, linters, or CI where possible.
+The Web HIG is a **web engineering contract** — not a decorative style guide. Every requirement is testable by humans, linters, or CI where possible.
 
 ## Normative vocabulary (RFC 2119)
 

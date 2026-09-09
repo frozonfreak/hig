@@ -1,4 +1,4 @@
-# Modern Web HIG — Rule Index (Level 2)
+# Web HIG — Rule Index (Level 2)
 
 **Version:** v1.9.0 · **Machine-readable:** [manifest.yaml](./manifest.yaml) · **Daily summary:** [HIG-LITE.md](../HIG-LITE.md) · **Full spec:** [HIG.md](../HIG.md)
 

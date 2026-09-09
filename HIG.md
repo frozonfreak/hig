@@ -1,8 +1,8 @@
-# Modern Web HIG & Product Engine Contract — v1.9.0
+# Web HIG & Product Engine Contract — v1.9.0
 
 ## Executive Summary
 
-The Modern Web Human Interface Guidelines (HIG) v1.9.0 define design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+Web HIG v1.9.0 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
 This release adds archetype rule packs and contract validation (Phase 3):
 
@@ -27,7 +27,7 @@ The v1.6.0 P2 capability expansion remains in force:
 ### Document Structure
 
 ```
-MODERN WEB HIG
+WEB HIG
 │
 ├── HIG-CORE.md              ← Level 0: philosophy + critical rules (~500 tokens)
 ├── HIG-LITE.md              ← Level 1: AI default context (~1–2k tokens)

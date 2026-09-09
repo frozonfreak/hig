@@ -1,7 +1,7 @@
 {
-  "name": "modern-web-hig",
+  "name": "web-hig",
   "private": true,
-  "description": "Modern Web HIG specification repository",
+  "description": "Web HIG specification repository",
   "scripts": {
     "validate": "node scripts/validate-hig.mjs"
   }

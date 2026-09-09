@@ -1,6 +1,6 @@
 # HIG scope for this product (example)
 
-Pinned contract: Modern Web HIG v1.9.0
+Pinned contract: Web HIG v1.9.0
 
 | File | Purpose |
 | --- | --- |
