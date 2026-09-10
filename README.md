@@ -4,7 +4,7 @@
 
 An open, vendor-neutral standard for how web interfaces should behave — for your team, your design system, and your AI coding tools.
 
-**[Quick Reference](./HIG-QUICK.md)** · **[View on GitHub](https://github.com/frozonfreak/hig)** · **[Documentation site](https://frozonfreak.github.io/hig/)** · **[Integrate](./INTEGRATION.md)**
+**[Quick Reference](./HIG-QUICK.md)** · **[Live demo](https://hig.aruviflow.com/)** · **[View on GitHub](https://github.com/frozonfreak/hig)** · **[Documentation site](https://frozonfreak.github.io/hig/)** · **[Integrate](./INTEGRATION.md)**
 
 **Current version:** [v1.9.0](./HIG.md) · [Release notes](./RELEASE_NOTES.md)
 
@@ -145,7 +145,7 @@ Full adoption guide: **[INTEGRATION.md](./INTEGRATION.md)**
 
 **Supporting files:** [HIG-CORE.md](./HIG-CORE.md) · [rules/INDEX.md](./rules/INDEX.md) · [rules/manifest.yaml](./rules/manifest.yaml) · [VERSION](./VERSION)
 
-Explore the full specification on the **[documentation site](https://frozonfreak.github.io/hig/)**.
+Explore the full specification on the **[documentation site](https://frozonfreak.github.io/hig/)** or try the **[live demo](https://hig.aruviflow.com/)**.
 
 ---
 
