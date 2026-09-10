@@ -1,12 +1,12 @@
-# Web HIG & Product Engine Contract — v1.9.0
+# The Web HIG & Product Engine Contract — v1.9.0
 
 ## Executive Summary
 
-Web HIG v1.9.0 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+The Web HIG v1.9.0 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
 This release adds a three-layer consumption model and archetype rule packs:
 
-1. **[HIG-QUICK.md](./HIG-QUICK.md) (Layer 1)** — 98 imperative rules, ~5 minutes. **Default agent context.** Tell AI: *"Follow Modern Web HIG Quick Reference."*
+1. **[HIG-QUICK.md](./HIG-QUICK.md) (Layer 1)** — 98 imperative rules, ~5 minutes. **Default agent context.** Tell AI: *"Follow The Web HIG Quick Reference."*
 2. **[HIG-LITE.md](./HIG-LITE.md) + [rules/](./rules/) + [framework/](./framework/) (Layer 2)** — Practical documentation with rule IDs, topic modules, and archetype packs.
 3. **HIG.md (Layer 3)** — Complete normative specification (this document). Edge cases and CI gate definitions only.
 4. **[HIG-CORE.md](./HIG-CORE.md)** — Session preamble: philosophy, vocabulary, archetype resolution, HIG-SIM-001.
@@ -26,7 +26,7 @@ The v1.6.0 P2 capability expansion remains in force:
 ### Document Structure
 
 ```
-WEB HIG — three consumption layers
+THE WEB HIG — three consumption layers
 │
 ├── HIG-QUICK.md             ← Layer 1: Quick Reference (~5 min, 98 rules) — AI default
 ├── HIG-LITE.md              ← Layer 2: Practical summary with rule ID links

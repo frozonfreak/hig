@@ -1,6 +1,6 @@
 # Release Notes
 
-User-facing notes for each published version of the Web HIG. The brief machine-oriented summary lives in [`HIG.md` §8.1](./HIG.md#81-version-history); this file expands those entries with highlights, adoption guidance, and layer impact.
+User-facing notes for each published version of The Web HIG. The brief machine-oriented summary lives in [`HIG.md` §8.1](./HIG.md#81-version-history); this file expands those entries with highlights, adoption guidance, and layer impact.
 
 Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
@@ -12,7 +12,7 @@ Progressive loading Phase 3 — archetype rule packs and contract validation.
 
 ### Highlights
 
-- **[HIG-QUICK.md](./HIG-QUICK.md) (Layer 1)** — 98-rule Quick Reference (~5 min). Default agent context. Tell AI: *"Follow Modern Web HIG Quick Reference."*
+- **[HIG-QUICK.md](./HIG-QUICK.md) (Layer 1)** — 98-rule Quick Reference (~5 min). Default agent context. Tell AI: *"Follow The Web HIG Quick Reference."*
 - **Three consumption layers** — Quick Reference (Layer 1) → Practical docs (Layer 2: HIG-LITE + rules/) → Full spec (Layer 3: HIG.md).
 - **Archetype packs** (`rules/archetypes/`) — content, commerce, application, auth bundles that preload the correct Layer 2 modules per page type.
 - **[rules/applicability.md](./rules/applicability.md)** — Layer 0 extract with matrix and agent workflow.

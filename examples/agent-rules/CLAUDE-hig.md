@@ -1,8 +1,8 @@
-# Web HIG
+# The Web HIG
 
-This project follows the Web HIG v1.9.0.
+This project follows The Web HIG v1.9.0.
 
-- **Quick Reference (Layer 1):** `docs/hig/HIG-QUICK.md` — *Follow Modern Web HIG Quick Reference.*
+- **Quick Reference (Layer 1):** `docs/hig/HIG-QUICK.md` — *Follow The Web HIG Quick Reference.*
 - **Practical guide (Layer 2):** `docs/hig/HIG-LITE.md` + `docs/hig/rules/manifest.yaml`
 - **Full spec (Layer 3):** `docs/hig/HIG.md` (edge cases only)
 - **Archetype map:** `docs/hig-scope.md`

@@ -1,6 +1,6 @@
 # HIG scope for this product (example)
 
-Pinned contract: Web HIG v1.9.0
+Pinned contract: The Web HIG v1.9.0
 
 | File | Purpose |
 | --- | --- |
@@ -22,4 +22,4 @@ Pinned contract: Web HIG v1.9.0
 
 **Default for new UI:** Application unless this table says otherwise.
 
-**Agent one-liner:** *Follow Modern Web HIG Quick Reference (`docs/hig/HIG-QUICK.md`).*
+**Agent one-liner:** *Follow The Web HIG Quick Reference (`docs/hig/HIG-QUICK.md`).*

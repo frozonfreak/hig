@@ -1,6 +1,6 @@
 # Examples
 
-Copy these into a **product** repository — they are not loaded by this HIG repo itself.
+Copy these into a **product** repository — they are not loaded by The Web HIG repository itself.
 
 | File | Destination in product repo |
 | --- | --- |

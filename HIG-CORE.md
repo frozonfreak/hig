@@ -1,4 +1,4 @@
-# Web HIG — Core (Level 0)
+# The Web HIG — Core (Level 0)
 
 **Version:** v1.9.0 · **Quick Reference:** [HIG-QUICK.md](./HIG-QUICK.md) · **Practical:** [HIG-LITE.md](./HIG-LITE.md) · **Full spec:** [HIG.md](./HIG.md)
 

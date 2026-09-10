@@ -1,7 +1,7 @@
-# Agent instructions — Web HIG
+# Agent instructions — The Web HIG
 
-Pinned contract: Web HIG v1.9.0  
-Default context: `docs/hig/HIG-QUICK.md` — *Follow Modern Web HIG Quick Reference.*  
+Pinned contract: The Web HIG v1.9.0  
+Default context: `docs/hig/HIG-QUICK.md` — *Follow The Web HIG Quick Reference.*  
 Practical guide: `docs/hig/HIG-LITE.md`  
 Topic index: `docs/hig/rules/manifest.yaml`  
 Full spec: `docs/hig/HIG.md` (edge cases only)  

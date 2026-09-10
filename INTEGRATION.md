@@ -1,6 +1,6 @@
-# Integrating Web HIG into your development workflow
+# Integrating The Web HIG into your development workflow
 
-This guide shows an **efficient** way to adopt the Web HIG in a product repo: progressive loading, thin agent rules, then lint/CI — without pasting the full contract into every prompt.
+This guide shows an **efficient** way to adopt The Web HIG in a product repo: progressive loading, thin agent rules, then lint/CI — without pasting the full contract into every prompt.
 
 **Current contract:** [HIG.md](./HIG.md) v1.9.0 (see README for version).
 
@@ -18,7 +18,7 @@ This guide shows an **efficient** way to adopt the Web HIG in a product repo: pr
 
 **Do not** dump all of `HIG.md` into every system prompt. Agents work better with:
 
-1. [HIG-QUICK.md](./HIG-QUICK.md) as default context (Layer 1) — *"Follow Modern Web HIG Quick Reference."*
+1. [HIG-QUICK.md](./HIG-QUICK.md) as default context (Layer 1) — *"Follow The Web HIG Quick Reference."*
 2. [HIG-LITE.md](./HIG-LITE.md) + topic modules when building features (Layer 2)
 3. A short always-on agent rule (archetype + Layer 7 YAML)
 4. [HIG.md](./HIG.md) only for edge cases (Layer 3)
@@ -72,7 +72,7 @@ Create a short product-local scope file (example: `docs/hig-scope.md`):
 ```markdown
 # HIG scope for this product
 
-Pinned contract: Web HIG v1.9.0
+Pinned contract: The Web HIG v1.9.0
 - Quick Reference: `docs/hig/HIG-QUICK.md`
 - Practical guide: `docs/hig/HIG-LITE.md`
 - Full spec: `docs/hig/HIG.md`
@@ -132,7 +132,7 @@ Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) into
 When starting a UI task, prepend:
 
 ```text
-Follow Modern Web HIG Quick Reference (docs/hig/HIG-QUICK.md) — Layer 1.
+Follow The Web HIG Quick Reference (docs/hig/HIG-QUICK.md) — Layer 1.
 Open docs/hig/HIG-LITE.md (Layer 2) when building features or you need rule ID links.
 Archetype pack: docs/hig/rules/archetypes/<content|commerce|application|auth>.md.
 Load docs/hig/rules/<module>.md from manifest.yaml when task matches a topic.

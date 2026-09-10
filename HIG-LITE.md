@@ -1,4 +1,4 @@
-# Web HIG — Practical Guide (Layer 2)
+# The Web HIG — Practical Guide (Layer 2)
 
 **Version:** v1.9.0 · **Quick Reference:** [HIG-QUICK.md](./HIG-QUICK.md) · **Core:** [HIG-CORE.md](./HIG-CORE.md) · **Full spec:** [HIG.md](./HIG.md) · **Topic index:** [rules/INDEX.md](./rules/INDEX.md)
 

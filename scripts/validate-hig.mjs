@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Web HIG — contract validation (Phase 3)
+ * The Web HIG — contract validation (Phase 3)
  * Run: node scripts/validate-hig.mjs
  */
 import fs from 'node:fs';
@@ -141,4 +141,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`✓ Web HIG v${versionFile} validation passed (${moduleFiles.length} modules, ${archetypeIds.length} archetype packs)`);
+console.log(`✓ The Web HIG v${versionFile} validation passed (${moduleFiles.length} modules, ${archetypeIds.length} archetype packs)`);

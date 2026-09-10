@@ -1,10 +1,10 @@
-# Modern Web HIG — Quick Reference
+# The Web HIG — Quick Reference
 
 **Layer 1** · ~5 minutes · **Version:** v1.9.0
 
 Ninety-eight imperative rules. Read this first. For practical detail, open [HIG-LITE.md](./HIG-LITE.md) (Layer 2). For edge cases and normative depth, open [HIG.md](./HIG.md) (Layer 3).
 
-> **For AI agents:** *"Follow Modern Web HIG Quick Reference."* — paste or pin this file instead of the full specification.
+> **For AI agents:** *"Follow The Web HIG Quick Reference."* — paste or pin this file instead of the full specification.
 
 > **Note:** This is not a UI component library. It is a governance contract for your existing design system.
 
@@ -168,4 +168,4 @@ Ninety-eight imperative rules. Read this first. For practical detail, open [HIG-
 | Edge cases, normative detail, CI gates | [HIG.md](./HIG.md) — **Layer 3** |
 | Agent integration | [INTEGRATION.md](./INTEGRATION.md) |
 
-**Agent one-liner:** *Follow [Modern Web HIG Quick Reference](HIG-QUICK.md). Escalate to HIG-LITE for practical detail and HIG.md only for edge cases.*
+**Agent one-liner:** *Follow [The Web HIG Quick Reference](HIG-QUICK.md). Escalate to HIG-LITE for practical detail and HIG.md only for edge cases.*

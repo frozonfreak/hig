@@ -10,7 +10,7 @@ An open, vendor-neutral standard for how web interfaces should behave — for yo
 
 ---
 
-> **Not a component library.** A behavioral contract for modern web applications that humans and AI coding agents can follow and validate. You keep your design system, framework, and components — the HIG defines how they should work together.
+> **Not a component library.** A behavioral contract for modern web applications that humans and AI coding agents can follow and validate. You keep your design system, framework, and components — The Web HIG defines how they should work together.
 
 **Design systems define *what* your UI looks like.**  
 **The Web HIG defines *how* it behaves.**
@@ -28,7 +28,7 @@ The web already has HTML standards, WCAG guidelines, CSS conventions, and design
 | WCAG | Accessibility |
 | Design systems | Visual consistency |
 | Frameworks | Implementation |
-| **Web HIG** | **Behavioral contract** |
+| **The Web HIG** | **Behavioral contract** |
 
 **Where this fits:**
 
@@ -39,7 +39,7 @@ Accessibility    WCAG
       ↓
 Design system    MUI / shadcn / custom
       ↓
-Web HIG          behavior, states, UX, performance, security, enforcement
+The Web HIG    behavior, states, UX, performance, security, enforcement
       ↓
 Application
       ↓
@@ -67,10 +67,10 @@ Progressive disclosure — load only what you need. Pin [HIG-QUICK.md](./HIG-QUI
 | **Practical** | [HIG-LITE.md](./HIG-LITE.md) + [rules/](./rules/) | Building features — rule IDs, topic modules, archetype packs |
 | **Full** | [HIG.md](./HIG.md) | Edge cases, spec conflicts, CI gate definitions |
 
-**Tell an AI:** *"Follow Modern Web HIG Quick Reference."*
+**Tell an AI:** *"Follow The Web HIG Quick Reference."*
 
 ```
-                         WEB HIG
+                         THE WEB HIG
                              │
           ┌──────────────────┼──────────────────┐
           │                  │                  │
