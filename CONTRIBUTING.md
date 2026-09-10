@@ -1,53 +1,91 @@
 # Contributing to The Web HIG
 
-Thank you for your interest in improving The Web HIG. This document explains how to propose changes to the contract.
+Thank you for helping improve an **open behavioral standard** for the web. This repository holds the specification and supporting artifacts — not a reference UI library.
+
+**Before you start:** [RATIONALE.md](./RATIONALE.md) (why we exist) · [SPECIFICATION.md](./SPECIFICATION.md) (where normative text lives) · [VERSIONING.md](./VERSIONING.md) (semver rules)
+
+---
 
 ## What belongs here
 
-This repository is the **source of truth** for the HIG specification itself — design principles, token definitions, state-machine diagrams, agent guardrails, and CI gate thresholds. It is not a reference implementation or component library.
+Good contributions:
 
-Good contributions include:
+- Clarifying ambiguous **MUST** / **SHOULD** language or resolving contradictions
+- New or refined rules with stable IDs, severity, and archetype applicability
+- Layer 0 matrix updates for archetypes
+- Synchronized updates across [HIG.md](./HIG.md), [HIG-QUICK.md](./HIG-QUICK.md), [HIG-LITE.md](./HIG-LITE.md), and [rules/*.md](./rules/)
+- [rules/INDEX.md](./rules/INDEX.md) and [rules/manifest.yaml](./rules/manifest.yaml) registry entries
+- [framework/*.md](./framework/) adapter improvements
+- Machine-readable artifacts ([MACHINE_READABLE.md](./MACHINE_READABLE.md), [schema/](./schema/))
+- [INTEGRATION.md](./INTEGRATION.md), [examples/](./examples/), and agent templates
+- Adopter entries ([ADOPTERS.md](./ADOPTERS.md)) with pinned semver evidence
 
-- Clarifying ambiguous rules or resolving internal contradictions
-- Adding missing WCAG, performance, or i18n criteria
-- Correcting contrast-verified token values
-- Expanding the Layer 0 applicability matrix for new page archetypes
-- Improving machine-readable enforcement specs (YAML, ESLint/Stylelint configs)
-- Improving [INTEGRATION.md](./INTEGRATION.md) or the copy-paste templates under `examples/agent-rules/`
-- Updating [HIG-QUICK.md](./HIG-QUICK.md) when adding high-frequency imperative rules (Layer 1 Quick Reference)
-- Updating [HIG-LITE.md](./HIG-LITE.md) when adding practical rules with rule IDs (every Lite rule MUST map to a canonical rule ID in `HIG.md`)
-- Updating the corresponding [rules/*.md](./rules/) module when changing layer content — keep modules synchronized with `HIG.md`
-- Expanding [rules/INDEX.md](./rules/INDEX.md) and [rules/manifest.yaml](./rules/manifest.yaml) when adding new topic modules
-- Adding or updating [framework/*.md](./framework/) adapters when framework guidance changes
-- Updating [rules/archetypes/](./rules/archetypes/) packs when the Layer 0 matrix changes
-- Running `npm run validate` before opening a PR — CI will reject contract integrity failures
+Out of scope:
 
-## How to propose a change
+- Product-specific components or themes
+- Breaking visual redesigns of the docs site without accessibility review
+- Secrets or proprietary product code
 
-1. **Search existing issues** to avoid duplicate work.
-2. **Open an issue** describing the problem, the proposed change, and which layer(s) it affects.
-3. **Fork the repo** and create a branch from `main`.
-4. **Edit `HIG.md`** — keep changes focused and update the version history (Section 8.1) when the change is substantive. If the change affects high-frequency agent rules, also update `HIG-QUICK.md`, `HIG-LITE.md`, the relevant `rules/*.md` module, and `rules/INDEX.md` / `rules/manifest.yaml`.
-5. **Update [RELEASE_NOTES.md](./RELEASE_NOTES.md)** for minor and major bumps — expand the §8.1 summary with highlights, layer impact, and adoption notes.
-6. **Open a pull request** using the provided template.
+---
 
-## Versioning guidelines
+## How to propose a spec change
 
-This contract follows [Semantic Versioning](https://semver.org/):
+1. **Search [issues](https://github.com/frozonfreak/hig/issues)** for duplicates.
+2. Open a **[Spec change proposal](https://github.com/frozonfreak/hig/issues/new?template=spec-change.yml)** — describe problem, affected layers, and backward compatibility.
+3. Fork, branch from `main`, implement focused edits.
+4. Run **`npm run validate`** — CI rejects contract integrity failures.
+5. Open a PR using [.github/PULL_REQUEST_TEMPLATE.md](./.github/PULL_REQUEST_TEMPLATE.md).
 
-- **Patch** (e.g. 1.5.1) — typo fixes, clarifications that do not change meaning
-- **Minor** (e.g. 1.6.0) — new rules, new criteria, or expanded guidance that is backward-compatible
-- **Major** (e.g. 2.0.0) — breaking changes to mandatory requirements or token semantics
+### File sync checklist (substantive rule changes)
 
-Update the version number in the `HIG.md` title, add an entry to the version history (Section 8.1), and add a matching section to `RELEASE_NOTES.md` when bumping.
+| Step | File(s) |
+| --- | --- |
+| Normative text | [HIG.md](./HIG.md) |
+| High-frequency imperatives | [HIG-QUICK.md](./HIG-QUICK.md) |
+| Practical summary + IDs | [HIG-LITE.md](./HIG-LITE.md) |
+| Topic depth | Relevant [rules/*.md](./rules/) |
+| Index / triggers | [rules/INDEX.md](./rules/INDEX.md), [rules/manifest.yaml](./rules/manifest.yaml) |
+| Version bump | [VERSION](./VERSION), title in HIG.md, manifest `version:` |
+| Release docs | [CHANGELOG.md](./CHANGELOG.md), [RELEASE_NOTES.md](./RELEASE_NOTES.md), [HIG.md §8.1](./HIG.md#81-version-history) |
+
+Every Lite and Quick rule **must** map to a canonical rule ID in HIG.md.
+
+---
+
+## Versioning
+
+Follow [Semantic Versioning](https://semver.org/) as documented in [VERSIONING.md](./VERSIONING.md):
+
+| Bump | Examples |
+| --- | --- |
+| **PATCH** | Typos, non-meaning clarifications |
+| **MINOR** | New rules, modules, backward-compatible guidance |
+| **MAJOR** | Breaking MUST requirements, token semantics, mandatory matrix |
+
+---
 
 ## Writing style
 
-- Be precise and testable — rules should be verifiable by humans and by linters where possible
-- Prefer tables, diagrams, and code blocks over prose when they reduce ambiguity
-- Cross-reference related sections rather than duplicating content
-- Mark archetype-specific rules explicitly (Content, Commerce, Application, Auth)
+- Prefer **testable** requirements — verifiable by humans, linters, or CI
+- Use RFC 2119 keywords consistently (see [HIG-CORE.md](./HIG-CORE.md))
+- Tables and diagrams over long prose when they reduce ambiguity
+- Mark archetype-specific rules explicitly
+- Cite related rule IDs instead of duplicating normative paragraphs
+
+---
+
+## Governance (lightweight)
+
+- **Maintainers** merge PRs that pass CI and align with [RATIONALE.md](./RATIONALE.md) non-goals
+- **Major semver** changes should include migration notes in RELEASE_NOTES
+- **Disputes** defer to full [HIG.md](./HIG.md) text; open an issue if Layer 1/2 extracts disagree with Layer 3
+
+Roadmap context: [ROADMAP.md](./ROADMAP.md)
+
+---
 
 ## Code of conduct
 
-All participants are expected to follow the [Code of Conduct](./CODE_OF_CONDUCT.md).
+All participants follow the [Code of Conduct](./CODE_OF_CONDUCT.md).
+
+Security issues: [SECURITY.md](./SECURITY.md) — do not open public issues for sensitive reports.

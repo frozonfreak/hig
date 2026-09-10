@@ -2,7 +2,7 @@
 
 This guide shows an **efficient** way to adopt The Web HIG in a product repo: progressive loading, thin agent rules, then lint/CI — without pasting the full contract into every prompt.
 
-**Current contract:** [HIG.md](./HIG.md) v1.9.0 (see README for version).
+**Current contract:** [HIG.md](./HIG.md) v1.9.0 (see [VERSION](./VERSION)). **Profiles:** [PROFILES.md](./PROFILES.md) · **Adopters:** [ADOPTERS.md](./ADOPTERS.md).
 
 ---
 

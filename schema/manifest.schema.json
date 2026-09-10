@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/frozonfreak/hig/schema/manifest.schema.json",
+  "title": "The Web HIG progressive loading manifest",
+  "description": "Draft schema for rules/manifest.yaml. Informative until CI enforcement lands.",
+  "type": "object",
+  "required": ["version", "layers", "modules"],
+  "additionalProperties": true,
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "layers": {
+      "type": "object",
+      "minProperties": 1
+    },
+    "preamble": {
+      "type": "object",
+      "required": ["file"],
+      "properties": {
+        "file": { "type": "string" },
+        "description": { "type": "string" },
+        "load": { "type": "string" }
+      }
+    },
+    "modules": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["file", "triggers"],
+        "properties": {
+          "file": { "type": "string" },
+          "triggers": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "rules": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^HIG-[A-Z0-9]+-\\d+$"
+            }
+          },
+          "hig_sections": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "archetype_packs": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "file": { "type": "string" },
+          "preload_modules": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "framework_adapters": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "file": { "type": "string" },
+          "triggers": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
