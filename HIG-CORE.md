@@ -1,6 +1,6 @@
 # The Web HIG — Core (Level 0)
 
-**Version:** v1.9.0 · **Quick Reference:** [HIG-QUICK.md](./HIG-QUICK.md) · **Practical:** [HIG-LITE.md](./HIG-LITE.md) · **Full spec:** [HIG.md](./HIG.md)
+**Version:** v1.10.0 · **Quick Reference:** [HIG-QUICK.md](./HIG-QUICK.md) · **Practical:** [HIG-LITE.md](./HIG-LITE.md) · **Full spec:** [HIG.md](./HIG.md)
 
 Session preamble: philosophy, vocabulary, archetype resolution, and simplicity rule. Load once per session alongside Layer 1 Quick Reference.
 
@@ -19,16 +19,26 @@ The Web HIG is a **web engineering contract** — not a decorative style guide. 
 | **SHOULD** | Default recommendation — deviate only with documented justification |
 | **MAY** | Permitted |
 
-## Archetypes (resolve first)
+## Archetypes and surfaces (resolve first)
 
-Before applying any rule, identify the page archetype:
+Before applying any rule, identify the page **archetype**:
 
 | Archetype | Examples |
 | --- | --- |
-| **Content / Marketing** | Landing, blog, docs, campaigns |
+| **Content / Marketing** | Landing, blog, docs, campaigns, portfolios, studio sites |
 | **Commerce** | PDP, cart, checkout |
 | **Application / Dashboard** | Authenticated tools, admin, workflows |
 | **Auth / Account** | Sign-in, recovery, settings |
+
+For **content** routes, also declare **surface** in product scope ([HIG-EXP-001](./rules/expressive-surface.md)):
+
+| Surface | Meaning |
+| --- | --- |
+| **document** | Default — strict functional motion (**HIG-MOT-003**) |
+| **hybrid** | Document spine + expressive regions → load [expressive-surface.md](./rules/expressive-surface.md) |
+| **experience** | Motion/scroll/time as structure → load [expressive-surface.md](./rules/expressive-surface.md) |
+
+Application, commerce checkout, and auth MUST use **document** surface.
 
 Apply only the mandatory and conditional rules for that archetype ([HIG.md §0.2](./HIG.md#02-applicability-matrix)). Accessibility, tokens, and performance are **universal** — never optional.
 

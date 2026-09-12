@@ -1,0 +1,113 @@
+# The Web HIG — Evaluator dimension map (machine-readable)
+# Version: 1.10.0
+# Used to bucket rule IDs and findings into report dimensions.
+# Normative report shape: EVALUATOR.md · Schema: schema/evaluator-report.schema.json
+
+version: "1.10.0"
+
+# Maps Layer 8 gate levels to evaluator severity buckets
+severity_buckets:
+  blocking:
+    ci_level: BLOCKING
+    rule_severities: [error]
+    description: Fails build/PR — HIG MUST violations, critical a11y/security
+  warnings:
+    ci_level: WARNING
+    rule_severities: [warning]
+    description: Reported, non-blocking — SHOULD violations, regressions
+  observations:
+    ci_level: OBSERVATION
+    rule_severities: [info]
+    description: Logged for tracking — field metrics, advisory checks
+
+dimensions:
+  accessibility:
+    label: Accessibility
+    rule_id_prefixes:
+      - HIG-A11Y
+    modules:
+      - accessibility
+
+  ux:
+    label: UX
+    rule_id_prefixes:
+      - HIG-UX
+      - HIG-SIM
+      - HIG-ERR
+      - HIG-EMP
+      - HIG-LOD
+      - HIG-NTF
+      - HIG-FRM
+    modules:
+      - ux
+      - states
+      - forms
+      - notifications
+
+  performance:
+    label: Performance
+    rule_id_prefixes: []
+    modules:
+      - performance
+    hig_layers: ["6"]
+
+  security:
+    label: Security
+    rule_id_prefixes:
+      - HIG-SEC
+    modules:
+      - security
+
+  architecture:
+    label: Architecture
+    rule_id_prefixes:
+      - HIG-SSR
+      - HIG-MUT
+    modules:
+      - architecture
+      - mutations
+
+  responsive:
+    label: Responsive
+    rule_id_prefixes:
+      - HIG-CQ
+      - HIG-I18N
+    modules:
+      - responsive
+      - i18n
+
+  motion:
+    label: Motion
+    rule_id_prefixes:
+      - HIG-MOT
+      - HIG-VT
+      - HIG-EXP
+    modules:
+      - animation
+      - expressive-surface
+    registries:
+      - rules/motion-tiers.yaml
+
+  seo:
+    label: SEO
+    rule_id_prefixes: []
+    modules:
+      - ux
+    check_kinds:
+      - document_metadata
+      - structured_data
+      - crawlability
+    archetypes: [content, commerce]
+
+# Primary output is findings + severity counts — not a single score.
+scoring:
+  policy: supplementary
+  rules:
+    - Evaluators MUST emit severity counts (blocking, warnings, observations).
+    - Evaluators MUST emit per-dimension scores only alongside dimension-level severity counts.
+    - Evaluators MUST NOT publish an overall score without the full dimension block and severity summary.
+    - overall_score MAY be a weighted mean of dimension scores; build pass/fail MUST follow blocking count and gate policy, not overall_score alone.
+  dimension_score_formula: >
+    Informative default: round(100 * passed_applicable / max(applicable_checks, 1)),
+    where passed_applicable excludes open blocking/warning findings in that dimension.
+    Tools MAY document alternate weighting; MUST document the formula used.

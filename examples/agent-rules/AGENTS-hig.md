@@ -1,6 +1,6 @@
 # Agent instructions — The Web HIG
 
-Pinned contract: The Web HIG v1.9.0  
+Pinned contract: The Web HIG v1.10.0  
 Default context: `docs/hig/HIG-QUICK.md` — *Follow The Web HIG Quick Reference.*  
 Practical guide: `docs/hig/HIG-LITE.md`  
 Topic index: `docs/hig/rules/manifest.yaml`  
@@ -9,7 +9,7 @@ Archetype map: `docs/hig-scope.md`
 
 ## Mandatory workflow for UI / CSS / front-end tasks
 
-1. **Archetype first** — `content` | `commerce` | `application` | `auth`
+1. **Archetype first** — `content` | `commerce` | `application` | `auth`; for **content**, resolve **surface** (`document` | `hybrid` | `experience`) from `hig-scope.md` (**HIG-EXP-001**)
 2. **Layer 1** — read `HIG-QUICK.md` for the 98-rule Quick Reference
 3. **Layer 2** — open `HIG-LITE.md` when building features or you need rule ID links
 4. **Archetype pack** — load `rules/archetypes/<archetype>.md` → preload default modules
@@ -24,6 +24,7 @@ Archetype map: `docs/hig-scope.md`
 agent_enforcement_rules:
   scope:
     resolve_archetype_first: true
+    resolve_content_surface: true
     apply_layer0_matrix: true
     prefer_simplest_compliant_implementation: true
     default_context: HIG-QUICK.md
@@ -47,7 +48,10 @@ agent_enforcement_rules:
       scope: micro_feedback_only
       severity: error
     - id: HIG-CQ-001
-      rule: require_container_queries_for_component_layout
+      rule: prefer_container_queries_for_component_internal_layout
+      severity: warning
+    - id: HIG-CQ-002
+      rule: require_container_queries_when_multi_context_reuse
       severity: error
     - id: HIG-A11Y-001
       rule: require_reduced_motion_media_query
@@ -71,6 +75,7 @@ agent_enforcement_rules:
       rule: min_target_size_px
       value: 24
       severity: error
+      note: "24px MUST floor (WCAG 2.5.8); 44px touch is HIG SHOULD only — not mandatory"
   mutation_constraints:
     - id: HIG-MUT-001
       rule: no_optimistic_destructive_confirmation

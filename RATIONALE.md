@@ -42,6 +42,7 @@ The Web HIG is **not**:
 - A component library or Figma kit
 - A replacement for WCAG, HTML, or platform APIs
 - A brand or visual identity system (use your design system for *look*; HIG for *behavior*)
+- A catalog of every award-site layout (use **HIG-EXP-**\* baseline for fluid/expressive *obligations* on content surfaces)
 - A single mandatory bundle of every rule on every page (Layer 0 applicability matrix applies)
 
 ---

@@ -8,7 +8,7 @@ Informative walkthrough for a fictional product repo **Acme Dashboard**. Copy pa
 
 ```
 docs/hig/
-  VERSION                 # 1.9.0
+  VERSION                 # 1.10.0
   HIG-CORE.md
   HIG-QUICK.md
 docs/hig-scope.md

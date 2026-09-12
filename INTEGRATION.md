@@ -2,7 +2,7 @@
 
 This guide shows an **efficient** way to adopt The Web HIG in a product repo: progressive loading, thin agent rules, then lint/CI — without pasting the full contract into every prompt.
 
-**Current contract:** [HIG.md](./HIG.md) v1.9.0 (see [VERSION](./VERSION)). **Profiles:** [PROFILES.md](./PROFILES.md) · **Adopters:** [ADOPTERS.md](./ADOPTERS.md).
+**Current contract:** [HIG.md](./HIG.md) v1.10.0 (see [VERSION](./VERSION)). **Profiles:** [PROFILES.md](./PROFILES.md) · **Adopters:** [ADOPTERS.md](./ADOPTERS.md).
 
 ---
 
@@ -47,7 +47,7 @@ Pick one pinning strategy and stick to it:
 | --- | --- |
 | **Vendor copy** | Fastest: copy `HIG-QUICK.md`, `HIG-LITE.md`, `HIG.md`, `VERSION`, `rules/`, and `framework/` into e.g. `docs/hig/` |
 | **Git submodule / subtree** | You want upstream pulls without manual copy |
-| **Raw URL pin** | Agent rules link to tagged release files (e.g. `.../blob/v1.9.0/HIG-LITE.md`) |
+| **Raw URL pin** | Agent rules link to tagged release files (e.g. `.../blob/v1.10.0/HIG-LITE.md`) |
 
 **Minimum pin set for agents:**
 
@@ -72,7 +72,7 @@ Create a short product-local scope file (example: `docs/hig-scope.md`):
 ```markdown
 # HIG scope for this product
 
-Pinned contract: The Web HIG v1.9.0
+Pinned contract: The Web HIG v1.10.0
 - Quick Reference: `docs/hig/HIG-QUICK.md`
 - Practical guide: `docs/hig/HIG-LITE.md`
 - Full spec: `docs/hig/HIG.md`
@@ -159,7 +159,7 @@ Add to your PR template (or use as a review checklist):
 - [ ] Slow async server regions have streaming boundaries + skeleton; server mutations show pending UI
 - [ ] Native HTML preferred over ARIA; icon buttons have accessible names; images have `alt`
 - [ ] Modals implement focus containment (not just `aria-modal`); focus ring visible with sufficient contrast
-- [ ] Reduced-motion path respected; min 24×24px targets (44px preferred for touch)
+- [ ] Reduced-motion path respected; targets ≥24×24px (**HIG-A11Y-007**, WCAG 2.5.8); 44×44px touch is HIG SHOULD ergonomics only
 - [ ] No optimistic confirmation on destructive mutations without undo/soft-delete
 - [ ] Error/empty/loading states use HIG taxonomies (§2.5–2.7)
 - [ ] Forms have labels, error summary, and appropriate autocomplete (§2.11)

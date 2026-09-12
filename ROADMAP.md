@@ -35,6 +35,7 @@ This roadmap describes **contract and tooling** direction for the standard repos
 | --- | --- |
 | **Rule registry (`rules/registry.yaml`)** | One row per rule ID: severity, archetypes, autofix, HIG section — see [MACHINE_READABLE.md](./MACHINE_READABLE.md) |
 | **`eslint-plugin-hig` (reference)** | Implements Layer 7 rules listed in [rules/ai-enforcement.md](./rules/ai-enforcement.md) |
+| **HIG evaluator report** | Multidimensional CI output per [EVALUATOR.md](./EVALUATOR.md) (not a single-score metric) |
 | **Archetype conformance packs** | Checklists generated from Layer 0 matrix per archetype |
 | **Third-party adapter templates** | Svelte, Solid, Angular community adapters under `framework/` |
 

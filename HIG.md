@@ -1,8 +1,8 @@
-# The Web HIG & Product Engine Contract — v1.9.0
+# The Web HIG & Product Engine Contract — v1.10.0
 
 ## Executive Summary
 
-The Web HIG v1.9.0 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+The Web HIG v1.10.0 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
 This release adds a three-layer consumption model and archetype rule packs:
 
@@ -97,13 +97,22 @@ Every machine-enforceable rule MUST support legitimate deviation. Exceptions req
 ```yaml
 rule:
   id: HIG-CQ-001
-  severity: error
-  requirement: component_responsiveness_uses_container_queries
+  severity: warning
+  requirement: prefer_container_queries_for_component_internal_layout
   exceptions:
     allowed:
-      - accessibility_preference    # e.g. prefers-reduced-motion
-      - viewport_navigation         # page-level layout
+      - viewport_or_environment_layout   # page shell, nav, safe-area
+      - single_context_component         # one placement; simpler without @container
+      - accessibility_preference
       - print
+      - external_vendor_code
+    requires_justification: true
+rule:
+  id: HIG-CQ-002
+  severity: error
+  requirement: require_container_queries_when_multi_context_reuse
+  exceptions:
+    allowed:
       - external_vendor_code
     requires_justification: true
 ```
@@ -120,7 +129,7 @@ Not every rule applies to every page. A blog post does not need an async mutatio
 
 ### 0.1 Page Archetypes
 
-* **Content / Marketing** — Landing pages, blogs, docs, campaign pages. Read-mostly, SEO-critical, often server-rendered.
+* **Content / Marketing** — Landing pages, blogs, docs, campaign pages, portfolios, studio sites. Read-mostly, SEO-critical; may be document-dominant or expressive (see §0.3).
 * **Commerce** — Product listings, PDPs, cart, checkout. Mixed read/write, conversion-critical, payment-sensitive.
 * **Application / Dashboard** — Authenticated tools, admin panels, data workflows. Write-heavy, state-heavy, RBAC-governed.
 * **Auth / Account** — Sign-in, sign-up, recovery, settings. Security- and privacy-sensitive.
@@ -148,16 +157,31 @@ Not every rule applies to every page. A blog post does not need an async mutatio
 | Layer 5 Browser permissions UX | ⚪ | ⚪ | ✅ | ⚪ |
 | Layer 6 Performance (lab + field) | ✅ | ✅ | ✅ | ✅ |
 | Layer 9 Security & Privacy | ✅ | ✅ | ✅ | ✅ |
+| Layer 1 Expressive surface baseline (**HIG-EXP-***) | ⚪ | ❌ | ❌ | ❌ |
 
 Legend: ✅ Mandatory · ⚪ Conditional (apply where the feature exists) · ❌ Not applicable.
 
 Accessibility (Layer 5), tokens/typography (Layer 3), and performance (Layer 6) are **universal** and never optional.
 
+### 0.3 Expressive surfaces
+
+> **Level 2 module:** [rules/expressive-surface.md](./rules/expressive-surface.md)
+
+Content routes MUST declare a **surface** in product scope (**HIG-EXP-001**). If undeclared, treat as **document**.
+
+| Surface | Description |
+| --- | --- |
+| **document** | Default — reading order matches structure; **HIG-MOT-003** applies in full to page-level motion |
+| **hybrid** | Document spine plus expressive regions — **HIG-EXP-002** through **HIG-EXP-012** mandatory |
+| **experience** | Motion, scroll, or time as primary structure — **HIG-EXP-002** through **HIG-EXP-012** mandatory |
+
+Application, commerce checkout, and auth routes MUST use **document** surface regardless of visual treatment on marketing pages elsewhere.
+
 ---
 
 ## Layer 1: Universal UX Principles
 
-> **Level 2 module:** [rules/animation.md](./rules/animation.md)
+> **Level 2 modules:** [rules/animation.md](./rules/animation.md) · [rules/expressive-surface.md](./rules/expressive-surface.md)
 
 ### 1.1 Direct Manipulation & Motion Ergonomics
 
@@ -208,8 +232,8 @@ Motion is an enhancement, never a dependency. Respect `prefers-reduced-motion: r
 }
 ```
 
-* Replace transform/momentum animations with instant state changes or a minimal opacity fade.
-* Disable parallax, auto-playing carousels, native View Transitions morphing, and decorative looping motion.
+* Replace transform/momentum animations with instant state changes or a minimal opacity fade, or provide an equivalent static/simplified path that satisfies **HIG-EXP-003** on hybrid/experience content surfaces.
+* Disable parallax, auto-playing carousels, native View Transitions morphing, and decorative looping motion on **document** surfaces and on application/commerce/auth routes. On content surfaces declared **hybrid** or **experience**, ambient or narrative motion MAY be permitted when it satisfies §1.5 (**HIG-EXP-006**) and reduced-motion parity (**HIG-EXP-003**).
 
 ### 1.4 Functional Micro-Animations
 
@@ -242,6 +266,33 @@ Micro-animations are **functional feedback only** — never decorative flourish.
 * **CSS-first:** prefer CSS transitions/animations over `requestAnimationFrame` or JS tween libraries for allowlisted micro-feedback.
 * **Reduced motion:** §1.3 still applies — under `prefers-reduced-motion: reduce`, replace spatial micro-motion with instant state changes or a minimal opacity fade.
 * **One job:** a micro-animation MUST communicate exactly one of: affordance, acknowledgment, state change, or progress. If removing it loses no information and no feedback, it belongs on the deny list.
+
+* **Expressive surface exception (HIG-MOT-003):** On content routes with `surface: hybrid` or `surface: experience`, the deny list MUST still apply to **interactive controls**. Page-level ambient or narrative motion is governed by §1.5 (**HIG-EXP-006**), not by treating all brand motion as micro-feedback.
+
+### 1.5 Expressive Surface Baseline
+
+> **Level 2 module:** [rules/expressive-surface.md](./rules/expressive-surface.md)
+
+Fluid, scroll-driven, and motion-forward marketing surfaces MUST satisfy **HIG-EXP-001** through **HIG-EXP-012** when scope declares **hybrid** or **experience**. This baseline targets the majority of modern portfolio, agency, and campaign sites without prescribing visual patterns.
+
+| Rule ID | Requirement (summary) |
+| --- | --- |
+| **HIG-EXP-001** | Declare `surface` in product scope; default **document** |
+| **HIG-EXP-002** | Primary message and CTAs understandable without motion or scroll performance |
+| **HIG-EXP-003** | Reduced-motion **parity** — equivalent hierarchy and actions, not strip-only |
+| **HIG-EXP-004** | Keyboard-reachable nav / work index escape hatch |
+| **HIG-EXP-005** | Scroll capture MUST NOT be the only navigation mechanism |
+| **HIG-EXP-006** | Surface × motion_class permission matrix ([motion-tiers.yaml](./rules/motion-tiers.yaml)) |
+| **HIG-EXP-013** | Motion Tier 0–3 + ambient class definitions |
+| **HIG-EXP-014** | Classify every page-level motion effect (`data-hig-motion-class`) |
+| **HIG-EXP-007** | Required meaning in DOM reading order |
+| **HIG-EXP-008** | No autoplay audio; pause decorative media when document hidden |
+| **HIG-EXP-009** | Custom scroll regions keyboard operable with visible focus |
+| **HIG-EXP-010** | Primary content available without client enhancement |
+| **HIG-EXP-011** | Kinetic type — one canonical copy; decorative repeats `aria-hidden` |
+| **HIG-EXP-012** | Same Core Web Vitals obligations; LCP not blocked by motion shell |
+
+Normative detail and agent workflow: [rules/expressive-surface.md](./rules/expressive-surface.md).
 
 ---
 
@@ -570,7 +621,13 @@ Applications SHOULD support system preference by default, while allowing applica
 
 ### 3.2 Container Queries Engine
 
-Reusable UI components (cards, tables, form groups) MUST respond to their immediate parent container width rather than the screen viewport.
+**HIG-CQ-001 (SHOULD):** Component-internal layout adaptation SHOULD use `@container` when layout depends on the space allocated by the parent — not the viewport width alone.
+
+**HIG-CQ-002 (MUST):** When a component is reused in parent contexts with materially different inline sizes, its layout structure changes with available width, and viewport `@media` would produce incorrect layout in at least one placement, the component MUST adapt via container queries (or an equivalent container-size signal) — not viewport breakpoints alone.
+
+**HIG-SIM-001:** MUST NOT add wrapper containers or `container-type` solely to satisfy container-query rules when viewport `@media`, intrinsic sizing, or single-context layout is the simpler correct approach.
+
+When adaptation genuinely depends on viewport or environment (page shell, global navigation, safe-area, full-bleed regions), viewport or environment `@media` is appropriate.
 
 ```css
 .component-container {
@@ -592,15 +649,16 @@ Reusable UI components (cards, tables, form groups) MUST respond to their immedi
 }
 ```
 
-**Responsive query roles (HIG-CQ-001):**
+**Responsive query roles:**
 
 | Query type | Purpose |
 | --- | --- |
-| `@container` | Component-size adaptation |
+| `@container` | Component-internal layout (allocated inline size) |
 | `@media` (viewport) | Page layout, navigation structure |
-| `@media` (preferences) | Accessibility (`prefers-reduced-motion`), user preferences (`prefers-color-scheme`), print, environment/device conditions |
+| `@media` (preferences) | Accessibility (`prefers-reduced-motion`), user preferences (`prefers-color-scheme`), print |
+| `@media` (environment) | Viewport/device signals when genuinely required for page chrome or environment |
 
-`@media (prefers-reduced-motion: reduce)` and similar preference queries are legitimate even inside component stylesheets. Component layout adaptation SHOULD use `@container`; viewport `@media` is for page-level concerns.
+`@media (prefers-reduced-motion: reduce)` and similar preference queries are legitimate even inside component stylesheets.
 
 ### 3.3 Data Density Standards (Application / Dashboard)
 
@@ -795,8 +853,14 @@ Avoid unnecessary ARIA.
 
 ### 5.4 Target Sizes
 
-* **Minimum interactive target:** 24×24 CSS px, except where a [WCAG-defined exception](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html) applies.
-* **Preferred touch target:** 44×44 CSS px for primary touch interactions (ergonomic recommendation, not a compliance floor).
+The HIG distinguishes **WCAG-aligned minimums** from **HIG ergonomic guidance**. Do not treat 44×44 CSS px as mandatory for conformance.
+
+| Size | Normative level | Role |
+| --- | --- | --- |
+| **24×24 CSS px** | **MUST** (**HIG-A11Y-007**) | **Minimum normative baseline** aligned with WCAG 2.2 Success Criterion 2.5.8 (Target Size Minimum) Level AA. [WCAG-defined exceptions](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html) apply; the HIG does not redefine them. |
+| **44×44 CSS px** | **SHOULD** | **HIG ergonomic recommendation** for primary touch interactions. Not a WCAG AA floor and not part of **HIG-A11Y-007** enforcement. |
+
+Primary touch controls SHOULD target 44×44 CSS px where practical (padding, hit slop, or control size). Failing to meet 44×44 is not a **HIG-A11Y-007** defect if the 24×24 minimum (or a WCAG exception) is satisfied.
 
 ### 5.5 Browser Permissions UX
 
@@ -949,7 +1013,10 @@ agent_enforcement_rules:
       rule: micro_feedback_prefers_transform_opacity
       severity: warning
     - id: HIG-CQ-001
-      rule: require_container_queries_for_component_layout
+      rule: prefer_container_queries_for_component_internal_layout
+      severity: warning
+    - id: HIG-CQ-002
+      rule: require_container_queries_when_multi_context_reuse
       severity: error
     - id: HIG-UX-001
       rule: require_logical_properties
@@ -993,7 +1060,7 @@ agent_enforcement_rules:
       rule: min_target_size_px
       value: 24
       severity: error
-      note: "WCAG exceptions apply; preferred touch target 44px"
+      note: "Normative floor only (WCAG 2.5.8 AA); WCAG exceptions apply. 44px touch is HIG SHOULD ergonomics — not enforced by this rule"
     - id: HIG-A11Y-008
       rule: modal_focus_containment
       severity: error
@@ -1113,7 +1180,20 @@ CI gates are classified by enforcement level:
                └── 8. All Blocking Gates Passed ──────────────────> ✅ BUILD APPROVED
 ```
 
-**Supported browser policy:** Projects MUST define a supported browser matrix. At minimum, test representative viewports: mobile, tablet, desktop, wide desktop. Do not turn viewport sizes into arbitrary fixed breakpoints for component logic — use container queries (§3.2).
+### 8.2 Multidimensional evaluator reports (informative)
+
+HIG conformance tools MUST NOT emit a single headline score alone (e.g. `HIG Score: 83/100`). Reports MUST surface Layer 8 severity buckets and fixed **dimensions** so results are actionable against `HIG-*` rule IDs — not a Lighthouse-style composite.
+
+Required output (human or JSON):
+
+1. **Severity summary** — `BLOCKING`, `WARNINGS`, `OBSERVATIONS` counts (maps to gate levels above).  
+2. **Dimension scores** — Accessibility, UX, Performance, Security, Architecture, Responsive, Motion, SEO — each with score (0–100, supplementary) and per-dimension severity counts.  
+3. **Findings** — rule ID, dimension, severity bucket, message, location.  
+4. **Overall score** — optional; MUST NOT be the only published metric. Build pass/fail MUST follow BLOCKING policy, not overall score.
+
+Machine-readable contract: [EVALUATOR.md](./EVALUATOR.md) · [schema/evaluator-report.schema.json](./schema/evaluator-report.schema.json) · [rules/evaluator-dimensions.yaml](./rules/evaluator-dimensions.yaml).
+
+**Supported browser policy:** Projects MUST define a supported browser matrix. At minimum, test representative viewports: mobile, tablet, desktop, wide desktop. Do not use viewport breakpoints as the primary adaptation mechanism for multi-context reusable components — use container queries when **HIG-CQ-002** applies (§3.2).
 
 ---
 
@@ -1188,6 +1268,7 @@ Logs MUST include timestamp, actor, action, and resource — but MUST NOT includ
 
 **Release documentation:** [CHANGELOG.md](./CHANGELOG.md) (Keep a Changelog) · [RELEASE_NOTES.md](./RELEASE_NOTES.md) (adoption notes) · [VERSIONING.md](./VERSIONING.md) (semver policy).
 
+* **v1.10.0 (2026-09-12):** Expressive Surface Baseline (**HIG-EXP-001**–**014**, [motion-tiers.yaml](./rules/motion-tiers.yaml)); Layer 0 §0.3 surfaces; **HIG-CQ-001**/**002** container-query split; §5.4 target-size labeling; §8.2 [EVALUATOR.md](./EVALUATOR.md) multidimensional report contract.
 * **v1.9.0 (2026-09-09):** Progressive loading Phase 3. Added archetype rule packs (`rules/archetypes/`), `rules/applicability.md`, `VERSION` file, `scripts/validate-hig.mjs`, and GitHub Actions validation workflow. Agents preload archetype-specific module sets after resolving page type.
 * **v1.8.0 (2026-09-09):** Progressive loading Phase 2. Extracted 16 standalone Level 2 rule modules in `rules/` and 5 framework adapters in `framework/`. Updated manifest to point to module files. HIG.md remains the complete normative contract with module cross-links.
 * **v1.7.0 (2026-09-09):** Progressive loading architecture (Phase 1). Added HIG-CORE.md (Level 0), HIG-LITE.md (Level 1), rules/INDEX.md and rules/manifest.yaml (Level 2). HIG-LITE is a compressed summary with canonical rule ID cross-links — not a divergent standard. Updated INTEGRATION.md and agent templates to default to Level 1 context.

@@ -91,6 +91,29 @@ if (!exists('rules/applicability.md')) {
   fail('missing rules/applicability.md');
 }
 
+if (!exists('rules/motion-tiers.yaml')) {
+  fail('missing rules/motion-tiers.yaml');
+}
+
+for (const file of [
+  'rules/evaluator-dimensions.yaml',
+  'schema/evaluator-report.schema.json',
+  'examples/evaluator-report.example.json',
+  'EVALUATOR.md',
+]) {
+  if (!exists(file)) fail(`missing ${file}`);
+}
+
+const evalDimVersion = read('rules/evaluator-dimensions.yaml').match(/^version:\s*"([^"]+)"/m)?.[1];
+if (evalDimVersion && evalDimVersion !== versionFile) {
+  fail(`evaluator-dimensions.yaml (${evalDimVersion}) !== VERSION (${versionFile})`);
+}
+
+const motionTiersVersion = read('rules/motion-tiers.yaml').match(/^version:\s*"([^"]+)"/m)?.[1];
+if (motionTiersVersion && motionTiersVersion !== versionFile) {
+  fail(`motion-tiers.yaml (${motionTiersVersion}) !== VERSION (${versionFile})`);
+}
+
 // --- Module files registered in manifest ---
 const rulesDir = path.join(root, 'rules');
 const moduleFiles = fs

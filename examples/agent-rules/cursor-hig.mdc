@@ -59,7 +59,10 @@ agent_enforcement_rules:
       rule: micro_feedback_prefers_transform_opacity
       severity: warning
     - id: HIG-CQ-001
-      rule: require_container_queries_for_component_layout
+      rule: prefer_container_queries_for_component_internal_layout
+      severity: warning
+    - id: HIG-CQ-002
+      rule: require_container_queries_when_multi_context_reuse
       severity: error
     - id: HIG-UX-001
       rule: require_logical_properties
@@ -100,6 +103,7 @@ agent_enforcement_rules:
       rule: min_target_size_px
       value: 24
       severity: error
+      note: "24px MUST floor (WCAG 2.5.8); 44px touch is HIG SHOULD only — not mandatory"
     - id: HIG-A11Y-008
       rule: modal_focus_containment
       severity: error

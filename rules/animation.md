@@ -1,6 +1,6 @@
 # Animation & Motion — Level 2 Module
 
-**Version:** v1.9.0 · **Canonical spec:** [HIG.md §1](../HIG.md#layer-1-universal-ux-principles) · **Rule IDs:** HIG-MOT-001–005, HIG-VT-001, HIG-A11Y-001
+**Version:** v1.10.0 · **Canonical spec:** [HIG.md §1](../HIG.md#layer-1-universal-ux-principles) · **Rule IDs:** HIG-MOT-001–005, HIG-VT-001, HIG-A11Y-001
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 
@@ -73,6 +73,8 @@ Micro-animations are **functional feedback only** — never decorative flourish.
 | Modal / overlay open | `--duration-slow` | 200–250 ms | Close at `--duration-base` |
 
 ### Deny list (**HIG-MOT-003**)
+
+Applies in full to **document** surfaces (page-level) and to **interactive controls** on all surfaces. On content routes declared **hybrid** or **experience**, page-level motion MUST be classified (**HIG-EXP-013**, **HIG-EXP-014**) and permitted only per [motion-tiers.yaml](./motion-tiers.yaml) (**HIG-EXP-006**), subject to parity (**HIG-EXP-003**) and navigation (**HIG-EXP-005**).
 
 * Decorative loops, idle wiggles, continuous brand ornaments, autoplay attention-grabbers.
 * Parallax, scroll-jacking, large-field oscillations.

@@ -4,7 +4,7 @@
 
 Vendor-neutral requirements for how web interfaces behave — for design systems, product teams, CI, and AI coding agents. You keep your stack and visuals; The Web HIG defines testable interaction, state, accessibility, performance, and security UX.
 
-**Current release:** [v1.9.0](./VERSION) · [Changelog](./CHANGELOG.md) · [Release notes](./RELEASE_NOTES.md)
+**Current release:** [v1.10.0](./VERSION) · [Changelog](./CHANGELOG.md) · [Release notes](./RELEASE_NOTES.md)
 
 **[Quick Reference](./HIG-QUICK.md)** · **[Live demo](https://hig.aruviflow.com/)** · **[Documentation site](https://frozonfreak.github.io/hig/)** · **[Integrate](./INTEGRATION.md)** · **[View on GitHub](https://github.com/frozonfreak/hig)**
 
@@ -28,6 +28,7 @@ Vendor-neutral requirements for how web interfaces behave — for design systems
 | [RELEASE_NOTES.md](./RELEASE_NOTES.md) | Adoption-focused release write-ups |
 | [ROADMAP.md](./ROADMAP.md) | Contract and tooling direction |
 | [MACHINE_READABLE.md](./MACHINE_READABLE.md) | Manifest, rule registry roadmap, linters |
+| [EVALUATOR.md](./EVALUATOR.md) | Multidimensional CI/evaluator report contract (Layer 8) |
 | [CONTRIBUTING.md](./CONTRIBUTING.md) | Spec changes and governance |
 | [ADOPTERS.md](./ADOPTERS.md) | Real projects pinning the contract |
 | [INTEGRATION.md](./INTEGRATION.md) | Step-by-step adoption in product repos |

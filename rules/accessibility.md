@@ -1,6 +1,6 @@
 # Accessibility — Level 2 Module
 
-**Version:** v1.9.0 · **Canonical spec:** [HIG.md §5](../HIG.md#layer-5-accessibility-a11y--keyboard-navigation) · **Rule IDs:** HIG-A11Y-001–008
+**Version:** v1.10.0 · **Canonical spec:** [HIG.md §5](../HIG.md#layer-5-accessibility-a11y--keyboard-navigation) · **Rule IDs:** HIG-A11Y-001–008
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 
@@ -51,8 +51,14 @@ Icon buttons MUST have accessible names (**HIG-A11Y-004**). Images MUST have `al
 
 ## 5.4 Target Sizes
 
-* **Minimum:** 24×24 CSS px (**HIG-A11Y-007**), except [WCAG-defined exceptions](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html).
-* **Preferred touch:** 44×44 CSS px for primary touch interactions.
+The Web HIG cites WCAG for conformance floors and adds ergonomic guidance beyond WCAG — do not treat both numbers as mandatory.
+
+| Size | Normative level | Role |
+| --- | --- | --- |
+| **24×24 CSS px** | **MUST** (**HIG-A11Y-007**) | **Minimum normative baseline** aligned with WCAG 2.2 [Target Size (Minimum)](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html) (Success Criterion 2.5.8 Level AA). Official [WCAG-defined exceptions](https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html) apply — the HIG does not redefine them. |
+| **44×44 CSS px** | **SHOULD** (HIG ergonomic guidance) | **HIG ergonomic recommendation** for primary touch actions on mobile and touch-first surfaces. Improves accuracy and comfort; **not** a WCAG AA requirement and **not** enforced as **HIG-A11Y-007**. |
+
+Pointer targets smaller than 24×24 CSS px MUST NOT be used unless a WCAG exception applies. Teams SHOULD use 44×44 CSS px (or equivalent spacing/hit slop) for primary touch controls where practical without violating **HIG-SIM-001**.
 
 ## 5.5 Browser Permissions UX
 

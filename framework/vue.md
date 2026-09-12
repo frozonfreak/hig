@@ -31,7 +31,7 @@
 ## Styling
 
 * Use design tokens; no raw hex outside token files (**HIG-TOK-001**).
-* Component layout via `@container` (**HIG-CQ-001**).
+* Prefer `@container` for component-internal layout (**HIG-CQ-001**); multi-context reuse (**HIG-CQ-002**).
 * Respect `prefers-reduced-motion` (**HIG-A11Y-001**).
 
 ## Related

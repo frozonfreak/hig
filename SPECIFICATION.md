@@ -9,7 +9,7 @@ Use this page as a **table of contents for implementers and auditors**. All requ
 
 ## How to read the spec
 
-1. **Resolve archetype** — Content, Commerce, Application, or Auth ([Layer 0](./rules/applicability.md)).
+1. **Resolve archetype** — Content, Commerce, Application, or Auth ([Layer 0](./rules/applicability.md)); for Content, resolve **surface** ([§0.3](./HIG.md#03-expressive-surfaces)).
 2. **Apply universal rules** — Accessibility, tokens, and performance are never optional.
 3. **Load depth as needed** — Default to [HIG-QUICK.md](./HIG-QUICK.md); escalate via [rules/manifest.yaml](./rules/manifest.yaml).
 4. **Cite rule IDs** — Format `HIG-{DOMAIN}-{NNN}` (e.g. `HIG-A11Y-003`) in PRs, exceptions, and agent prompts.
@@ -23,14 +23,14 @@ Use this page as a **table of contents for implementers and auditors**. All requ
 | Layer | Title | Topic module |
 | --- | --- | --- |
 | 0 | Applicability & Scope | [rules/applicability.md](./rules/applicability.md) |
-| 1 | UX Principles | [rules/ux.md](./rules/ux.md), [rules/animation.md](./rules/animation.md), [rules/data-density.md](./rules/data-density.md) |
+| 1 | UX Principles | [rules/ux.md](./rules/ux.md), [rules/animation.md](./rules/animation.md), [rules/expressive-surface.md](./rules/expressive-surface.md), [rules/data-density.md](./rules/data-density.md) |
 | 2 | Information Architecture & Product Standards | [rules/states.md](./rules/states.md), [rules/forms.md](./rules/forms.md), [rules/search.md](./rules/search.md), [rules/notifications.md](./rules/notifications.md), [rules/i18n.md](./rules/i18n.md) |
 | 3 | Visual, Design Tokens & Container Engine | [rules/tokens.md](./rules/tokens.md), [rules/responsive.md](./rules/responsive.md) |
 | 4 | Reference Architecture & State Machines | [rules/architecture.md](./rules/architecture.md), [rules/mutations.md](./rules/mutations.md) |
 | 5 | Accessibility & Keyboard Navigation | [rules/accessibility.md](./rules/accessibility.md) |
 | 6 | Performance (Lab & Field) | [rules/performance.md](./rules/performance.md) |
 | 7 | AI & Agent Enforcement | [rules/ai-enforcement.md](./rules/ai-enforcement.md) |
-| 8 | Quality Assurance & CI/CD Gates | (§8 in HIG.md; summarized in ai-enforcement module) |
+| 8 | Quality Assurance & CI/CD Gates | (§8 in HIG.md; summarized in ai-enforcement module) · [EVALUATOR.md](./EVALUATOR.md) report contract |
 | 9 | Security & Privacy | [rules/security.md](./rules/security.md) |
 
 Full module registry: [rules/INDEX.md](./rules/INDEX.md)

@@ -1,0 +1,53 @@
+{
+  "hig_version": "1.10.0",
+  "evaluator": {
+    "name": "hig-evaluator-example",
+    "version": "0.1.0"
+  },
+  "scope": {
+    "archetype": "content",
+    "surface": "hybrid",
+    "profile": "practical",
+    "routes": ["/", "/work", "/work/noir-capsule"]
+  },
+  "severity_summary": {
+    "blocking": 3,
+    "warnings": 12,
+    "observations": 19,
+    "build_status": "failed"
+  },
+  "dimensions": {
+    "accessibility": { "score": 94, "blocking": 0, "warnings": 1, "observations": 2 },
+    "ux": { "score": 87, "blocking": 1, "warnings": 3, "observations": 4 },
+    "performance": { "score": 78, "blocking": 1, "warnings": 4, "observations": 6 },
+    "security": { "score": 91, "blocking": 0, "warnings": 1, "observations": 1 },
+    "architecture": { "score": 82, "blocking": 0, "warnings": 2, "observations": 2 },
+    "responsive": { "score": 95, "blocking": 0, "warnings": 0, "observations": 1 },
+    "motion": { "score": 88, "blocking": 1, "warnings": 1, "observations": 2 },
+    "seo": { "score": 90, "blocking": 0, "warnings": 0, "observations": 1, "applicable": true }
+  },
+  "overall_score": 88,
+  "findings": [
+    {
+      "rule_id": "HIG-EXP-004",
+      "dimension": "motion",
+      "severity_bucket": "blocking",
+      "message": "Hybrid surface missing keyboard-reachable nav escape hatch.",
+      "location": "src/app/page.tsx"
+    },
+    {
+      "rule_id": "HIG-LOD-001",
+      "dimension": "ux",
+      "severity_bucket": "blocking",
+      "message": "Work index async region has no defined loading state.",
+      "location": "src/components/work-grid.tsx"
+    },
+    {
+      "rule_id": "HIG-A11Y-007",
+      "dimension": "accessibility",
+      "severity_bucket": "warnings",
+      "message": "Icon control hit target 20×20 CSS px; WCAG exception not documented.",
+      "location": "src/components/audio-toggle.tsx"
+    }
+  ]
+}

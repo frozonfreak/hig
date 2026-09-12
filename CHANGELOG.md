@@ -14,6 +14,23 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
+## [1.10.0] - 2026-09-12
+
+### Added
+
+- **Expressive Surface Baseline** — **HIG-EXP-001** through **HIG-EXP-012** for content routes with `surface: hybrid` or `surface: experience` ([rules/expressive-surface.md](./rules/expressive-surface.md), HIG.md §0.3, §1.5).
+- **Evaluator report contract** — multidimensional output (BLOCKING/WARNINGS/OBSERVATIONS + 8 dimensions); [EVALUATOR.md](./EVALUATOR.md), [schema/evaluator-report.schema.json](./schema/evaluator-report.schema.json), [rules/evaluator-dimensions.yaml](./rules/evaluator-dimensions.yaml).
+- Motion tier **HIG-EXP-006** — surface × `motion_class` permission matrix; **HIG-EXP-013** / **HIG-EXP-014** taxonomy and classification; [rules/motion-tiers.yaml](./rules/motion-tiers.yaml) machine-readable registry.
+
+### Changed
+
+- Content archetype scope includes portfolios and studio sites; surface declaration in product scope (**HIG-EXP-001**).
+- **HIG-CQ-001** softened to SHOULD (prefer `@container` for component-internal layout); **HIG-CQ-002** MUST when multi-context reuse would break on viewport breakpoints; **HIG-SIM-001** anti-pattern for artificial containers.
+- **HIG-A11Y-007** / §5.4 — 24×24 labeled WCAG 2.5.8 normative floor; 44×44 labeled HIG ergonomic SHOULD (not mandatory).
+
+
+---
+
 ## [1.9.0] - 2026-09-09
 
 ### Added
@@ -120,7 +137,8 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.9.0...HEAD
+[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.10.0...HEAD
+[1.10.0]: https://github.com/frozonfreak/hig/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/frozonfreak/hig/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/frozonfreak/hig/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/frozonfreak/hig/compare/v1.6.0...v1.7.0

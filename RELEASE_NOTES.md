@@ -6,6 +6,65 @@ Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
 ---
 
+## [v1.10.0](./HIG.md) — 2026-09-12
+
+Minor release: **expressive content surfaces**, clearer **container-query** and **target-size** wording, and a **multidimensional evaluator** contract — without turning the HIG into a single-score Lighthouse clone.
+
+### Highlights
+
+#### Expressive Surface Baseline (~60–70% marketing/portfolio web)
+
+- **[rules/expressive-surface.md](./rules/expressive-surface.md)** — **HIG-EXP-001** through **HIG-EXP-014** (parity, navigation, semantics, media, performance).
+- **Surface model (HIG.md §0.3)** — per route in product scope: `document` (default) | `hybrid` | `experience`. App/commerce checkout/auth stay **document**.
+- **[rules/motion-tiers.yaml](./rules/motion-tiers.yaml)** — machine-readable Motion Tier 0–3 + **ambient** class; surface × `motion_class` matrix (**HIG-EXP-006**). **HIG-MOT-003** remains full on document page-level and on **all controls**; hybrid/experience page motion is tier-governed.
+
+#### Container queries (HIG-SIM-001–aligned)
+
+- **HIG-CQ-001 (SHOULD)** — prefer `@container` for component-internal layout when parent width matters.
+- **HIG-CQ-002 (MUST)** — container queries required when a component is reused across contexts and viewport `@media` would break a placement.
+- Explicit anti-pattern: wrapper containers added only to satisfy CQ rules.
+
+#### Target sizes (HIG vs WCAG)
+
+- **24×24 CSS px — MUST (**HIG-A11Y-007**)** — normative floor aligned with WCAG 2.2 **2.5.8**; WCAG exceptions unchanged.
+- **44×44 CSS px — SHOULD** — HIG ergonomic recommendation for primary touch; **not** enforced by **HIG-A11Y-007**.
+
+#### Evaluator / CI reporting (Layer 8 §8.2)
+
+- **[EVALUATOR.md](./EVALUATOR.md)** — tools MUST emit **BLOCKING / WARNINGS / OBSERVATIONS** plus eight **dimensions** (Accessibility, UX, Performance, Security, Architecture, Responsive, Motion, SEO) and rule-level **findings** — not `HIG Score: N/100` alone.
+- **[schema/evaluator-report.schema.json](./schema/evaluator-report.schema.json)** · **[rules/evaluator-dimensions.yaml](./rules/evaluator-dimensions.yaml)** · [example report](./examples/evaluator-report.example.json).
+
+### Layer impact
+
+| Area | Change |
+| --- | --- |
+| Layer 0 | §0.3 expressive surfaces; applicability matrix row for **HIG-EXP-*** |
+| Layer 1 | §1.5 expressive baseline; **HIG-MOT-003** carve-out for hybrid/experience page motion |
+| Layer 3 | §3.2 **HIG-CQ-001** / **HIG-CQ-002** split |
+| Layer 5 | §5.4 target-size labeling table |
+| Layer 8 | §8.2 multidimensional evaluator contract |
+| `rules/` | `expressive-surface.md`, `motion-tiers.yaml`, `evaluator-dimensions.yaml` |
+| Agents | `resolve_content_surface`; **HIG-CQ-001** → warning, **HIG-CQ-002** → error |
+| `scripts/validate-hig.mjs` | Validates motion-tiers + evaluator artifacts |
+
+### Upgrade from v1.9.0
+
+1. Pin **[VERSION](./VERSION)** (`1.10.0`) in `docs/hig/VERSION` and agent rules.
+2. Extend **`docs/hig-scope.md`** with a **Surface** column for content routes ([example](./examples/hig-scope.example.md)).
+3. For portfolio / fluid marketing UI, preload **`expressive-surface`** and declare `hybrid` or `experience`.
+4. Refresh agent guardrails from [examples/agent-rules/](./examples/agent-rules/) (**HIG-CQ-002**, target-size notes, surface resolution).
+5. Run `npm run validate` in this repo (or your vendored pin) on upgrade PRs.
+6. **Non-breaking** for most app/commerce/auth work; **behavior change** for agents that previously treated all decorative motion as **HIG-MOT-003** violations on marketing pages — use surface + **HIG-EXP** instead.
+
+### Adoption checklist (v1.10.0)
+
+- [ ] VERSION pin and tag `v1.10.0`
+- [ ] Archetype + **surface** in scope doc
+- [ ] Agent rules updated (CQ severities, A11Y-007 note, content surface)
+- [ ] CI/evaluator plan aligned with [EVALUATOR.md](./EVALUATOR.md) when building custom gates
+
+---
+
 ## [v1.9.0](./HIG.md) — 2026-09-09
 
 Progressive loading Phase 3 — archetype rule packs and contract validation.

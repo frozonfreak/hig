@@ -1,6 +1,6 @@
 # The Web HIG
 
-This project follows The Web HIG v1.9.0.
+This project follows The Web HIG v1.10.0.
 
 - **Quick Reference (Layer 1):** `docs/hig/HIG-QUICK.md` — *Follow The Web HIG Quick Reference.*
 - **Practical guide (Layer 2):** `docs/hig/HIG-LITE.md` + `docs/hig/rules/manifest.yaml`
@@ -46,7 +46,10 @@ agent_enforcement_rules:
       scope: micro_feedback_only
       severity: error
     - id: HIG-CQ-001
-      rule: require_container_queries_for_component_layout
+      rule: prefer_container_queries_for_component_internal_layout
+      severity: warning
+    - id: HIG-CQ-002
+      rule: require_container_queries_when_multi_context_reuse
       severity: error
     - id: HIG-A11Y-001
       rule: require_reduced_motion_media_query
@@ -70,6 +73,7 @@ agent_enforcement_rules:
       rule: min_target_size_px
       value: 24
       severity: error
+      note: "24px MUST floor (WCAG 2.5.8); 44px touch is HIG SHOULD only — not mandatory"
   mutation_constraints:
     - id: HIG-MUT-001
       rule: no_optimistic_destructive_confirmation

@@ -1,6 +1,6 @@
 # The Web HIG — Quick Reference
 
-**Layer 1** · ~5 minutes · **Version:** v1.9.0
+**Layer 1** · ~5 minutes · **Version:** v1.10.0
 
 Ninety-eight imperative rules. Read this first. For practical detail, open [HIG-LITE.md](./HIG-LITE.md) (Layer 2). For edge cases and normative depth, open [HIG.md](./HIG.md) (Layer 3).
 
@@ -12,7 +12,7 @@ Ninety-eight imperative rules. Read this first. For practical detail, open [HIG-
 
 ## Before you start
 
-1. Resolve the page archetype before applying rules: **content**, **commerce**, **application**, or **auth**.
+1. Resolve the page archetype before applying rules: **content**, **commerce**, **application**, or **auth**; for **content**, also resolve **surface** (`document` default, `hybrid`, `experience`) — see **HIG-EXP-**\* ([expressive-surface.md](./rules/expressive-surface.md)).
 2. Apply only rules mandatory for that archetype — not every rule applies to every page.
 3. Accessibility, design tokens, motion safety, and performance are **universal** — never optional.
 4. Prefer the simplest implementation that satisfies applicable rules (**HIG-SIM-001**).
@@ -106,7 +106,7 @@ Ninety-eight imperative rules. Read this first. For practical detail, open [HIG-
 62. Focus indicators must have sufficient contrast and must never be removed without a replacement.
 63. Typography and spacing must come from the token system — no one-off pixel values.
 64. Dark mode must re-verify contrast for every semantic token combination used.
-65. Components must adapt to their container via container queries — not only viewport breakpoints.
+65. Component-internal layout should use container queries when layout depends on parent width; must use them for multi-context reusable components where viewport breakpoints would lie (**HIG-CQ-001**, **HIG-CQ-002**). Do not add containers only to satisfy the rule (**HIG-SIM-001**).
 
 ---
 
@@ -121,7 +121,7 @@ Ninety-eight imperative rules. Read this first. For practical detail, open [HIG-
 72. Focus must be visible on every interactive element — never `outline: none` without a custom ring.
 73. Modals must trap focus inside and restore focus to the trigger on close.
 74. Provide a "Skip to main content" link as the first tabbable element.
-75. Minimum interactive target size is 24×24 CSS px; prefer 44×44 px for primary touch actions.
+75. Interactive targets MUST be at least 24×24 CSS px (**HIG-A11Y-007**) — WCAG 2.5.8 AA baseline; WCAG exceptions apply. Primary touch actions SHOULD use 44×44 CSS px as an HIG ergonomic recommendation — not mandatory for conformance.
 76. Respect `prefers-reduced-motion` — replace motion with instant state changes or minimal opacity fade.
 77. Content must remain usable at 200% zoom without loss of functionality.
 78. Dynamic content updates must be announced to screen readers (`aria-live` or focus management).

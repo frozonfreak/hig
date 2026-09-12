@@ -1,6 +1,6 @@
 # Applicability & Scope — Level 2 Module
 
-**Version:** v1.9.0 · **Canonical spec:** [HIG.md §0](../HIG.md#layer-0-applicability--scope) · **Archetype packs:** [archetypes/](./archetypes/)
+**Version:** v1.10.0 · **Canonical spec:** [HIG.md §0](../HIG.md#layer-0-applicability--scope) · **Archetype packs:** [archetypes/](./archetypes/)
 
 > Resolve archetype **before** applying any other HIG rules. Load the matching archetype pack for default module set.
 
@@ -38,15 +38,32 @@
 | Layer 5 Browser permissions UX | ⚪ | ⚪ | ✅ | ⚪ |
 | Layer 6 Performance | ✅ | ✅ | ✅ | ✅ |
 | Layer 9 Security & Privacy | ✅ | ✅ | ✅ | ✅ |
+| Layer 1 Expressive surface baseline (**HIG-EXP-***) | ⚪ | ❌ | ❌ | ❌ |
 
 Legend: ✅ Mandatory · ⚪ Conditional (when feature exists) · ❌ Not applicable.
 
+**Expressive surface (⚪ on Content):** Mandatory when product scope declares `surface: hybrid` or `surface: experience`. Default `surface: document` if undeclared. See [expressive-surface.md](./expressive-surface.md).
+
 **Universal (never optional):** Accessibility (Layer 5), tokens/typography (Layer 3), performance (Layer 6), security (Layer 9).
+
+## 0.3 Expressive surfaces (content)
+
+Resolve **surface** alongside archetype for content/marketing routes:
+
+| Surface | When | Module |
+| --- | --- | --- |
+| **document** | Default; docs, blog, classic landing | [animation.md](./animation.md) only (**HIG-MOT-003** full) |
+| **hybrid** | Expressive regions on a document spine | [expressive-surface.md](./expressive-surface.md) |
+| **experience** | Motion/scroll/time as primary structure | [expressive-surface.md](./expressive-surface.md) |
+
+Application, commerce checkout, and auth MUST use **document** surface.
 
 ## Agent workflow
 
 1. Resolve archetype from product scope doc (`docs/hig-scope.md`).
-2. Load [HIG-QUICK.md](../HIG-QUICK.md) (Layer 1); open [HIG-LITE.md](../HIG-LITE.md) (Layer 2) when building features.
-3. Load archetype pack → preload **default modules** for that archetype.
-4. Load additional modules on topic match via [manifest.yaml](./manifest.yaml).
-5. Escalate to [HIG.md](../HIG.md) only for edge cases.
+2. Resolve **surface** for content routes (**HIG-EXP-001**); default **document**.
+3. Load [HIG-QUICK.md](../HIG-QUICK.md) (Layer 1); open [HIG-LITE.md](../HIG-LITE.md) (Layer 2) when building features.
+4. Load archetype pack → preload **default modules** for that archetype.
+5. If `surface` is hybrid or experience, preload [expressive-surface.md](./expressive-surface.md).
+6. Load additional modules on topic match via [manifest.yaml](./manifest.yaml).
+7. Escalate to [HIG.md](../HIG.md) only for edge cases.

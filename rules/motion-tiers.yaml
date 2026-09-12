@@ -1,0 +1,127 @@
+# The Web HIG — Motion tier registry (machine-readable)
+# Version: 1.10.0
+# Normative prose: rules/expressive-surface.md § Motion tier taxonomy
+# Enforced by: HIG-EXP-006, HIG-EXP-013, HIG-EXP-014
+
+version: "1.10.0"
+
+# Numeric tiers (Tier 0–3) align with motion_class for functional/spatial/narrative.
+# "ambient" is a separate motion_class (environmental loops — not narrative structure).
+
+motion_tiers:
+  "0":
+    id: none
+    label: "Motion Tier 0 — None"
+    motion_class: none
+    description: >
+      No page-level motion beyond user-agent defaults. Interactive controls MAY use
+      Tier 1 functional motion only (HIG-MOT allowlist).
+  "1":
+    id: functional
+    label: "Motion Tier 1 — Functional"
+    motion_class: functional
+    description: >
+      Acknowledges input, state change, or progress. Includes HIG-MOT-001–005
+      micro-feedback on controls and allowlisted functional transitions.
+  "2":
+    id: spatial
+    label: "Motion Tier 2 — Spatial"
+    motion_class: spatial
+    description: >
+      Transform- or opacity-based motion that repositions or reveals layout without
+      a timed story beat — e.g. hero entrance, card lift, scroll-linked translate
+      on a bounded region, view transitions, pinned-section reveals. NOT continuous
+      idle loops (see ambient).
+  "3":
+    id: narrative
+    label: "Motion Tier 3 — Narrative"
+    motion_class: narrative
+    description: >
+      Scroll-, time-, or step-driven sequences where motion carries structural or
+      storytelling meaning — scrollytelling chapters, staged reveals, reel timelines.
+      User MUST be able to skip or pause (HIG-EXP-003, limited constraints below).
+
+motion_classes:
+  ambient:
+    label: "Ambient (environmental class)"
+    tier: null
+    description: >
+      Continuous or looping decorative motion that does not communicate structure,
+      state, or required meaning — grain, idle marks, background loops, atmospheric
+      WebGL/Rive accents. MUST be pausable; MUST default off under prefers-reduced-motion.
+
+# Permission levels: allowed | limited | denied
+# "limited" requires ALL constraints listed in limited_constraints[motion_class][surface]
+
+surface_permissions:
+  document:
+    functional: allowed
+    spatial: limited
+    narrative: denied
+    ambient: denied
+  hybrid:
+    functional: allowed
+    spatial: allowed
+    narrative: limited
+    ambient: limited
+  experience:
+    functional: allowed
+    spatial: allowed
+    narrative: allowed
+    ambient: allowed
+
+limited_constraints:
+  spatial:
+    document:
+      - MUST use transform and opacity only (HIG-MOT-005)
+      - MUST NOT exceed one bounded expressive region per viewport unless documented exception
+      - MUST NOT couple to scroll-jacking on the main document (HIG-EXP-005)
+      - MUST satisfy HIG-EXP-002 and HIG-EXP-003
+    hybrid: []
+    experience: []
+  narrative:
+    hybrid:
+      - MUST provide skip, pause, or equivalent escape before sequence completes
+      - MUST NOT block primary CTA or contact path (HIG-EXP-002)
+      - SHOULD limit to one primary narrative sequence per route unless scope documents multi-chapter flow
+      - MUST satisfy HIG-EXP-003
+    experience:
+      - MUST provide skip, pause, or equivalent escape
+      - MUST satisfy HIG-EXP-002 and HIG-EXP-003
+  ambient:
+    hybrid:
+      - MUST be pausable or stoppable by user action
+      - MUST NOT include autoplay audio (HIG-EXP-008)
+      - MUST default off or static substitute under prefers-reduced-motion (HIG-EXP-003)
+      - MUST pause when document is hidden
+    experience:
+      - MUST be pausable or stoppable by user action
+      - MUST NOT include autoplay audio (HIG-EXP-008)
+      - MUST default off or static substitute under prefers-reduced-motion (HIG-EXP-003)
+      - MUST pause when document is hidden
+
+# "allowed" on experience still requires universal HIG-EXP-* obligations; constraints above apply where listed.
+
+# HIG-MOT-003 applies to all motion_class on document surface page-level except functional (Tier 1).
+# On hybrid/experience, HIG-MOT-003 deny list applies to interactive controls only;
+# page-level motion MUST comply with surface_permissions above.
+
+control_motion:
+  all_surfaces:
+    motion_class: functional
+    hig_mot_003: full
+  page_level:
+    document:
+      hig_mot_003: full
+    hybrid:
+      hig_mot_003: relaxed_per_surface_permissions
+    experience:
+      hig_mot_003: relaxed_per_surface_permissions
+
+classification:
+  rule_id: HIG-EXP-014
+  required_for:
+    - content archetype with surface hybrid or experience
+  recommended_attributes:
+    - data-hig-motion-class  # none | functional | spatial | narrative | ambient
+    - data-hig-motion-tier   # 0 | 1 | 2 | 3 (omit for ambient)

@@ -1,6 +1,6 @@
 # The Web HIG — Rule Index (Level 2)
 
-**Version:** v1.9.0 · **Machine-readable:** [manifest.yaml](./manifest.yaml) · **Quick Reference:** [HIG-QUICK.md](../HIG-QUICK.md) · **Practical:** [HIG-LITE.md](../HIG-LITE.md) · **Full spec:** [HIG.md](../HIG.md)
+**Version:** v1.10.0 · **Machine-readable:** [manifest.yaml](./manifest.yaml) · **Quick Reference:** [HIG-QUICK.md](../HIG-QUICK.md) · **Practical:** [HIG-LITE.md](../HIG-LITE.md) · **Full spec:** [HIG.md](../HIG.md)
 
 This index maps rule IDs to standalone Layer 2 modules and tells agents **when** to load them. Each module is a self-contained extract; [HIG.md](../HIG.md) remains the complete normative contract (Layer 3).
 
@@ -44,9 +44,10 @@ This index maps rule IDs to standalone Layer 2 modules and tells agents **when**
 | **states** | [states.md](./states.md) | loading, skeleton, empty, error, stale, offline, network failure | HIG-ERR-001, HIG-EMP-001, HIG-LOD-001 |
 | **forms** | [forms.md](./forms.md) | form, label, validation, autocomplete, multi-step, checkout | HIG-FRM-001 |
 | **tokens** | [tokens.md](./tokens.md) | color, typography, spacing, dark mode, design token | HIG-TOK-001, HIG-TOK-002 |
-| **responsive** | [responsive.md](./responsive.md) | container query, breakpoint, layout adaptation, reflow | HIG-CQ-001 |
+| **responsive** | [responsive.md](./responsive.md) | container query, breakpoint, layout adaptation, reflow | HIG-CQ-001, HIG-CQ-002 |
 | **data-density** | [data-density.md](./data-density.md) | data table, grid, virtualization, bulk action, dashboard | — |
 | **animation** | [animation.md](./animation.md) | transition, micro-animation, view transition, reduced motion | HIG-MOT-001–005, HIG-VT-001 |
+| **expressive-surface** | [expressive-surface.md](./expressive-surface.md) | portfolio, fluid, scroll-driven, kinetic type, reel, hybrid/experience surface | HIG-EXP-001–012 |
 | **architecture** | [architecture.md](./architecture.md) | SSR, RSC, server action, streaming, suspense, hydration | HIG-SSR-001–003 |
 | **mutations** | [mutations.md](./mutations.md) | delete, optimistic UI, idempotency, conflict | HIG-MUT-001, HIG-MUT-002 |
 | **performance** | [performance.md](./performance.md) | LCP, INP, CLS, TTFB, bundle budget, Core Web Vitals | — |
@@ -80,7 +81,8 @@ Load alongside **architecture** when the task is framework-specific:
 | HIG-UX-001 | Logical CSS properties | i18n | §2.8 |
 | HIG-TOK-001 | No raw hex outside token files | tokens | §3.1 |
 | HIG-TOK-002 | Semantic/component tokens | tokens | §3.1 |
-| HIG-CQ-001 | Container queries for component layout | responsive | §3.2 |
+| HIG-CQ-001 | Prefer @container for component-internal layout | responsive | §3.2 |
+| HIG-CQ-002 | Must @container when multi-context reuse breaks on viewport MQ | responsive | §3.2 |
 | HIG-MOT-001 | No `transition: all` in app CSS | animation | §1.1 |
 | HIG-MOT-002 | Motion duration tokens | animation | §3.1 |
 | HIG-MOT-003 | No decorative micro-animations | animation | §1.4 |
@@ -96,7 +98,7 @@ Load alongside **architecture** when the task is framework-specific:
 | HIG-A11Y-004 | Accessible name on icon buttons | accessibility | §5.2 |
 | HIG-A11Y-005 | Alt text on images | accessibility | §5.2 |
 | HIG-A11Y-006 | Visible focus styles | accessibility | §5.3 |
-| HIG-A11Y-007 | Min 24×24 px targets | accessibility | §5.4 |
+| HIG-A11Y-007 | Min 24×24 px (WCAG 2.5.8 baseline); 44px touch is SHOULD ergonomics | accessibility | §5.4 |
 | HIG-A11Y-008 | Modal focus containment | accessibility | §5.3 |
 | HIG-MUT-001 | No optimistic destructive confirmation | mutations | §2.4 |
 | HIG-MUT-002 | Idempotency for critical mutations | mutations | §4.5 |
@@ -110,6 +112,20 @@ Load alongside **architecture** when the task is framework-specific:
 | HIG-SEC-002 | CSP headers configured | security | §9.1 |
 | HIG-SEC-003 | PII masked in UI and logs | security | §9.4 |
 | HIG-SEC-004 | Secure cookie attributes | security | §9.3 |
+| HIG-EXP-001 | Declare content surface in scope | expressive-surface | §0.3 |
+| HIG-EXP-002 | Non-motion content parity | expressive-surface | §1.5 |
+| HIG-EXP-003 | Reduced-motion parity path | expressive-surface | §1.5 |
+| HIG-EXP-004 | Nav / index escape hatch | expressive-surface | §1.5 |
+| HIG-EXP-005 | No scroll-jacking as sole navigation | expressive-surface | §1.5 |
+| HIG-EXP-006 | Surface × motion_class permission matrix | expressive-surface | §1.5 |
+| HIG-EXP-013 | Motion Tier 0–3 + ambient taxonomy | expressive-surface | §1.5 |
+| HIG-EXP-014 | Page-level motion classification | expressive-surface | §1.5 |
+| HIG-EXP-007 | Meaning in DOM reading order | expressive-surface | §1.5 |
+| HIG-EXP-008 | Sensory media controls | expressive-surface | §1.5 |
+| HIG-EXP-009 | Keyboard custom scroll regions | expressive-surface | §1.5 |
+| HIG-EXP-010 | Progressive enhancement baseline | expressive-surface | §1.5 |
+| HIG-EXP-011 | Kinetic type canonical copy | expressive-surface | §1.5 |
+| HIG-EXP-012 | CWV on expressive surfaces | expressive-surface | §1.5 |
 
 ---
 
@@ -120,6 +136,7 @@ Not every rule applies to every page. Always resolve archetype first ([§0.2](..
 | Rule prefix | Universal | Archetype-conditional |
 | --- | --- | --- |
 | HIG-A11Y-*, HIG-TOK-*, HIG-MOT-*, HIG-CQ-*, HIG-UX-*, HIG-SEC-* | ✅ | — |
+| HIG-EXP-* | — | content, when `surface: hybrid` or `experience` |
 | HIG-SSR-* | — | commerce, application, auth |
 | HIG-ERR/EMP/LOD/FRM/NTF-* | — | commerce, application, auth (where feature exists) |
 | HIG-MUT-002 | — | commerce, application |

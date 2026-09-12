@@ -1,6 +1,6 @@
 # AI & Agent Enforcement — Level 2 Module
 
-**Version:** v1.9.0 · **Canonical spec:** [HIG.md §7–8](../HIG.md#layer-7-ai--agent-enforcement-contract) · **Rule ID:** HIG-SIM-001 + all Layer 7 IDs
+**Version:** v1.10.0 · **Canonical spec:** [HIG.md §7–8](../HIG.md#layer-7-ai--agent-enforcement-contract) · **Rule ID:** HIG-SIM-001 + all Layer 7 IDs
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 
@@ -33,6 +33,7 @@ Key enforceable rules (full YAML in [HIG.md §7.2](../HIG.md#72-ai-coding-agent-
 | --- | --- |
 | HIG-TOK-* | Design tokens |
 | HIG-MOT-* | Motion and micro-animations |
+| HIG-EXP-* | Expressive content surfaces (hybrid / experience) |
 | HIG-CQ-* | Container queries |
 | HIG-UX-* | Logical properties |
 | HIG-A11Y-* | Accessibility |
@@ -73,3 +74,5 @@ Intended `eslint-plugin-hig` rules:
 Field INP is an SLO — not a deterministic CI gate from synthetic tests.
 
 See [HIG.md §8](../HIG.md#layer-8-quality-assurance--cicd-gates) for the full CI pipeline diagram.
+
+**Evaluator output:** Tools MUST emit multidimensional reports (severity buckets + dimensions + findings), not a single score alone — [EVALUATOR.md](../EVALUATOR.md), [evaluator-dimensions.yaml](./evaluator-dimensions.yaml).

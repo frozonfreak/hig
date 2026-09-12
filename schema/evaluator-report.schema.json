@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hig.dev/schema/evaluator-report.schema.json",
+  "title": "The Web HIG Evaluator Report",
+  "description": "Multidimensional conformance output — not a single-score Lighthouse substitute. Aligns with HIG Layer 8 BLOCKING / WARNING / OBSERVATION gates.",
+  "type": "object",
+  "required": [
+    "hig_version",
+    "evaluator",
+    "scope",
+    "severity_summary",
+    "dimensions",
+    "findings"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "hig_version": {
+      "type": "string",
+      "description": "Pinned HIG contract semver (e.g. 1.10.0)"
+    },
+    "evaluator": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "type": "string" },
+        "version": { "type": "string" }
+      }
+    },
+    "scope": {
+      "type": "object",
+      "required": ["archetype"],
+      "properties": {
+        "archetype": {
+          "enum": ["content", "commerce", "application", "auth"]
+        },
+        "surface": {
+          "enum": ["document", "hybrid", "experience"]
+        },
+        "profile": {
+          "enum": ["quick", "practical", "full"]
+        },
+        "routes": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "severity_summary": {
+      "type": "object",
+      "required": ["blocking", "warnings", "observations"],
+      "properties": {
+        "blocking": { "type": "integer", "minimum": 0 },
+        "warnings": { "type": "integer", "minimum": 0 },
+        "observations": { "type": "integer", "minimum": 0 },
+        "build_status": {
+          "enum": ["passed", "failed", "skipped"]
+        }
+      }
+    },
+    "dimensions": {
+      "type": "object",
+      "required": [
+        "accessibility",
+        "ux",
+        "performance",
+        "security",
+        "architecture",
+        "responsive",
+        "motion",
+        "seo"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "accessibility": { "$ref": "#/$defs/dimensionResult" },
+        "ux": { "$ref": "#/$defs/dimensionResult" },
+        "performance": { "$ref": "#/$defs/dimensionResult" },
+        "security": { "$ref": "#/$defs/dimensionResult" },
+        "architecture": { "$ref": "#/$defs/dimensionResult" },
+        "responsive": { "$ref": "#/$defs/dimensionResult" },
+        "motion": { "$ref": "#/$defs/dimensionResult" },
+        "seo": { "$ref": "#/$defs/dimensionResult" }
+      }
+    },
+    "overall_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Optional weighted summary. MUST NOT be the only field consumers display."
+    },
+    "findings": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/finding" }
+    }
+  },
+  "$defs": {
+    "dimensionResult": {
+      "type": "object",
+      "required": ["score", "blocking", "warnings", "observations"],
+      "properties": {
+        "score": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "blocking": { "type": "integer", "minimum": 0 },
+        "warnings": { "type": "integer", "minimum": 0 },
+        "observations": { "type": "integer", "minimum": 0 },
+        "applicable": { "type": "boolean" },
+        "notes": { "type": "string" }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "required": ["rule_id", "dimension", "severity_bucket", "message"],
+      "properties": {
+        "rule_id": {
+          "type": "string",
+          "pattern": "^HIG-[A-Z0-9]+-\\d+$"
+        },
+        "dimension": {
+          "enum": [
+            "accessibility",
+            "ux",
+            "performance",
+            "security",
+            "architecture",
+            "responsive",
+            "motion",
+            "seo"
+          ]
+        },
+        "severity_bucket": {
+          "enum": ["blocking", "warnings", "observations"]
+        },
+        "message": { "type": "string" },
+        "location": { "type": "string" },
+        "url": { "type": "string" },
+        "autofix": {
+          "enum": ["safe", "unsafe", "none"]
+        }
+      }
+    }
+  }
+}

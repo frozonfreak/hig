@@ -6,14 +6,18 @@ Layer 7 defines how requirements become **deterministic** for linters, CI, and A
 
 ---
 
-## Today (v1.9.0)
+## Today (v1.10.0)
 
 | Artifact | Format | Purpose |
 | --- | --- | --- |
 | [rules/manifest.yaml](./rules/manifest.yaml) | YAML | Progressive loading: layers, modules, triggers, rule ID lists per module |
+| [rules/motion-tiers.yaml](./rules/motion-tiers.yaml) | YAML | Motion Tier 0–3 + ambient class; surface permission matrix (**HIG-EXP-006**) |
 | Agent templates | Markdown + YAML | Layer 7 guardrails in [examples/agent-rules/](./examples/agent-rules/) |
 | Rule IDs in prose | `HIG-*` in HIG.md and `rules/*.md` | Human and agent citation |
 | [scripts/validate-hig.mjs](./scripts/validate-hig.mjs) | JavaScript | VERSION sync, file existence, rule ID cross-checks |
+| [rules/evaluator-dimensions.yaml](./rules/evaluator-dimensions.yaml) | YAML | Evaluator dimension ↔ rule prefix map |
+| [schema/evaluator-report.schema.json](./schema/evaluator-report.schema.json) | JSON Schema | Multidimensional evaluator report shape |
+| [EVALUATOR.md](./EVALUATOR.md) | Markdown | Evaluator contract (Layer 8 §8.2) |
 
 ### Manifest schema (draft)
 

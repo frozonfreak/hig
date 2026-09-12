@@ -36,7 +36,7 @@
 
 ## Styling
 
-* Use design tokens in global CSS; `@container` for component layout (**HIG-CQ-001**).
+* Use design tokens in global CSS; `@container` per **HIG-CQ-001** / **HIG-CQ-002** (see [responsive.md](../rules/responsive.md)).
 * Respect `prefers-reduced-motion` globally (**HIG-A11Y-001**).
 
 ## Performance

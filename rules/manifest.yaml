@@ -1,8 +1,8 @@
 # The Web HIG — Progressive loading manifest
-# Version: 1.9.0
+# Version: 1.10.0
 # Human-readable index: rules/INDEX.md
 
-version: "1.9.0"
+version: "1.10.0"
 
 layers:
   1:
@@ -39,6 +39,46 @@ modules:
     hig_sections:
       - "§0.1"
       - "§0.2"
+      - "§0.3"
+
+  expressive-surface:
+    file: rules/expressive-surface.md
+    triggers:
+      - expressive
+      - fluid
+      - portfolio
+      - scroll-driven
+      - scrollytelling
+      - kinetic type
+      - marquee
+      - reel
+      - campaign microsite
+      - motion language
+      - parallax
+      - horizontal scroll
+      - surface hybrid
+      - surface experience
+      - hig-exp
+    rules:
+      - HIG-EXP-001
+      - HIG-EXP-002
+      - HIG-EXP-003
+      - HIG-EXP-004
+      - HIG-EXP-005
+      - HIG-EXP-006
+      - HIG-EXP-007
+      - HIG-EXP-008
+      - HIG-EXP-009
+      - HIG-EXP-010
+      - HIG-EXP-011
+      - HIG-EXP-012
+      - HIG-EXP-013
+      - HIG-EXP-014
+    hig_sections:
+      - "§0.3"
+      - "§1.5"
+    registries:
+      - rules/motion-tiers.yaml
 
   accessibility:
     file: rules/accessibility.md
@@ -165,6 +205,7 @@ modules:
       - responsive
     rules:
       - HIG-CQ-001
+      - HIG-CQ-002
     hig_sections:
       - "§3.2"
 

@@ -87,6 +87,6 @@ Public claims should state:
 2. Profile(s) in use
 3. Archetypes in scope (link to your `hig-scope.md` or ADOPTERS entry)
 
-Example: *"Acme App pins Web HIG v1.9.0 Practical profile for Application and Auth archetypes."*
+Example: *"Acme App pins Web HIG v1.10.0 Practical profile for Application and Auth archetypes."*
 
 List public adoptions in [ADOPTERS.md](./ADOPTERS.md).
