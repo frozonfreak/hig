@@ -14,14 +14,14 @@ Layer 7 defines how requirements become **deterministic** for linters, CI, and A
 | [rules/motion-tiers.yaml](./rules/motion-tiers.yaml) | YAML | Motion Tier 0–3 + ambient class; surface permission matrix (**HIG-EXP-006**) |
 | Agent templates | Markdown + YAML | Layer 7 guardrails in [examples/agent-rules/](./examples/agent-rules/) |
 | Rule IDs in prose | `HIG-*` in HIG.md and `rules/*.md` | Human and agent citation |
-| [scripts/validate-hig.mjs](./scripts/validate-hig.mjs) | JavaScript | VERSION sync, file existence, rule ID cross-checks |
+| [scripts/validate-hig.mjs](./scripts/validate-hig.mjs) | JavaScript | VERSION sync, file existence, rule ID cross-checks, docs/adopter pins, manifest schema keys |
 | [rules/evaluator-dimensions.yaml](./rules/evaluator-dimensions.yaml) | YAML | Evaluator dimension ↔ rule prefix map |
 | [schema/evaluator-report.schema.json](./schema/evaluator-report.schema.json) | JSON Schema | Multidimensional evaluator report shape |
 | [EVALUATOR.md](./EVALUATOR.md) | Markdown | Evaluator contract (Layer 8 §8.2) |
 
 ### Manifest schema (draft)
 
-A JSON Schema draft for the manifest lives at [schema/manifest.schema.json](./schema/manifest.schema.json). CI may validate against it in a future minor release.
+A JSON Schema draft for the manifest lives at [schema/manifest.schema.json](./schema/manifest.schema.json). CI validates required top-level keys via `npm run validate`; full YAML shape validation may follow in a later release.
 
 ---
 

@@ -4,6 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="The Web HIG — an AI-native behavioral standard for modern web applications. A rulebook and engineering contract that humans and AI coding agents can follow and validate.">
+  <meta property="og:title" content="The Web HIG — AI-native behavioral standard for the modern web">
+  <meta property="og:description" content="Versioned behavioral contract for interaction, states, accessibility, performance, and security UX — pin-able by teams and AI coding agents.">
+  <meta property="og:url" content="https://frozonfreak.github.io/hig/">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="The Web HIG">
+  <meta name="twitter:description" content="Open behavioral standard for the modern web — 98 quick rules, stable IDs, agent templates.">
   <title>The Web HIG — AI-native behavioral standard for the modern web</title>
   <link rel="stylesheet" href="css/site.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -229,6 +236,7 @@
           <li><strong>Real UI states</strong> — loading, empty, error, and success are designed, not bolted on</li>
           <li><strong>Design tokens</strong> — no raw hex colors outside token files</li>
           <li><strong>Reduced motion</strong> — animations are functional, never required to understand the UI</li>
+          <li><strong>Content surfaces</strong> — declare <code>document</code>, <code>hybrid</code>, or <code>experience</code> on marketing routes; reduced-motion parity on expressive pages</li>
           <li><strong>Performance</strong> — protect Core Web Vitals; avoid unnecessary JavaScript</li>
           <li><strong>Security basics</strong> — no secrets in client code; PII masked; CSP configured</li>
         </ul>
@@ -452,25 +460,16 @@
       <!-- HOW / TRY -->
       <section id="how" class="section-block">
         <h2>Try it in one afternoon</h2>
-        <p class="section-intro">Add the HIG to an existing project without reading the entire specification.</p>
-        <ol class="steps">
-          <li>
-            <strong>Pin the contract</strong> — copy HIG-QUICK, HIG-LITE, HIG.md, rules/, and VERSION into your repo (e.g. <code>docs/hig/</code>)
-            <span class="step-meta">~10 minutes</span>
-          </li>
-          <li>
-            <strong>Map your pages</strong> — create <code>docs/hig-scope.md</code> with routes and page archetypes (Content, Commerce, Application, or Auth)
-            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/blob/main/examples/hig-scope.example.md">Example →</a> · ~15 minutes</span>
-          </li>
-          <li>
-            <strong>Wire your tools</strong> — add agent rules for Cursor, Copilot, or Claude Code
-            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/tree/main/examples/agent-rules">Templates →</a> · ~5 minutes</span>
-          </li>
-          <li>
-            <strong>Review and automate</strong> — use the Quick Reference in PRs; add ESLint/CI gates when ready
-            <span class="step-meta"><a href="#integration">Full integration guide →</a></span>
-          </li>
-        </ol>
+        <p class="section-intro">
+          Pin the contract under <code>docs/hig/</code>, map routes in <code>docs/hig-scope.md</code> (archetype plus <strong>surface</strong> for content pages),
+          copy an agent rule template, and use the Quick Reference in PR review.
+        </p>
+        <p>
+          Step-by-step checklist (pin → scope → agents → CI):
+          <a href="#integration">Integration into your product →</a>
+          ·
+          <a href="https://github.com/frozonfreak/hig/blob/main/examples/conformance-checklist.md">PR checklist template →</a>
+        </p>
       </section>
 
       <div class="journey-landmark" id="use-with-ai" aria-label="Section: Use it with AI">
@@ -551,7 +550,7 @@
 │   ├── manifest.yaml        Machine-readable load triggers
 │   ├── INDEX.md             Rule ID registry
 │   ├── applicability.md     Layer 0 matrix
-│   ├── accessibility.md …   16 topic modules
+│   ├── accessibility.md …   17 topic modules (incl. expressive-surface)
 │   └── archetypes/          content, commerce, application, auth
 ├── framework/               React, Next, Vue, Nuxt, Astro
 ├── examples/agent-rules/    Cursor, Claude, Copilot templates
@@ -585,8 +584,8 @@
             <tbody>
               <tr>
                 <td><strong>Content / Marketing</strong></td>
-                <td>Landing pages, blogs, docs</td>
-                <td>7</td>
+                <td>Landing pages, blogs, docs, portfolios</td>
+                <td>7+</td>
                 <td><a href="https://github.com/frozonfreak/hig/blob/main/rules/archetypes/content.md">content.md</a></td>
               </tr>
               <tr>
@@ -612,7 +611,13 @@
         </div>
 
         <p>
-          16 topic modules · 4 archetypes ·
+          Content routes declare a <strong>surface</strong> (<code>document</code> · <code>hybrid</code> · <code>experience</code>).
+          Hybrid and experience pages preload
+          <a href="https://github.com/frozonfreak/hig/blob/main/rules/expressive-surface.md">expressive-surface.md</a>
+          (<code>HIG-EXP-001</code>–<code>014</code>).
+        </p>
+        <p>
+          17 topic modules · 4 archetypes ·
           Framework adapters: React, Next.js, Vue, Nuxt, Astro —
           <a href="https://github.com/frozonfreak/hig/tree/main/framework">framework/</a>
         </p>
@@ -638,7 +643,8 @@
               <tr><td><code>HIG-A11Y-*</code></td><td>Accessibility</td><td><code>HIG-A11Y-003</code> — native HTML over ARIA</td></tr>
               <tr><td><code>HIG-TOK-*</code></td><td>Design tokens</td><td><code>HIG-TOK-001</code> — no raw hex outside token files</td></tr>
               <tr><td><code>HIG-MOT-*</code></td><td>Motion</td><td><code>HIG-MOT-001</code> — no <code>transition: all</code></td></tr>
-              <tr><td><code>HIG-CQ-*</code></td><td>Container queries</td><td><code>HIG-CQ-001</code> — component layout via <code>@container</code></td></tr>
+              <tr><td><code>HIG-EXP-*</code></td><td>Expressive content surfaces</td><td><code>HIG-EXP-001</code> — declare surface in scope</td></tr>
+              <tr><td><code>HIG-CQ-*</code></td><td>Container queries</td><td><code>HIG-CQ-001</code> (SHOULD) · <code>HIG-CQ-002</code> (MUST) for multi-context reuse</td></tr>
               <tr><td><code>HIG-SSR-*</code></td><td>Server rendering</td><td><code>HIG-SSR-001</code> — default to server rendering</td></tr>
               <tr><td><code>HIG-MUT-*</code></td><td>Mutations</td><td><code>HIG-MUT-001</code> — no optimistic destructive confirmation</td></tr>
               <tr><td><code>HIG-SEC-*</code></td><td>Security</td><td><code>HIG-SEC-002</code> — CSP configured</td></tr>
@@ -662,7 +668,7 @@
             <span class="step-meta">~10 minutes</span>
           </li>
           <li>
-            <strong>Map your routes</strong> — create <code>docs/hig-scope.md</code> with page types per route
+            <strong>Map your routes</strong> — create <code>docs/hig-scope.md</code> with archetype per route and <strong>surface</strong> for content (<code>document</code> · <code>hybrid</code> · <code>experience</code>)
             <span class="step-meta"><a href="https://github.com/frozonfreak/hig/blob/main/examples/hig-scope.example.md">Example →</a> · ~15 minutes</span>
           </li>
           <li>
@@ -670,8 +676,8 @@
             <span class="step-meta"><a href="https://github.com/frozonfreak/hig/tree/main/examples/agent-rules">Templates →</a> · ~5 minutes</span>
           </li>
           <li>
-            <strong>PR checklist</strong> — use essential rules for human review until linters exist
-            <span class="step-meta">~10 minutes</span>
+            <strong>PR checklist</strong> — copy the conformance checklist for human review until linters exist
+            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/blob/main/examples/conformance-checklist.md">Template →</a> · ~10 minutes</span>
           </li>
           <li>
             <strong>Lint &amp; CI</strong> — automate Layer 7 rules and Layer 8 gates when ready
@@ -687,10 +693,20 @@
       <!-- VALIDATION -->
       <section id="validation" class="section-block">
         <h2>Validation &amp; CI</h2>
-        <p class="section-intro">Keep VERSION, manifest, and modules synchronized when upgrading pins.</p>
+        <p class="section-intro">Keep VERSION, manifest, and modules synchronized when upgrading pins. Layer 8 tools emit multidimensional reports — not a single score alone.</p>
         <pre><code>npm run validate
 # or: node scripts/validate-hig.mjs</code></pre>
-        <p>Validates version sync, file references, archetype packs, and rule ID consistency. Runs automatically on every PR via GitHub Actions.</p>
+        <p>
+          Contract validation checks version sync, file references, archetype packs, rule ID consistency, documentation site version strings, and adopter pins.
+          Runs on every PR via GitHub Actions.
+        </p>
+        <p>
+          Product CI evaluators should follow
+          <a href="https://github.com/frozonfreak/hig/blob/main/EVALUATOR.md">EVALUATOR.md</a>
+          (blocking / warnings / observations plus eight dimensions).
+          Schema:
+          <a href="https://github.com/frozonfreak/hig/blob/main/schema/evaluator-report.schema.json">evaluator-report.schema.json</a>
+        </p>
       </section>
 
       <!-- STANDARD DOCS -->

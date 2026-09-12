@@ -25,7 +25,7 @@ You keep MUI, shadcn, Tailwind, or a home-grown token file. You keep React, Vue,
 
 > **Design systems define *what* it looks like.** **The Web HIG defines *how* it behaves.**
 
-Current release: **v1.9.0**. [Quick Reference](https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md) · [Live demo](https://hig.aruviflow.com/) · [Documentation site](https://frozonfreak.github.io/hig/)
+Current release: **v1.10.0**. [Quick Reference](https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md) · [Live demo](https://hig.aruviflow.com/) · [Documentation site](https://frozonfreak.github.io/hig/)
 
 ## Why “just use a checklist” fails at scale
 
@@ -53,12 +53,12 @@ Same rule IDs at every layer. Escalate only when you need to.
 
 Not every rule applies to every page. Before enforcing anything, resolve a **page archetype**:
 
-- `content` — marketing, docs, blog
+- `content` — marketing, docs, blog (plus **surface**: `document` · `hybrid` · `experience` for expressive pages)
 - `commerce` — catalog, cart, checkout
 - `application` — dashboards, settings, tools
 - `auth` — login, signup, account recovery
 
-A landing page should not inherit the same mutation and streaming defaults as a logged-in app shell. Archetypes keep agents and humans from “HIG-maximalism” on simple routes.
+A landing page should not inherit the same mutation and streaming defaults as a logged-in app shell. Archetypes keep agents and humans from “HIG-maximalism” on simple routes. v1.10 adds an **expressive surface baseline** (`HIG-EXP-*`) for portfolio and campaign-style content without weakening document or app routes.
 
 ## Rules agents (and reviewers) can actually cite
 

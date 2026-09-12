@@ -37,7 +37,7 @@ THE WEB HIG — three consumption layers
 ├── rules/
 │   ├── INDEX.md               ← Topic index + rule ID registry
 │   ├── manifest.yaml          ← Machine-readable load triggers
-│   ├── accessibility.md       ← Topic modules (16 topics)
+│   ├── accessibility.md       ← Topic modules (17 topics)
 │   ├── ux.md, forms.md, states.md, tokens.md, responsive.md, …
 │   └── archetypes/            ← Per-archetype module preload lists
 │

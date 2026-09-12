@@ -9,7 +9,7 @@ Follow The Web HIG v1.10.0.
 
 ## Workflow
 
-1. Resolve page archetype first, then apply Layer 0 matrix (`rules/applicability.md`).
+1. Resolve page archetype first; for **content**, resolve **surface** (`document` | `hybrid` | `experience`) from scope (**HIG-EXP-001**), then apply Layer 0 matrix (`rules/applicability.md`).
 2. Read HIG-QUICK for the 98-rule Quick Reference; open HIG-LITE when you need rule IDs; cite rule IDs on conflicts.
 3. Load archetype pack (`rules/archetypes/<archetype>.md`) → preload default modules.
 4. Match task keywords against manifest.yaml → open referenced `rules/*.md` module.
@@ -18,7 +18,8 @@ Follow The Web HIG v1.10.0.
 
 - Use design tokens only (no raw hex outside token files) — HIG-TOK-001
 - Application-authored CSS MUST NOT use `transition: all`. Micro-feedback ≤300ms; prefer `transform`/`opacity`; functional not decorative — HIG-MOT-001, HIG-MOT-004
-- Prefer `@container` for component-internal layout (**HIG-CQ-001**); must use when multi-context reuse breaks on viewport MQ (**HIG-CQ-002**); `@media` for page, environment, preferences — do not add containers only for CQ (**HIG-SIM-001**)
+- Prefer `@container` for component-internal layout (**HIG-CQ-001**, warning); must use when multi-context reuse breaks on viewport MQ (**HIG-CQ-002**, error); `@media` for page, environment, preferences — do not add containers only for CQ (**HIG-SIM-001**)
+- Content **hybrid** / **experience** surfaces: parity, nav escape hatch, motion tiers — **HIG-EXP-001**–**014** ([expressive-surface.md](docs/hig/rules/expressive-surface.md))
 - Use logical properties (`margin-inline`, `inset-inline-start`, etc.) — HIG-UX-001
 - Respect `prefers-reduced-motion` (mandatory HIG requirement) — HIG-A11Y-001
 - Default to server rendering; add client interactivity only for state/effects/listeners — HIG-SSR-001

@@ -9,7 +9,7 @@ This project follows The Web HIG v1.10.0.
 
 ## Before UI changes
 
-1. Resolve archetype (`content` | `commerce` | `application` | `auth`) from the scope map.
+1. Resolve archetype (`content` | `commerce` | `application` | `auth`) from the scope map; for **content**, resolve **surface** (`document` | `hybrid` | `experience`) per **HIG-EXP-001**.
 2. Read HIG-QUICK.md for the 98-rule Quick Reference.
 3. Open HIG-LITE.md when building features or you need rule ID links.
 4. Load archetype pack from `rules/archetypes/<archetype>.md` → preload default modules.
@@ -23,6 +23,7 @@ This project follows The Web HIG v1.10.0.
 agent_enforcement_rules:
   scope:
     resolve_archetype_first: true
+    resolve_content_surface: true
     apply_layer0_matrix: true
     prefer_simplest_compliant_implementation: true
     default_context: HIG-QUICK.md

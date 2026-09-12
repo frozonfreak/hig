@@ -152,6 +152,42 @@ for (const id of indexRuleIds) {
   }
 }
 
+// --- Documentation site version sync ---
+const docsIndex = exists('docs/index.html') ? read('docs/index.html') : '';
+const docsVersionLabel = `v${versionFile}`;
+if (docsIndex) {
+  if (!docsIndex.includes(`class="version-badge">${docsVersionLabel}<`)) {
+    fail(`docs/index.html version-badge must show ${docsVersionLabel}`);
+  }
+  if (!docsIndex.includes(`The Web HIG ${docsVersionLabel}`)) {
+    fail(`docs/index.html footer must include "The Web HIG ${docsVersionLabel}"`);
+  }
+}
+
+// --- Adopters reference implementations pin current VERSION ---
+const adoptersText = exists('ADOPTERS.md') ? read('ADOPTERS.md') : '';
+if (adoptersText) {
+  const refBlock = adoptersText.split('## Community adopters')[0] ?? adoptersText;
+  for (const label of ['HIG documentation site', 'Live demo (Aruvi Flow)', 'This repository']) {
+    const row = refBlock.split('\n').find((line) => line.includes(label));
+    if (row && !row.includes(docsVersionLabel)) {
+      fail(`ADOPTERS.md reference row "${label}" must pin ${docsVersionLabel}`);
+    }
+  }
+}
+
+// --- Manifest schema (structural draft checks) ---
+const manifestSchema = exists('schema/manifest.schema.json')
+  ? JSON.parse(read('schema/manifest.schema.json'))
+  : null;
+if (manifestSchema?.required) {
+  for (const key of manifestSchema.required) {
+    if (!manifestYaml.match(new RegExp(`^${key}:`, 'm'))) {
+      fail(`manifest.yaml missing required key (schema): ${key}`);
+    }
+  }
+}
+
 // --- Report ---
 if (warnings.length) {
   console.warn('Warnings:');

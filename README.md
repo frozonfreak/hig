@@ -121,7 +121,7 @@ Walkthrough: [examples/adoption/quick-profile-walkthrough.md](./examples/adoptio
 
 ## Specification contents (summary)
 
-98 quick rules · 16 topic modules · 4 page archetypes · Layers 0–9
+98 quick rules · 17 topic modules · 4 page archetypes · Layers 0–9
 
 | Layer | Focus |
 | --- | --- |

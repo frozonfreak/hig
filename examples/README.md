@@ -12,6 +12,7 @@ Copy these into a **product** repository. They are not loaded when developing Th
 | Route → archetype map | [hig-scope.example.md](./hig-scope.example.md) |
 | Full pin list + CI stages | [INTEGRATION.md](../INTEGRATION.md) |
 | Conformance levels | [PROFILES.md](../PROFILES.md) |
+| PR checklist (copy-paste) | [conformance-checklist.md](./conformance-checklist.md) |
 | Public listing | [ADOPTERS.md](../ADOPTERS.md) |
 
 ---

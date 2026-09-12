@@ -78,12 +78,15 @@ Pinned contract: The Web HIG v1.10.0
 - Full spec: `docs/hig/HIG.md`
 - Topic index: `docs/hig/rules/manifest.yaml`
 
-| Route / area | Archetype | Notes |
-| --- | --- | --- |
-| `/`, `/blog/*` | Content / Marketing | SEO mandatory |
-| `/products/*`, `/cart`, `/checkout` | Commerce | Checkout = unsaved-changes protection |
-| `/app/*`, `/admin/*` | Application | Server rendering + mutation state machines |
-| `/login`, `/settings` | Auth / Account | No decorative motion |
+| Route / area | Archetype | Surface | Notes |
+| --- | --- | --- | --- |
+| `/`, `/blog/*` | Content / Marketing | document | SEO mandatory |
+| `/work/*` | Content / Marketing | experience | Preload `expressive-surface` module |
+| `/products/*`, `/cart`, `/checkout` | Commerce | — | Checkout = unsaved-changes protection |
+| `/app/*`, `/admin/*` | Application | — | Server rendering + mutation state machines |
+| `/login`, `/settings` | Auth / Account | — | No decorative motion |
+
+**Surface** applies to **content** routes only (`document` default · `hybrid` · `experience`). See [rules/expressive-surface.md](./rules/expressive-surface.md) and [examples/hig-scope.example.md](./examples/hig-scope.example.md).
 
 Default for new UI: Application unless the route map says otherwise.
 ```
@@ -98,13 +101,14 @@ Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) into
 
 ### Loading workflow for agents
 
-1. **Always:** Read `HIG-QUICK.md` (Layer 1) + resolve archetype from scope doc
+1. **Always:** Read `HIG-QUICK.md` (Layer 1) + resolve archetype (and **content surface** when applicable) from scope doc
 2. **On feature work:** Open `HIG-LITE.md` (Layer 2) for rule ID links and checklists
 3. **Archetype pack:** Load `rules/archetypes/<archetype>.md` → preload default modules
-4. **On topic match:** Consult `rules/manifest.yaml` → open matching `rules/*.md` module; load `framework/*.md` when stack-specific
-5. **On edge case:** Open `HIG.md` (Layer 3)
-6. **Always:** Apply Layer 7 YAML guardrails from the agent rule file
-7. **Cite rule IDs** when declining conflicting requests (e.g. `HIG-A11Y-003`)
+4. **Content surface:** When archetype is content, read `surface` from scope; for `hybrid` or `experience`, preload `rules/expressive-surface.md`
+5. **On topic match:** Consult `rules/manifest.yaml` → open matching `rules/*.md` module; load `framework/*.md` when stack-specific
+6. **On edge case:** Open `HIG.md` (Layer 3)
+7. **Always:** Apply Layer 7 YAML guardrails from the agent rule file
+8. **Cite rule IDs** when declining conflicting requests (e.g. `HIG-A11Y-003`)
 
 ### Cursor
 

@@ -10,8 +10,8 @@ To add your project, open a PR with an entry using the template below.
 
 | Project | Version / profile | Stack | Notes |
 | --- | --- | --- | --- |
-| [HIG documentation site](https://frozonfreak.github.io/hig/) | v1.9.0 · Full | Static docs | Hosts the standard’s public documentation |
-| [Live demo (Aruvi Flow)](https://hig.aruviflow.com/) | v1.9.0 · Practical | Web app | Demonstrates archetypes, states, and HIG-aligned UX patterns |
+| [HIG documentation site](https://frozonfreak.github.io/hig/) | v1.10.0 · Full | Static docs | Hosts the standard’s public documentation |
+| [Live demo (Aruvi Flow)](https://hig.aruviflow.com/) | v1.10.0 · Practical | Web app | Demonstrates archetypes, surfaces, states, and HIG-aligned UX patterns |
 | [This repository](https://github.com/frozonfreak/hig) | v1.10.0 · Full | Markdown, CI | Source of truth; `examples/agent-rules/` consumed by downstream repos |
 
 ---

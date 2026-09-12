@@ -90,3 +90,15 @@ Public claims should state:
 Example: *"Acme App pins Web HIG v1.10.0 Practical profile for Application and Auth archetypes."*
 
 List public adoptions in [ADOPTERS.md](./ADOPTERS.md).
+
+---
+
+## PR review checklist & badge text
+
+Copy the markdown checklist from [examples/conformance-checklist.md](./examples/conformance-checklist.md) into your PR template or `.github/pull_request_template.md`.
+
+**Suggested README badge line** (edit version, profile, archetypes):
+
+> This project pins **The Web HIG v1.10.0** · **Practical** profile · **Application** and **Auth** archetypes. Scope: [`docs/hig-scope.md`](./docs/hig-scope.md) (product repo path).
+
+No official logo is required; state pinned semver and profile honestly.
