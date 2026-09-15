@@ -44,6 +44,47 @@ function extractVersionFromTitle(md) {
   return m ? m[1] : null;
 }
 
+function repoPath(filePath) {
+  return path.relative(root, filePath).split(path.sep).join('/');
+}
+
+function walkFiles(dir, predicate, out = []) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name === '.git' || entry.name === 'node_modules') continue;
+    const filePath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      walkFiles(filePath, predicate, out);
+    } else if (predicate(filePath)) {
+      out.push(filePath);
+    }
+  }
+  return out;
+}
+
+function githubSlug(heading) {
+  return heading
+    .trim()
+    .replace(/<[^>]*>/g, '')
+    .replace(/[`*_~[\]]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\- ]/g, '')
+    .replace(/ /g, '-');
+}
+
+function markdownHeadingSlugs(filePath) {
+  const slugs = new Map();
+  const occurrences = new Map();
+  for (const line of fs.readFileSync(filePath, 'utf8').split(/\r?\n/)) {
+    const match = line.match(/^(#{1,6})\s+(.+)$/);
+    if (!match) continue;
+    const base = githubSlug(match[2]);
+    const index = occurrences.get(base) ?? 0;
+    occurrences.set(base, index + 1);
+    slugs.set(index ? `${base}-${index}` : base, true);
+  }
+  return slugs;
+}
+
 // --- VERSION sync ---
 const versionFile = read('VERSION').trim();
 const manifestYaml = read('rules/manifest.yaml');
@@ -71,6 +112,17 @@ if (quickVersion !== versionFile) {
 }
 if (!exists('HIG-QUICK.md')) {
   fail('missing HIG-QUICK.md (Layer 1 Quick Reference)');
+}
+
+// --- Explicit version headers ---
+for (const filePath of walkFiles(root, (file) => /\.(md|ya?ml)$/i.test(file))) {
+  const rel = repoPath(filePath);
+  const text = fs.readFileSync(filePath, 'utf8');
+  for (const match of text.matchAll(/(?:\*\*Version:\*\*|# Version:)\s*v?(\d+\.\d+\.\d+)/g)) {
+    if (match[1] !== versionFile) {
+      fail(`${rel}: version header (${match[1]}) !== VERSION (${versionFile})`);
+    }
+  }
 }
 
 // --- Referenced files exist ---
@@ -184,6 +236,46 @@ if (manifestSchema?.required) {
   for (const key of manifestSchema.required) {
     if (!manifestYaml.match(new RegExp(`^${key}:`, 'm'))) {
       fail(`manifest.yaml missing required key (schema): ${key}`);
+    }
+  }
+}
+
+const archetypePackSchema =
+  manifestSchema?.properties?.archetype_packs?.additionalProperties?.properties ?? {};
+for (const key of ['file', 'id', 'default_modules', 'conditional_modules']) {
+  if (!Object.hasOwn(archetypePackSchema, key)) {
+    fail(`manifest.schema.json archetype_packs missing property: ${key}`);
+  }
+}
+
+// --- Local Markdown links and anchors ---
+const markdownFiles = walkFiles(root, (file) => file.endsWith('.md'));
+const headingSlugCache = new Map();
+
+for (const filePath of markdownFiles) {
+  const rel = repoPath(filePath);
+  const text = fs.readFileSync(filePath, 'utf8');
+  for (const match of text.matchAll(/\[[^\]]+\]\(([^)]+)\)/g)) {
+    let href = match[1].trim().split(/\s+/)[0].replace(/^<|>$/g, '');
+    if (!href || href.startsWith('#')) continue;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(href)) continue;
+
+    const [target, fragment] = href.split('#');
+    if (!target) continue;
+
+    const targetPath = path.normalize(path.join(path.dirname(filePath), target));
+    if (!targetPath.startsWith(root) || !fs.existsSync(targetPath)) {
+      fail(`${rel}: local link target missing: ${href}`);
+      continue;
+    }
+
+    if (fragment && targetPath.endsWith('.md')) {
+      if (!headingSlugCache.has(targetPath)) {
+        headingSlugCache.set(targetPath, markdownHeadingSlugs(targetPath));
+      }
+      if (!headingSlugCache.get(targetPath).has(fragment)) {
+        fail(`${rel}: local link anchor missing: ${href}`);
+      }
     }
   }
 }

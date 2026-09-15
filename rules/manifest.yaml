@@ -1,8 +1,8 @@
 # The Web HIG — Progressive loading manifest
-# Version: 1.10.0
+# Version: 1.10.1
 # Human-readable index: rules/INDEX.md
 
-version: "1.10.0"
+version: "1.10.1"
 
 layers:
   1:
@@ -129,6 +129,15 @@ modules:
       - document fundamentals
       - seo
     rules:
+      - HIG-DOC-001
+      - HIG-DOC-002
+      - HIG-DOC-003
+      - HIG-DOC-004
+      - HIG-DOC-005
+      - HIG-DOC-006
+      - HIG-SEO-001
+      - HIG-SEO-002
+      - HIG-SEO-003
       - HIG-MUT-001
       - HIG-SIM-001
     hig_sections:
@@ -220,7 +229,15 @@ modules:
       - dashboard
       - density
       - sticky header
-    rules: []
+    rules:
+      - HIG-DEN-001
+      - HIG-DEN-002
+      - HIG-DEN-003
+      - HIG-DEN-004
+      - HIG-DEN-005
+      - HIG-DEN-006
+      - HIG-DEN-007
+      - HIG-DEN-008
     hig_sections:
       - "§3.3"
 
@@ -295,7 +312,11 @@ modules:
       - lazy load
       - core web vitals
       - performance budget
-    rules: []
+    rules:
+      - HIG-PERF-001
+      - HIG-PERF-002
+      - HIG-PERF-003
+      - HIG-PERF-004
     hig_sections:
       - "§6.1"
       - "§6.2"
@@ -312,7 +333,13 @@ modules:
       - filter
       - debounce
       - no results
-    rules: []
+    rules:
+      - HIG-SRCH-001
+      - HIG-SRCH-002
+      - HIG-SRCH-003
+      - HIG-SRCH-004
+      - HIG-SRCH-005
+      - HIG-SRCH-006
     hig_sections:
       - "§2.9"
 

@@ -54,9 +54,18 @@
       "type": "object",
       "additionalProperties": {
         "type": "object",
+        "required": ["file", "id", "default_modules", "conditional_modules"],
+        "additionalProperties": true,
         "properties": {
           "file": { "type": "string" },
-          "preload_modules": {
+          "id": {
+            "enum": ["content", "commerce", "application", "auth"]
+          },
+          "default_modules": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "conditional_modules": {
             "type": "array",
             "items": { "type": "string" }
           }

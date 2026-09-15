@@ -16,7 +16,7 @@
   "properties": {
     "hig_version": {
       "type": "string",
-      "description": "Pinned HIG contract semver (e.g. 1.10.0)"
+      "description": "Pinned HIG contract semver (e.g. 1.10.1)"
     },
     "evaluator": {
       "type": "object",

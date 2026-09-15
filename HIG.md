@@ -1,8 +1,8 @@
-# The Web HIG & Product Engine Contract — v1.10.0
+# The Web HIG & Product Engine Contract — v1.10.1
 
 ## Executive Summary
 
-The Web HIG v1.10.0 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+The Web HIG v1.10.1 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
 This release adds a three-layer consumption model and archetype rule packs:
 
@@ -306,18 +306,18 @@ Normative detail and agent workflow: [rules/expressive-surface.md](./rules/expre
 
 Every page MUST ship:
 
-* **Language:** `<html lang="…">` set correctly (and `dir` where relevant).
-* **Landmarks:** A document MUST contain exactly one primary `<main>` landmark. Nested browsing contexts (e.g. iframes) are separate documents with their own landmark sets. Use `<header>`, `<nav>`, `<footer>`, `<aside>`, etc. when their corresponding semantic regions exist — they are not universally mandatory. Interactive elements MUST use native semantics (`<button>`, `<a>`), never `<div onClick>`.
-* **Title:** A unique, descriptive `<title>`.
-* **Viewport:** Responsive viewport meta tag.
-* **Responsive images (CLS-safe):** Every `<img>` declares intrinsic `width`/`height` or an `aspect-ratio`; use `srcset`/`sizes` for resolution switching. Lazy-load non-critical images where appropriate; avoid lazy-loading the LCP candidate and other immediately needed content. The LCP candidate SHOULD be discoverable early and MAY use `fetchpriority="high"` when appropriate.
-* **Fonts:** Fonts MUST use `font-display: swap` or `optional`. Preload only critical font resources when field/lab evidence demonstrates a benefit — preloading every font can hurt performance.
+* **HIG-DOC-001 — Language:** `<html lang="…">` set correctly (and `dir` where relevant).
+* **HIG-DOC-002 — Landmarks:** A document MUST contain exactly one primary `<main>` landmark. Nested browsing contexts (e.g. iframes) are separate documents with their own landmark sets. Use `<header>`, `<nav>`, `<footer>`, `<aside>`, etc. when their corresponding semantic regions exist — they are not universally mandatory. Interactive elements MUST use native semantics (`<button>`, `<a>`), never `<div onClick>`.
+* **HIG-DOC-003 — Title:** A unique, descriptive `<title>`.
+* **HIG-DOC-004 — Viewport:** Responsive viewport meta tag.
+* **HIG-DOC-005 — Responsive images (CLS-safe):** Every `<img>` declares intrinsic `width`/`height` or an `aspect-ratio`; use `srcset`/`sizes` for resolution switching. Lazy-load non-critical images where appropriate; avoid lazy-loading the LCP candidate and other immediately needed content. The LCP candidate SHOULD be discoverable early and MAY use `fetchpriority="high"` when appropriate.
+* **HIG-DOC-006 — Fonts:** Fonts MUST use `font-display: swap` or `optional`. Preload only critical font resources when field/lab evidence demonstrates a benefit — preloading every font can hurt performance.
 
 #### SEO / shareable (Content, Commerce — where applicable)
 
-* Meta description and canonical URL where duplication is possible.
-* Open Graph and platform-specific social metadata for shareable pages.
-* JSON-LD structured data (`Article`, `Product`, `BreadcrumbList`, `Organization`) where the archetype warrants it.
+* **HIG-SEO-001:** Meta description and canonical URL where duplication is possible.
+* **HIG-SEO-002:** Open Graph and platform-specific social metadata for shareable pages.
+* **HIG-SEO-003:** JSON-LD structured data (`Article`, `Product`, `BreadcrumbList`, `Organization`) where the archetype warrants it.
 
 ### 2.2 Container-Aware Component Layouts
 
@@ -425,7 +425,7 @@ Applications with multiple locales MUST support:
 
 ### 2.9 Search Standard (Commerce / Application)
 
-Search flows MUST follow this state machine:
+Search flows MUST follow this state machine (**HIG-SRCH-001**):
 
 ```
 [input] ──debounce──> [pending] ──┬──> [results]
@@ -435,11 +435,11 @@ Search flows MUST follow this state machine:
 
 Requirements:
 
-* Debounce input (typically 200–400 ms); show pending indicator after debounce threshold.
-* Results MUST support keyboard navigation (arrow keys, Enter to select).
-* Search query MUST sync to URL where search is a primary navigation pattern (§2.3).
-* No-results and error states MUST follow §2.5 / §2.6 taxonomies.
-* Recent searches MAY be persisted locally; MUST respect privacy settings (Layer 9).
+* **HIG-SRCH-002:** Debounce input (typically 200–400 ms); show pending indicator after debounce threshold.
+* **HIG-SRCH-003:** Results MUST support keyboard navigation (arrow keys, Enter to select).
+* **HIG-SRCH-004:** Search query MUST sync to URL where search is a primary navigation pattern (§2.3).
+* **HIG-SRCH-005:** No-results and error states MUST follow §2.5 / §2.6 taxonomies.
+* **HIG-SRCH-006:** Recent searches MAY be persisted locally; persisted searches MUST respect privacy settings (Layer 9).
 
 ### 2.10 Notifications Taxonomy
 
@@ -662,7 +662,7 @@ When adaptation genuinely depends on viewport or environment (page shell, global
 
 ### 3.3 Data Density Standards (Application / Dashboard)
 
-Data-heavy interfaces MUST use tokenized density levels:
+Data-heavy interfaces MUST use tokenized density levels (**HIG-DEN-001**):
 
 | Token | Row height | Use case |
 | --- | --- | --- |
@@ -672,13 +672,13 @@ Data-heavy interfaces MUST use tokenized density levels:
 
 Additional requirements:
 
-* **Numeric alignment** — numbers MUST be right-aligned (or `text-align: end`); text left-aligned (`start`).
-* **Truncation** — long text truncates with ellipsis; full value available on hover/focus or expand action.
-* **Overflow** — horizontal scroll ONLY as last resort; prefer column hiding/reordering at container breakpoints.
-* **Sticky headers** — table headers SHOULD stick on scroll for datasets >10 rows.
-* **Bulk actions** — multi-select with visible selection count and batch action bar.
-* **Pagination** — preferred over infinite scroll for operational data requiring URL state (§2.3); infinite scroll permitted for feed/browse patterns.
-* **Virtualization** — datasets >100 rows SHOULD use virtual scrolling to maintain performance (Layer 6).
+* **HIG-DEN-002:** Numeric data MUST be right-aligned (or `text-align: end`); text left-aligned (`start`).
+* **HIG-DEN-003:** Long text MUST truncate with ellipsis and expose the full value on hover/focus or through an expand action.
+* **HIG-DEN-004:** Horizontal scroll MUST be a last resort; prefer column hiding/reordering at container breakpoints.
+* **HIG-DEN-005:** Table headers SHOULD stick on scroll for datasets >10 rows.
+* **HIG-DEN-006:** Multi-select tables MUST show visible selection count and a batch action bar.
+* **HIG-DEN-007:** Operational data requiring URL state SHOULD use pagination over infinite scroll; infinite scroll is permitted for feed/browse patterns.
+* **HIG-DEN-008:** Datasets >100 rows SHOULD use virtual scrolling to maintain performance (Layer 6).
 
 ---
 
@@ -883,11 +883,13 @@ Permission prompts MUST NOT appear without prior in-app explanation. Denied perm
 
 > **Level 2 module:** [rules/performance.md](./rules/performance.md)
 
-Performance requirements are split into **lab (CI)** and **field (RUM)** contexts. Synthetic lab tests measure interaction latency but are **not equivalent** to field Interaction to Next Paint (INP).
+Performance requirements are split into **lab (CI)** and **field (RUM)** contexts (**HIG-PERF-002**). Synthetic lab tests measure interaction latency but are **not equivalent** to field Interaction to Next Paint (INP).
 
 ### 6.1 Core Web Vitals & Supporting Performance Metrics
 
 #### Core Web Vitals (field RUM / SLO monitoring)
+
+Projects MUST protect Core Web Vitals thresholds for applicable routes (**HIG-PERF-001**):
 
 | Metric | HIG Target | HIG Acceptable | Gate type |
 | --- | --- | --- | --- |
@@ -906,7 +908,7 @@ TTFB is **not** a Core Web Vital. It is a supporting performance metric.
 
 ### 6.2 Lab Performance (CI)
 
-Lab/CI gates SHOULD enforce:
+Lab/CI gates SHOULD enforce (**HIG-PERF-002**):
 
 * Synthetic interaction latency (not field INP)
 * LCP, CLS, TTFB (synthetic)
@@ -923,7 +925,7 @@ Field INP MUST be treated as a monitoring/SLO gate — not as a deterministic bu
 
 ### 6.4 Performance Budgets
 
-Beyond Web Vitals, projects SHOULD define budgets for:
+Beyond Web Vitals, projects SHOULD define budgets for (**HIG-PERF-003**):
 
 | Budget | Purpose |
 | --- | --- |
@@ -939,7 +941,7 @@ Beyond Web Vitals, projects SHOULD define budgets for:
 
 ### 6.5 Regression-Based Gates
 
-Absolute thresholds alone are insufficient. PRs that increase initial JS by >10% (or other project-defined regression thresholds) SHOULD fail unless explicitly approved — even when the application remains below the absolute limit.
+Absolute thresholds alone are insufficient. PRs that increase initial JS by >10% (or other project-defined regression thresholds) SHOULD fail unless explicitly approved — even when the application remains below the absolute limit (**HIG-PERF-004**).
 
 ---
 
@@ -1039,6 +1041,40 @@ agent_enforcement_rules:
       severity: error
       archetypes: [commerce, application, auth]
 
+  document_constraints:
+    - id: HIG-DOC-001
+      rule: html_lang_and_dir
+      severity: error
+    - id: HIG-DOC-002
+      rule: exactly_one_main_landmark_and_native_interactive_semantics
+      severity: error
+    - id: HIG-DOC-003
+      rule: unique_descriptive_title
+      severity: error
+    - id: HIG-DOC-004
+      rule: responsive_viewport_meta
+      severity: error
+    - id: HIG-DOC-005
+      rule: cls_safe_responsive_images
+      severity: error
+    - id: HIG-DOC-006
+      rule: web_font_loading_discipline
+      severity: warning
+
+  seo_constraints:
+    - id: HIG-SEO-001
+      rule: meta_description_and_canonical_url
+      severity: warning
+      archetypes: [content, commerce]
+    - id: HIG-SEO-002
+      rule: social_metadata_for_shareable_pages
+      severity: warning
+      archetypes: [content, commerce]
+    - id: HIG-SEO-003
+      rule: structured_data_where_warranted
+      severity: warning
+      archetypes: [content, commerce]
+
   accessibility_constraints:
     - id: HIG-A11Y-002
       rule: target_standard
@@ -1074,6 +1110,20 @@ agent_enforcement_rules:
       severity: warning
       archetypes: [commerce, application]
 
+  performance_constraints:
+    - id: HIG-PERF-001
+      rule: protect_core_web_vitals_thresholds
+      severity: error
+    - id: HIG-PERF-002
+      rule: separate_lab_ci_from_field_rum_metrics
+      severity: error
+    - id: HIG-PERF-003
+      rule: define_performance_budgets
+      severity: warning
+    - id: HIG-PERF-004
+      rule: enforce_regression_based_performance_gates
+      severity: warning
+
   product_ux_constraints:
     - id: HIG-ERR-001
       rule: error_states_use_taxonomy
@@ -1096,6 +1146,62 @@ agent_enforcement_rules:
     - id: HIG-NTF-001
       rule: notifications_use_taxonomy
       severity: warning
+    - id: HIG-SRCH-001
+      rule: search_state_machine
+      severity: warning
+      archetypes: [commerce, application]
+    - id: HIG-SRCH-002
+      rule: search_debounce_and_pending_indicator
+      severity: warning
+      archetypes: [commerce, application]
+    - id: HIG-SRCH-003
+      rule: search_results_keyboard_navigation
+      severity: error
+      archetypes: [commerce, application]
+    - id: HIG-SRCH-004
+      rule: search_url_sync_for_primary_navigation
+      severity: error
+      archetypes: [commerce, application]
+    - id: HIG-SRCH-005
+      rule: search_no_results_and_errors_use_state_taxonomies
+      severity: warning
+      archetypes: [commerce, application]
+    - id: HIG-SRCH-006
+      rule: recent_searches_respect_privacy_settings
+      severity: error
+      archetypes: [commerce, application]
+    - id: HIG-DEN-001
+      rule: data_density_uses_tokenized_levels
+      severity: warning
+      archetypes: [application]
+    - id: HIG-DEN-002
+      rule: numeric_data_alignment
+      severity: warning
+      archetypes: [application]
+    - id: HIG-DEN-003
+      rule: truncated_values_are_recoverable
+      severity: error
+      archetypes: [application]
+    - id: HIG-DEN-004
+      rule: dense_data_overflow_reflows_before_horizontal_scroll
+      severity: warning
+      archetypes: [application]
+    - id: HIG-DEN-005
+      rule: sticky_headers_for_long_tables
+      severity: warning
+      archetypes: [application]
+    - id: HIG-DEN-006
+      rule: bulk_actions_show_selection_count_and_batch_bar
+      severity: error
+      archetypes: [application]
+    - id: HIG-DEN-007
+      rule: operational_data_prefers_pagination_with_url_state
+      severity: warning
+      archetypes: [application]
+    - id: HIG-DEN-008
+      rule: virtualize_large_datasets
+      severity: warning
+      archetypes: [application]
 
   security_constraints:
     - id: HIG-SEC-001
@@ -1268,6 +1374,7 @@ Logs MUST include timestamp, actor, action, and resource — but MUST NOT includ
 
 **Release documentation:** [CHANGELOG.md](./CHANGELOG.md) (Keep a Changelog) · [RELEASE_NOTES.md](./RELEASE_NOTES.md) (adoption notes) · [VERSIONING.md](./VERSIONING.md) (semver policy).
 
+* **v1.10.1 (2026-09-15):** Patch release. Synchronized Level 2 module and framework adapter version headers; aligned manifest schema with `default_modules` / `conditional_modules`; added stable rule IDs for document fundamentals (**HIG-DOC-001**–**006**), SEO/share metadata (**HIG-SEO-001**–**003**), performance (**HIG-PERF-001**–**004**), search (**HIG-SRCH-001**–**006**), and data density (**HIG-DEN-001**–**008**); expanded validator coverage for version headers and local Markdown links.
 * **v1.10.0 (2026-09-12):** Expressive Surface Baseline (**HIG-EXP-001**–**014**, [motion-tiers.yaml](./rules/motion-tiers.yaml)); Layer 0 §0.3 surfaces; **HIG-CQ-001**/**002** container-query split; §5.4 target-size labeling; §8.2 [EVALUATOR.md](./EVALUATOR.md) multidimensional report contract.
 * **v1.9.0 (2026-09-09):** Progressive loading Phase 3. Added archetype rule packs (`rules/archetypes/`), `rules/applicability.md`, `VERSION` file, `scripts/validate-hig.mjs`, and GitHub Actions validation workflow. Agents preload archetype-specific module sets after resolving page type.
 * **v1.8.0 (2026-09-09):** Progressive loading Phase 2. Extracted 16 standalone Level 2 rule modules in `rules/` and 5 framework adapters in `framework/`. Updated manifest to point to module files. HIG.md remains the complete normative contract with module cross-links.

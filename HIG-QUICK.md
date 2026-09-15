@@ -1,6 +1,6 @@
 # The Web HIG — Quick Reference
 
-**Layer 1** · ~5 minutes · **Version:** v1.10.0
+**Layer 1** · ~5 minutes · **Version:** v1.10.1
 
 Ninety-eight imperative rules. Read this first. For practical detail, open [HIG-LITE.md](./HIG-LITE.md) (Layer 2). For edge cases and normative depth, open [HIG.md](./HIG.md) (Layer 3).
 
@@ -46,12 +46,12 @@ Ninety-eight imperative rules. Read this first. For practical detail, open [HIG-
 22. Deep links must restore the same view state a user would get by navigating manually.
 23. Unsaved changes on forms must warn before the user navigates away (commerce checkout, app settings, auth).
 24. A command palette may supplement navigation but must never be the sole path to a feature.
-25. Every document needs exactly one primary `<main>` landmark.
-26. Set `<html lang="…">` correctly; set `dir` for RTL locales.
-27. Every page needs a unique, descriptive `<title>`.
+25. Every document needs exactly one primary `<main>` landmark (**HIG-DOC-002**).
+26. Set `<html lang="…">` correctly; set `dir` for RTL locales (**HIG-DOC-001**).
+27. Every page needs a unique, descriptive `<title>` (**HIG-DOC-003**).
 28. Use semantic landmarks (`header`, `nav`, `footer`, `aside`) when those regions exist.
-29. SEO-critical pages must expose crawlable content and structured data where applicable.
-30. Search results must be keyboard-navigable and announce result count to assistive tech.
+29. SEO-critical pages must expose crawlable content and structured data where applicable (**HIG-SEO-001**–**003**).
+30. Search results must be keyboard-navigable and announce result count to assistive tech (**HIG-SRCH-003**).
 
 ---
 
@@ -133,13 +133,13 @@ Ninety-eight imperative rules. Read this first. For practical detail, open [HIG-
 ## Performance & engineering
 
 81. Default to server rendering — add client JavaScript only when interaction requires it.
-82. Protect Core Web Vitals: LCP ≤2.5 s, INP ≤200 ms (field), CLS ≤0.1.
+82. Protect Core Web Vitals: LCP ≤2.5 s, INP ≤200 ms (field), CLS ≤0.1 (**HIG-PERF-001**, **HIG-PERF-002**).
 83. Images must declare dimensions or aspect ratio to prevent layout shift.
 84. Lazy-load below-the-fold media; never lazy-load the LCP candidate.
 85. Application CSS must not use `transition: all` — enumerate animated properties explicitly.
 86. Micro-feedback animations must complete within 300 ms and serve exactly one purpose.
 87. Use motion duration tokens — do not invent per-component millisecond values.
-88. Datasets over 100 rows should use virtual scrolling; operational tables prefer pagination over infinite scroll.
+88. Datasets over 100 rows should use virtual scrolling; operational tables prefer pagination over infinite scroll (**HIG-DEN-007**, **HIG-DEN-008**).
 89. Do not introduce dependencies or abstractions without justification.
 90. Do not duplicate functionality that already exists in the codebase.
 

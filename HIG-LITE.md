@@ -1,6 +1,6 @@
 # The Web HIG — Practical Guide (Layer 2)
 
-**Version:** v1.10.0 · **Quick Reference:** [HIG-QUICK.md](./HIG-QUICK.md) · **Core:** [HIG-CORE.md](./HIG-CORE.md) · **Full spec:** [HIG.md](./HIG.md) · **Topic index:** [rules/INDEX.md](./rules/INDEX.md)
+**Version:** v1.10.1 · **Quick Reference:** [HIG-QUICK.md](./HIG-QUICK.md) · **Core:** [HIG-CORE.md](./HIG-CORE.md) · **Full spec:** [HIG.md](./HIG.md) · **Topic index:** [rules/INDEX.md](./rules/INDEX.md)
 
 Practical documentation with rule IDs and checklists. Start with [HIG-QUICK.md](./HIG-QUICK.md) (Layer 1, ~5 min); open this file when you need rule ID links and archetype guidance. Load [rules/manifest.yaml](./rules/manifest.yaml) topic modules when the task requires depth beyond this summary.
 
@@ -23,7 +23,9 @@ Practical documentation with rule IDs and checklists. Start with [HIG-QUICK.md](
 
 - Mobile-first and responsive; clear visual hierarchy ([§1.1](./HIG.md#11-direct-manipulation--motion-ergonomics))
 - One primary action per screen; never create dead ends ([§2.1](./HIG.md#21-document-fundamentals))
+- Ship document fundamentals: language/dir, one primary main landmark, title, viewport, CLS-safe images, and disciplined font loading (**HIG-DOC-001**, **HIG-DOC-002**, **HIG-DOC-003**, **HIG-DOC-004**, **HIG-DOC-005**, **HIG-DOC-006**)
 - Preserve user state; URL represents navigable state where applicable ([§2.3](./HIG.md#23-navigation-architecture-command-palette--deep-linking))
+- SEO/shareable content uses metadata, canonical URLs, social metadata, and structured data where warranted (**HIG-SEO-001**, **HIG-SEO-002**, **HIG-SEO-003**)
 - Immediate local feedback on every interaction ([§1.1](./HIG.md#11-direct-manipulation--motion-ergonomics))
 - Functional micro-animations only; ≤300 ms for micro-feedback (**HIG-MOT-004** → [§1.4](./HIG.md#14-functional-micro-animations))
 - Respect reduced motion — mandatory, not optional (**HIG-A11Y-001** → [§1.3](./HIG.md#13-reduced-motion--animation-safety))
@@ -95,11 +97,24 @@ Load [rules/expressive-surface.md](./rules/expressive-surface.md) when scope dec
 
 ## 6. Performance
 
+- Protect Core Web Vitals thresholds for applicable routes (**HIG-PERF-001** → [§6.1](./HIG.md#61-core-web-vitals--supporting-performance-metrics))
+- Keep lab/CI performance gates separate from field/RUM metrics (**HIG-PERF-002** → [§6.2](./HIG.md#62-lab-performance-ci), [§6.3](./HIG.md#63-field-performance-rum))
+- Define performance budgets beyond Web Vitals (**HIG-PERF-003** → [§6.4](./HIG.md#64-performance-budgets))
+- Use regression-based gates for JS and other project budgets (**HIG-PERF-004** → [§6.5](./HIG.md#65-regression-based-gates))
 - Avoid unnecessary JavaScript; default to server rendering (**HIG-SSR-001** → [§4.1](./HIG.md#41-server-driven--progressive-rendering-architecture))
 - Lazy-load appropriate resources; optimize images ([§6.4](./HIG.md#64-performance-budgets))
 - Avoid blocking critical rendering path ([§6.1](./HIG.md#61-core-web-vitals--supporting-performance-metrics))
 - Protect Core Web Vitals: LCP, INP (field SLO), CLS ([§6.1](./HIG.md#61-core-web-vitals--supporting-performance-metrics))
 - Slow async server regions need streaming boundaries + skeleton (**HIG-SSR-002** → [§4.1](./HIG.md#41-server-driven--progressive-rendering-architecture))
+
+## 6b. Search and data density
+
+- Search flows follow the input → pending → results/no-results/error state machine (**HIG-SRCH-001** → [§2.9](./HIG.md#29-search-standard-commerce--application))
+- Debounce search and show pending feedback after the debounce threshold (**HIG-SRCH-002**)
+- Search results are keyboard navigable; primary search state syncs to URL (**HIG-SRCH-003**, **HIG-SRCH-004**)
+- Search no-results/errors use state taxonomies; persisted recent searches respect privacy settings (**HIG-SRCH-005**, **HIG-SRCH-006**)
+- Data-heavy interfaces use density tokens and recoverable truncation (**HIG-DEN-001**, **HIG-DEN-003** → [§3.3](./HIG.md#33-data-density-standards-application--dashboard))
+- Operational tables support numeric alignment, overflow strategy, visible bulk actions, pagination, and virtualization where applicable (**HIG-DEN-002**, **HIG-DEN-004**, **HIG-DEN-005**, **HIG-DEN-006**, **HIG-DEN-007**, **HIG-DEN-008**)
 
 ## 7. Responsive layout
 

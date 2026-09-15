@@ -1,9 +1,9 @@
 # The Web HIG — Evaluator dimension map (machine-readable)
-# Version: 1.10.0
+# Version: 1.10.1
 # Used to bucket rule IDs and findings into report dimensions.
 # Normative report shape: EVALUATOR.md · Schema: schema/evaluator-report.schema.json
 
-version: "1.10.0"
+version: "1.10.1"
 
 # Maps Layer 8 gate levels to evaluator severity buckets
 severity_buckets:
@@ -31,6 +31,7 @@ dimensions:
   ux:
     label: UX
     rule_id_prefixes:
+      - HIG-DOC
       - HIG-UX
       - HIG-SIM
       - HIG-ERR
@@ -38,6 +39,8 @@ dimensions:
       - HIG-LOD
       - HIG-NTF
       - HIG-FRM
+      - HIG-SRCH
+      - HIG-DEN
     modules:
       - ux
       - states
@@ -46,7 +49,8 @@ dimensions:
 
   performance:
     label: Performance
-    rule_id_prefixes: []
+    rule_id_prefixes:
+      - HIG-PERF
     modules:
       - performance
     hig_layers: ["6"]
@@ -90,7 +94,8 @@ dimensions:
 
   seo:
     label: SEO
-    rule_id_prefixes: []
+    rule_id_prefixes:
+      - HIG-SEO
     modules:
       - ux
     check_kinds:

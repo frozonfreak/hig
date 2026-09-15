@@ -1,16 +1,18 @@
 # Performance & Web Vitals — Level 2 Module
 
-**Version:** v1.9.0 · **Canonical spec:** [HIG.md §6](../HIG.md#layer-6-performance--web-vitals) · **Archetypes:** Universal
+**Version:** v1.10.1 · **Canonical spec:** [HIG.md §6](../HIG.md#layer-6-performance--web-vitals) · **Rule IDs:** HIG-PERF-001–004 · **Archetypes:** Universal
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 
 ---
 
-Performance requirements split into **lab (CI)** and **field (RUM)** contexts. Synthetic lab tests are **not equivalent** to field Interaction to Next Paint (INP).
+Performance requirements split into **lab (CI)** and **field (RUM)** contexts (**HIG-PERF-002**). Synthetic lab tests are **not equivalent** to field Interaction to Next Paint (INP).
 
 ## 6.1 Core Web Vitals & Supporting Metrics
 
 ### Core Web Vitals (field RUM / SLO monitoring)
+
+Projects MUST protect Core Web Vitals thresholds for applicable routes (**HIG-PERF-001**):
 
 | Metric | HIG Target | HIG Acceptable | Gate type |
 | --- | --- | --- | --- |
@@ -29,13 +31,15 @@ TTFB is **not** a Core Web Vital.
 
 ## 6.2 Lab Performance (CI)
 
-Lab/CI gates SHOULD enforce: synthetic interaction latency (not field INP), LCP, CLS, TTFB (synthetic), JS execution time, bundle size budgets.
+Lab/CI gates SHOULD enforce synthetic interaction latency (not field INP), LCP, CLS, TTFB (synthetic), JS execution time, and bundle size budgets (**HIG-PERF-002**).
 
 ## 6.3 Field Performance (RUM)
 
-Field monitoring/SLO gates SHOULD track INP, LCP, CLS, TTFB. Field INP MUST be treated as monitoring/SLO — not as deterministic build-failure from synthetic tests.
+Field monitoring/SLO gates SHOULD track INP, LCP, CLS, TTFB. Field INP MUST be treated as monitoring/SLO — not as deterministic build-failure from synthetic tests (**HIG-PERF-002**).
 
 ## 6.4 Performance Budgets
+
+Projects SHOULD define performance budgets beyond Web Vitals (**HIG-PERF-003**).
 
 | Budget | Purpose |
 | --- | --- |
@@ -51,7 +55,7 @@ Field monitoring/SLO gates SHOULD track INP, LCP, CLS, TTFB. Field INP MUST be t
 
 ## 6.5 Regression-Based Gates
 
-PRs that increase initial JS by >10% (or other project-defined thresholds) SHOULD fail unless explicitly approved — even when below the absolute limit.
+PRs that increase initial JS by >10% (or other project-defined thresholds) SHOULD fail unless explicitly approved — even when below the absolute limit (**HIG-PERF-004**).
 
 ## Practical guidance
 

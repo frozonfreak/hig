@@ -1,6 +1,6 @@
 # UX & Information Architecture — Level 2 Module
 
-**Version:** v1.9.0 · **Canonical spec:** [HIG.md §2.1–2.4](../HIG.md#layer-2-information-architecture--product-standards) · **Rule IDs:** HIG-MUT-001, HIG-SIM-001
+**Version:** v1.10.1 · **Canonical spec:** [HIG.md §2.1–2.4](../HIG.md#layer-2-information-architecture--product-standards) · **Rule IDs:** HIG-DOC-001–006, HIG-SEO-001–003, HIG-MUT-001, HIG-SIM-001
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 
@@ -12,18 +12,18 @@
 
 Every page MUST ship:
 
-* **Language:** `<html lang="…">` set correctly (and `dir` where relevant).
-* **Landmarks:** Exactly one primary `<main>` landmark. Use `<header>`, `<nav>`, `<footer>`, `<aside>` when corresponding regions exist. Interactive elements MUST use native semantics (`<button>`, `<a>`), never `<div onClick>`.
-* **Title:** A unique, descriptive `<title>`.
-* **Viewport:** Responsive viewport meta tag.
-* **Responsive images (CLS-safe):** Every `<img>` declares intrinsic `width`/`height` or `aspect-ratio`; use `srcset`/`sizes`. Lazy-load non-critical images; avoid lazy-loading the LCP candidate.
-* **Fonts:** `font-display: swap` or `optional`. Preload only critical fonts when evidence supports it.
+* **HIG-DOC-001 — Language:** `<html lang="…">` set correctly (and `dir` where relevant).
+* **HIG-DOC-002 — Landmarks:** Exactly one primary `<main>` landmark. Use `<header>`, `<nav>`, `<footer>`, `<aside>` when corresponding regions exist. Interactive elements MUST use native semantics (`<button>`, `<a>`), never `<div onClick>`.
+* **HIG-DOC-003 — Title:** A unique, descriptive `<title>`.
+* **HIG-DOC-004 — Viewport:** Responsive viewport meta tag.
+* **HIG-DOC-005 — Responsive images (CLS-safe):** Every `<img>` declares intrinsic `width`/`height` or `aspect-ratio`; use `srcset`/`sizes`. Lazy-load non-critical images; avoid lazy-loading the LCP candidate.
+* **HIG-DOC-006 — Fonts:** `font-display: swap` or `optional`. Preload only critical fonts when evidence supports it.
 
 ### SEO / shareable (Content, Commerce — where applicable)
 
-* Meta description and canonical URL where duplication is possible.
-* Open Graph and social metadata for shareable pages.
-* JSON-LD structured data (`Article`, `Product`, `BreadcrumbList`, `Organization`) where warranted.
+* **HIG-SEO-001:** Meta description and canonical URL where duplication is possible.
+* **HIG-SEO-002:** Open Graph and social metadata for shareable pages.
+* **HIG-SEO-003:** JSON-LD structured data (`Article`, `Product`, `BreadcrumbList`, `Organization`) where warranted.
 
 ## 2.2 Container-Aware Component Layouts
 

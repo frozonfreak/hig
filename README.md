@@ -4,7 +4,7 @@
 
 Vendor-neutral requirements for how web interfaces behave — for design systems, product teams, CI, and AI coding agents. You keep your stack and visuals; The Web HIG defines testable interaction, state, accessibility, performance, and security UX.
 
-**Current release:** [v1.10.0](./VERSION) · [Changelog](./CHANGELOG.md) · [Release notes](./RELEASE_NOTES.md)
+**Current release:** [v1.10.1](./VERSION) · [Changelog](./CHANGELOG.md) · [Release notes](./RELEASE_NOTES.md)
 
 **[Quick Reference](./HIG-QUICK.md)** · **[Live demo](https://hig.aruviflow.com/)** · **[Documentation site](https://frozonfreak.github.io/hig/)** · **[Integrate](./INTEGRATION.md)** · **[View on GitHub](https://github.com/frozonfreak/hig)**
 

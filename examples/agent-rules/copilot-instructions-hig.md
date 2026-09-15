@@ -1,6 +1,6 @@
 # The Web HIG — Copilot instructions
 
-Follow The Web HIG v1.10.0.
+Follow The Web HIG v1.10.1.
 
 - **Quick Reference:** `docs/hig/HIG-QUICK.md` (Layer 1) — *Follow The Web HIG Quick Reference.* Do not load full HIG unless needed.
 - **Practical guide:** `docs/hig/HIG-LITE.md` + `docs/hig/rules/manifest.yaml` (Layer 2) — load matching `rules/*.md` on topic match; `framework/*.md` when stack-specific
@@ -19,7 +19,7 @@ Follow The Web HIG v1.10.0.
 - Use design tokens only (no raw hex outside token files) — HIG-TOK-001
 - Application-authored CSS MUST NOT use `transition: all`. Micro-feedback ≤300ms; prefer `transform`/`opacity`; functional not decorative — HIG-MOT-001, HIG-MOT-004
 - Prefer `@container` for component-internal layout (**HIG-CQ-001**, warning); must use when multi-context reuse breaks on viewport MQ (**HIG-CQ-002**, error); `@media` for page, environment, preferences — do not add containers only for CQ (**HIG-SIM-001**)
-- Content **hybrid** / **experience** surfaces: parity, nav escape hatch, motion tiers — **HIG-EXP-001**–**014** ([expressive-surface.md](docs/hig/rules/expressive-surface.md))
+- Content **hybrid** / **experience** surfaces: parity, nav escape hatch, motion tiers — **HIG-EXP-001**–**014** (`docs/hig/rules/expressive-surface.md`)
 - Use logical properties (`margin-inline`, `inset-inline-start`, etc.) — HIG-UX-001
 - Respect `prefers-reduced-motion` (mandatory HIG requirement) — HIG-A11Y-001
 - Default to server rendering; add client interactivity only for state/effects/listeners — HIG-SSR-001

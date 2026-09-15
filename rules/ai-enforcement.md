@@ -1,6 +1,6 @@
 # AI & Agent Enforcement — Level 2 Module
 
-**Version:** v1.10.0 · **Canonical spec:** [HIG.md §7–8](../HIG.md#layer-7-ai--agent-enforcement-contract) · **Rule ID:** HIG-SIM-001 + all Layer 7 IDs
+**Version:** v1.10.1 · **Canonical spec:** [HIG.md §7–8](../HIG.md#layer-7-ai--agent-enforcement-contract) · **Rule ID:** HIG-SIM-001 + all Layer 7 IDs
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 
@@ -31,6 +31,8 @@ Key enforceable rules (full YAML in [HIG.md §7.2](../HIG.md#72-ai-coding-agent-
 
 | Prefix | Domain |
 | --- | --- |
+| HIG-DOC-* | Document fundamentals |
+| HIG-SEO-* | SEO and share metadata |
 | HIG-TOK-* | Design tokens |
 | HIG-MOT-* | Motion and micro-animations |
 | HIG-EXP-* | Expressive content surfaces (hybrid / experience) |
@@ -40,6 +42,9 @@ Key enforceable rules (full YAML in [HIG.md §7.2](../HIG.md#72-ai-coding-agent-
 | HIG-SSR-* | Server rendering |
 | HIG-MUT-* | Mutations |
 | HIG-ERR/EMP/LOD-* | State taxonomies |
+| HIG-SRCH-* | Search |
+| HIG-DEN-* | Data density |
+| HIG-PERF-* | Performance |
 | HIG-FRM-* | Forms |
 | HIG-SEC-* | Security |
 

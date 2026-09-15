@@ -14,6 +14,21 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
+## [1.10.1] - 2026-09-15
+
+### Fixed
+
+- Synchronized explicit version headers across Level 2 modules, archetype packs, framework adapters, manifests, examples, and documentation surfaces.
+- Aligned `schema/manifest.schema.json` with the actual `archetype_packs.default_modules` / `conditional_modules` manifest shape.
+- Expanded `scripts/validate-hig.mjs` to fail on stale version headers, missing local Markdown links/anchors, and manifest-schema pack-key drift.
+- Replaced broken repository-local Markdown links that pointed at consumer-repo paths.
+
+### Added
+
+- Stable rule IDs for document fundamentals (`HIG-DOC-001`–`006`), SEO/share metadata (`HIG-SEO-001`–`003`), search (`HIG-SRCH-001`–`006`), data density (`HIG-DEN-001`–`008`), and performance (`HIG-PERF-001`–`004`) so evaluator findings can cite rule IDs consistently.
+
+---
+
 ## [1.10.0] - 2026-09-12
 
 ### Added
@@ -137,7 +152,8 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.10.0...HEAD
+[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.10.1...HEAD
+[1.10.1]: https://github.com/frozonfreak/hig/compare/v1.10.0...v1.10.1
 [1.10.0]: https://github.com/frozonfreak/hig/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/frozonfreak/hig/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/frozonfreak/hig/compare/v1.7.0...v1.8.0

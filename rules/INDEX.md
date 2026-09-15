@@ -1,6 +1,6 @@
 # The Web HIG — Rule Index (Level 2)
 
-**Version:** v1.10.0 · **Machine-readable:** [manifest.yaml](./manifest.yaml) · **Quick Reference:** [HIG-QUICK.md](../HIG-QUICK.md) · **Practical:** [HIG-LITE.md](../HIG-LITE.md) · **Full spec:** [HIG.md](../HIG.md)
+**Version:** v1.10.1 · **Machine-readable:** [manifest.yaml](./manifest.yaml) · **Quick Reference:** [HIG-QUICK.md](../HIG-QUICK.md) · **Practical:** [HIG-LITE.md](../HIG-LITE.md) · **Full spec:** [HIG.md](../HIG.md)
 
 This index maps rule IDs to standalone Layer 2 modules and tells agents **when** to load them. Each module is a self-contained extract; [HIG.md](../HIG.md) remains the complete normative contract (Layer 3).
 
@@ -40,18 +40,18 @@ This index maps rule IDs to standalone Layer 2 modules and tells agents **when**
 | Module | File | Load when task involves… | Key rule IDs |
 | --- | --- | --- | --- |
 | **accessibility** | [accessibility.md](./accessibility.md) | combobox, dialog, focus trap, aria, keyboard, tabs, menu, contrast | HIG-A11Y-001–008 |
-| **ux** | [ux.md](./ux.md) | hierarchy, navigation, deep link, command palette, destructive action, SEO | HIG-MUT-001, HIG-SIM-001 |
+| **ux** | [ux.md](./ux.md) | hierarchy, navigation, deep link, command palette, destructive action, SEO | HIG-DOC-001–006, HIG-SEO-001–003, HIG-MUT-001, HIG-SIM-001 |
 | **states** | [states.md](./states.md) | loading, skeleton, empty, error, stale, offline, network failure | HIG-ERR-001, HIG-EMP-001, HIG-LOD-001 |
 | **forms** | [forms.md](./forms.md) | form, label, validation, autocomplete, multi-step, checkout | HIG-FRM-001 |
 | **tokens** | [tokens.md](./tokens.md) | color, typography, spacing, dark mode, design token | HIG-TOK-001, HIG-TOK-002 |
 | **responsive** | [responsive.md](./responsive.md) | container query, breakpoint, layout adaptation, reflow | HIG-CQ-001, HIG-CQ-002 |
-| **data-density** | [data-density.md](./data-density.md) | data table, grid, virtualization, bulk action, dashboard | — |
+| **data-density** | [data-density.md](./data-density.md) | data table, grid, virtualization, bulk action, dashboard | HIG-DEN-001–008 |
 | **animation** | [animation.md](./animation.md) | transition, micro-animation, view transition, reduced motion | HIG-MOT-001–005, HIG-VT-001 |
 | **expressive-surface** | [expressive-surface.md](./expressive-surface.md) | portfolio, fluid, scroll-driven, kinetic type, reel, hybrid/experience surface | HIG-EXP-001–012 |
 | **architecture** | [architecture.md](./architecture.md) | SSR, RSC, server action, streaming, suspense, hydration | HIG-SSR-001–003 |
 | **mutations** | [mutations.md](./mutations.md) | delete, optimistic UI, idempotency, conflict | HIG-MUT-001, HIG-MUT-002 |
-| **performance** | [performance.md](./performance.md) | LCP, INP, CLS, TTFB, bundle budget, Core Web Vitals | — |
-| **search** | [search.md](./search.md) | search, autocomplete, facets, filters, debounce | — |
+| **performance** | [performance.md](./performance.md) | LCP, INP, CLS, TTFB, bundle budget, Core Web Vitals | HIG-PERF-001–004 |
+| **search** | [search.md](./search.md) | search, autocomplete, facets, filters, debounce | HIG-SRCH-001–006 |
 | **notifications** | [notifications.md](./notifications.md) | toast, snackbar, banner, alert, inline status | HIG-NTF-001 |
 | **i18n** | [i18n.md](./i18n.md) | locale, RTL, pluralization, translation | HIG-I18N-001, HIG-UX-001 |
 | **security** | [security.md](./security.md) | CSP, XSS, CSRF, cookie, PII, auth UX, secrets | HIG-SEC-001–004 |
@@ -78,6 +78,15 @@ Load alongside **architecture** when the task is framework-specific:
 | Rule ID | Summary | Module | HIG section |
 | --- | --- | --- | --- |
 | HIG-SIM-001 | Prefer simplest compliant implementation | ai-enforcement | Exception System, §7.2 |
+| HIG-DOC-001 | Correct `html` language and direction | ux | §2.1 |
+| HIG-DOC-002 | One primary main landmark and native interactive semantics | ux | §2.1 |
+| HIG-DOC-003 | Unique descriptive title | ux | §2.1 |
+| HIG-DOC-004 | Responsive viewport meta | ux | §2.1 |
+| HIG-DOC-005 | CLS-safe responsive images | ux | §2.1 |
+| HIG-DOC-006 | Web font loading discipline | ux | §2.1 |
+| HIG-SEO-001 | Meta description and canonical URL | ux | §2.1 |
+| HIG-SEO-002 | Social metadata for shareable pages | ux | §2.1 |
+| HIG-SEO-003 | Structured data where warranted | ux | §2.1 |
 | HIG-UX-001 | Logical CSS properties | i18n | §2.8 |
 | HIG-TOK-001 | No raw hex outside token files | tokens | §3.1 |
 | HIG-TOK-002 | Semantic/component tokens | tokens | §3.1 |
@@ -108,6 +117,24 @@ Load alongside **architecture** when the task is framework-specific:
 | HIG-FRM-001 | Forms have labels and error summary | forms | §2.11 |
 | HIG-I18N-001 | Logical properties for layout | i18n | §2.8 |
 | HIG-NTF-001 | Notifications use taxonomy | notifications | §2.10 |
+| HIG-SRCH-001 | Search follows input → pending → results/no-results/error state machine | search | §2.9 |
+| HIG-SRCH-002 | Search debounce and pending indicator | search | §2.9 |
+| HIG-SRCH-003 | Search results keyboard navigation | search | §2.9 |
+| HIG-SRCH-004 | Search URL sync for primary navigation patterns | search | §2.9 |
+| HIG-SRCH-005 | Search no-results and error states use state taxonomies | search | §2.9 |
+| HIG-SRCH-006 | Persisted recent searches respect privacy settings | search | §2.9 |
+| HIG-DEN-001 | Data density uses tokenized levels | data-density | §3.3 |
+| HIG-DEN-002 | Numeric data alignment | data-density | §3.3 |
+| HIG-DEN-003 | Truncated values expose full value | data-density | §3.3 |
+| HIG-DEN-004 | Dense data overflow reflows before horizontal scroll | data-density | §3.3 |
+| HIG-DEN-005 | Sticky headers for long tables | data-density | §3.3 |
+| HIG-DEN-006 | Bulk actions show selection count and batch bar | data-density | §3.3 |
+| HIG-DEN-007 | Operational data prefers pagination with URL state | data-density | §3.3 |
+| HIG-DEN-008 | Large datasets use virtualization | data-density | §3.3 |
+| HIG-PERF-001 | Protect Core Web Vitals thresholds | performance | §6.1 |
+| HIG-PERF-002 | Separate lab/CI and field/RUM performance gates | performance | §6.2–6.3 |
+| HIG-PERF-003 | Define performance budgets | performance | §6.4 |
+| HIG-PERF-004 | Use regression-based performance gates | performance | §6.5 |
 | HIG-SEC-001 | No secrets in client code | security | §9.4 |
 | HIG-SEC-002 | CSP headers configured | security | §9.1 |
 | HIG-SEC-003 | PII masked in UI and logs | security | §9.4 |
@@ -135,8 +162,11 @@ Not every rule applies to every page. Always resolve archetype first ([§0.2](..
 
 | Rule prefix | Universal | Archetype-conditional |
 | --- | --- | --- |
-| HIG-A11Y-*, HIG-TOK-*, HIG-MOT-*, HIG-CQ-*, HIG-UX-*, HIG-SEC-* | ✅ | — |
+| HIG-A11Y-*, HIG-DOC-*, HIG-TOK-*, HIG-MOT-*, HIG-CQ-*, HIG-UX-*, HIG-SEC-*, HIG-PERF-* | ✅ | — |
+| HIG-SEO-* | — | content, commerce |
 | HIG-EXP-* | — | content, when `surface: hybrid` or `experience` |
 | HIG-SSR-* | — | commerce, application, auth |
 | HIG-ERR/EMP/LOD/FRM/NTF-* | — | commerce, application, auth (where feature exists) |
+| HIG-SRCH-* | — | commerce, application |
+| HIG-DEN-* | — | application |
 | HIG-MUT-002 | — | commerce, application |

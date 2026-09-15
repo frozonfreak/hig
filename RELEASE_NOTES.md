@@ -6,6 +6,26 @@ Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
 ---
 
+## [v1.10.1](./HIG.md) — 2026-09-15
+
+Patch release: standards hygiene and machine-readable consistency.
+
+### Highlights
+
+- All explicit module, archetype pack, framework adapter, manifest, example, and documentation version headers now match [VERSION](./VERSION).
+- The manifest schema now matches the actual `archetype_packs.default_modules` / `conditional_modules` shape.
+- The validator now catches stale version headers, missing local Markdown links/anchors, and manifest-schema pack-key drift.
+- Document fundamentals, SEO, search, data-density, and performance checks now have stable `HIG-*` rule IDs for evaluator findings.
+
+### Upgrade from v1.10.0
+
+1. Pin **[VERSION](./VERSION)** (`1.10.1`) in `docs/hig/VERSION` and agent rules.
+2. Refresh `rules/INDEX.md`, `rules/manifest.yaml`, `rules/ux.md`, `rules/search.md`, `rules/data-density.md`, `rules/performance.md`, and `rules/evaluator-dimensions.yaml`.
+3. Update any custom evaluator mappings to include `HIG-DOC-*`, `HIG-SEO-*`, `HIG-SRCH-*`, `HIG-DEN-*`, and `HIG-PERF-*`.
+4. Run `npm run validate`.
+
+---
+
 ## [v1.10.0](./HIG.md) — 2026-09-12
 
 Minor release: **expressive content surfaces**, clearer **container-query** and **target-size** wording, and a **multidimensional evaluator** contract — without turning the HIG into a single-score Lighthouse clone.
