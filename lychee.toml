@@ -1,15 +1,15 @@
 verbose = "info"
 no_progress = true
 max_concurrency = 8
-timeout = "20s"
-retry_wait_time = "2s"
+timeout = 20
+retry_wait_time = 2
 max_retries = 3
 user_agent = "Mozilla/5.0 (compatible; WebHIG-LinkCheck/1.0; +https://github.com/frozonfreak/hig)"
 accept = ["200", "204", "206", "301", "302", "307", "308"]
 scheme = ["https", "http"]
-exclude_mail = true
+include_mail = false
 exclude_all_private = true
-include_fragments = false
+include_fragments = "none"
 exclude = [
   '^https://twitter\.com/',
   '^https://x\.com/',

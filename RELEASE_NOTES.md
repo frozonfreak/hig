@@ -6,6 +6,23 @@ Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
 ---
 
+## [v1.11.1](./HIG.md) — 2026-09-19
+
+Patch release: link-check configuration repair. No normative rule was added, removed, or retightened — upgrading is safe for every existing pin.
+
+### Highlights
+
+- `lychee.toml` now matches the lychee v0.24 configuration schema. The link-check workflow and the offline link validation in CI aborted before checking anything, because `exclude_mail` no longer exists (it is `include_mail`), `timeout` and `retry_wait_time` take integer seconds rather than duration strings, and `include_fragments` takes a mode name (`none`, `anchor-only`, `text-only`, `full`) rather than a boolean.
+- Version references synchronized across contract files, modules, manifests, examples, the installer, and the documentation site.
+
+### Upgrade from v1.11.0
+
+1. Pin **[VERSION](./VERSION)** (`1.11.1`) in `docs/hig/VERSION` and agent rules, or run `npx @web-hig/install`.
+2. No rule IDs changed, so no re-audit is required.
+3. Run `npm run validate`.
+
+---
+
 ## [v1.11.0](./HIG.md) — 2026-09-19
 
 Minor release: **distribution and adoption**. No normative rule was added, removed, or retightened — upgrading is safe for every existing pin.

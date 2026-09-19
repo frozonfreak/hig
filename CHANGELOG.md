@@ -10,6 +10,15 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
+## [1.11.1] - 2026-09-19
+
+### Fixed
+
+- `lychee.toml` now matches the lychee v0.24 configuration schema: `exclude_mail` renamed to `include_mail`, `timeout` and `retry_wait_time` expressed as integer seconds, and `include_fragments` set to the `"none"` mode value. The link-check and offline validation workflows failed to start before this fix.
+- Synchronized version references across contract files, modules, manifests, examples, installer, and the documentation site.
+
+---
+
 ## [1.11.0] - 2026-09-19
 
 ### Added
@@ -161,7 +170,8 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.11.0...HEAD
+[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.11.1...HEAD
+[1.11.1]: https://github.com/frozonfreak/hig/compare/v1.11.0...v1.11.1
 [1.11.0]: https://github.com/frozonfreak/hig/compare/v1.10.1...v1.11.0
 [1.10.1]: https://github.com/frozonfreak/hig/compare/v1.10.0...v1.10.1
 [1.10.0]: https://github.com/frozonfreak/hig/compare/v1.9.0...v1.10.0
