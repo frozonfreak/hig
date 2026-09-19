@@ -3,15 +3,129 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The Web HIG — an AI-native behavioral standard for modern web applications. A rulebook and engineering contract that humans and AI coding agents can follow and validate.">
-  <meta property="og:title" content="The Web HIG — AI-native behavioral standard for the modern web">
-  <meta property="og:description" content="Versioned behavioral contract for interaction, states, accessibility, performance, and security UX — pin-able by teams and AI coding agents.">
-  <meta property="og:url" content="https://frozonfreak.github.io/hig/">
+  <title>The Web HIG — Pin how the web behaves</title>
+  <meta name="description" content="Pin a versioned behavioral contract for the modern web. Keep your design system — The Web HIG defines testable UX, accessibility, and AI-agent rules.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://frozonfreak.github.io/hig/">
+  <link rel="sitemap" type="application/xml" href="https://frozonfreak.github.io/hig/sitemap.xml">
+  <meta property="og:site_name" content="The Web HIG">
+  <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="The Web HIG">
-  <meta name="twitter:description" content="Open behavioral standard for the modern web — 98 quick rules, stable IDs, agent templates.">
-  <title>The Web HIG — AI-native behavioral standard for the modern web</title>
+  <meta property="og:title" content="The Web HIG — Pin how the web behaves">
+  <meta property="og:description" content="Keep your design system. Pin testable UX, accessibility (WCAG 2.2), and AI-agent rules.">
+  <meta property="og:url" content="https://frozonfreak.github.io/hig/">
+  <meta property="og:image" content="https://frozonfreak.github.io/hig/social/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="720">
+  <meta property="og:image:alt" content="The Web HIG — Pin how the web behaves. Keep your design system. Testable UX, accessibility, and AI-agent rules.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The Web HIG — Pin how the web behaves">
+  <meta name="twitter:description" content="Keep your design system. Pin testable UX, accessibility, and AI-agent rules.">
+  <meta name="twitter:image" content="https://frozonfreak.github.io/hig/social/og-image.png">
+  <meta name="twitter:image:alt" content="The Web HIG — Pin how the web behaves.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://frozonfreak.github.io/hig/#organization",
+        "name": "The Web HIG",
+        "url": "https://frozonfreak.github.io/hig/",
+        "logo": "https://frozonfreak.github.io/hig/social/og-image.png",
+        "sameAs": ["https://github.com/frozonfreak/hig"]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://frozonfreak.github.io/hig/#website",
+        "name": "The Web HIG",
+        "url": "https://frozonfreak.github.io/hig/",
+        "description": "An open, vendor-neutral behavioral standard for modern web applications.",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://frozonfreak.github.io/hig/#organization" }
+      },
+      {
+        "@type": "TechArticle",
+        "@id": "https://frozonfreak.github.io/hig/#article",
+        "headline": "The Web HIG — AI-native behavioral standard for the modern web",
+        "description": "Versioned behavioral contract for interaction, states, accessibility, performance, and security UX.",
+        "url": "https://frozonfreak.github.io/hig/",
+        "version": "1.10.1",
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "license": "https://github.com/frozonfreak/hig/blob/main/LICENSE",
+        "author": { "@id": "https://frozonfreak.github.io/hig/#organization" },
+        "publisher": { "@id": "https://frozonfreak.github.io/hig/#organization" },
+        "image": "https://frozonfreak.github.io/hig/social/og-image.png",
+        "mainEntityOfPage": { "@id": "https://frozonfreak.github.io/hig/#website" }
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://github.com/frozonfreak/hig#code",
+        "name": "The Web HIG",
+        "codeRepository": "https://github.com/frozonfreak/hig",
+        "url": "https://github.com/frozonfreak/hig",
+        "license": "https://opensource.org/licenses/MIT",
+        "version": "1.10.1"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://frozonfreak.github.io/hig/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is this a component library?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. It is a rulebook and engineering contract, not a component library. You keep your design system, framework, and components; the HIG defines how they should work together."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need to follow every rule?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Follow rules for your page type and feature. Accessibility, tokens, performance, and security are always required. Use archetype packs to see what is mandatory for your case."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "I'm not using AI — is this still for me?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The HIG is written for human developers and designers first. AI-related sections are optional extras for teams using Cursor, Copilot, or Claude Code."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is this different from a style guide?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A style guide covers look and feel. This also covers behavior: error handling, delete flows, performance targets, accessibility compliance, and security requirements."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this competing with WCAG, Material, or Lighthouse?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. WCAG is the accessibility target. Material, Fluent, Carbon, and GOV.UK are visual or domain design systems. Lighthouse measures. The Web HIG is the behavioral contract that sits in the gap between them."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I customize rules for my product?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Documented exceptions are allowed with justification. Security, accessibility, and data-protection rules cannot be skipped."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
   <link rel="stylesheet" href="css/site.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,6 +157,7 @@
         <ul>
           <li><a href="#start-here">Start here</a></li>
           <li><a href="#how">Try it</a></li>
+          <li><a href="#share">Share this HIG</a></li>
         </ul>
       </div>
 
@@ -641,23 +756,32 @@
       <!-- START HERE -->
       <section id="start-here" class="section-block">
         <h2>Start here</h2>
-        <p class="section-intro">Pick the path that matches how you work.</p>
+        <p class="section-intro">One file is the whole onboarding path. Everything else is optional escalation.</p>
+
+        <div class="start-callout">
+          <h3>Pin HIG-QUICK.md</h3>
+          <p>
+            Ninety-eight rules, about five minutes. Copy it into <code>docs/hig/</code> with <code>VERSION</code>,
+            then tell agents: <em>Follow The Web HIG Quick Reference.</em>
+          </p>
+          <a class="btn btn-primary" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Open the Quick Reference</a>
+        </div>
 
         <div class="start-grid">
           <a class="start-card" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">
             <h3>I'm a developer</h3>
-            <p>Read the 98-rule Quick Reference (~5 min), then pin it in your repo.</p>
+            <p>Read the Quick Reference, pin it, and use it in PR review.</p>
             <span class="start-link">Open HIG-QUICK.md →</span>
           </a>
-          <a class="start-card" href="#essential-rules">
+          <a class="start-card" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">
             <h3>I'm a designer</h3>
-            <p>Start with essential rules for states, tokens, accessibility, and motion.</p>
-            <span class="start-link">View essential rules →</span>
+            <p>Same file — states, tokens, accessibility, and motion in one pass.</p>
+            <span class="start-link">Open HIG-QUICK.md →</span>
           </a>
-          <a class="start-card" href="https://github.com/frozonfreak/hig/tree/main/examples/agent-rules">
+          <a class="start-card" href="https://github.com/frozonfreak/hig/blob/main/packages/install/README.md">
             <h3>I'm building with AI</h3>
-            <p>Copy agent rule templates for Cursor, Copilot, or Claude Code.</p>
-            <span class="start-link">Agent templates →</span>
+            <p>Run <code>npx @web-hig/install</code> to pin HIG-QUICK and copy Cursor, Claude, Copilot, and Windsurf skills.</p>
+            <span class="start-link">One-command installer →</span>
           </a>
           <a class="start-card" href="#integration">
             <h3>I want to adopt the standard</h3>
@@ -671,14 +795,87 @@
       <section id="how" class="section-block">
         <h2>Try it in one afternoon</h2>
         <p class="section-intro">
-          Pin the contract under <code>docs/hig/</code>, map routes in <code>docs/hig-scope.md</code> (archetype plus <strong>surface</strong> for content pages),
-          copy an agent rule template, and use the Quick Reference in PR review.
+          Run <code>npx @web-hig/install</code> to pin the contract under <code>docs/hig/</code>,
+          map routes in <code>docs/hig-scope.md</code> (archetype plus <strong>surface</strong> for content pages),
+          and install agent rules plus skills. Use the Quick Reference in PR review.
         </p>
         <p>
           Step-by-step checklist (pin → scope → agents → CI):
           <a href="#integration">Integration into your product →</a>
           ·
           <a href="https://github.com/frozonfreak/hig/blob/main/examples/conformance-checklist.md">PR checklist template →</a>
+        </p>
+      </section>
+
+      <!-- SHARE -->
+      <section id="share" class="section-block">
+        <h2>Share this HIG</h2>
+        <p class="section-intro">
+          Add a badge to your README, blog, or docs. Each snippet links to the GitHub repo
+          with UTM parameters so inbound clicks can be attributed by source.
+        </p>
+
+        <div class="share-panel">
+          <div class="share-panel-inner">
+            <div class="share-preview">
+              <p class="share-preview-label" id="share-preview-caption">Badge preview</p>
+              <a id="share-preview-link" href="https://github.com/frozonfreak/hig?utm_source=github_readme&amp;utm_medium=badge&amp;utm_campaign=share">
+                <img src="badge.svg" width="204" height="20" alt="The Web HIG — open behavioral standard">
+              </a>
+            </div>
+
+            <fieldset class="share-fields">
+              <legend>Copy a tracked snippet</legend>
+
+              <div class="share-field">
+                <label for="share-source">Where will you post this?</label>
+                <select class="share-select" id="share-source">
+                  <option value="github_readme" selected>GitHub README</option>
+                  <option value="docs">Docs site</option>
+                  <option value="blog">Blog or article</option>
+                  <option value="social">Social post</option>
+                  <option value="newsletter">Newsletter</option>
+                  <option value="website">Website</option>
+                  <option value="custom">Custom source…</option>
+                </select>
+              </div>
+
+              <div class="share-field" id="share-custom-wrap" hidden>
+                <label for="share-custom">Custom source slug</label>
+                <input class="share-input" id="share-custom" type="text" maxlength="40" autocomplete="off" spellcheck="false" placeholder="meetup_slides" aria-describedby="share-custom-help">
+                <p class="share-help" id="share-custom-help">Letters, numbers, and underscores. Becomes <code>utm_source</code>.</p>
+              </div>
+
+              <fieldset class="share-radios">
+                <legend class="share-radios-legend">Snippet format</legend>
+                <label>
+                  <input type="radio" name="share-format" value="markdown" checked>
+                  Markdown
+                </label>
+                <label>
+                  <input type="radio" name="share-format" value="html">
+                  HTML
+                </label>
+              </fieldset>
+
+              <div class="share-field">
+                <label for="share-snippet">Snippet</label>
+                <textarea class="share-snippet" id="share-snippet" readonly rows="4" spellcheck="false">[![The Web HIG](https://frozonfreak.github.io/hig/badge.svg)](https://github.com/frozonfreak/hig?utm_source=github_readme&amp;utm_medium=badge&amp;utm_campaign=share)</textarea>
+              </div>
+
+              <div class="share-actions">
+                <button class="btn btn-primary" type="button" id="share-copy">Copy markdown</button>
+                <p class="share-status" id="share-status" role="status" aria-live="polite"></p>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+        <p>
+          Full snippets and UTM convention:
+          <a href="https://github.com/frozonfreak/hig/blob/main/SHARE.md">SHARE.md</a>.
+          For a pinned-semver conformance line, see
+          <a href="https://github.com/frozonfreak/hig/blob/main/PROFILES.md">PROFILES.md</a>.
         </p>
       </section>
 
@@ -711,7 +908,7 @@
           </div>
           <div class="card">
             <h3>For AI coding agents</h3>
-            <p>Token-efficient three-layer model. Stable rule IDs agents can cite. YAML guardrails for Cursor, Copilot, and Claude Code.</p>
+            <p>Token-efficient three-layer model. Stable rule IDs agents can cite. YAML guardrails and skills for Cursor, Copilot, Claude Code, and Windsurf.</p>
           </div>
         </div>
       </section>
@@ -763,7 +960,9 @@
 │   ├── accessibility.md …   17 topic modules (incl. expressive-surface)
 │   └── archetypes/          content, commerce, application, auth
 ├── framework/               React, Next, Vue, Nuxt, Astro
-├── examples/agent-rules/    Cursor, Claude, Copilot templates
+├── skills/web-hig/          Ready-to-copy Agent Skill (SKILL.md)
+├── examples/agent-rules/    Cursor, Claude, Copilot, Windsurf templates
+├── packages/install/        npx @web-hig/install
 ├── scripts/validate-hig.mjs Contract validation
 └── INTEGRATION.md           Product repo adoption guide</code></pre>
       </section>
@@ -874,16 +1073,16 @@
         <p class="section-intro">Adopt gradually — most teams start in one afternoon.</p>
         <ol class="steps">
           <li>
-            <strong>Pin the contract</strong> — copy HIG-QUICK, HIG-LITE, HIG.md, VERSION, rules/, framework/ into <code>docs/hig/</code>
-            <span class="step-meta">~10 minutes</span>
+            <strong>Pin the contract</strong> — <code>npx @web-hig/install</code> (or copy HIG-QUICK, VERSION, and rules into <code>docs/hig/</code>)
+            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/blob/main/packages/install/README.md">Installer →</a> · ~1 minute</span>
           </li>
           <li>
             <strong>Map your routes</strong> — create <code>docs/hig-scope.md</code> with archetype per route and <strong>surface</strong> for content (<code>document</code> · <code>hybrid</code> · <code>experience</code>)
             <span class="step-meta"><a href="https://github.com/frozonfreak/hig/blob/main/examples/hig-scope.example.md">Example →</a> · ~15 minutes</span>
           </li>
           <li>
-            <strong>Add agent rules</strong> — copy templates for Cursor, Claude Code, or Copilot
-            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/tree/main/examples/agent-rules">Templates →</a> · ~5 minutes</span>
+            <strong>Add agent rules</strong> — installer copies Cursor, Claude Code, Copilot, and Windsurf rules plus skills; or copy templates manually
+            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/tree/main/skills">Skills →</a> · ~5 minutes</span>
           </li>
           <li>
             <strong>PR checklist</strong> — copy the conformance checklist for human review until linters exist
@@ -959,6 +1158,7 @@
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/HIG.md"><strong>HIG.md</strong></a></td><td>Complete normative specification</td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-CORE.md">HIG-CORE.md</a></td><td>Philosophy, vocabulary, archetypes</td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/INTEGRATION.md">INTEGRATION.md</a></td><td>Product repo adoption guide</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/SHARE.md">SHARE.md</a></td><td>Share badge and copy-paste markdown with UTM parameters</td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/tree/main/examples">examples/</a></td><td>Scope templates, agent rules, adoption walkthrough</td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/rules/INDEX.md">rules/INDEX.md</a></td><td>Topic index &amp; rule ID registry</td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/RELEASE_NOTES.md">RELEASE_NOTES.md</a></td><td>Adoption-focused release notes</td></tr>
@@ -1026,6 +1226,7 @@
           <a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Quick Reference</a>
           <a href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md">HIG-LITE</a>
           <a href="https://github.com/frozonfreak/hig/blob/main/HIG.md">Full spec</a>
+          <a href="#share">Share this HIG</a>
           <a href="https://github.com/frozonfreak/hig/blob/main/LICENSE">MIT License</a>
         </div>
         <p>The Web HIG v1.10.1 — an open standard for AI-native web development.</p>
@@ -1056,6 +1257,108 @@
 
     window.addEventListener('scroll', updateActive, { passive: true });
     updateActive();
+
+    (function () {
+      const REPO = 'https://github.com/frozonfreak/hig';
+      const BADGE = 'https://frozonfreak.github.io/hig/badge.svg';
+      const sourceSelect = document.getElementById('share-source');
+      const customWrap = document.getElementById('share-custom-wrap');
+      const customInput = document.getElementById('share-custom');
+      const snippet = document.getElementById('share-snippet');
+      const copyBtn = document.getElementById('share-copy');
+      const status = document.getElementById('share-status');
+      const previewLink = document.getElementById('share-preview-link');
+      const formatRadios = document.querySelectorAll('input[name="share-format"]');
+      if (!sourceSelect || !snippet || !copyBtn) return;
+
+      let resetTimer = 0;
+
+      function slug(value) {
+        return value.toLowerCase().trim().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '').slice(0, 40) || 'custom';
+      }
+
+      function currentSource() {
+        return sourceSelect.value === 'custom' ? slug(customInput.value) : sourceSelect.value;
+      }
+
+      function currentFormat() {
+        return document.querySelector('input[name="share-format"]:checked')?.value || 'markdown';
+      }
+
+      function repoUrl() {
+        const params = new URLSearchParams({
+          utm_source: currentSource(),
+          utm_medium: 'badge',
+          utm_campaign: 'share',
+        });
+        return REPO + '?' + params.toString();
+      }
+
+      function markdownSnippet() {
+        return '[![The Web HIG](' + BADGE + ')](' + repoUrl() + ')';
+      }
+
+      function htmlSnippet() {
+        return '<a href="' + repoUrl() + '">\n  <img src="' + BADGE + '" width="204" height="20" alt="The Web HIG — open behavioral standard">\n</a>';
+      }
+
+      function copyLabel() {
+        return currentFormat() === 'html' ? 'Copy HTML' : 'Copy markdown';
+      }
+
+      function setStatus(message, tone) {
+        status.textContent = message;
+        if (tone) {
+          status.dataset.tone = tone;
+        } else {
+          delete status.dataset.tone;
+        }
+      }
+
+      function updateSnippet() {
+        const isCustom = sourceSelect.value === 'custom';
+        customWrap.hidden = !isCustom;
+        snippet.value = currentFormat() === 'html' ? htmlSnippet() : markdownSnippet();
+        previewLink.href = repoUrl();
+        copyBtn.textContent = copyLabel();
+      }
+
+      async function copySnippet() {
+        const text = snippet.value;
+        const isHtml = currentFormat() === 'html';
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            snippet.focus();
+            snippet.select();
+            if (!document.execCommand('copy')) throw new Error('copy failed');
+          }
+          setStatus(isHtml ? 'Copied HTML to the clipboard.' : 'Copied markdown to the clipboard.', 'success');
+          copyBtn.textContent = 'Copied';
+          window.clearTimeout(resetTimer);
+          resetTimer = window.setTimeout(function () {
+            copyBtn.textContent = copyLabel();
+          }, 2500);
+        } catch {
+          snippet.focus();
+          snippet.select();
+          setStatus('Copy failed. The snippet is selected — press Ctrl+C or Command+C.', 'error');
+          copyBtn.textContent = copyLabel();
+        }
+      }
+
+      sourceSelect.addEventListener('change', function () {
+        updateSnippet();
+        if (sourceSelect.value === 'custom') customInput.focus();
+      });
+      customInput.addEventListener('input', updateSnippet);
+      formatRadios.forEach(function (radio) {
+        radio.addEventListener('change', updateSnippet);
+      });
+      copyBtn.addEventListener('click', copySnippet);
+      updateSnippet();
+    })();
   </script>
 </body>
 </html>

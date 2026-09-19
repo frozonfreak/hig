@@ -102,3 +102,5 @@ Copy the markdown checklist from [examples/conformance-checklist.md](./examples/
 > This project pins **The Web HIG v1.10.1** · **Practical** profile · **Application** and **Auth** archetypes. Scope: `docs/hig-scope.md` (product repo path).
 
 No official logo is required; state pinned semver and profile honestly.
+
+To *spread* the standard (not claim conformance), copy the share badge from [SHARE.md](./SHARE.md).

@@ -1,8 +1,6 @@
 # Adopters — The Web HIG
 
-Products and repositories that **pin** The Web HIG (semver + profile) and use it in development workflow. This list is informational — not certification.
-
-To add your project, open a PR with an entry using the template below.
+Products and repositories that **pin** The Web HIG (semver + profile) and use it in a development workflow. This list is informational — not certification.
 
 ---
 
@@ -18,11 +16,18 @@ To add your project, open a PR with an entry using the template below.
 
 ## Community adopters
 
-<!-- Add rows via PR -->
+Add your project with a pull request. Copy a row from the template below into this table.
 
-| Project | Version / profile | Archetypes | Link |
-| --- | --- | --- | --- |
-| *Your product* | e.g. v1.9.0 Practical | Application, Auth | https://… |
+| Project | Version / profile | Archetypes | How you use it | Link |
+| --- | --- | --- | --- | --- |
+
+_No community entries yet — be the first._
+
+### Table row template
+
+```markdown
+| [Project name](https://example.com) | v1.10.1 · Practical | Application, Auth | Cursor rule + `docs/hig-scope.md` | [repo](https://github.com/example/project) |
+```
 
 ---
 
@@ -54,4 +59,5 @@ Copy into your PR description:
 
 - Adoption steps: [INTEGRATION.md](./INTEGRATION.md)
 - Copy-paste templates: [examples/](./examples/)
+- Share badge: [SHARE.md](./SHARE.md)
 - Profiles: [PROFILES.md](./PROFILES.md)

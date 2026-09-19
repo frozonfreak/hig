@@ -10,6 +10,10 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ### Added
 
+- Discovery polish: benefit-focused description, GitHub topics, social preview image, README badges (version, license, CI, Pin me), and an empty [ADOPTERS.md](./ADOPTERS.md) community table ready for PRs.
+- Quality gates on every push/PR: Markdown link checks, rule ID consistency, version bump rules, and `npm run validate`. Version tags draft GitHub Release notes from CHANGELOG + RELEASE_NOTES.
+- Share badge and copy-paste markdown (`SHARE.md`, documentation site `#share`) with UTM parameters so inbound links can be attributed by source.
+- Documentation site share metadata (canonical URL, Open Graph image, JSON-LD), generated sitemap/robots/404 artifacts, and a weekly GitHub Action that reports broken external links as issues.
 - Standard repository documentation: rationale, specification index, profiles, roadmap, adopters, machine-readable roadmap, and changelog.
 
 ---

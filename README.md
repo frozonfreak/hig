@@ -1,12 +1,21 @@
 # The Web HIG
 
-**An open, versioned behavioral standard for the modern web.**
+[![Version](https://img.shields.io/github/v/tag/frozonfreak/hig?label=version&color=1d4ed8)](https://github.com/frozonfreak/hig/releases)
+[![License: MIT](https://img.shields.io/github/license/frozonfreak/hig)](./LICENSE)
+[![CI](https://github.com/frozonfreak/hig/actions/workflows/validate.yml/badge.svg)](https://github.com/frozonfreak/hig/actions/workflows/validate.yml)
+[![Pin me](https://img.shields.io/badge/Pin_me-HIG--QUICK.md-0f172a)](./HIG-QUICK.md)
 
-Vendor-neutral requirements for how web interfaces behave — for design systems, product teams, CI, and AI coding agents. You keep your stack and visuals; The Web HIG defines testable interaction, state, accessibility, performance, and security UX.
+**Keep your design system. Pin a versioned contract for how web interfaces behave.**
+
+Vendor-neutral, testable rules for interaction, states, accessibility (WCAG 2.2 AA), performance, and security UX — for product teams, design systems, CI, and AI coding agents. You keep your stack and visuals; The Web HIG defines behavior you can cite and validate.
+
+### Start in one file
+
+**[HIG-QUICK.md](./HIG-QUICK.md)** (~5 minutes) is the whole onboarding path. Pin it. Tell agents: *"Follow The Web HIG Quick Reference."* Open [HIG-LITE.md](./HIG-LITE.md) only when you need rule IDs, and [HIG.md](./HIG.md) only for edge cases.
 
 **Current release:** [v1.10.1](./VERSION) · [Changelog](./CHANGELOG.md) · [Release notes](./RELEASE_NOTES.md)
 
-**[Quick Reference](./HIG-QUICK.md)** · **[Live demo](https://hig.aruviflow.com/)** · **[Documentation site](https://frozonfreak.github.io/hig/)** · **[Integrate](./INTEGRATION.md)** · **[View on GitHub](https://github.com/frozonfreak/hig)**
+**[Live demo](https://hig.aruviflow.com/)** · **[Documentation site](https://frozonfreak.github.io/hig/)** · **[Integrate](./INTEGRATION.md)** · **[Adopters](./ADOPTERS.md)**
 
 ---
 
@@ -32,17 +41,22 @@ Vendor-neutral requirements for how web interfaces behave — for design systems
 | [CONTRIBUTING.md](./CONTRIBUTING.md) | Spec changes and governance |
 | [ADOPTERS.md](./ADOPTERS.md) | Real projects pinning the contract |
 | [INTEGRATION.md](./INTEGRATION.md) | Step-by-step adoption in product repos |
+| [skills/](./skills/) | Ready-to-copy agent skills (Cursor, Claude, Copilot, Windsurf) |
+| [packages/install](./packages/install/) | `npx @web-hig/install` |
+| [SHARE.md](./SHARE.md) | Share badge and copy-paste markdown with UTM parameters |
 | [examples/](./examples/) | Scope templates, agent rules, walkthroughs |
 
 ---
 
 ## Start here
 
-| Role | First read |
+Everyone starts in **[HIG-QUICK.md](./HIG-QUICK.md)**. The rows below are optional next steps, not a second onboarding path.
+
+| Role | After HIG-QUICK |
 | --- | --- |
-| Developer | [HIG-QUICK.md](./HIG-QUICK.md) (~5 min) — pin in repo |
-| Designer | [HIG-QUICK.md](./HIG-QUICK.md) — states, tokens, motion, a11y |
-| AI / agent setup | [examples/agent-rules/](./examples/agent-rules/) |
+| Developer | Pin `HIG-QUICK.md` + `VERSION` in `docs/hig/` |
+| Designer | Same file — states, tokens, motion, accessibility |
+| AI / agent setup | `npx @web-hig/install` or [skills/](./skills/) |
 | Architect / audit | [SPECIFICATION.md](./SPECIFICATION.md) + [HIG.md](./HIG.md) |
 | Adopting a team | [PROFILES.md](./PROFILES.md) → [INTEGRATION.md](./INTEGRATION.md) |
 
@@ -97,12 +111,15 @@ More context: [RATIONALE.md](./RATIONALE.md)
 Developer → pinned HIG → AI agent → Code → Validation → CI
 ```
 
-| Tool | Template |
-| --- | --- |
-| Cursor | [examples/agent-rules/cursor-hig.mdc](./examples/agent-rules/cursor-hig.mdc) |
-| Claude Code | [examples/agent-rules/CLAUDE-hig.md](./examples/agent-rules/CLAUDE-hig.md) |
-| GitHub Copilot | [examples/agent-rules/copilot-instructions-hig.md](./examples/agent-rules/copilot-instructions-hig.md) |
-| Multi-agent | [examples/agent-rules/AGENTS-hig.md](./examples/agent-rules/AGENTS-hig.md) |
+| Tool | Always-on rule | Skill |
+| --- | --- | --- |
+| Cursor | [examples/agent-rules/cursor-hig.mdc](./examples/agent-rules/cursor-hig.mdc) | `.cursor/skills/web-hig/` |
+| Claude Code | [examples/agent-rules/CLAUDE-hig.md](./examples/agent-rules/CLAUDE-hig.md) | `.claude/skills/web-hig/` |
+| GitHub Copilot | [examples/agent-rules/copilot-instructions-hig.md](./examples/agent-rules/copilot-instructions-hig.md) | `.github/skills/web-hig/` |
+| Windsurf | [examples/agent-rules/windsurf-hig.md](./examples/agent-rules/windsurf-hig.md) | `.windsurf/skills/web-hig/` |
+| Multi-agent | [examples/agent-rules/AGENTS-hig.md](./examples/agent-rules/AGENTS-hig.md) | — |
+
+Canonical skill: [skills/web-hig/SKILL.md](./skills/web-hig/SKILL.md). Copy map: [skills/README.md](./skills/README.md).
 
 Machine-readable loading today: [rules/manifest.yaml](./rules/manifest.yaml) · Roadmap: [MACHINE_READABLE.md](./MACHINE_READABLE.md)
 
@@ -110,12 +127,12 @@ Machine-readable loading today: [rules/manifest.yaml](./rules/manifest.yaml) · 
 
 ## Try it in one afternoon
 
-1. **Pin** — copy `VERSION`, `HIG-QUICK.md`, and optional `HIG-CORE.md` to `docs/hig/` ([PROFILES.md](./PROFILES.md))
-2. **Scope** — [examples/hig-scope.example.md](./examples/hig-scope.example.md) → `docs/hig-scope.md`
-3. **Agents** — one file from [examples/agent-rules/](./examples/agent-rules/)
-4. **Validate upgrades** — `npm run validate` when you vendor the full repo
+1. **Install** — `npx @web-hig/install` pins `HIG-QUICK.md` and copies agent rules plus skills ([packages/install](./packages/install/))
+2. **Scope** — edit `docs/hig-scope.md` for your routes ([examples/hig-scope.example.md](./examples/hig-scope.example.md))
+3. **Escalate** — `npx @web-hig/install --profile practical` when you need HIG-LITE + modules
+4. **Validate upgrades** — `npm run validate` in this repo when bumping pins
 
-Walkthrough: [examples/adoption/quick-profile-walkthrough.md](./examples/adoption/quick-profile-walkthrough.md)
+Manual copy: [PROFILES.md](./PROFILES.md) · Walkthrough: [examples/adoption/quick-profile-walkthrough.md](./examples/adoption/quick-profile-walkthrough.md)
 
 ---
 
@@ -137,6 +154,20 @@ Walkthrough: [examples/adoption/quick-profile-walkthrough.md](./examples/adoptio
 | 9 | Security & privacy UX |
 
 Detail: [SPECIFICATION.md](./SPECIFICATION.md) · Module index: [rules/INDEX.md](./rules/INDEX.md)
+
+---
+
+## Share this HIG
+
+Copy a badge into your README, blog, or docs. Every link points back to this repo with UTM parameters so inbound clicks can be attributed by source.
+
+![The Web HIG](https://frozonfreak.github.io/hig/badge.svg)
+
+```markdown
+[![The Web HIG](https://frozonfreak.github.io/hig/badge.svg)](https://github.com/frozonfreak/hig?utm_source=github_readme&utm_medium=badge&utm_campaign=share)
+```
+
+More placements (docs, blog, social, HTML) and the UTM convention: [SHARE.md](./SHARE.md). Interactive copy: [documentation site](https://frozonfreak.github.io/hig/#share).
 
 ---
 

@@ -14,6 +14,7 @@ Copy these into a **product** repository. They are not loaded when developing Th
 | Conformance levels | [PROFILES.md](../PROFILES.md) |
 | PR checklist (copy-paste) | [conformance-checklist.md](./conformance-checklist.md) |
 | Public listing | [ADOPTERS.md](../ADOPTERS.md) |
+| Share badge (UTM) | [SHARE.md](../SHARE.md) |
 
 ---
 
