@@ -48,7 +48,7 @@ Key enforceable rules (full YAML in [HIG.md §7.2](../HIG.md#72-ai-coding-agent-
 | HIG-FRM-* | Forms |
 | HIG-SEC-* | Security |
 
-Copy-paste agent templates: [examples/agent-rules/](../examples/agent-rules/).
+Copy-paste agent templates: [examples/agent-rules/](../examples/agent-rules/). Canonical skill: [skills/web-hig/SKILL.md](../skills/web-hig/SKILL.md). One-command install: `npx @web-hig/install`.
 
 ## 7.3 Programmatic Linter Specifications
 

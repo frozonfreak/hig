@@ -1,0 +1,136 @@
+name: External link check
+
+on:
+  schedule:
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: link-check
+  cancel-in-progress: true
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check external links
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          fail: false
+          format: markdown
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: >-
+            --config lychee.toml
+            --verbose
+            --no-progress
+            --root-dir .
+            '**/*.md'
+            'docs/**/*.html'
+
+      - name: Open or update a broken-links issue
+        uses: actions/github-script@v7
+        env:
+          LYCHEE_EXIT_CODE: ${{ steps.lychee.outputs.exit_code }}
+        with:
+          script: |
+            const fs = require('fs');
+            const title = '[automated] Broken external links';
+            const label = 'broken-links';
+            const exitCode = Number(process.env.LYCHEE_EXIT_CODE || '0');
+            const reportPath = 'lychee/out.md';
+            const report = fs.existsSync(reportPath)
+              ? fs.readFileSync(reportPath, 'utf8')
+              : '_No lychee report file was produced._';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+
+            async function ensureLabel() {
+              try {
+                await github.rest.issues.getLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label,
+                });
+              } catch (error) {
+                if (error.status !== 404) throw error;
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label,
+                  color: 'B45309',
+                  description: 'Automated report of failing external URLs',
+                });
+              }
+            }
+
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: label,
+              per_page: 20,
+            });
+            const existing = issues.find((issue) => issue.title === title);
+
+            if (exitCode === 0) {
+              if (!existing) {
+                core.info('External links passed; no open report issue.');
+                return;
+              }
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body: `Weekly external link check passed. Closing this issue.\n\nRun: ${runUrl}`,
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                state: 'closed',
+                state_reason: 'completed',
+              });
+              return;
+            }
+
+            await ensureLabel();
+            let body = [
+              'Automated weekly check found broken **external** links.',
+              '',
+              `Workflow run: ${runUrl}`,
+              '',
+              report,
+            ].join('\n');
+            if (body.length > 60000) {
+              body = `${body.slice(0, 60000)}\n\n_(truncated)_`;
+            }
+
+            if (existing) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body,
+              });
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body: `Link check still failing. The report on this issue was updated.\n\nRun: ${runUrl}`,
+              });
+              return;
+            }
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              labels: [label],
+            });

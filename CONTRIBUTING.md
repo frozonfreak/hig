@@ -17,7 +17,8 @@ Good contributions:
 - [rules/INDEX.md](./rules/INDEX.md) and [rules/manifest.yaml](./rules/manifest.yaml) registry entries
 - [framework/*.md](./framework/) adapter improvements
 - Machine-readable artifacts ([MACHINE_READABLE.md](./MACHINE_READABLE.md), [schema/](./schema/))
-- [INTEGRATION.md](./INTEGRATION.md), [examples/](./examples/), and agent templates
+- [INTEGRATION.md](./INTEGRATION.md), [examples/](./examples/), [skills/](./skills/), and agent templates
+- Installer package ([packages/install](./packages/install/)) — keep its `version` in sync with [VERSION](./VERSION)
 - Adopter entries ([ADOPTERS.md](./ADOPTERS.md)) with pinned semver evidence
 
 Out of scope:
@@ -33,8 +34,8 @@ Out of scope:
 1. **Search [issues](https://github.com/frozonfreak/hig/issues)** for duplicates.
 2. Open a **[Spec change proposal](https://github.com/frozonfreak/hig/issues/new?template=spec-change.yml)** — describe problem, affected layers, and backward compatibility.
 3. Fork, branch from `main`, implement focused edits.
-4. Run **`npm run validate`** — CI rejects contract integrity failures.
-5. Open a PR using [.github/PULL_REQUEST_TEMPLATE.md](./.github/PULL_REQUEST_TEMPLATE.md).
+4. Run **`npm run validate`** and **`npm test`** — CI rejects contract integrity failures (Markdown links, rule ID consistency, version headers).
+5. Open a PR using [.github/PULL_REQUEST_TEMPLATE.md](./.github/PULL_REQUEST_TEMPLATE.md). Contract file changes must bump [VERSION](./VERSION) (see [VERSIONING.md](./VERSIONING.md)).
 
 ### File sync checklist (substantive rule changes)
 
@@ -45,7 +46,8 @@ Out of scope:
 | Practical summary + IDs | [HIG-LITE.md](./HIG-LITE.md) |
 | Topic depth | Relevant [rules/*.md](./rules/) |
 | Index / triggers | [rules/INDEX.md](./rules/INDEX.md), [rules/manifest.yaml](./rules/manifest.yaml) |
-| Version bump | [VERSION](./VERSION), title in HIG.md, manifest `version:` |
+| Version bump | [VERSION](./VERSION), title in HIG.md, manifest `version:`, [packages/install/package.json](./packages/install/package.json) |
+| Agent skill / templates | [skills/web-hig/SKILL.md](./skills/web-hig/SKILL.md), [examples/agent-rules/](./examples/agent-rules/) (when Layer 7 YAML changes) |
 | Release docs | [CHANGELOG.md](./CHANGELOG.md), [RELEASE_NOTES.md](./RELEASE_NOTES.md), [HIG.md §8.1](./HIG.md#81-version-history) |
 
 Every Lite and Quick rule **must** map to a canonical rule ID in HIG.md.
@@ -81,6 +83,33 @@ Follow [Semantic Versioning](https://semver.org/) as documented in [VERSIONING.m
 - **Disputes** defer to full [HIG.md](./HIG.md) text; open an issue if Layer 1/2 extracts disagree with Layer 3
 
 Roadmap context: [ROADMAP.md](./ROADMAP.md)
+
+---
+
+## Documentation site
+
+The public site is static HTML in [`docs/`](./docs/), deployed to [GitHub Pages](https://frozonfreak.github.io/hig/) on every push to `main` ([`.github/workflows/pages.yml`](./.github/workflows/pages.yml)).
+
+```bash
+npm run build:docs
+```
+
+regenerates `docs/robots.txt`, `docs/sitemap.xml`, and `docs/404.html`. Commit those files with your change. Share metadata (canonical URL, Open Graph, Twitter card, JSON-LD) lives in `docs/index.html`; the share image is `docs/social/og-image.png`. The weekly workflow [`.github/workflows/link-check.yml`](./.github/workflows/link-check.yml) checks **external** URLs and opens or updates a `broken-links` issue.
+
+### Quality gates (every push/PR)
+
+| Check | How |
+| --- | --- |
+| Local Markdown links and anchors | `npm run validate` |
+| Rule ID consistency (INDEX, manifest, HIG.md, modules) | `npm run validate` |
+| Version header sync | `npm run validate` |
+| Version bump rules | `npm run check:version-bump` |
+| Offline Markdown/HTML link targets | GitHub Actions `lychee --offline` |
+| Docs share artifacts | `npm run build:docs` |
+| Installer | `npm test` |
+| Installer (`@web-hig/install`) | `npm test` |
+
+On a version tag (`vX.Y.Z`), [`.github/workflows/release.yml`](./.github/workflows/release.yml) drafts a GitHub Release from [CHANGELOG.md](./CHANGELOG.md) and [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 

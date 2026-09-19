@@ -15,6 +15,9 @@ This roadmap describes **contract and tooling** direction for the standard repos
 - [x] [rules/manifest.yaml](./rules/manifest.yaml) topic triggers
 - [x] Contract validation (`npm run validate`) and CI
 - [x] Integration guide, agent templates, documentation site
+- [x] Agent-ready distribution (`skills/web-hig`, editor templates, `npx @web-hig/install`)
+- [x] Docs site GitHub Pages deploy, share metadata (Open Graph / JSON-LD), weekly external link check
+- [x] Quality gates: Markdown links, rule ID consistency, version bump rules, tag release-note drafts
 
 ---
 
@@ -23,8 +26,8 @@ This roadmap describes **contract and tooling** direction for the standard repos
 | Item | Outcome |
 | --- | --- |
 | **Conformance profiles** | Documented in [PROFILES.md](./PROFILES.md); optional badge/checklist for adopters |
-| **Adopter registry** | [ADOPTERS.md](./ADOPTERS.md) — public examples of pinned implementations |
-| **Spec change log discipline** | Every tagged release updates [CHANGELOG.md](./CHANGELOG.md) + [RELEASE_NOTES.md](./RELEASE_NOTES.md) |
+| **Adopter registry** | [ADOPTERS.md](./ADOPTERS.md) template and empty community table — add rows by PR |
+| **Spec change log discipline** | Tagged releases draft GitHub notes from [CHANGELOG.md](./CHANGELOG.md) + [RELEASE_NOTES.md](./RELEASE_NOTES.md) |
 | **Manifest JSON Schema** | Validate `rules/manifest.yaml` shape in CI ([schema/](./schema/)) |
 
 ---

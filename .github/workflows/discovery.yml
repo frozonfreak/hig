@@ -1,0 +1,43 @@
+name: Repository discovery
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/repo-discovery.json'
+      - '.github/workflows/discovery.yml'
+      - '.github/social-preview.png'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    name: Description, topics, homepage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Sync GitHub description, homepage, and topics
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          DESC=$(jq -r .description .github/repo-discovery.json)
+          HOME_URL=$(jq -r .homepage .github/repo-discovery.json)
+          gh repo edit "$GITHUB_REPOSITORY" --description "$DESC" --homepage "$HOME_URL"
+          jq -r '.topics[]' .github/repo-discovery.json | while read -r topic; do
+            gh repo edit "$GITHUB_REPOSITORY" --add-topic "$topic"
+          done
+      - name: Attempt GitHub social preview upload
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sS -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Content-Type: image/png" \
+            --data-binary @.github/social-preview.png \
+            "https://uploads.github.com/repos/${GITHUB_REPOSITORY}/social_previews?name=social-preview.png" \
+            | tee /tmp/social-preview-response.json
+          echo "If this endpoint is unavailable, upload .github/social-preview.png in Settings → General → Social preview."

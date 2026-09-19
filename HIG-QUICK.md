@@ -2,11 +2,17 @@
 
 **Layer 1** · ~5 minutes · **Version:** v1.10.1
 
-Ninety-eight imperative rules. Read this first. For practical detail, open [HIG-LITE.md](./HIG-LITE.md) (Layer 2). For edge cases and normative depth, open [HIG.md](./HIG.md) (Layer 3).
+**Pin this file — that is the whole onboarding path.** You do not need the rest of the repository to start.
 
-> **For AI agents:** *"Follow The Web HIG Quick Reference."* — paste or pin this file instead of the full specification.
+- **Pin:** `npx @web-hig/install`, or copy `HIG-QUICK.md` and `VERSION` into `docs/hig/` (or use the [tagged URL](https://github.com/frozonfreak/hig/blob/v1.10.1/HIG-QUICK.md)).
+- **Prompt:** *"Follow The Web HIG Quick Reference."*
+- **Escalate only if needed:** [HIG-LITE.md](./HIG-LITE.md) for rule IDs · [HIG.md](./HIG.md) for edge cases.
 
-> **Note:** This is not a UI component library. It is a governance contract for your existing design system.
+Agent templates: [examples/agent-rules/](./examples/agent-rules/). Full walkthrough: [INTEGRATION.md](./INTEGRATION.md).
+
+Ninety-eight imperative rules. For practical detail, open [HIG-LITE.md](./HIG-LITE.md) (Layer 2). For edge cases and normative depth, open [HIG.md](./HIG.md) (Layer 3).
+
+> **Not a UI component library.** A governance contract for your existing design system.
 
 ---
 

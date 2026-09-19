@@ -4,7 +4,7 @@ Copy a badge into your README, blog, or docs. Every link points at [the GitHub r
 
 **Badge image:** [docs/badge.svg](./docs/badge.svg) · served at `https://frozonfreak.github.io/hig/badge.svg`
 
-This is a **share** badge (spread the standard). For a **conformance** claim after you pin a semver, see [PROFILES.md](./PROFILES.md).
+This is a **share** badge (spread the standard). For a **conformance** claim after you pin a semver, see [PROFILES.md](./PROFILES.md). To adopt the contract in a product repo, use the **Pin me** badge on [README.md](./README.md) and start with [HIG-QUICK.md](./HIG-QUICK.md).
 
 ---
 

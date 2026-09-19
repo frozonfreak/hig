@@ -6,16 +6,23 @@ Informative walkthrough for a fictional product repo **Acme Dashboard**. Copy pa
 
 ## 1. Pin files
 
+```bash
+npx @web-hig/install --editors cursor
+```
+
+That writes:
+
 ```
 docs/hig/
   VERSION                 # 1.10.1
   HIG-CORE.md
   HIG-QUICK.md
 docs/hig-scope.md
-.cursor/rules/hig.mdc     # from examples/agent-rules/cursor-hig.mdc
+.cursor/rules/hig.mdc
+.cursor/skills/web-hig/SKILL.md
 ```
 
-Profile: [PROFILES.md](../../PROFILES.md) — Quick Reference.
+Manual copy: [agent-rules/cursor-hig.mdc](../agent-rules/cursor-hig.mdc). Profile: [PROFILES.md](../../PROFILES.md) — Quick Reference.
 
 ---
 

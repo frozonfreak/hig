@@ -1,0 +1,44 @@
+{
+  "name": "@web-hig/install",
+  "version": "1.10.1",
+  "description": "Install The Web HIG Quick Reference, agent rules, and editor skills into a project",
+  "type": "module",
+  "bin": {
+    "web-hig-install": "./bin/cli.mjs"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "vendor"
+  ],
+  "scripts": {
+    "prepack": "node scripts/sync-vendor.mjs",
+    "test": "node test/install.test.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "keywords": [
+    "web-hig",
+    "hig",
+    "accessibility",
+    "design-tokens",
+    "cursor",
+    "claude",
+    "copilot",
+    "windsurf"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frozonfreak/hig.git",
+    "directory": "packages/install"
+  },
+  "homepage": "https://github.com/frozonfreak/hig/tree/main/packages/install",
+  "bugs": {
+    "url": "https://github.com/frozonfreak/hig/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

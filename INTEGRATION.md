@@ -39,6 +39,24 @@ Do stages 1–3 on day one. Add stage 4 when you can automate the Layer 7 rules 
 
 ---
 
+## Fastest path — one command
+
+```bash
+npx @web-hig/install
+```
+
+Installs the Quick Reference profile: `docs/hig/VERSION`, `HIG-QUICK.md`, `HIG-CORE.md`, example `docs/hig-scope.md` if missing, always-on agent rules, and skills for Cursor, Claude Code, GitHub Copilot, and Windsurf.
+
+```bash
+npx @web-hig/install --profile practical   # also HIG-LITE.md, rules/, framework/
+npx @web-hig/install --editors cursor      # one editor
+npx @web-hig/install --dry-run
+```
+
+Package docs: [packages/install/README.md](./packages/install/README.md). Manual copy remains below.
+
+---
+
 ## Step 1 — Pin the contract in your product repo
 
 Pick one pinning strategy and stick to it:
@@ -97,7 +115,7 @@ Agents and humans should resolve archetype **before** applying Layers 1–9 (see
 
 ## Step 3 — Wire coding agents
 
-Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) into your product repo. Keep the always-on rule **short**; default to HIG-QUICK, not the full HIG.
+Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) and the canonical skill under [`skills/web-hig/`](./skills/web-hig/) into your product repo — or let `npx @web-hig/install` do it. Keep the always-on rule **short**; default to HIG-QUICK, not the full HIG.
 
 ### Loading workflow for agents
 
@@ -113,23 +131,33 @@ Copy the templates under [`examples/agent-rules/`](./examples/agent-rules/) into
 ### Cursor
 
 1. Copy `examples/agent-rules/cursor-hig.mdc` → `.cursor/rules/hig.mdc`
-2. Set `alwaysApply: true`, or use globs such as `**/*.{tsx,jsx,css,scss}`
-3. Point the rule at your pinned `HIG-QUICK.md`, `HIG-LITE.md`, `HIG.md`, `rules/manifest.yaml`, and `docs/hig-scope.md`
+2. Copy `skills/web-hig/SKILL.md` → `.cursor/skills/web-hig/SKILL.md`
+3. Set `alwaysApply: true`, or use globs such as `**/*.{tsx,jsx,css,scss}`
+4. Point the rule at your pinned `HIG-QUICK.md`, `HIG-LITE.md`, `HIG.md`, `rules/manifest.yaml`, and `docs/hig-scope.md`
 
 ### Claude Code
 
 1. Copy `examples/agent-rules/CLAUDE-hig.md` into your project `CLAUDE.md` (merge if you already have one)
-2. Keep the Layer 7 YAML block intact
+2. Copy `skills/web-hig/SKILL.md` → `.claude/skills/web-hig/SKILL.md`
+3. Keep the Layer 7 YAML block intact
 
 ### GitHub Copilot
 
 1. Copy `examples/agent-rules/copilot-instructions-hig.md` → `.github/copilot-instructions.md`
-2. Merge with existing Copilot instructions if present
+2. Copy `examples/agent-rules/copilot-hig.instructions.md` → `.github/instructions/hig.instructions.md`
+3. Copy `skills/web-hig/SKILL.md` → `.github/skills/web-hig/SKILL.md`
+4. Merge with existing Copilot instructions if present
+
+### Windsurf
+
+1. Copy `examples/agent-rules/windsurf-hig.md` → `.windsurf/rules/hig.md`
+2. Copy `skills/web-hig/SKILL.md` → `.windsurf/skills/web-hig/SKILL.md`
+3. The rule uses `trigger: always_on`
 
 ### Generic / multi-agent (`AGENTS.md`)
 
 1. Copy `examples/agent-rules/AGENTS-hig.md` → `AGENTS.md` at the repo root
-2. Useful when several tools (Cursor, Claude Code, Codex, etc.) share one instruction file
+2. Useful when several tools (Cursor, Claude Code, Codex, Windsurf, etc.) share one instruction file
 
 ### Per-task prompt pattern (optional)
 

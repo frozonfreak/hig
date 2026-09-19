@@ -41,7 +41,7 @@
         "@id": "https://frozonfreak.github.io/hig/#website",
         "name": "The Web HIG",
         "url": "https://frozonfreak.github.io/hig/",
-        "description": "An open, vendor-neutral behavioral standard for modern web applications.",
+        "description": "Pin a versioned behavioral contract for the modern web. Keep your design system — The Web HIG defines testable UX, accessibility, and AI-agent rules.",
         "inLanguage": "en",
         "publisher": { "@id": "https://frozonfreak.github.io/hig/#organization" }
       },
@@ -73,6 +73,14 @@
         "@type": "FAQPage",
         "@id": "https://frozonfreak.github.io/hig/#faq",
         "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Where do I start?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "HIG-QUICK.md is the whole onboarding path — about five minutes. Pin that file, then tell agents: Follow The Web HIG Quick Reference."
+            }
+          },
           {
             "@type": "Question",
             "name": "Is this a component library?",
@@ -1193,6 +1201,10 @@
       <!-- FAQ -->
       <section id="faq" class="section-block">
         <h2>FAQ</h2>
+        <details>
+          <summary>Where do I start?</summary>
+          <p><a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">HIG-QUICK.md</a> is the whole onboarding path — about five minutes. Pin that file, then tell agents: <em>Follow The Web HIG Quick Reference.</em></p>
+        </details>
         <details>
           <summary>Is this a component library?</summary>
           <p>No. It is a <strong>rulebook and engineering contract</strong>, not a component library. You keep your design system, framework, and components; the HIG defines how they should work together.</p>

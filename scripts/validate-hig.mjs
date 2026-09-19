@@ -114,6 +114,13 @@ if (!exists('HIG-QUICK.md')) {
   fail('missing HIG-QUICK.md (Layer 1 Quick Reference)');
 }
 
+if (exists('packages/install/package.json')) {
+  const installPkg = JSON.parse(read('packages/install/package.json'));
+  if (installPkg.version !== versionFile) {
+    fail(`packages/install/package.json (${installPkg.version}) !== VERSION (${versionFile})`);
+  }
+}
+
 // --- Explicit version headers ---
 for (const filePath of walkFiles(root, (file) => /\.(md|ya?ml)$/i.test(file))) {
   const rel = repoPath(filePath);
@@ -179,26 +186,56 @@ for (const file of moduleFiles) {
   }
 }
 
-// --- Rule IDs: INDEX vs manifest ---
+// --- Rule IDs: INDEX registry, manifest, HIG.md, modules ---
 const indexText = read('rules/INDEX.md');
-const indexRuleIds = extractRuleIds(indexText);
+const higText = read('HIG.md');
 const manifestRuleIds = extractRuleIds(manifestYaml);
 
-for (const id of manifestRuleIds) {
-  if (!indexRuleIds.has(id)) {
-    warn(`rule ID in manifest but not INDEX.md: ${id}`);
+function extractIndexRegistry(text) {
+  const block = text.split('## Complete rule ID registry')[1]?.split('## Archetype applicability')[0] ?? '';
+  const rows = [];
+  const seen = new Set();
+  for (const line of block.split(/\r?\n/)) {
+    const match = line.match(/^\|\s*(HIG-[A-Z0-9]+-\d+)\s*\|\s*([^|]+)\|\s*([^|]+)\|/);
+    if (!match) continue;
+    const id = match[1];
+    const module = match[3].trim();
+    if (seen.has(id)) fail(`INDEX.md duplicate rule ID: ${id}`);
+    seen.add(id);
+    rows.push({ id, module });
+  }
+  return rows;
+}
+
+const registry = extractIndexRegistry(indexText);
+if (!registry.length) fail('INDEX.md complete rule ID registry is missing or empty');
+
+const registryIds = new Set(registry.map((row) => row.id));
+
+for (const { id, module } of registry) {
+  if (!higText.includes(id)) {
+    fail(`rule ID in INDEX registry but not HIG.md: ${id}`);
+  }
+  const moduleFile = `rules/${module}.md`;
+  if (!exists(moduleFile)) {
+    fail(`${id}: INDEX module file missing (${moduleFile})`);
+  } else if (!read(moduleFile).includes(id)) {
+    fail(`${id} not found in claimed module ${moduleFile}`);
+  }
+  if (!manifestRuleIds.has(id)) {
+    fail(`rule ID in INDEX registry but not manifest.yaml: ${id}`);
   }
 }
 
-for (const id of indexRuleIds) {
-  if (!manifestRuleIds.has(id) && id !== 'HIG-SIM-001') {
-    warn(`rule ID in INDEX.md but not manifest modules: ${id}`);
+for (const id of manifestRuleIds) {
+  if (!registryIds.has(id)) {
+    fail(`rule ID in manifest.yaml but not INDEX.md registry: ${id}`);
   }
 }
 
 // --- HIG-LITE rule ID links ---
 const liteText = read('HIG-LITE.md');
-for (const id of indexRuleIds) {
+for (const id of registryIds) {
   if (!liteText.includes(id) && !['HIG-VT-001', 'HIG-I18N-001'].includes(id)) {
     warn(`rule ID not mentioned in HIG-LITE.md: ${id}`);
   }
@@ -214,6 +251,30 @@ if (docsIndex) {
   if (!docsIndex.includes(`The Web HIG ${docsVersionLabel}`)) {
     fail(`docs/index.html footer must include "The Web HIG ${docsVersionLabel}"`);
   }
+  if (!docsIndex.includes('rel="canonical"')) {
+    fail('docs/index.html must include a canonical URL (HIG-SEO-001)');
+  }
+  if (!docsIndex.includes('property="og:image"')) {
+    fail('docs/index.html must include Open Graph image metadata (HIG-SEO-002)');
+  }
+  if (!docsIndex.includes('type="application/ld+json"')) {
+    fail('docs/index.html must include JSON-LD structured data (HIG-SEO-003)');
+  }
+  if (!docsIndex.includes(`"version": "${versionFile}"`)) {
+    fail(`docs/index.html JSON-LD must include version ${versionFile}`);
+  }
+  const jsonLd = docsIndex.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  if (jsonLd) {
+    try {
+      JSON.parse(jsonLd[1]);
+    } catch {
+      fail('docs/index.html JSON-LD is not valid JSON');
+    }
+  }
+}
+
+for (const file of ['docs/robots.txt', 'docs/sitemap.xml', 'docs/404.html', 'docs/social/og-image.png']) {
+  if (!exists(file)) fail(`missing ${file}`);
 }
 
 // --- Adopters reference implementations pin current VERSION ---
@@ -245,6 +306,44 @@ const archetypePackSchema =
 for (const key of ['file', 'id', 'default_modules', 'conditional_modules']) {
   if (!Object.hasOwn(archetypePackSchema, key)) {
     fail(`manifest.schema.json archetype_packs missing property: ${key}`);
+  }
+}
+
+// --- Agent distribution ---
+if (!exists('skills/web-hig/SKILL.md')) {
+  fail('missing skills/web-hig/SKILL.md');
+} else {
+  const skillText = read('skills/web-hig/SKILL.md');
+  const skillFrontmatter = skillText.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+  if (!skillFrontmatter || !/^name:\s*web-hig\b/m.test(skillFrontmatter[1])) {
+    fail('skills/web-hig/SKILL.md must declare name: web-hig in YAML frontmatter');
+  }
+  if (!skillFrontmatter || !/^description:/m.test(skillFrontmatter[1])) {
+    fail('skills/web-hig/SKILL.md must declare description in YAML frontmatter');
+  }
+}
+
+if (!exists('examples/agent-rules/windsurf-hig.md')) {
+  fail('missing examples/agent-rules/windsurf-hig.md');
+} else if (!read('examples/agent-rules/windsurf-hig.md').includes('trigger: always_on')) {
+  fail('examples/agent-rules/windsurf-hig.md must set trigger: always_on');
+}
+
+if (!exists('examples/agent-rules/copilot-hig.instructions.md')) {
+  fail('missing examples/agent-rules/copilot-hig.instructions.md');
+} else if (!read('examples/agent-rules/copilot-hig.instructions.md').includes('applyTo:')) {
+  fail('examples/agent-rules/copilot-hig.instructions.md must set applyTo');
+}
+
+if (!exists('packages/install/package.json')) {
+  fail('missing packages/install/package.json');
+} else {
+  const installPkg = JSON.parse(read('packages/install/package.json'));
+  if (installPkg.name !== '@web-hig/install') {
+    fail(`packages/install/package.json name (${installPkg.name}) !== @web-hig/install`);
+  }
+  if (installPkg.version !== versionFile) {
+    fail(`packages/install/package.json (${installPkg.version}) !== VERSION (${versionFile})`);
   }
 }
 

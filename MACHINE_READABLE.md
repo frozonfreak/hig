@@ -13,6 +13,8 @@ Layer 7 defines how requirements become **deterministic** for linters, CI, and A
 | [rules/manifest.yaml](./rules/manifest.yaml) | YAML | Progressive loading: layers, modules, triggers, rule ID lists per module |
 | [rules/motion-tiers.yaml](./rules/motion-tiers.yaml) | YAML | Motion Tier 0–3 + ambient class; surface permission matrix (**HIG-EXP-006**) |
 | Agent templates | Markdown + YAML | Layer 7 guardrails in [examples/agent-rules/](./examples/agent-rules/) |
+| Agent skill | [skills/web-hig/SKILL.md](./skills/web-hig/SKILL.md) | Ready-to-copy Agent Skill for Cursor, Claude, Copilot, Windsurf |
+| Installer | [packages/install](./packages/install/) | `npx @web-hig/install` pins HIG-QUICK + rules/skills |
 | Rule IDs in prose | `HIG-*` in HIG.md and `rules/*.md` | Human and agent citation |
 | [scripts/validate-hig.mjs](./scripts/validate-hig.mjs) | JavaScript | VERSION sync, file existence, rule ID cross-checks, docs/adopter pins, manifest schema keys |
 | [rules/evaluator-dimensions.yaml](./rules/evaluator-dimensions.yaml) | YAML | Evaluator dimension ↔ rule prefix map |

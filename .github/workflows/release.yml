@@ -1,0 +1,33 @@
+name: Release notes
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  draft:
+    name: Changelog summary and release draft
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate contract before drafting
+        run: npm run validate
+      - name: Generate changelog summary and release notes
+        run: node scripts/release-notes.mjs --write release-body.md
+      - name: Create GitHub Release draft
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${GITHUB_REF_NAME}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; leaving it unchanged."
+          else
+            gh release create "$TAG" --title "The Web HIG $TAG" --notes-file release-body.md --draft
+          fi

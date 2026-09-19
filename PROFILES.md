@@ -27,7 +27,7 @@ Tell an AI agent: *"Follow The Web HIG Quick Reference profile"* or *"Follow The
 - `docs/hig/VERSION`
 - `docs/hig/HIG-QUICK.md`
 - `docs/hig/HIG-CORE.md` (optional but recommended for archetypes)
-- Agent rule from [examples/agent-rules/](./examples/agent-rules/)
+- Agent rule from [examples/agent-rules/](./examples/agent-rules/) (or `npx @web-hig/install`)
 
 **Does not replace:** Archetype map (`docs/hig-scope.md`), accessibility testing, or performance monitoring.
 

@@ -16,6 +16,14 @@ The Web HIG uses [Semantic Versioning 2.0.0](https://semver.org/) for the **cont
 
 CI runs `npm run validate` to enforce sync across these files.
 
+On pull requests and pushes, `npm run check:version-bump` compares `VERSION` to the base branch:
+
+- Changing `HIG.md`, `HIG-CORE.md`, `HIG-LITE.md`, `EVALUATOR.md`, `rules/`, `framework/`, or `schema/` **requires** a semver increase.
+- Changing numbered rules in [HIG-QUICK.md](./HIG-QUICK.md) also requires a bump; onboarding copy in that file does not.
+- A bumped version needs a [CHANGELOG.md](./CHANGELOG.md) heading (or Unreleased entries). Minor and major bumps also need [RELEASE_NOTES.md](./RELEASE_NOTES.md).
+
+Tag `v{MAJOR}.{MINOR}.{PATCH}` to draft GitHub Release notes from those files.
+
 ---
 
 ## Semver semantics for the contract

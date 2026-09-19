@@ -1,0 +1,20 @@
+verbose = "info"
+no_progress = true
+max_concurrency = 8
+timeout = "20s"
+retry_wait_time = "2s"
+max_retries = 3
+user_agent = "Mozilla/5.0 (compatible; WebHIG-LinkCheck/1.0; +https://github.com/frozonfreak/hig)"
+accept = ["200", "204", "206", "301", "302", "307", "308"]
+scheme = ["https", "http"]
+exclude_mail = true
+exclude_all_private = true
+include_fragments = false
+exclude = [
+  '^https://twitter\.com/',
+  '^https://x\.com/',
+  '^https://linkedin\.com/',
+  '^https://www\.linkedin\.com/',
+  '^https://example\.com',
+  '^https://…',
+]
