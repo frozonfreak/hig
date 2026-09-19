@@ -1,8 +1,8 @@
-# The Web HIG & Product Engine Contract — v1.10.1
+# The Web HIG & Product Engine Contract — v1.11.0
 
 ## Executive Summary
 
-The Web HIG v1.10.1 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+The Web HIG v1.11.0 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
 This release adds a three-layer consumption model and archetype rule packs:
 
@@ -1374,6 +1374,7 @@ Logs MUST include timestamp, actor, action, and resource — but MUST NOT includ
 
 **Release documentation:** [CHANGELOG.md](./CHANGELOG.md) (Keep a Changelog) · [RELEASE_NOTES.md](./RELEASE_NOTES.md) (adoption notes) · [VERSIONING.md](./VERSIONING.md) (semver policy).
 
+* **v1.11.0 (2026-09-19):** Distribution and adoption release. Added the canonical [`skills/web-hig`](./skills/web-hig/SKILL.md) Agent Skill, Windsurf and Copilot path-scoped rule templates, and the `npx @web-hig/install` pinning installer. Added repository quality gates (Markdown link checks, version-bump rules, tag-driven release notes) and documentation-site share metadata. No normative rule IDs added, removed, or retightened.
 * **v1.10.1 (2026-09-15):** Patch release. Synchronized Level 2 module and framework adapter version headers; aligned manifest schema with `default_modules` / `conditional_modules`; added stable rule IDs for document fundamentals (**HIG-DOC-001**–**006**), SEO/share metadata (**HIG-SEO-001**–**003**), performance (**HIG-PERF-001**–**004**), search (**HIG-SRCH-001**–**006**), and data density (**HIG-DEN-001**–**008**); expanded validator coverage for version headers and local Markdown links.
 * **v1.10.0 (2026-09-12):** Expressive Surface Baseline (**HIG-EXP-001**–**014**, [motion-tiers.yaml](./rules/motion-tiers.yaml)); Layer 0 §0.3 surfaces; **HIG-CQ-001**/**002** container-query split; §5.4 target-size labeling; §8.2 [EVALUATOR.md](./EVALUATOR.md) multidimensional report contract.
 * **v1.9.0 (2026-09-09):** Progressive loading Phase 3. Added archetype rule packs (`rules/archetypes/`), `rules/applicability.md`, `VERSION` file, `scripts/validate-hig.mjs`, and GitHub Actions validation workflow. Agents preload archetype-specific module sets after resolving page type.

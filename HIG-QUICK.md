@@ -1,10 +1,10 @@
 # The Web HIG — Quick Reference
 
-**Layer 1** · ~5 minutes · **Version:** v1.10.1
+**Layer 1** · ~5 minutes · **Version:** v1.11.0
 
 **Pin this file — that is the whole onboarding path.** You do not need the rest of the repository to start.
 
-- **Pin:** copy `HIG-QUICK.md` and `VERSION` into `docs/hig/`, use the [tagged URL](https://github.com/frozonfreak/hig/blob/v1.10.1/HIG-QUICK.md), or run the installer in [packages/install](./packages/install/).
+- **Pin:** copy `HIG-QUICK.md` and `VERSION` into `docs/hig/`, use the [tagged URL](https://github.com/frozonfreak/hig/blob/v1.11.0/HIG-QUICK.md), or run the installer in [packages/install](./packages/install/).
 - **Prompt:** *"Follow The Web HIG Quick Reference."*
 - **Escalate only if needed:** [HIG-LITE.md](./HIG-LITE.md) for rule IDs · [HIG.md](./HIG.md) for edge cases.
 

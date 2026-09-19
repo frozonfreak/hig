@@ -6,6 +6,39 @@ Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
 ---
 
+## [v1.11.0](./HIG.md) — 2026-09-19
+
+Minor release: **distribution and adoption**. No normative rule was added, removed, or retightened — upgrading is safe for every existing pin.
+
+### Highlights
+
+#### Agent-ready distribution
+
+- **[skills/web-hig/SKILL.md](./skills/web-hig/SKILL.md)** — canonical Agent Skill that works across Cursor, Claude, Copilot, and Windsurf instead of a hand-maintained rule per editor.
+- **[examples/agent-rules/windsurf-hig.md](./examples/agent-rules/windsurf-hig.md)** and **[copilot-hig.instructions.md](./examples/agent-rules/copilot-hig.instructions.md)** — path-scoped templates so the contract loads only on UI and front-end files.
+- **`npx @web-hig/install`** ([packages/install](./packages/install/)) — pins `HIG-QUICK.md`, `VERSION`, rules, and skills into `docs/hig/`. The installer is optional; vendoring by hand still works.
+
+#### Quality gates
+
+- Every push and pull request now runs Markdown link checks, rule ID consistency, version bump rules (`npm run check:version-bump`), and `npm run validate`.
+- Tagging `vX.Y.Z` drafts GitHub Release notes from [CHANGELOG.md](./CHANGELOG.md) and this file.
+- A weekly action reports broken external links as issues.
+
+#### Discovery
+
+- Documentation site share metadata (canonical URL, Open Graph image, JSON-LD) plus generated `sitemap.xml`, `robots.txt`, and `404.html` via `npm run build:docs`.
+- [SHARE.md](./SHARE.md) and the site `#share` section provide copy-paste markdown with UTM parameters so inbound links can be attributed.
+- [ADOPTERS.md](./ADOPTERS.md) community table is open for PRs.
+
+### Upgrade from v1.10.1
+
+1. Pin **[VERSION](./VERSION)** (`1.11.0`) in `docs/hig/VERSION` and agent rules, or run `npx @web-hig/install`.
+2. Replace pinned contract files; no rule IDs changed, so no re-audit is required.
+3. Optionally adopt the new skill or path-scoped editor templates in place of a hand-written rule.
+4. Run `npm run validate`.
+
+---
+
 ## [v1.10.1](./HIG.md) — 2026-09-15
 
 Patch release: standards hygiene and machine-readable consistency.

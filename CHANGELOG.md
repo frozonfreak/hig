@@ -8,6 +8,10 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ## [Unreleased]
 
+---
+
+## [1.11.0] - 2026-09-19
+
 ### Added
 
 - Agent-ready distribution: canonical [`skills/web-hig`](./skills/web-hig/SKILL.md) skill, Windsurf and Copilot path-specific templates, and `npx @web-hig/install`.
@@ -157,7 +161,8 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.10.1...HEAD
+[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.11.0...HEAD
+[1.11.0]: https://github.com/frozonfreak/hig/compare/v1.10.1...v1.11.0
 [1.10.1]: https://github.com/frozonfreak/hig/compare/v1.10.0...v1.10.1
 [1.10.0]: https://github.com/frozonfreak/hig/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/frozonfreak/hig/compare/v1.8.0...v1.9.0
