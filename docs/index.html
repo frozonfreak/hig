@@ -29,6 +29,7 @@
         <ul>
           <li><a href="#top">Introduction</a></li>
           <li><a href="#why">Why another standard?</a></li>
+          <li><a href="#landscape">Competitive landscape</a></li>
           <li><a href="#essential-rules">Essential rules</a></li>
           <li><a href="#three-levels">Three levels</a></li>
           <li><a href="#layers">10-layer framework</a></li>
@@ -222,6 +223,215 @@
         <p class="why-close">
           The Web HIG fills that gap: a versioned, lintable standard that teams and AI coding agents
           can pin in any product repo — without replacing your stack.
+          See the <a href="#landscape">competitive landscape</a> for how this sits next to WCAG, ARIA APG, Open UI, design systems, and Lighthouse.
+        </p>
+      </section>
+
+      <!-- LANDSCAPE -->
+      <section id="landscape" class="section-block landscape-section">
+        <h2>The competitive landscape</h2>
+        <p class="section-intro">
+          There isn’t one direct competitor. The Web HIG sits in the gap between several existing things —
+          and does not replace them.
+        </p>
+
+        <figure class="gap-map">
+          <figcaption class="visually-hidden">
+            Four neighboring categories surround The Web HIG: standards and widgets, vendor design systems,
+            engineering guidance, and measurement tools. The Web HIG connects product behaviour, states,
+            architecture, and enforcement.
+          </figcaption>
+          <div class="gap-cluster">
+            <p class="gap-cluster-label">Standards &amp; widgets</p>
+            <ul class="gap-cluster-items">
+              <li>W3C / WCAG</li>
+              <li>WAI-ARIA APG</li>
+              <li>Open UI</li>
+            </ul>
+          </div>
+          <div class="gap-cluster">
+            <p class="gap-cluster-label">Vendor design systems</p>
+            <ul class="gap-cluster-items">
+              <li>Material</li>
+              <li>Fluent</li>
+              <li>Carbon</li>
+              <li>GOV.UK</li>
+            </ul>
+          </div>
+          <div class="gap-hub">
+            <p class="gap-hub-kicker">The gap</p>
+            <p class="gap-hub-title">The Web HIG</p>
+            <p class="gap-hub-body">Product behaviour + states + architecture + enforcement</p>
+          </div>
+          <div class="gap-cluster">
+            <p class="gap-cluster-label">Distributed guidance</p>
+            <ul class="gap-cluster-items">
+              <li>web.dev</li>
+            </ul>
+          </div>
+          <div class="gap-cluster">
+            <p class="gap-cluster-label">Measurement</p>
+            <ul class="gap-cluster-items">
+              <li>Lighthouse</li>
+            </ul>
+          </div>
+        </figure>
+
+        <h3>Neighboring systems</h3>
+        <p>
+          Each of these is strong at its job. None of them is a portable, versioned behavioral contract
+          for whole-product UX that humans and coding agents can pin and cite.
+        </p>
+
+        <div class="landscape-systems">
+          <article class="landscape-card">
+            <p class="landscape-cat">Standards</p>
+            <h4>W3C / WCAG</h4>
+            <p class="landscape-role">Accessibility conformance</p>
+            <p class="landscape-diff">HIG covers whole-product behaviour. WCAG stays the a11y target — not a wrapper.</p>
+          </article>
+          <article class="landscape-card landscape-card-kin">
+            <p class="landscape-cat">Standards</p>
+            <h4>WAI-ARIA APG</h4>
+            <p class="landscape-role">Accessible widget interaction</p>
+            <p class="landscape-diff">Closest philosophical relative. Scope stops at widgets and interaction semantics.</p>
+          </article>
+          <article class="landscape-card landscape-card-kin">
+            <p class="landscape-cat">Platform</p>
+            <h4>Open UI</h4>
+            <p class="landscape-role">Browser UI primitives</p>
+            <p class="landscape-diff">Standardizes controls so they can land in HTML/CSS/ARIA. HIG sits above the browser.</p>
+          </article>
+          <article class="landscape-card">
+            <p class="landscape-cat">Design system</p>
+            <h4>Material Design</h4>
+            <p class="landscape-role">Google’s visual / component system</p>
+            <p class="landscape-diff">Not a vendor-neutral behavioral contract. Swap MUI for Tailwind and that layer changes.</p>
+          </article>
+          <article class="landscape-card">
+            <p class="landscape-cat">Design system</p>
+            <h4>Fluent</h4>
+            <p class="landscape-role">Microsoft’s design ecosystem</p>
+            <p class="landscape-diff">Same issue: product/design system, not a portable web behaviour contract.</p>
+          </article>
+          <article class="landscape-card">
+            <p class="landscape-cat">Design system</p>
+            <h4>Carbon</h4>
+            <p class="landscape-role">IBM enterprise components</p>
+            <p class="landscape-diff">HIG is stack-neutral governance for whatever components you already use.</p>
+          </article>
+          <article class="landscape-card">
+            <p class="landscape-cat">Patterns</p>
+            <h4>GOV.UK Design System</h4>
+            <p class="landscape-role">Government service patterns</p>
+            <p class="landscape-diff">Very strong UX patterns, but domain-specific to UK government services.</p>
+          </article>
+          <article class="landscape-card">
+            <p class="landscape-cat">Guidance</p>
+            <h4>web.dev</h4>
+            <p class="landscape-role">Web engineering guidance</p>
+            <p class="landscape-diff">Excellent material, distributed as articles — not a pinned semver contract.</p>
+          </article>
+          <article class="landscape-card">
+            <p class="landscape-cat">Tooling</p>
+            <h4>Lighthouse</h4>
+            <p class="landscape-role">Automated quality auditing</p>
+            <p class="landscape-diff">Measurement, not a UX behavioural specification. HIG is not a single-score clone.</p>
+          </article>
+          <article class="landscape-card landscape-card-hig">
+            <p class="landscape-cat">This contract</p>
+            <h4>The Web HIG</h4>
+            <p class="landscape-role">Behaviour + states + architecture + enforcement</p>
+            <p class="landscape-diff">Connects those layers without replacing the systems around it.</p>
+          </article>
+        </div>
+
+        <div class="landscape-keep">
+          <p class="landscape-keep-lead">HIG does not need to replace either of these.</p>
+          <div class="landscape-keep-grid">
+            <article class="landscape-keep-card">
+              <h4>WAI-ARIA APG</h4>
+              <p>
+                Turns specs into practical patterns for accessible interfaces. That method is close.
+                The scope is accessibility and interaction semantics — not loading taxonomies,
+                destructive mutations, SSR defaults, or CI severity.
+              </p>
+            </article>
+            <article class="landscape-keep-card">
+              <h4>Open UI</h4>
+              <p>
+                Proposes anatomy, states, and behaviour of common controls to the standards bodies.
+                It does not define the final platform standards itself. HIG governs application
+                behaviour on top of whatever the platform eventually ships.
+              </p>
+            </article>
+          </div>
+        </div>
+
+        <h3>What is distinctive</h3>
+        <p>
+          Several things are not packaged together elsewhere as one versioned, citable contract.
+        </p>
+
+        <ol class="distinctive-grid">
+          <li class="distinctive-card">
+            <p class="distinctive-num">1</p>
+            <h4>Behaviour rather than appearance</h4>
+            <p>
+              Material, Fluent, and Carbon give enormous visual and component guidance.
+              Switch from MUI to Tailwind, shadcn, or custom CSS and that implementation layer changes.
+            </p>
+            <blockquote class="distinctive-rule">
+              <p>Destructive mutations must not be optimistic.</p>
+              <footer><cite>HIG-MUT-001</cite> — same rule on MUI, Radix, Bootstrap, or hand-written HTML.</footer>
+            </blockquote>
+            <ul class="stack-pills" aria-label="Implementation layers this rule does not depend on">
+              <li>MUI</li>
+              <li>Radix</li>
+              <li>Bootstrap</li>
+              <li>Hand-written HTML</li>
+            </ul>
+          </li>
+          <li class="distinctive-card">
+            <p class="distinctive-num">2</p>
+            <h4>Application state as UX</h4>
+            <p>
+              Loading, error, empty, stale, offline, destructive mutation, and recovery are
+              first-class design concerns — one normative contract, not scattered checklist items.
+            </p>
+            <ul class="state-constellation" aria-label="First-class UI states in the HIG">
+              <li>Loading</li>
+              <li>Error</li>
+              <li>Empty</li>
+              <li>Stale</li>
+              <li>Offline</li>
+              <li>Destructive</li>
+              <li>Recovery</li>
+            </ul>
+          </li>
+          <li class="distinctive-card distinctive-card-accent">
+            <p class="distinctive-num">3</p>
+            <h4>AI coding-agent consumption</h4>
+            <p>
+              Usable as documentation and as an input contract for coding agents —
+              a genuine differentiator in 2026.
+            </p>
+            <ul class="agent-contract" aria-label="Agent-contract capabilities">
+              <li>Stable rule IDs</li>
+              <li>Quick / Practical / Full profiles</li>
+              <li>Machine-readable manifest</li>
+              <li>Topic triggers</li>
+              <li>Explicit severity</li>
+              <li>Exception mechanics</li>
+              <li>Agent rule templates</li>
+              <li>Policy-as-code <span class="badge-planned">planned</span></li>
+            </ul>
+          </li>
+        </ol>
+        <p>
+          Detail: <a href="https://github.com/frozonfreak/hig/blob/main/RATIONALE.md">RATIONALE.md</a>
+          · Evaluator vs Lighthouse:
+          <a href="https://github.com/frozonfreak/hig/blob/main/EVALUATOR.md">EVALUATOR.md</a>
         </p>
       </section>
 
@@ -798,6 +1008,10 @@
         <details>
           <summary>How is this different from a style guide?</summary>
           <p>A style guide covers look and feel. This also covers behavior: error handling, delete flows, performance targets, accessibility compliance, and security requirements.</p>
+        </details>
+        <details>
+          <summary>Is this competing with WCAG, Material, or Lighthouse?</summary>
+          <p>No. WCAG is the accessibility target. Material, Fluent, Carbon, and GOV.UK are visual or domain design systems. Lighthouse measures. WAI-ARIA APG and Open UI cover widgets and platform primitives. The Web HIG is the behavioral contract that sits in the gap between them — see the <a href="#landscape">competitive landscape</a>.</p>
         </details>
         <details>
           <summary>Can I customize rules for my product?</summary>

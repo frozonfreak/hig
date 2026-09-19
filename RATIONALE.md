@@ -90,6 +90,39 @@ Where WCAG and HIG overlap (e.g. focus visibility), HIG rule IDs point to the sa
 
 ---
 
+## Competitive landscape
+
+There is no single direct competitor. The Web HIG sits in the **gap** between accessibility conformance, widget patterns, vendor design systems, engineering guidance, and quality tooling. It does not replace those systems; it connects product behaviour, states, architecture, and enforcement into one versioned contract.
+
+| System | Main responsibility | Where HIG differs |
+| --- | --- | --- |
+| **W3C / WCAG** | Accessibility conformance | HIG covers whole-product behaviour; WCAG remains the a11y target ([HIG-A11Y-002](./rules/accessibility.md)). HIG is not a WCAG wrapper ([Non-goals](#non-goals)). |
+| **WAI-ARIA APG** | Accessible widget interaction | Closest *philosophical* relative: it turns specs into practical patterns. Scope is accessibility and interaction semantics, not complete product behaviour (mutations, loading taxonomies, SSR defaults, CI severity). |
+| **Open UI** | Standardizing browser UI primitives | HIG governs application behaviour *above* the browser. Open UI proposes work to standards bodies rather than defining the final platform standards itself. |
+| **Material Design** | Google’s design system | Visual/component system, not a vendor-neutral behavioral contract. Switching from MUI to Tailwind/shadcn changes that layer; HIG rules still apply. |
+| **Fluent** | Microsoft’s design system | Same issue: product/design ecosystem rather than a portable web behaviour contract. |
+| **Carbon** | IBM product/design system | Enterprise component/design system; HIG is stack-neutral governance for whatever components you already use. |
+| **GOV.UK Design System** | Government service patterns | Very strong UX patterns, but domain-specific (UK government services). |
+| **web.dev** | Web engineering guidance | Excellent material, distributed as articles rather than a pinned, versioned contract with rule IDs and CI severity. |
+| **Lighthouse** | Automated quality auditing | Measurement/tool. HIG evaluators MUST NOT be a single-score Lighthouse clone ([EVALUATOR.md](./EVALUATOR.md), HIG.md §8.2). |
+| **The Web HIG** | Product behaviour + states + architecture + enforcement | Attempts to connect those layers without replacing the systems above. |
+
+**WAI-ARIA APG** is the closest existing analogue in method: synthesize underlying specifications into practical patterns. Its scope is intentionally accessibility and interaction semantics.
+
+**Open UI** is an important comparison for *controls*. Its goal is to standardize anatomy, states, and behaviour of common controls so capabilities can land in HTML/CSS/ARIA/Web APIs. That is platform work. HIG is application-behaviour work sitting on top of the platform.
+
+HIG does not need to replace either one. Explicit non-goals include replacing WCAG, HTML, or platform APIs, and shipping a component library ([ROADMAP.md](./ROADMAP.md)).
+
+### What is packaged together here
+
+Three things are rarely one normative, versioned contract elsewhere:
+
+1. **Behaviour rather than appearance.** Design systems define *what* UI looks like. A rule such as **HIG-MUT-001** (destructive mutations MUST NOT use conventional optimistic confirmation) does not care whether the control came from MUI, Radix, Bootstrap, or hand-written HTML.
+2. **Application state as UX.** Loading, error, empty, stale, offline, destructive mutation, and recovery are first-class ([rules/states.md](./rules/states.md), [rules/mutations.md](./rules/mutations.md)) — not optional polish bolted onto a component kit.
+3. **AI coding-agent consumption.** Stable rule IDs, Quick/Practical/Full profiles ([PROFILES.md](./PROFILES.md)), machine-readable [rules/manifest.yaml](./rules/manifest.yaml) with topic triggers, explicit severity, exception mechanics, and agent templates. **Policy-as-code** for agents is planned ([ROADMAP.md](./ROADMAP.md)), not yet shipped.
+
+---
+
 ## Conformance profiles
 
 Not every product needs the full specification in daily work. See [PROFILES.md](./PROFILES.md):
