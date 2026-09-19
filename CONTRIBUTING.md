@@ -106,7 +106,6 @@ regenerates `docs/robots.txt`, `docs/sitemap.xml`, and `docs/404.html`. Commit t
 | Version bump rules | `npm run check:version-bump` |
 | Offline Markdown/HTML link targets | GitHub Actions `lychee --offline` |
 | Docs share artifacts | `npm run build:docs` |
-| Installer | `npm test` |
 | Installer (`@web-hig/install`) | `npm test` |
 
 On a version tag (`vX.Y.Z`), [`.github/workflows/release.yml`](./.github/workflows/release.yml) drafts a GitHub Release from [CHANGELOG.md](./CHANGELOG.md) and [RELEASE_NOTES.md](./RELEASE_NOTES.md).

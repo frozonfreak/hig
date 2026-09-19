@@ -225,7 +225,7 @@ A product repo is integrated when:
 
 1. **Pinned** `HIG-QUICK.md`, `HIG-LITE.md`, `HIG.md`, and `rules/` exist
 2. **`hig-scope.md`** (or equivalent) maps routes → archetypes
-3. At least one **agent rule file** defaults to Layer 1 (Quick Reference) and loads Layer 2 on topic match
+3. At least one **agent rule file** (and optional editor skill) defaults to Layer 1 (Quick Reference) and loads Layer 2 on topic match
 4. PRs use the **HIG checklist** (and CI gates when automated)
 
 That sequence keeps agent context small, enforcement deterministic, and upgrades explicit.
