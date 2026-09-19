@@ -58,7 +58,7 @@ function isAlwaysContract(file) {
 function diffTouchesNumberedRules(baseSha, file) {
   let diff = '';
   try {
-    diff = git(`diff -U0 ${baseSha}...HEAD -- "${file}"`);
+    diff = git(`diff -U0 ${baseSha} -- "${file}"`);
   } catch {
     return false;
   }
@@ -100,7 +100,7 @@ if (headSha === baseSha) {
   process.exit(0);
 }
 
-const changed = git(`diff --name-only ${baseSha}...HEAD`)
+const changed = git(`diff --name-only ${baseSha}`)
   .split(/\r?\n/)
   .map(posix)
   .filter(Boolean);
