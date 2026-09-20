@@ -16,7 +16,10 @@ Layer 7 defines how requirements become **deterministic** for linters, CI, and A
 | Agent skill | [skills/web-hig/SKILL.md](./skills/web-hig/SKILL.md) | Ready-to-copy Agent Skill for Cursor, Claude, Copilot, Windsurf |
 | Installer | [packages/install](./packages/install/) | `npx @web-hig/install` pins HIG-QUICK + rules/skills |
 | Rule IDs in prose | `HIG-*` in HIG.md and `rules/*.md` | Human and agent citation |
-| [scripts/validate-hig.mjs](./scripts/validate-hig.mjs) | JavaScript | VERSION sync, file existence, rule ID cross-checks, docs/adopter pins, manifest schema keys |
+| [rules/registry.yaml](./rules/registry.yaml) | YAML | Rule registry: severity, profiles, archetypes, evaluation, autofix, module, HIG section |
+| [scripts/validate-hig.mjs](./scripts/validate-hig.mjs) | JavaScript | VERSION sync, file existence, rule ID cross-checks, registry ↔ INDEX, docs/adopter pins |
+| [@web-hig/core](./packages/core/) | JavaScript | Config + registry loader + evaluator report helpers |
+| [@web-hig/cli](./packages/cli/) | JavaScript | `web-hig` — `init`, `check`, `explain` (audit/upgrade planned) |
 | [rules/evaluator-dimensions.yaml](./rules/evaluator-dimensions.yaml) | YAML | Evaluator dimension ↔ rule prefix map |
 | [schema/evaluator-report.schema.json](./schema/evaluator-report.schema.json) | JSON Schema | Multidimensional evaluator report shape |
 | [EVALUATOR.md](./EVALUATOR.md) | Markdown | Evaluator contract (Layer 8 §8.2) |
@@ -47,17 +50,15 @@ Agent guardrails in product repos are **projections** of this schema — not a s
 
 ---
 
-## Planned: `rules/registry.yaml`
+## Rule registry (`rules/registry.yaml`)
 
-**Status:** Not yet shipped — tracked on [ROADMAP.md](./ROADMAP.md).
+**Status:** Shipped (initial) — see [NPM-TOOLING.md](./NPM-TOOLING.md).
 
-Goals:
+- One record per rule ID in [rules/INDEX.md](./rules/INDEX.md)
+- Regenerate: `npm run sync:registry` ([scripts/sync-registry.mjs](./scripts/sync-registry.mjs))
+- Validated in CI against INDEX, manifest, and VERSION
 
-- Single registry keyed by rule ID
-- Generated or validated against HIG.md and topic modules
-- Export formats: ESLint rule metadata, PR bot comments, agent tool manifests
-
-Until the registry lands, treat [rules/manifest.yaml](./rules/manifest.yaml) module `rules:` arrays and HIG.md as authoritative.
+Export formats (ESLint metadata, PR bots, MCP) remain on the [ROADMAP.md](./ROADMAP.md).
 
 ---
 

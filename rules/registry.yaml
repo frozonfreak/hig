@@ -1,0 +1,1279 @@
+# The Web HIG — machine-readable rule registry
+# Version: 1.11.1
+# Normative prose: HIG.md · Index: rules/INDEX.md · Tooling: NPM-TOOLING.md
+# Regenerate: node scripts/sync-registry.mjs
+
+version: "1.11.1"
+
+rules:
+  HIG-SIM-001:
+    severity: warning
+    requirement: Prefer simplest compliant implementation
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - manual
+    autofix: none
+    module: ai-enforcement
+    hig_section: Exception System, §7.2
+
+  HIG-DOC-001:
+    severity: error
+    requirement: Correct `html` language and direction
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: ux
+    hig_section: §2.1
+
+  HIG-DOC-002:
+    severity: error
+    requirement: One primary main landmark and native interactive semantics
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: ux
+    hig_section: §2.1
+
+  HIG-DOC-003:
+    severity: error
+    requirement: Unique descriptive title
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: ux
+    hig_section: §2.1
+
+  HIG-DOC-004:
+    severity: error
+    requirement: Responsive viewport meta
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: ux
+    hig_section: §2.1
+
+  HIG-DOC-005:
+    severity: error
+    requirement: CLS-safe responsive images
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: ux
+    hig_section: §2.1
+
+  HIG-DOC-006:
+    severity: warning
+    requirement: Web font loading discipline
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: ux
+    hig_section: §2.1
+
+  HIG-SEO-001:
+    severity: warning
+    requirement: Meta description and canonical URL
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: ux
+    hig_section: §2.1
+
+  HIG-SEO-002:
+    severity: warning
+    requirement: Social metadata for shareable pages
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: ux
+    hig_section: §2.1
+
+  HIG-SEO-003:
+    severity: warning
+    requirement: Structured data where warranted
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: ux
+    hig_section: §2.1
+
+  HIG-UX-001:
+    severity: error
+    requirement: Logical CSS properties
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: unsafe
+    module: i18n
+    hig_section: §2.8
+
+  HIG-TOK-001:
+    severity: error
+    requirement: No raw hex outside token files
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: none
+    module: tokens
+    hig_section: §3.1
+
+  HIG-TOK-002:
+    severity: error
+    requirement: Semantic/component tokens
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: none
+    module: tokens
+    hig_section: §3.1
+
+  HIG-CQ-001:
+    severity: warning
+    requirement: Prefer @container for component-internal layout
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: none
+    module: responsive
+    hig_section: §3.2
+    eslint_rule: web-hig/enforce-container-queries
+
+  HIG-CQ-002:
+    severity: error
+    requirement: Must @container when multi-context reuse breaks on viewport MQ
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: none
+    module: responsive
+    hig_section: §3.2
+    eslint_rule: web-hig/enforce-container-queries
+
+  HIG-MOT-001:
+    severity: error
+    requirement: "No `transition: all` in app CSS"
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: safe
+    module: animation
+    hig_section: §1.1
+    eslint_rule: web-hig/no-transition-all
+
+  HIG-MOT-002:
+    severity: error
+    requirement: Motion duration tokens
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: none
+    module: animation
+    hig_section: §3.1
+
+  HIG-MOT-003:
+    severity: error
+    requirement: No decorative micro-animations
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: none
+    module: animation
+    hig_section: §1.4
+
+  HIG-MOT-004:
+    severity: error
+    requirement: Micro-feedback ≤300 ms
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: none
+    module: animation
+    hig_section: §1.4
+    eslint_rule: web-hig/micro-animation-budget
+
+  HIG-MOT-005:
+    severity: warning
+    requirement: Prefer transform/opacity
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: none
+    module: animation
+    hig_section: §1.4
+
+  HIG-VT-001:
+    severity: warning
+    requirement: Unique view-transition-name
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: none
+    module: animation
+    hig_section: §1.2
+
+  HIG-SSR-001:
+    severity: error
+    requirement: Default to server rendering
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: architecture
+    hig_section: §4.1
+
+  HIG-SSR-002:
+    severity: warning
+    requirement: Streaming boundary for slow async
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: none
+    module: architecture
+    hig_section: §4.1
+    eslint_rule: web-hig/streaming-boundary
+
+  HIG-SSR-003:
+    severity: error
+    requirement: Pending UI on server mutations
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: architecture
+    hig_section: §4.2
+
+  HIG-A11Y-001:
+    severity: error
+    requirement: Reduced motion media query
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: none
+    module: animation
+    hig_section: §1.3
+    eslint_rule: web-hig/reduced-motion-required
+
+  HIG-A11Y-002:
+    severity: error
+    requirement: WCAG 2.2 AA
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - manual
+      - runtime
+    autofix: none
+    module: accessibility
+    hig_section: §5.1
+
+  HIG-A11Y-003:
+    severity: error
+    requirement: Native HTML over ARIA
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: accessibility
+    hig_section: §5.2
+
+  HIG-A11Y-004:
+    severity: error
+    requirement: Accessible name on icon buttons
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: safe
+    module: accessibility
+    hig_section: §5.2
+    eslint_rule: web-hig/no-unlabeled-icon-buttons
+
+  HIG-A11Y-005:
+    severity: error
+    requirement: Alt text on images
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: unsafe
+    module: accessibility
+    hig_section: §5.2
+
+  HIG-A11Y-006:
+    severity: error
+    requirement: Visible focus styles
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: accessibility
+    hig_section: §5.3
+
+  HIG-A11Y-007:
+    severity: error
+    requirement: Min 24×24 px (WCAG 2.5.8 baseline); 44px touch is SHOULD ergonomics
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: accessibility
+    hig_section: §5.4
+
+  HIG-A11Y-008:
+    severity: error
+    requirement: Modal focus containment
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: accessibility
+    hig_section: §5.3
+
+  HIG-MUT-001:
+    severity: error
+    requirement: No optimistic destructive confirmation
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: none
+    module: mutations
+    hig_section: §2.4
+    eslint_rule: web-hig/no-optimistic-destructive
+
+  HIG-MUT-002:
+    severity: warning
+    requirement: Idempotency for critical mutations
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+    evaluation:
+      - manual
+    autofix: none
+    module: mutations
+    hig_section: §4.5
+
+  HIG-ERR-001:
+    severity: warning
+    requirement: Error states use taxonomy
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - manual
+    autofix: none
+    module: states
+    hig_section: §2.5
+
+  HIG-EMP-001:
+    severity: warning
+    requirement: Empty states use taxonomy
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - manual
+    autofix: none
+    module: states
+    hig_section: §2.6
+
+  HIG-LOD-001:
+    severity: warning
+    requirement: Loading states use taxonomy
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - manual
+    autofix: none
+    module: states
+    hig_section: §2.7
+
+  HIG-FRM-001:
+    severity: error
+    requirement: Forms have labels and error summary
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: forms
+    hig_section: §2.11
+    eslint_rule: web-hig/require-form-label
+
+  HIG-I18N-001:
+    severity: error
+    requirement: Logical properties for layout
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: unsafe
+    module: i18n
+    hig_section: §2.8
+
+  HIG-NTF-001:
+    severity: warning
+    requirement: Notifications use taxonomy
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - manual
+    autofix: none
+    module: notifications
+    hig_section: §2.10
+
+  HIG-SRCH-001:
+    severity: warning
+    requirement: Search follows input → pending → results/no-results/error state machine
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+    evaluation:
+      - manual
+    autofix: none
+    module: search
+    hig_section: §2.9
+
+  HIG-SRCH-002:
+    severity: warning
+    requirement: Search debounce and pending indicator
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+    evaluation:
+      - manual
+    autofix: none
+    module: search
+    hig_section: §2.9
+
+  HIG-SRCH-003:
+    severity: error
+    requirement: Search results keyboard navigation
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+    evaluation:
+      - manual
+    autofix: none
+    module: search
+    hig_section: §2.9
+
+  HIG-SRCH-004:
+    severity: error
+    requirement: Search URL sync for primary navigation patterns
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+    evaluation:
+      - manual
+    autofix: none
+    module: search
+    hig_section: §2.9
+
+  HIG-SRCH-005:
+    severity: warning
+    requirement: Search no-results and error states use state taxonomies
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+    evaluation:
+      - manual
+    autofix: none
+    module: search
+    hig_section: §2.9
+
+  HIG-SRCH-006:
+    severity: error
+    requirement: Persisted recent searches respect privacy settings
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+    evaluation:
+      - manual
+    autofix: none
+    module: search
+    hig_section: §2.9
+
+  HIG-DEN-001:
+    severity: warning
+    requirement: Data density uses tokenized levels
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - application
+    evaluation:
+      - manual
+    autofix: none
+    module: data-density
+    hig_section: §3.3
+
+  HIG-DEN-002:
+    severity: warning
+    requirement: Numeric data alignment
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - application
+    evaluation:
+      - manual
+    autofix: none
+    module: data-density
+    hig_section: §3.3
+
+  HIG-DEN-003:
+    severity: error
+    requirement: Truncated values expose full value
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - application
+    evaluation:
+      - manual
+    autofix: none
+    module: data-density
+    hig_section: §3.3
+
+  HIG-DEN-004:
+    severity: warning
+    requirement: Dense data overflow reflows before horizontal scroll
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - application
+    evaluation:
+      - manual
+    autofix: none
+    module: data-density
+    hig_section: §3.3
+
+  HIG-DEN-005:
+    severity: warning
+    requirement: Sticky headers for long tables
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - application
+    evaluation:
+      - manual
+    autofix: none
+    module: data-density
+    hig_section: §3.3
+
+  HIG-DEN-006:
+    severity: error
+    requirement: Bulk actions show selection count and batch bar
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - application
+    evaluation:
+      - manual
+    autofix: none
+    module: data-density
+    hig_section: §3.3
+
+  HIG-DEN-007:
+    severity: warning
+    requirement: Operational data prefers pagination with URL state
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - application
+    evaluation:
+      - manual
+    autofix: none
+    module: data-density
+    hig_section: §3.3
+
+  HIG-DEN-008:
+    severity: warning
+    requirement: Large datasets use virtualization
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - application
+    evaluation:
+      - manual
+    autofix: none
+    module: data-density
+    hig_section: §3.3
+
+  HIG-PERF-001:
+    severity: error
+    requirement: Protect Core Web Vitals thresholds
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - runtime
+      - observation
+    autofix: none
+    module: performance
+    hig_section: §6.1
+
+  HIG-PERF-002:
+    severity: error
+    requirement: Separate lab/CI and field/RUM performance gates
+    profiles:
+      - quick
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - observation
+    autofix: none
+    module: performance
+    hig_section: §6.2–6.3
+
+  HIG-PERF-003:
+    severity: warning
+    requirement: Define performance budgets
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - runtime
+      - observation
+    autofix: none
+    module: performance
+    hig_section: §6.4
+
+  HIG-PERF-004:
+    severity: warning
+    requirement: Use regression-based performance gates
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - runtime
+      - observation
+    autofix: none
+    module: performance
+    hig_section: §6.5
+
+  HIG-SEC-001:
+    severity: error
+    requirement: No secrets in client code
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+    autofix: none
+    module: security
+    hig_section: §9.4
+
+  HIG-SEC-002:
+    severity: error
+    requirement: CSP headers configured
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: security
+    hig_section: §9.1
+
+  HIG-SEC-003:
+    severity: error
+    requirement: PII masked in UI and logs
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - manual
+    autofix: none
+    module: security
+    hig_section: §9.4
+
+  HIG-SEC-004:
+    severity: error
+    requirement: Secure cookie attributes
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - commerce
+      - application
+      - auth
+    evaluation:
+      - static
+      - runtime
+    autofix: none
+    module: security
+    hig_section: §9.3
+
+  HIG-EXP-001:
+    severity: error
+    requirement: Declare content surface in scope
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+    evaluation:
+      - manual
+      - runtime
+    autofix: none
+    module: expressive-surface
+    hig_section: §0.3
+
+  HIG-EXP-002:
+    severity: error
+    requirement: Non-motion content parity
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+    evaluation:
+      - manual
+      - runtime
+    autofix: none
+    module: expressive-surface
+    hig_section: §1.5
+
+  HIG-EXP-003:
+    severity: error
+    requirement: Reduced-motion parity path
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+    evaluation:
+      - manual
+      - runtime
+    autofix: none
+    module: expressive-surface
+    hig_section: §1.5
+
+  HIG-EXP-004:
+    severity: error
+    requirement: Nav / index escape hatch
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+    evaluation:
+      - manual
+      - runtime
+    autofix: none
+    module: expressive-surface
+    hig_section: §1.5
+
+  HIG-EXP-005:
+    severity: error
+    requirement: No scroll-jacking as sole navigation
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+    evaluation:
+      - manual
+      - runtime
+    autofix: none
+    module: expressive-surface
+    hig_section: §1.5
+
+  HIG-EXP-006:
+    severity: error
+    requirement: Surface × motion_class permission matrix
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+    evaluation:
+      - manual
+      - runtime
+    autofix: none
+    module: expressive-surface
+    hig_section: §1.5
+
+  HIG-EXP-013:
+    severity: error
+    requirement: Motion Tier 0–3 + ambient taxonomy
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+    evaluation:
+      - manual
+      - runtime
+    autofix: none
+    module: expressive-surface
+    hig_section: §1.5
+
+  HIG-EXP-014:
+    severity: error
+    requirement: Page-level motion classification
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+    evaluation:
+      - manual
+      - runtime
+    autofix: none
+    module: expressive-surface
+    hig_section: §1.5
+
+  HIG-EXP-007:
+    severity: error
+    requirement: Meaning in DOM reading order
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+    evaluation:
+      - manual
+      - runtime
+    autofix: none
+    module: expressive-surface
+    hig_section: §1.5
+
+  HIG-EXP-008:
+    severity: error
+    requirement: Sensory media controls
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+    evaluation:
+      - manual
+      - runtime
+    autofix: none
+    module: expressive-surface
+    hig_section: §1.5
+
+  HIG-EXP-009:
+    severity: error
+    requirement: Keyboard custom scroll regions
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+    evaluation:
+      - manual
+      - runtime
+    autofix: none
+    module: expressive-surface
+    hig_section: §1.5
+
+  HIG-EXP-010:
+    severity: error
+    requirement: Progressive enhancement baseline
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+    evaluation:
+      - manual
+      - runtime
+    autofix: none
+    module: expressive-surface
+    hig_section: §1.5
+
+  HIG-EXP-011:
+    severity: error
+    requirement: Kinetic type canonical copy
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+    evaluation:
+      - manual
+      - runtime
+    autofix: none
+    module: expressive-surface
+    hig_section: §1.5
+
+  HIG-EXP-012:
+    severity: error
+    requirement: CWV on expressive surfaces
+    profiles:
+      - practical
+      - full
+    archetypes:
+      - content
+    evaluation:
+      - manual
+      - runtime
+    autofix: none
+    module: expressive-surface
+    hig_section: §1.5

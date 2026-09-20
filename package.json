@@ -4,9 +4,10 @@
   "description": "Pin a versioned behavioral contract for web UX, accessibility, and AI coding agents.",
   "scripts": {
     "validate": "node scripts/validate-hig.mjs",
+    "sync:registry": "node scripts/sync-registry.mjs",
     "check:version-bump": "node scripts/check-version-bump.mjs",
     "release:notes": "node scripts/release-notes.mjs",
     "build:docs": "node scripts/build-docs.mjs",
-    "test": "node packages/install/test/install.test.mjs"
+    "test": "node packages/install/test/install.test.mjs && node packages/cli/test/check.test.mjs"
   }
 }

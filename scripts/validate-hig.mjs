@@ -114,10 +114,11 @@ if (!exists('HIG-QUICK.md')) {
   fail('missing HIG-QUICK.md (Layer 1 Quick Reference)');
 }
 
-if (exists('packages/install/package.json')) {
-  const installPkg = JSON.parse(read('packages/install/package.json'));
-  if (installPkg.version !== versionFile) {
-    fail(`packages/install/package.json (${installPkg.version}) !== VERSION (${versionFile})`);
+for (const pkgRel of ['packages/install/package.json', 'packages/core/package.json', 'packages/cli/package.json']) {
+  if (!exists(pkgRel)) continue;
+  const pkg = JSON.parse(read(pkgRel));
+  if (pkg.version !== versionFile) {
+    fail(`${pkgRel} (${pkg.version}) !== VERSION (${versionFile})`);
   }
 }
 
@@ -136,6 +137,13 @@ for (const filePath of walkFiles(root, (file) => /\.(md|ya?ml)$/i.test(file))) {
 for (const file of extractManifestFiles(manifestYaml)) {
   if (!exists(file)) {
     fail(`manifest references missing file: ${file}`);
+  }
+}
+
+for (const match of manifestYaml.matchAll(/^\s+-\s+(rules\/[^\s#]+)/gm)) {
+  const registryFile = match[1].trim();
+  if (registryFile.startsWith('rules/') && registryFile.endsWith('.yaml') && !exists(registryFile)) {
+    fail(`manifest registries references missing file: ${registryFile}`);
   }
 }
 
@@ -196,13 +204,16 @@ function extractIndexRegistry(text) {
   const rows = [];
   const seen = new Set();
   for (const line of block.split(/\r?\n/)) {
-    const match = line.match(/^\|\s*(HIG-[A-Z0-9]+-\d+)\s*\|\s*([^|]+)\|\s*([^|]+)\|/);
+    const match = line.match(
+      /^\|\s*(HIG-[A-Z0-9]+-\d+)\s*\|\s*([^|]+)\|\s*([^|]+)\|\s*([^|]+)\|/,
+    );
     if (!match) continue;
     const id = match[1];
     const module = match[3].trim();
+    const hig_section = match[4].trim();
     if (seen.has(id)) fail(`INDEX.md duplicate rule ID: ${id}`);
     seen.add(id);
-    rows.push({ id, module });
+    rows.push({ id, module, hig_section });
   }
   return rows;
 }
@@ -230,6 +241,96 @@ for (const { id, module } of registry) {
 for (const id of manifestRuleIds) {
   if (!registryIds.has(id)) {
     fail(`rule ID in manifest.yaml but not INDEX.md registry: ${id}`);
+  }
+}
+
+// --- Machine-readable rule registry (rules/registry.yaml) ---
+function parseRegistryYaml(yaml) {
+  const version = yaml.match(/^version:\s*"([^"]+)"/m)?.[1];
+  const rules = new Map();
+  for (const match of yaml.matchAll(/^  (HIG-[A-Z0-9]+-\d+):\r?\n((?:    .+\r?\n)*)/gm)) {
+    const id = match[1];
+    const body = match[2];
+    const pick = (key) => body.match(new RegExp(`^    ${key}:\\s*(.+)$`, 'm'))?.[1]?.trim();
+    const profiles = [...body.matchAll(/^    profiles:\r?\n((?:      - \S+\r?\n)*)/gm)][0];
+    const profileList = profiles
+      ? [...profiles[1].matchAll(/^      - (\S+)/gm)].map((m) => m[1])
+      : [];
+    const archetypeBlock = [...body.matchAll(/^    archetypes:\r?\n((?:      - \S+\r?\n)*)/gm)][0];
+    const archetypeList = archetypeBlock
+      ? [...archetypeBlock[1].matchAll(/^      - (\S+)/gm)].map((m) => m[1])
+      : [];
+    const evalBlock = [...body.matchAll(/^    evaluation:\r?\n((?:      - \S+\r?\n)*)/gm)][0];
+    const evaluationList = evalBlock
+      ? [...evalBlock[1].matchAll(/^      - (\S+)/gm)].map((m) => m[1])
+      : [];
+
+    rules.set(id, {
+      severity: pick('severity'),
+      requirement: pick('requirement')?.replace(/^"|"$/g, ''),
+      profiles: profileList,
+      archetypes: archetypeList,
+      evaluation: evaluationList,
+      autofix: pick('autofix'),
+      module: pick('module'),
+      hig_section: pick('hig_section')?.replace(/^"|"$/g, ''),
+    });
+  }
+  return { version, rules };
+}
+
+const registryPath = 'rules/registry.yaml';
+if (!exists(registryPath)) {
+  fail(`missing ${registryPath}`);
+} else {
+  const registryYaml = read(registryPath);
+  const { version: registryVersion, rules: registryRules } = parseRegistryYaml(registryYaml);
+  if (!registryVersion) fail('registry.yaml: missing version field');
+  if (registryVersion !== versionFile) {
+    fail(`registry.yaml (${registryVersion}) !== VERSION (${versionFile})`);
+  }
+  if (!registryRules.size) fail('registry.yaml: no rules parsed');
+
+  const allowedSeverity = new Set(['error', 'warning', 'info']);
+  const allowedAutofix = new Set(['safe', 'unsafe', 'none']);
+  const allowedEvaluation = new Set(['static', 'runtime', 'manual', 'observation']);
+  const allowedProfiles = new Set(['quick', 'practical', 'full']);
+
+  const indexById = new Map(registry.map((row) => [row.id, row]));
+
+  for (const id of registryIds) {
+    if (!registryRules.has(id)) {
+      fail(`rule ID in INDEX.md but not registry.yaml: ${id}`);
+    }
+  }
+  for (const id of registryRules.keys()) {
+    if (!registryIds.has(id)) {
+      fail(`rule ID in registry.yaml but not INDEX.md: ${id}`);
+    }
+  }
+
+  for (const [id, row] of registryRules) {
+    const indexRow = indexById.get(id);
+    if (!row.severity || !allowedSeverity.has(row.severity)) {
+      fail(`${id}: registry invalid or missing severity`);
+    }
+    if (!row.requirement) fail(`${id}: registry missing requirement`);
+    if (!row.profiles?.length || row.profiles.some((p) => !allowedProfiles.has(p))) {
+      fail(`${id}: registry invalid profiles`);
+    }
+    if (!row.archetypes?.length) fail(`${id}: registry missing archetypes`);
+    if (!row.evaluation?.length || row.evaluation.some((e) => !allowedEvaluation.has(e))) {
+      fail(`${id}: registry invalid evaluation`);
+    }
+    if (!row.autofix || !allowedAutofix.has(row.autofix)) {
+      fail(`${id}: registry invalid autofix`);
+    }
+    if (row.module !== indexRow.module) {
+      fail(`${id}: registry module (${row.module}) !== INDEX (${indexRow.module})`);
+    }
+    if (row.hig_section !== indexRow.hig_section) {
+      fail(`${id}: registry hig_section (${row.hig_section}) !== INDEX (${indexRow.hig_section})`);
+    }
   }
 }
 

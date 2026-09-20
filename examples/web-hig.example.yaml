@@ -1,0 +1,24 @@
+# Example HIG contract for a product repository (copy to web-hig.yaml)
+version: "1.11.1"
+
+profile: practical
+
+archetype: application
+
+framework:
+  name: vue
+
+scope:
+  files:
+    - src/**
+
+  exclude:
+    - src/legacy/**
+
+  routes:
+    - /**
+
+gates:
+  blocking: fail
+  warnings: report
+  observations: report

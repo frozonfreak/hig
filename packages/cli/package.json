@@ -1,0 +1,22 @@
+{
+  "name": "@web-hig/cli",
+  "version": "1.11.1",
+  "description": "Command-line conformance tooling for The Web HIG",
+  "type": "module",
+  "bin": {
+    "web-hig": "./bin/cli.mjs"
+  },
+  "dependencies": {
+    "@web-hig/core": "file:../core"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frozonfreak/hig.git",
+    "directory": "packages/cli"
+  }
+}

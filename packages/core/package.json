@@ -1,0 +1,19 @@
+{
+  "name": "@web-hig/core",
+  "version": "1.11.1",
+  "description": "Shared evaluator engine for The Web HIG conformance tooling",
+  "type": "module",
+  "exports": {
+    ".": "./index.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "lib"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frozonfreak/hig.git",
+    "directory": "packages/core"
+  }
+}

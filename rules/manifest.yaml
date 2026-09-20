@@ -4,6 +4,11 @@
 
 version: "1.11.1"
 
+registries:
+  - rules/registry.yaml
+  - rules/motion-tiers.yaml
+  - rules/evaluator-dimensions.yaml
+
 layers:
   1:
     file: HIG-QUICK.md

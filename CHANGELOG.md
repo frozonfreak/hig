@@ -8,6 +8,11 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ## [Unreleased]
 
+### Added
+
+- Machine-readable [rules/registry.yaml](./rules/registry.yaml) (76 rules) with `npm run sync:registry` and CI validation against INDEX and manifest.
+- Initial [@web-hig/core](./packages/core/) and [@web-hig/cli](./packages/cli/) packages: `web-hig check`, `web-hig explain`, `web-hig init` (install wrapper); static checks for **HIG-MOT-001** and **HIG-A11Y-001**; [NPM-TOOLING.md](./NPM-TOOLING.md) architecture doc.
+
 ---
 
 ## [1.11.1] - 2026-09-19
