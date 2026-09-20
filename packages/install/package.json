@@ -1,12 +1,13 @@
 {
   "name": "@web-hig/install",
-  "version": "1.12.2",
+  "version": "1.12.3",
   "description": "Install The Web HIG Quick Reference, agent rules, and editor skills into a project",
   "type": "module",
   "bin": {
     "web-hig-install": "./bin/cli.mjs"
   },
   "files": [
+    "README.md",
     "bin",
     "lib",
     "vendor"

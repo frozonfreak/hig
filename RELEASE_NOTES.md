@@ -6,6 +6,22 @@ Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
 ---
 
+## [v1.12.3](./HIG.md) — 2026-09-20
+
+Patch release: **npm package documentation**. No normative rule was added, removed, or retightened.
+
+### Highlights
+
+- READMEs on npm for **`@web-hig/core`**, **`@web-hig/cli`**, and **`@web-hig/install`** — install workflow, `WEB_HIG_ROOT`, `web-hig.yaml`, commands, and maintainer publish notes.
+
+### Upgrade from v1.12.2
+
+1. Pin **[VERSION](./VERSION)** (`1.12.3`) or run `npx @web-hig/install` when you next refresh docs.
+2. No rule ID changes — optional upgrade for npm readme content only.
+3. Run `npm run validate`.
+
+---
+
 ## [v1.12.2](./HIG.md) — 2026-09-20
 
 Patch release: **npm CI token guidance**. No normative rule was added, removed, or retightened.

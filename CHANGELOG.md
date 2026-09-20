@@ -10,6 +10,14 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
+## [1.12.3] - 2026-09-20
+
+### Added
+
+- Detailed npm READMEs for `@web-hig/core`, `@web-hig/cli`, and `@web-hig/install` (usage, CI, `WEB_HIG_ROOT`, API summary).
+
+---
+
 ## [1.12.2] - 2026-09-20
 
 ### Fixed
@@ -201,7 +209,8 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.12.2...HEAD
+[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.12.3...HEAD
+[1.12.3]: https://github.com/frozonfreak/hig/compare/v1.12.2...v1.12.3
 [1.12.2]: https://github.com/frozonfreak/hig/compare/v1.12.1...v1.12.2
 [1.12.1]: https://github.com/frozonfreak/hig/compare/v1.12.0...v1.12.1
 [1.12.0]: https://github.com/frozonfreak/hig/compare/v1.11.1...v1.12.0

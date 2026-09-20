@@ -1,7 +1,19 @@
 {
   "name": "@web-hig/cli",
-  "version": "1.12.2",
+  "version": "1.12.3",
   "description": "Command-line conformance tooling for The Web HIG",
+  "homepage": "https://github.com/frozonfreak/hig/tree/main/packages/cli#readme",
+  "bugs": {
+    "url": "https://github.com/frozonfreak/hig/issues"
+  },
+  "keywords": [
+    "web-hig",
+    "hig",
+    "cli",
+    "accessibility",
+    "conformance",
+    "lint"
+  ],
   "type": "module",
   "bin": {
     "web-hig": "./bin/cli.mjs"
@@ -10,6 +22,7 @@
     "@web-hig/core": "file:../core"
   },
   "files": [
+    "README.md",
     "bin",
     "lib"
   ],

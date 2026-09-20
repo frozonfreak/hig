@@ -1,12 +1,25 @@
 {
   "name": "@web-hig/core",
-  "version": "1.12.2",
+  "version": "1.12.3",
   "description": "Shared evaluator engine for The Web HIG conformance tooling",
+  "homepage": "https://github.com/frozonfreak/hig/tree/main/packages/core#readme",
+  "bugs": {
+    "url": "https://github.com/frozonfreak/hig/issues"
+  },
+  "keywords": [
+    "web-hig",
+    "hig",
+    "accessibility",
+    "conformance",
+    "eslint",
+    "design-system"
+  ],
   "type": "module",
   "exports": {
     ".": "./index.mjs"
   },
   "files": [
+    "README.md",
     "index.mjs",
     "lib"
   ],
