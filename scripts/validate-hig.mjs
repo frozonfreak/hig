@@ -378,6 +378,19 @@ for (const file of ['docs/robots.txt', 'docs/sitemap.xml', 'docs/404.html', 'doc
   if (!exists(file)) fail(`missing ${file}`);
 }
 
+// --- Live “current release” pins (not version-history archives) ---
+const readmeText = read('README.md');
+if (!readmeText.includes(`**Current release:** [v${versionFile}]`)) {
+  fail(`README.md Current release must link v${versionFile}`);
+}
+const devtoIntro = 'content/devto/introducing-the-web-hig.md';
+if (exists(devtoIntro)) {
+  const devtoText = read(devtoIntro);
+  if (!devtoText.includes(`Current release: **v${versionFile}**`)) {
+    fail(`${devtoIntro} must declare Current release: **v${versionFile}**`);
+  }
+}
+
 // --- Adopters reference implementations pin current VERSION ---
 const adoptersText = exists('ADOPTERS.md') ? read('ADOPTERS.md') : '';
 if (adoptersText) {
