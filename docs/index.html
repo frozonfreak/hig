@@ -51,7 +51,7 @@
         "headline": "The Web HIG — AI-native behavioral standard for the modern web",
         "description": "Versioned behavioral contract for interaction, states, accessibility, performance, and security UX.",
         "url": "https://frozonfreak.github.io/hig/",
-        "version": "1.12.3",
+        "version": "1.12.4",
         "inLanguage": "en",
         "isAccessibleForFree": true,
         "license": "https://github.com/frozonfreak/hig/blob/main/LICENSE",
@@ -67,7 +67,7 @@
         "codeRepository": "https://github.com/frozonfreak/hig",
         "url": "https://github.com/frozonfreak/hig",
         "license": "https://opensource.org/licenses/MIT",
-        "version": "1.12.3"
+        "version": "1.12.4"
       },
       {
         "@type": "FAQPage",
@@ -144,7 +144,7 @@
   <div class="layout">
     <nav class="sidebar" aria-label="Documentation navigation">
       <a class="brand" href="#top">The Web HIG</a>
-      <span class="version-badge">v1.12.3</span>
+      <span class="version-badge">v1.12.4</span>
 
       <div class="nav-group">
         <div class="nav-label">Understand</div>
@@ -165,6 +165,7 @@
         <ul>
           <li><a href="#start-here">Start here</a></li>
           <li><a href="#how">Try it</a></li>
+          <li><a href="#npm-packages">npm packages</a></li>
           <li><a href="#share">Share this HIG</a></li>
         </ul>
       </div>
@@ -252,6 +253,7 @@
 
         <div class="hero-actions">
           <a class="btn btn-primary" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Read the 5-minute Quick Reference</a>
+          <a class="btn btn-secondary" href="#npm-packages">npm packages</a>
           <a class="btn btn-secondary" href="https://hig.aruviflow.com/">Live demo</a>
           <a class="btn btn-ghost" href="https://github.com/frozonfreak/hig">View on GitHub</a>
         </div>
@@ -786,10 +788,10 @@
             <p>Same file — states, tokens, accessibility, and motion in one pass.</p>
             <span class="start-link">Open HIG-QUICK.md →</span>
           </a>
-          <a class="start-card" href="https://github.com/frozonfreak/hig/blob/main/packages/install/README.md">
+          <a class="start-card" href="#npm-packages">
             <h3>I'm building with AI</h3>
-            <p>Run <code>npx @web-hig/install</code> to pin HIG-QUICK and copy Cursor, Claude, Copilot, and Windsurf skills.</p>
-            <span class="start-link">One-command installer →</span>
+            <p>Run <code>npx @web-hig/install</code> or <code>npx web-hig init</code>, then <code>web-hig check</code> for structured findings.</p>
+            <span class="start-link">npm tooling →</span>
           </a>
           <a class="start-card" href="#integration">
             <h3>I want to adopt the standard</h3>
@@ -812,6 +814,58 @@
           <a href="#integration">Integration into your product →</a>
           ·
           <a href="https://github.com/frozonfreak/hig/blob/main/examples/conformance-checklist.md">PR checklist template →</a>
+        </p>
+      </section>
+
+      <!-- NPM PACKAGES -->
+      <section id="npm-packages" class="section-block">
+        <h2>npm packages</h2>
+        <p class="section-intro">
+          Executable conformance tooling for the pinned HIG contract — install, check, and explain rules in product repos and CI.
+          Not a component library; use your existing stack and design system.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Package</th>
+                <th scope="col">Role</th>
+                <th scope="col">Install</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="https://www.npmjs.com/package/@web-hig/install"><code>@web-hig/install</code></a></td>
+                <td>Pin <code>docs/hig/</code>, agent rules, and skills (<code>npx @web-hig/install</code>)</td>
+                <td><code>npx @web-hig/install</code></td>
+              </tr>
+              <tr>
+                <td><a href="https://www.npmjs.com/package/@web-hig/cli"><code>@web-hig/cli</code></a></td>
+                <td><code>web-hig init</code>, <code>check</code>, <code>explain</code> — static conformance reports</td>
+                <td><code>npm i -D @web-hig/cli</code></td>
+              </tr>
+              <tr>
+                <td><a href="https://www.npmjs.com/package/@web-hig/core"><code>@web-hig/core</code></a></td>
+                <td>Registry loader, <code>web-hig.yaml</code> parsing, evaluator report model (for custom CI/tools)</td>
+                <td><code>npm i @web-hig/core</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Typical flow: <code>npx web-hig init --profile practical</code> → set <code>WEB_HIG_ROOT=docs/hig</code> →
+          add <a href="https://github.com/frozonfreak/hig/blob/main/examples/web-hig.example.yaml"><code>web-hig.yaml</code></a> →
+          <code>npx web-hig check</code>.
+        </p>
+        <p>
+          Architecture:
+          <a href="https://github.com/frozonfreak/hig/blob/main/NPM-TOOLING.md">NPM-TOOLING.md</a>
+          · Maintainer publish guide:
+          <a href="https://github.com/frozonfreak/hig/blob/main/packages/PUBLISHING.md">packages/PUBLISHING.md</a>
+          ·
+          <a href="https://www.npmjs.com/settings/web-hig/packages">npm org packages (maintainers)</a>
         </p>
       </section>
 
@@ -970,9 +1024,21 @@
 ├── framework/               React, Next, Vue, Nuxt, Astro
 ├── skills/web-hig/          Ready-to-copy Agent Skill (SKILL.md)
 ├── examples/agent-rules/    Cursor, Claude, Copilot, Windsurf templates
-├── packages/install/        npx @web-hig/install
+├── packages/
+│   ├── install/             @web-hig/install — npx @web-hig/install
+│   ├── cli/                 @web-hig/cli — web-hig check · explain · init
+│   └── core/                @web-hig/core — registry &amp; evaluator engine
 ├── scripts/validate-hig.mjs Contract validation
+├── NPM-TOOLING.md           npm CLI architecture
 └── INTEGRATION.md           Product repo adoption guide</code></pre>
+        <p>
+          Published on npm under scope <code>@web-hig</code>:
+          <a href="https://www.npmjs.com/package/@web-hig/install">install</a>,
+          <a href="https://www.npmjs.com/package/@web-hig/cli">cli</a>,
+          <a href="https://www.npmjs.com/package/@web-hig/core">core</a>
+          ·
+          <a href="https://www.npmjs.com/settings/web-hig/packages">Org package settings</a>
+        </p>
       </section>
 
       <div class="journey-landmark" id="go-deeper" aria-label="Section: Go deeper">
@@ -1097,8 +1163,8 @@
             <span class="step-meta"><a href="https://github.com/frozonfreak/hig/blob/main/examples/conformance-checklist.md">Template →</a> · ~10 minutes</span>
           </li>
           <li>
-            <strong>Lint &amp; CI</strong> — automate Layer 7 rules and Layer 8 gates when ready
-            <span class="step-meta">Hours — see INTEGRATION.md</span>
+            <strong>Lint &amp; CI</strong> — run <code>web-hig check</code> in PR pipelines; expand with ESLint/Stylelint plugins over time
+            <span class="step-meta"><a href="#npm-packages">npm packages →</a> · <a href="https://github.com/frozonfreak/hig/blob/main/INTEGRATION.md">INTEGRATION.md</a></span>
           </li>
         </ol>
         <p>
@@ -1142,7 +1208,9 @@
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/VERSIONING.md">VERSIONING.md</a></td><td>Semver and pinning in product repos</td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/CHANGELOG.md">CHANGELOG.md</a></td><td>Keep a Changelog release history</td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/ROADMAP.md">ROADMAP.md</a></td><td>Contract and tooling direction</td></tr>
-              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/MACHINE_READABLE.md">MACHINE_READABLE.md</a></td><td>Manifest, registry roadmap, linters</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/MACHINE_READABLE.md">MACHINE_READABLE.md</a></td><td>Manifest, rule registry, linters</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/NPM-TOOLING.md">NPM-TOOLING.md</a></td><td>npm CLI, profiles, <code>web-hig.yaml</code></td></tr>
+              <tr><td><a href="https://www.npmjs.com/settings/web-hig/packages">npm — @web-hig packages</a></td><td>Published packages (maintainer settings on npmjs.com)</td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/ADOPTERS.md">ADOPTERS.md</a></td><td>Projects pinning the contract</td></tr>
             </tbody>
           </table>
@@ -1166,6 +1234,7 @@
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/HIG.md"><strong>HIG.md</strong></a></td><td>Complete normative specification</td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-CORE.md">HIG-CORE.md</a></td><td>Philosophy, vocabulary, archetypes</td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/INTEGRATION.md">INTEGRATION.md</a></td><td>Product repo adoption guide</td></tr>
+              <tr><td><a href="#npm-packages">npm packages</a></td><td><code>@web-hig/install</code>, <code>@web-hig/cli</code>, <code>@web-hig/core</code></td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/SHARE.md">SHARE.md</a></td><td>Share badge and copy-paste markdown with UTM parameters</td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/tree/main/examples">examples/</a></td><td>Scope templates, agent rules, adoption walkthrough</td></tr>
               <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/rules/INDEX.md">rules/INDEX.md</a></td><td>Topic index &amp; rule ID registry</td></tr>
@@ -1241,7 +1310,7 @@
           <a href="#share">Share this HIG</a>
           <a href="https://github.com/frozonfreak/hig/blob/main/LICENSE">MIT License</a>
         </div>
-        <p>The Web HIG v1.12.3 — an open standard for AI-native web development.</p>
+        <p>The Web HIG v1.12.4 — an open standard for AI-native web development.</p>
       </footer>
     </main>
   </div>

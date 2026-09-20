@@ -1,6 +1,6 @@
 # The Web HIG
 
-This project follows The Web HIG v1.12.3.
+This project follows The Web HIG v1.12.4.
 
 - **Quick Reference (Layer 1):** `docs/hig/HIG-QUICK.md` — *Follow The Web HIG Quick Reference.*
 - **Practical guide (Layer 2):** `docs/hig/HIG-LITE.md` + `docs/hig/rules/manifest.yaml`

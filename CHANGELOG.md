@@ -10,6 +10,14 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
+## [1.12.4] - 2026-09-20
+
+### Added
+
+- Documentation site **npm packages** section (`#npm-packages`): install/CLI/core table, nav and integration links, npm org settings for maintainers.
+
+---
+
 ## [1.12.3] - 2026-09-20
 
 ### Added
@@ -209,7 +217,8 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.12.3...HEAD
+[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.12.4...HEAD
+[1.12.4]: https://github.com/frozonfreak/hig/compare/v1.12.3...v1.12.4
 [1.12.3]: https://github.com/frozonfreak/hig/compare/v1.12.2...v1.12.3
 [1.12.2]: https://github.com/frozonfreak/hig/compare/v1.12.1...v1.12.2
 [1.12.1]: https://github.com/frozonfreak/hig/compare/v1.12.0...v1.12.1

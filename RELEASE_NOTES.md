@@ -6,6 +6,22 @@ Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
 ---
 
+## [v1.12.4](./HIG.md) — 2026-09-20
+
+Patch release: **documentation site npm discovery**. No normative rule was added, removed, or retightened.
+
+### Highlights
+
+- **[Documentation site](https://frozonfreak.github.io/hig/#npm-packages)** — **npm packages** section with links to `@web-hig/install`, `@web-hig/cli`, and `@web-hig/core` on npm; nav, hero, integration, and repo tree cross-links.
+
+### Upgrade from v1.12.3
+
+1. Pin **[VERSION](./VERSION)** (`1.12.4`) or run `npx @web-hig/install` when you next refresh docs.
+2. No rule ID changes — optional upgrade for docs-site discovery only.
+3. Run `npm run validate`.
+
+---
+
 ## [v1.12.3](./HIG.md) — 2026-09-20
 
 Patch release: **npm package documentation**. No normative rule was added, removed, or retightened.
