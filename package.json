@@ -8,6 +8,7 @@
     "check:version-bump": "node scripts/check-version-bump.mjs",
     "release:notes": "node scripts/release-notes.mjs",
     "build:docs": "node scripts/build-docs.mjs",
+    "pretest": "npm ci --prefix packages/cli --omit=dev",
     "test": "node packages/install/test/install.test.mjs && node packages/cli/test/check.test.mjs"
   }
 }
