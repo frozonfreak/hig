@@ -1,3 +1,6 @@
+# Requires NPM_TOKEN: Classic Automation or Granular token with 2FA bypass (not Publish+OTP).
+# EOTP in logs → see packages/PUBLISHING.md § "Why EOTP in GitHub Actions"
+
 name: Publish npm packages
 
 on:

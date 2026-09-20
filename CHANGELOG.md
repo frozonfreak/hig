@@ -10,6 +10,14 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
+## [1.12.2] - 2026-09-20
+
+### Fixed
+
+- Document npm publish **`EOTP`** in CI and require Classic **Automation** or granular **Bypass 2FA** tokens for GitHub secret `NPM_TOKEN` ([packages/PUBLISHING.md](./packages/PUBLISHING.md)).
+
+---
+
 ## [1.12.1] - 2026-09-20
 
 ### Fixed
@@ -193,7 +201,8 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.12.1...HEAD
+[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.12.2...HEAD
+[1.12.2]: https://github.com/frozonfreak/hig/compare/v1.12.1...v1.12.2
 [1.12.1]: https://github.com/frozonfreak/hig/compare/v1.12.0...v1.12.1
 [1.12.0]: https://github.com/frozonfreak/hig/compare/v1.11.1...v1.12.0
 [1.11.1]: https://github.com/frozonfreak/hig/compare/v1.11.0...v1.11.1

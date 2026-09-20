@@ -6,6 +6,22 @@ Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
 ---
 
+## [v1.12.2](./HIG.md) — 2026-09-20
+
+Patch release: **npm CI token guidance**. No normative rule was added, removed, or retightened.
+
+### Highlights
+
+- **[packages/PUBLISHING.md](./packages/PUBLISHING.md)** — explains **`EOTP`** when `npm publish` runs in GitHub Actions and how to use **Automation** or granular **Bypass 2FA** tokens for `NPM_TOKEN`.
+
+### Upgrade from v1.12.1
+
+1. Pin **[VERSION](./VERSION)** (`1.12.2`) or run `npx @web-hig/install`.
+2. If npm publish failed with `EOTP`, rotate `NPM_TOKEN` per PUBLISHING.md — no contract file changes required otherwise.
+3. Run `npm run validate`.
+
+---
+
 ## [v1.12.1](./HIG.md) — 2026-09-20
 
 Patch release: **npm publish and CI tooling**. No normative rule was added, removed, or retightened — upgrading is safe for every existing pin.

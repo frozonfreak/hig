@@ -20,6 +20,35 @@ Until step 1–2 are done, **every** `@web-hig/*` publish fails with 404.
 
 ---
 
+## Why `EOTP` in GitHub Actions
+
+```text
+npm error code EOTP
+npm error This operation requires a one-time password from your authenticator.
+```
+
+CI **cannot** enter a TOTP code. This means **`NPM_TOKEN` is the wrong token type** (or 2FA bypass is not enabled for that token).
+
+| Token / login style | Works in CI? |
+| --- | --- |
+| Classic **Automation** token | Yes — intended for CI/CD |
+| Granular token with **Bypass 2FA** (automation) | Yes |
+| Classic **Publish** token with 2FA on the account | No — prompts `EOTP` |
+| `npm login` session / personal publish without automation token | No |
+
+### Fix `EOTP`
+
+1. npm → **Access Tokens** → revoke the secret currently stored as `NPM_TOKEN` if it was a Publish token.
+2. Create a replacement:
+   - **Classic:** type **Automation** (not Publish), or
+   - **Granular:** read/write on `@web-hig/*`, org **web-hig**, enable **Bypass two-factor authentication** for automation.
+3. Update GitHub → **Settings** → **Secrets** → **`NPM_TOKEN`** with the new token.
+4. Re-run the **Publish npm packages** workflow (re-publish the release or use **Re-run all jobs**).
+
+Do **not** put OTP codes in GitHub secrets for routine CI — rotate to an automation-capable token instead.
+
+---
+
 ## One-time npm setup
 
 ### 1. Create the org (claim scope `@web-hig`)
@@ -31,13 +60,14 @@ Until step 1–2 are done, **every** `@web-hig/*` publish fails with 404.
 
 If `@web-hig` is already taken by another account, you must either obtain access from that org or rename packages in this repo (coordinated semver change).
 
-### 2. Create `NPM_TOKEN`
+### 2. Create `NPM_TOKEN` (automation — no OTP)
 
 1. npm → **Access Tokens** → **Generate New Token**.
-2. Prefer **Granular Access Token** with:
-   - **Packages and scopes:** read and write for `@web-hig/*`, or the whole org.
-   - Or **Classic Automation** token (publish) for CI.
-3. Copy the token once.
+2. Use **one** of:
+   - **Classic token** → type **Automation** (bypasses 2FA for publish in CI), or
+   - **Granular Access Token** → read/write packages for org **web-hig** / scope `@web-hig/*`, with **Bypass 2FA** enabled for automation.
+3. Do **not** use a Classic **Publish** token if your npm account has 2FA — GitHub Actions will fail with **`EOTP`**.
+4. Copy the token once.
 
 ### 3. Add GitHub secret
 
@@ -56,7 +86,7 @@ cd packages/core
 npm publish --access public
 
 cd ../cli
-npm pkg set "dependencies[@web-hig/core]=1.12.1"
+npm pkg set "dependencies[@web-hig/core]=1.12.2"
 npm install --omit=dev
 npm publish --access public
 
