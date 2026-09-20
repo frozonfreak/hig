@@ -14,7 +14,7 @@ Minor release: **executable conformance tooling**. No normative rule was added, 
 
 - **[rules/registry.yaml](./rules/registry.yaml)** — machine-readable catalog of all `HIG-*` rule IDs (severity, profiles, archetypes, evaluation methods, autofix). Validated in CI against [rules/INDEX.md](./rules/INDEX.md).
 - **`@web-hig/core`** and **`@web-hig/cli`** — `web-hig check`, `web-hig explain`, and `web-hig init` (wraps `@web-hig/install`). See [NPM-TOOLING.md](./NPM-TOOLING.md).
-- **npm publish** — publishing a GitHub Release runs [`.github/workflows/npm-publish-github-packages.yml`](./.github/workflows/npm-publish-github-packages.yml) (requires repository secret `NPM_TOKEN`).
+- **npm publish** — publishing a GitHub Release runs [`.github/workflows/npm-publish-github-packages.yml`](./.github/workflows/npm-publish-github-packages.yml) (requires npm org `@web-hig` and GitHub secret `NPM_TOKEN`; see [packages/PUBLISHING.md](./packages/PUBLISHING.md)).
 
 ### Upgrade from v1.11.1
 

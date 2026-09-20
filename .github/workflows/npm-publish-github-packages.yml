@@ -1,6 +1,7 @@
 # Publish @web-hig/* packages to the public npm registry when a GitHub Release is published.
 #
 # Required repository secret: NPM_TOKEN (npm automation token with publish permission)
+# Required on npmjs.com: organization scope @web-hig — see packages/PUBLISHING.md (404 on PUT = scope/org not set up)
 #
 # Expected flow: push tag v*.*.* → release.yml drafts a release → publish the release → this workflow runs.
 
@@ -38,6 +39,23 @@ jobs:
           fi
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Publishing The Web HIG npm packages at v$VERSION"
+
+      - name: Verify npm token and @web-hig scope access
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${NODE_AUTH_TOKEN:-}" ]; then
+            echo "::error::NPM_TOKEN repository secret is missing. See packages/PUBLISHING.md"
+            exit 1
+          fi
+          ACTOR="$(npm whoami)"
+          echo "Authenticated to npm as: ${ACTOR}"
+          if ! npm org ls web-hig >/dev/null 2>&1; then
+            echo "::error::Cannot access npm org 'web-hig' as ${ACTOR}. Create the @web-hig organization on npmjs.com and add this user (or use a token from an org member). See packages/PUBLISHING.md"
+            exit 1
+          fi
+          echo "npm org web-hig is accessible."
 
       - name: Verify contract and package versions
         run: |

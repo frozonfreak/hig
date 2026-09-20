@@ -149,6 +149,8 @@ CI ensures registry ↔ [rules/INDEX.md](./rules/INDEX.md) ↔ [rules/manifest.y
 
 **Compatibility:** `npx @web-hig/install` remains supported; long term `web-hig init` is the primary onboarding path.
 
+**npm publish (404 on CI):** Scoped packages need org **`@web-hig`** on npmjs.com plus GitHub secret **`NPM_TOKEN`**. See [packages/PUBLISHING.md](./packages/PUBLISHING.md).
+
 ---
 
 ## 8. Evaluator output
