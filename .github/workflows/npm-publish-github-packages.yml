@@ -1,0 +1,78 @@
+# Publish @web-hig/* packages to the public npm registry when a GitHub Release is published.
+#
+# Required repository secret: NPM_TOKEN (npm automation token with publish permission)
+#
+# Expected flow: push tag v*.*.* → release.yml drafts a release → publish the release → this workflow runs.
+
+name: Publish npm packages
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Publish to npm
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: https://registry.npmjs.org
+
+      - name: Resolve release version
+        id: version
+        run: |
+          TAG="${{ github.event.release.tag_name }}"
+          VERSION="${TAG#v}"
+          if ! echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
+            echo "Release tag must be semver vX.Y.Z (got $TAG)"
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Publishing The Web HIG npm packages at v$VERSION"
+
+      - name: Verify contract and package versions
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          test "$(tr -d '\r\n' < VERSION)" = "$VERSION"
+          npm run validate
+          npm test
+          for pkg in packages/core/package.json packages/cli/package.json packages/install/package.json; do
+            node --input-type=module -e "
+              import fs from 'node:fs';
+              const v = JSON.parse(fs.readFileSync('$pkg', 'utf8')).version;
+              if (v !== '$VERSION') {
+                console.error('$pkg version', v, '!== release', '$VERSION');
+                process.exit(1);
+              }
+            "
+          done
+
+      - name: Publish @web-hig/core
+        working-directory: packages/core
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public
+
+      - name: Publish @web-hig/cli
+        working-directory: packages/cli
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          npm pkg set "dependencies[@web-hig/core]=${{ steps.version.outputs.version }}"
+          npm install --omit=dev
+          npm publish --access public
+
+      - name: Publish @web-hig/install
+        working-directory: packages/install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public
