@@ -1,6 +1,6 @@
 {
   "name": "@web-hig/core",
-  "version": "1.11.1",
+  "version": "1.12.0",
   "description": "Shared evaluator engine for The Web HIG conformance tooling",
   "type": "module",
   "exports": {

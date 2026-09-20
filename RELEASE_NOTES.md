@@ -6,6 +6,25 @@ Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
 ---
 
+## [v1.12.0](./HIG.md) — 2026-09-20
+
+Minor release: **executable conformance tooling**. No normative rule was added, removed, or retightened — upgrading is safe for every existing pin.
+
+### Highlights
+
+- **[rules/registry.yaml](./rules/registry.yaml)** — machine-readable catalog of all `HIG-*` rule IDs (severity, profiles, archetypes, evaluation methods, autofix). Validated in CI against [rules/INDEX.md](./rules/INDEX.md).
+- **`@web-hig/core`** and **`@web-hig/cli`** — `web-hig check`, `web-hig explain`, and `web-hig init` (wraps `@web-hig/install`). See [NPM-TOOLING.md](./NPM-TOOLING.md).
+- **npm publish** — publishing a GitHub Release runs [`.github/workflows/npm-publish-github-packages.yml`](./.github/workflows/npm-publish-github-packages.yml) (requires repository secret `NPM_TOKEN`).
+
+### Upgrade from v1.11.1
+
+1. Pin **[VERSION](./VERSION)** (`1.12.0`) in `docs/hig/VERSION` and agent rules, or run `npx @web-hig/install`.
+2. Optional: add `web-hig.yaml` from [examples/web-hig.example.yaml](./examples/web-hig.example.yaml) and run `npx @web-hig/cli check` after installing `@web-hig/cli`.
+3. No rule IDs changed — no re-audit required for normative behaviour.
+4. Run `npm run validate`.
+
+---
+
 ## [v1.11.1](./HIG.md) — 2026-09-19
 
 Patch release: link-check configuration repair. No normative rule was added, removed, or retightened — upgrading is safe for every existing pin.

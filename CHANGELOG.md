@@ -8,10 +8,15 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ## [Unreleased]
 
+---
+
+## [1.12.0] - 2026-09-20
+
 ### Added
 
 - Machine-readable [rules/registry.yaml](./rules/registry.yaml) (76 rules) with `npm run sync:registry` and CI validation against INDEX and manifest.
 - Initial [@web-hig/core](./packages/core/) and [@web-hig/cli](./packages/cli/) packages: `web-hig check`, `web-hig explain`, `web-hig init` (install wrapper); static checks for **HIG-MOT-001** and **HIG-A11Y-001**; [NPM-TOOLING.md](./NPM-TOOLING.md) architecture doc.
+- GitHub Actions workflow to publish `@web-hig/core`, `@web-hig/cli`, and `@web-hig/install` to the npm registry when a GitHub Release is published.
 
 ---
 
@@ -175,7 +180,8 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.11.1...HEAD
+[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.12.0...HEAD
+[1.12.0]: https://github.com/frozonfreak/hig/compare/v1.11.1...v1.12.0
 [1.11.1]: https://github.com/frozonfreak/hig/compare/v1.11.0...v1.11.1
 [1.11.0]: https://github.com/frozonfreak/hig/compare/v1.10.1...v1.11.0
 [1.10.1]: https://github.com/frozonfreak/hig/compare/v1.10.0...v1.10.1
