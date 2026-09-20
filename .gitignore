@@ -23,3 +23,6 @@ dist/
 build/
 .cache/
 packages/install/vendor/
+
+# Generated release draft (scripts/release-notes.mjs)
+release-body.md

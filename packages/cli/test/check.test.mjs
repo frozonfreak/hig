@@ -17,7 +17,7 @@ fs.writeFileSync(
 );
 fs.writeFileSync(
   path.join(tmp, 'web-hig.yaml'),
-  `version: "1.12.0"\nprofile: practical\narchetype: application\n`,
+  `version: "1.12.1"\nprofile: practical\narchetype: application\n`,
   'utf8',
 );
 

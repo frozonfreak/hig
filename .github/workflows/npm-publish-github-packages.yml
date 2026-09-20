@@ -1,10 +1,3 @@
-# Publish @web-hig/* packages to the public npm registry when a GitHub Release is published.
-#
-# Required repository secret: NPM_TOKEN (npm automation token with publish permission)
-# Required on npmjs.com: organization scope @web-hig — see packages/PUBLISHING.md (404 on PUT = scope/org not set up)
-#
-# Expected flow: push tag v*.*.* → release.yml drafts a release → publish the release → this workflow runs.
-
 name: Publish npm packages
 
 on:
@@ -18,6 +11,7 @@ jobs:
   publish:
     name: Publish to npm
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,54 +19,74 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          registry-url: https://registry.npmjs.org
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Resolve release version
         id: version
+        shell: bash
         run: |
           TAG="${{ github.event.release.tag_name }}"
           VERSION="${TAG#v}"
+
           if ! echo "$VERSION" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$'; then
-            echo "Release tag must be semver vX.Y.Z (got $TAG)"
+            echo "::error::Release tag must be vX.Y.Z. Got: $TAG"
             exit 1
           fi
-          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-          echo "Publishing The Web HIG npm packages at v$VERSION"
 
-      - name: Verify npm token and @web-hig scope access
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Publishing @web-hig packages version $VERSION"
+
+      - name: Verify npm authentication
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        shell: bash
         run: |
           set -euo pipefail
-          if [ -z "${NODE_AUTH_TOKEN:-}" ]; then
-            echo "::error::NPM_TOKEN repository secret is missing. See packages/PUBLISHING.md"
-            exit 1
-          fi
-          ACTOR="$(npm whoami)"
-          echo "Authenticated to npm as: ${ACTOR}"
-          if ! npm org ls web-hig >/dev/null 2>&1; then
-            echo "::error::Cannot access npm org 'web-hig' as ${ACTOR}. Create the @web-hig organization on npmjs.com and add this user (or use a token from an org member). See packages/PUBLISHING.md"
-            exit 1
-          fi
-          echo "npm org web-hig is accessible."
 
-      - name: Verify contract and package versions
+          if [ -z "${NODE_AUTH_TOKEN:-}" ]; then
+            echo "::error::NPM_TOKEN repository secret is missing"
+            exit 1
+          fi
+
+          echo "Authenticated npm user:"
+          npm whoami
+
+      - name: Verify package versions
+        shell: bash
         run: |
           VERSION="${{ steps.version.outputs.version }}"
+
           test "$(tr -d '\r\n' < VERSION)" = "$VERSION"
-          npm run validate
-          npm test
-          for pkg in packages/core/package.json packages/cli/package.json packages/install/package.json; do
+
+          for pkg in \
+            packages/core/package.json \
+            packages/cli/package.json \
+            packages/install/package.json
+          do
             node --input-type=module -e "
               import fs from 'node:fs';
-              const v = JSON.parse(fs.readFileSync('$pkg', 'utf8')).version;
-              if (v !== '$VERSION') {
-                console.error('$pkg version', v, '!== release', '$VERSION');
+
+              const pkg =
+                JSON.parse(fs.readFileSync('$pkg', 'utf8'));
+
+              if (pkg.version !== '$VERSION') {
+                console.error(
+                  '$pkg version',
+                  pkg.version,
+                  'does not match release version',
+                  '$VERSION'
+                );
                 process.exit(1);
               }
             "
           done
+
+      - name: Validate repository
+        run: npm run validate
+
+      - name: Run tests
+        run: npm test
 
       - name: Publish @web-hig/core
         working-directory: packages/core
@@ -85,7 +99,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          npm pkg set "dependencies[@web-hig/core]=${{ steps.version.outputs.version }}"
+          npm pkg set \
+            "dependencies[@web-hig/core]=${{ steps.version.outputs.version }}"
           npm install --omit=dev
           npm publish --access public
 

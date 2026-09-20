@@ -6,6 +6,25 @@ Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
 ---
 
+## [v1.12.1](./HIG.md) — 2026-09-20
+
+Patch release: **npm publish and CI tooling**. No normative rule was added, removed, or retightened — upgrading is safe for every existing pin.
+
+### Highlights
+
+- **[packages/PUBLISHING.md](./packages/PUBLISHING.md)** — how to create npm org `@web-hig`, configure `NPM_TOKEN`, and avoid **404** on first publish.
+- **Publish workflow preflight** — verifies npm authentication and org access before `npm publish`.
+- **CI tests** — `pretest` installs `packages/cli` dependencies so `web-hig check` tests pass on fresh runners.
+- **Version pins** — `npm run validate` enforces README and Dev.to “current release” strings match [VERSION](./VERSION).
+
+### Upgrade from v1.12.0
+
+1. Pin **[VERSION](./VERSION)** (`1.12.1`) in `docs/hig/VERSION` and agent rules, or run `npx @web-hig/install`.
+2. No rule IDs changed — no re-audit required.
+3. Run `npm run validate`.
+
+---
+
 ## [v1.12.0](./HIG.md) — 2026-09-20
 
 Minor release: **executable conformance tooling**. No normative rule was added, removed, or retightened — upgrading is safe for every existing pin.

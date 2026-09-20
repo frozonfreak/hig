@@ -9,7 +9,7 @@ description: >-
 
 # The Web HIG
 
-Pinned contract: The Web HIG v1.12.0  
+Pinned contract: The Web HIG v1.12.1  
 Read `docs/hig/HIG-QUICK.md` (or repo `HIG-QUICK.md`) — do not paste the Quick Reference into replies.
 
 ## When to apply

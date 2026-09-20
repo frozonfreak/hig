@@ -13,7 +13,7 @@ Vendor-neutral, testable rules for interaction, states, accessibility (WCAG 2.2 
 
 **[HIG-QUICK.md](./HIG-QUICK.md)** (~5 minutes) is the whole onboarding path. Pin it: copy `HIG-QUICK.md` + `VERSION` into `docs/hig/` (or use [packages/install](./packages/install/)). Tell agents: *"Follow The Web HIG Quick Reference."* Open [HIG-LITE.md](./HIG-LITE.md) only when you need rule IDs, and [HIG.md](./HIG.md) only for edge cases.
 
-**Current release:** [v1.12.0](./VERSION) · [Changelog](./CHANGELOG.md) · [Release notes](./RELEASE_NOTES.md)
+**Current release:** [v1.12.1](./VERSION) · [Changelog](./CHANGELOG.md) · [Release notes](./RELEASE_NOTES.md)
 
 **[Live demo](https://hig.aruviflow.com/)** · **[Documentation site](https://frozonfreak.github.io/hig/)** · **[Integrate](./INTEGRATION.md)** · **[Adopters](./ADOPTERS.md)**
 

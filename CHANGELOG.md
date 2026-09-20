@@ -10,6 +10,19 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
+## [1.12.1] - 2026-09-20
+
+### Fixed
+
+- Root `npm test` runs `npm ci` in `packages/cli` first so `@web-hig/core` resolves on clean CI runners.
+
+### Added
+
+- [packages/PUBLISHING.md](./packages/PUBLISHING.md) for npm `@web-hig` org setup; publish workflow preflight (`npm org ls web-hig`); normalized `repository.url` on npm packages.
+- Contract validation for README and Dev.to **Current release** pins against [VERSION](./VERSION).
+
+---
+
 ## [1.12.0] - 2026-09-20
 
 ### Added
@@ -180,7 +193,8 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.12.0...HEAD
+[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.12.1...HEAD
+[1.12.1]: https://github.com/frozonfreak/hig/compare/v1.12.0...v1.12.1
 [1.12.0]: https://github.com/frozonfreak/hig/compare/v1.11.1...v1.12.0
 [1.11.1]: https://github.com/frozonfreak/hig/compare/v1.11.0...v1.11.1
 [1.11.0]: https://github.com/frozonfreak/hig/compare/v1.10.1...v1.11.0

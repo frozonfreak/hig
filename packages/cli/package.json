@@ -1,6 +1,6 @@
 {
   "name": "@web-hig/cli",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "description": "Command-line conformance tooling for The Web HIG",
   "type": "module",
   "bin": {

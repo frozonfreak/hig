@@ -1,8 +1,8 @@
-# The Web HIG & Product Engine Contract — v1.12.0
+# The Web HIG & Product Engine Contract — v1.12.1
 
 ## Executive Summary
 
-The Web HIG v1.12.0 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+The Web HIG v1.12.1 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
 This release adds a three-layer consumption model and archetype rule packs:
 
@@ -1374,6 +1374,7 @@ Logs MUST include timestamp, actor, action, and resource — but MUST NOT includ
 
 **Release documentation:** [CHANGELOG.md](./CHANGELOG.md) (Keep a Changelog) · [RELEASE_NOTES.md](./RELEASE_NOTES.md) (adoption notes) · [VERSIONING.md](./VERSIONING.md) (semver policy).
 
+* **v1.12.1 (2026-09-20):** Patch release. npm publish documentation ([packages/PUBLISHING.md](./packages/PUBLISHING.md)), CI preflight for `@web-hig` scope, CLI test `pretest`, and current-release version validation. No normative rule IDs added, removed, or retightened.
 * **v1.12.0 (2026-09-20):** Tooling release. Added machine-readable [rules/registry.yaml](./rules/registry.yaml), initial [@web-hig/core](./packages/core/) and [@web-hig/cli](./packages/cli/) (`web-hig check`, `explain`, `init`), [NPM-TOOLING.md](./NPM-TOOLING.md), and npm publish on GitHub Release. No normative rule IDs added, removed, or retightened.
 * **v1.11.1 (2026-09-19):** Patch release. Repaired the `lychee.toml` link-check configuration (renamed `exclude_mail` to `include_mail`, integer `timeout` / `retry_wait_time`, enum `include_fragments`) so the Markdown link-check and offline validation workflows run again. No normative rule IDs added, removed, or retightened.
 * **v1.11.0 (2026-09-19):** Distribution and adoption release. Added the canonical [`skills/web-hig`](./skills/web-hig/SKILL.md) Agent Skill, Windsurf and Copilot path-scoped rule templates, and the `npx @web-hig/install` pinning installer. Added repository quality gates (Markdown link checks, version-bump rules, tag-driven release notes) and documentation-site share metadata. No normative rule IDs added, removed, or retightened.
