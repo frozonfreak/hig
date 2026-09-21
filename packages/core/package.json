@@ -15,6 +15,9 @@
     "design-system"
   ],
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "exports": {
     ".": "./index.mjs"
   },

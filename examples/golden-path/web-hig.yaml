@@ -1,0 +1,15 @@
+version: "1.12.4"
+profile: practical
+archetype: application
+framework:
+  name: null
+scope:
+  files:
+    - src/**
+  exclude: []
+  routes:
+    - /**
+gates:
+  blocking: fail
+  warnings: report
+  observations: report

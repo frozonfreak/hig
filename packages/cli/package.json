@@ -15,6 +15,9 @@
     "lint"
   ],
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "bin": {
     "web-hig": "./bin/cli.mjs"
   },

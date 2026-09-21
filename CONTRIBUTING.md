@@ -35,7 +35,7 @@ Out of scope:
 1. **Search [issues](https://github.com/frozonfreak/hig/issues)** for duplicates.
 2. Open a **[Spec change proposal](https://github.com/frozonfreak/hig/issues/new?template=spec-change.yml)** — describe problem, affected layers, and backward compatibility.
 3. Fork, branch from `main`, implement focused edits.
-4. Run **`npm run validate`** and **`npm test`** — CI rejects contract integrity failures (Markdown links, rule ID consistency, version headers).
+4. Run **`npm install`** (root workspaces), then **`npm run validate`**, **`npm run lint`**, and **`npm test`** — CI rejects contract integrity failures (Markdown links, rule ID consistency, manifest schema, version headers).
 5. Open a PR using [.github/PULL_REQUEST_TEMPLATE.md](./.github/PULL_REQUEST_TEMPLATE.md). Contract file changes must bump [VERSION](./VERSION) (see [VERSIONING.md](./VERSIONING.md)).
 
 ### File sync checklist (substantive rule changes)
@@ -107,7 +107,9 @@ regenerates `docs/robots.txt`, `docs/sitemap.xml`, and `docs/404.html`. Commit t
 | Version bump rules | `npm run check:version-bump` |
 | Offline Markdown/HTML link targets | GitHub Actions `lychee --offline` |
 | Docs share artifacts | `npm run build:docs` |
-| Installer (`@web-hig/install`) | `npm test` |
+| Manifest YAML vs JSON Schema | `npm run validate` |
+| JavaScript (scripts + packages) | `npm run lint` |
+| Installer + golden-path fixture | `npm test` |
 
 On a version tag (`vX.Y.Z`), [`.github/workflows/release.yml`](./.github/workflows/release.yml) drafts a GitHub Release from [CHANGELOG.md](./CHANGELOG.md) and [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 

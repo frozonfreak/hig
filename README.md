@@ -125,6 +125,16 @@ Canonical skill: [skills/web-hig/SKILL.md](./skills/web-hig/SKILL.md). Copy map:
 
 Machine-readable loading today: [rules/manifest.yaml](./rules/manifest.yaml) · Roadmap: [MACHINE_READABLE.md](./MACHINE_READABLE.md)
 
+### Tooling today (honest scope)
+
+| Shipped | Not in this repo yet |
+| --- | --- |
+| `npx @web-hig/install`, `web-hig check` (static CSS subset), `explain`, `upgrade` pin report | `eslint-plugin-hig` — use project ESLint/a11y + HIG agent rules |
+| Minimal `web-hig check --json` | Full multidimensional evaluator JSON on every run ([EVALUATOR.md](./EVALUATOR.md)) |
+| [examples/golden-path](./examples/golden-path/) consumer layout + failing CI fixture | `web-hig audit` runtime (Playwright / axe) |
+
+Detail: [ROADMAP.md](./ROADMAP.md) · [NPM-TOOLING.md](./NPM-TOOLING.md)
+
 ---
 
 ## Try it in one afternoon
@@ -134,7 +144,7 @@ Machine-readable loading today: [rules/manifest.yaml](./rules/manifest.yaml) · 
 3. **Escalate** — `npx @web-hig/install --profile practical` when you need HIG-LITE + modules
 4. **Validate upgrades** — `npm run validate` in this repo when bumping pins
 
-Manual copy: [PROFILES.md](./PROFILES.md) · Walkthrough: [examples/adoption/quick-profile-walkthrough.md](./examples/adoption/quick-profile-walkthrough.md)
+Manual copy: [PROFILES.md](./PROFILES.md) · Walkthrough: [examples/adoption/quick-profile-walkthrough.md](./examples/adoption/quick-profile-walkthrough.md) · End-to-end fixture: [examples/golden-path](./examples/golden-path/)
 
 ---
 

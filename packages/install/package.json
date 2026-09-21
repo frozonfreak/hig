@@ -17,7 +17,7 @@
     "test": "node test/install.test.mjs"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "license": "MIT",
   "keywords": [

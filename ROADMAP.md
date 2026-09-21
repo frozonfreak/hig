@@ -12,12 +12,27 @@ This roadmap describes **contract and tooling** direction for the standard repos
 - [x] Layer 0 archetypes and applicability matrix
 - [x] Stable rule IDs and Layer 7 agent guardrails
 - [x] Progressive loading: HIG-CORE, HIG-QUICK, HIG-LITE, `rules/`, `framework/`
-- [x] [rules/manifest.yaml](./rules/manifest.yaml) topic triggers
+- [x] [rules/manifest.yaml](./rules/manifest.yaml) topic triggers + **JSON Schema validation in CI**
+- [x] [rules/registry.yaml](./rules/registry.yaml) + [rules/quick-rule-map.yaml](./rules/quick-rule-map.yaml) with drift checks
 - [x] Contract validation (`npm run validate`) and CI
+- [x] `@web-hig/core` / `@web-hig/cli` / `@web-hig/install` — `init`, `check`, `explain`, `upgrade` (pin report)
+- [x] Static CSS checks in `web-hig check`; minimal `--json` evaluator output
 - [x] Integration guide, agent templates, documentation site
 - [x] Agent-ready distribution (`skills/web-hig`, editor templates, `npx @web-hig/install`)
 - [x] Docs site GitHub Pages deploy, share metadata (Open Graph / JSON-LD), weekly external link check
 - [x] Quality gates: Markdown links, rule ID consistency, version bump rules, tag release-note drafts
+- [x] Consumer layout fixture: [examples/golden-path](./examples/golden-path/) (planted violation + CI test)
+- [x] npm workspaces at repo root; shared ESLint / Prettier for `scripts/` and `packages/`
+
+---
+
+## Shipped — explicit limits (not oversold)
+
+| Area | Today | Not promised yet |
+| --- | --- | --- |
+| **ESLint** | `web-hig check` static subset; agent YAML guardrails | In-repo **`eslint-plugin-hig`** ([MACHINE_READABLE.md](./MACHINE_READABLE.md)) |
+| **Evaluator** | `web-hig check --json` minimal report; full schema + [example](./examples/evaluator-report.example.json) | Full multidimensional CLI matching [schema/evaluator-report.schema.json](./schema/evaluator-report.schema.json) on every run |
+| **Runtime audit** | `web-hig audit` marked experimental / not shipped | Playwright + axe orchestration ([NPM-TOOLING.md](./NPM-TOOLING.md) Phase 5) |
 
 ---
 
@@ -26,9 +41,9 @@ This roadmap describes **contract and tooling** direction for the standard repos
 | Item | Outcome |
 | --- | --- |
 | **Conformance profiles** | Documented in [PROFILES.md](./PROFILES.md); optional badge/checklist for adopters |
-| **Adopter registry** | [ADOPTERS.md](./ADOPTERS.md) template and empty community table — add rows by PR |
+| **Adopter registry** | [ADOPTERS.md](./ADOPTERS.md) — add rows by PR |
 | **Spec change log discipline** | Tagged releases draft GitHub notes from [CHANGELOG.md](./CHANGELOG.md) + [RELEASE_NOTES.md](./RELEASE_NOTES.md) |
-| **Manifest JSON Schema** | Validate `rules/manifest.yaml` shape in CI ([schema/](./schema/)) |
+| **Expand static `web-hig check` rules** | More registry `evaluation: static` rules without waiting on ESLint plugin |
 
 ---
 
@@ -36,10 +51,9 @@ This roadmap describes **contract and tooling** direction for the standard repos
 
 | Item | Outcome |
 | --- | --- |
-| **Rule registry (`rules/registry.yaml`)** | [x] Initial registry + CI drift checks — [NPM-TOOLING.md](./NPM-TOOLING.md) |
-| **`@web-hig/cli` / `@web-hig/core`** | [x] Initial `check`, `explain`, `init` — expand static rules and `audit` |
-| **`eslint-plugin-hig` (reference)** | **Deferred / not in this repo** — use `web-hig check` static subset + project ESLint/a11y plugins until a separate plugin ships ([MACHINE_READABLE.md](./MACHINE_READABLE.md)) |
-| **HIG evaluator report** | Multidimensional CI output per [EVALUATOR.md](./EVALUATOR.md) (not a single-score metric) |
+| **`eslint-plugin-hig` (separate or optional package)** | Reference rules from [rules/ai-enforcement.md](./rules/ai-enforcement.md) — static subset only |
+| **Full evaluator CLI output** | Dimensions block + schema-valid JSON on every `check` / audit aggregation |
+| **`web-hig audit`** | Runtime behavioural verification |
 | **Archetype conformance packs** | Checklists generated from Layer 0 matrix per archetype |
 | **Third-party adapter templates** | Svelte, Solid, Angular community adapters under `framework/` |
 
@@ -49,7 +63,6 @@ This roadmap describes **contract and tooling** direction for the standard repos
 
 | Item | Outcome |
 | --- | --- |
-| **Automated rule ID drift detection** | [x] Registry ↔ INDEX ↔ manifest ↔ modules ↔ Quick map in `npm run validate` |
 | **Policy-as-code for agents** | Export registry to MCP/tool schemas for deterministic agent loading |
 | **Field performance SLO templates** | RUM dashboards aligned with Layer 6 SLO definitions |
 | **Formal working group** | Maintainers + adopters for major semver proposals |

@@ -85,6 +85,9 @@ jobs:
             "
           done
 
+      - name: Install dependencies (workspaces)
+        run: npm ci
+
       - name: Validate repository
         run: npm run validate
 

@@ -1,0 +1,4 @@
+/* Golden path: intentional HIG-MOT-001 violation for CI and local demos. */
+.card {
+  transition: all 200ms ease;
+}

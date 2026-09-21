@@ -1,0 +1,6 @@
+docs/
+packages/install/vendor/
+packages/cli/package-lock.json
+package-lock.json
+rules/registry.yaml
+rules/quick-rule-map.yaml

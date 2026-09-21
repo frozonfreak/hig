@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/frozonfreak/hig/schema/manifest.schema.json",
   "title": "The Web HIG progressive loading manifest",
-  "description": "Draft schema for rules/manifest.yaml. Informative until CI enforcement lands.",
+  "description": "Schema for rules/manifest.yaml — enforced in CI via scripts/validate-manifest-schema.mjs",
   "type": "object",
   "required": ["version", "layers", "modules"],
   "additionalProperties": true,

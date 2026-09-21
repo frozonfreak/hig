@@ -19,9 +19,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: Install dependencies (workspaces)
+        run: npm ci
+      - name: Lint JavaScript
+        run: npm run lint
       - name: Validate contract, Markdown links, and rule IDs
         run: npm run validate
-      - name: Test installer
+      - name: Test installer and golden path
         run: npm test
       - name: Documentation site artifacts
         run: npm run build:docs

@@ -8,6 +8,7 @@ Copy these into a **product** repository. They are not loaded when developing Th
 
 | Goal | Start here |
 | --- | --- |
+| **Golden path** (pin + skill + failing `web-hig check`) | [golden-path/](./golden-path/) |
 | Fastest agent + PR workflow | `npx @web-hig/install` then [adoption/quick-profile-walkthrough.md](./adoption/quick-profile-walkthrough.md) |
 | Route → archetype map | [hig-scope.example.md](./hig-scope.example.md) |
 | Full pin list + CI stages | [INTEGRATION.md](../INTEGRATION.md) |

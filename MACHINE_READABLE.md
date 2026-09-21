@@ -27,7 +27,7 @@ Layer 7 defines how requirements become **deterministic** for linters, CI, and A
 
 ### Manifest schema (draft)
 
-A JSON Schema draft for the manifest lives at [schema/manifest.schema.json](./schema/manifest.schema.json). CI validates required top-level keys via `npm run validate`; full YAML shape validation may follow in a later release.
+[schema/manifest.schema.json](./schema/manifest.schema.json) validates `rules/manifest.yaml` on every `npm run validate` ([scripts/validate-manifest-schema.mjs](./scripts/validate-manifest-schema.mjs)).
 
 ---
 

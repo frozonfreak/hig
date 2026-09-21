@@ -1,15 +1,34 @@
 {
   "name": "web-hig",
   "private": true,
+  "type": "module",
   "description": "Pin a versioned behavioral contract for web UX, accessibility, and AI coding agents.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
-    "validate": "node scripts/validate-hig.mjs",
+    "validate": "node scripts/validate-hig.mjs && node scripts/validate-manifest-schema.mjs",
     "sync:registry": "node scripts/sync-registry.mjs",
     "sync:quick-map": "node scripts/sync-quick-map.mjs",
     "check:version-bump": "node scripts/check-version-bump.mjs",
     "release:notes": "node scripts/release-notes.mjs",
     "build:docs": "node scripts/build-docs.mjs",
-    "pretest": "npm ci --prefix packages/cli --omit=dev",
-    "test": "node scripts/test/validate-hig.test.mjs && node packages/install/test/install.test.mjs && node packages/cli/test/check.test.mjs && node packages/cli/test/evaluator-report.test.mjs"
+    "lint": "eslint .",
+    "format": "prettier --check \"scripts/**/*.mjs\" \"packages/**/*.mjs\" \"eslint.config.js\"",
+    "format:write": "prettier --write \"scripts/**/*.mjs\" \"packages/**/*.mjs\" \"eslint.config.js\"",
+    "pretest": "node --input-type=module -e \"import fs from 'node:fs'; if (!fs.existsSync('node_modules/@web-hig/core/package.json')) { console.error('Run npm install at repo root'); process.exit(1); }\"",
+    "test": "node scripts/test/validate-hig.test.mjs && node scripts/test/golden-path.test.mjs && node packages/install/test/install.test.mjs && node packages/cli/test/check.test.mjs && node packages/cli/test/evaluator-report.test.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.22.0",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "eslint": "^9.22.0",
+    "globals": "^16.0.0",
+    "prettier": "^3.5.3",
+    "yaml": "^2.7.0"
   }
 }
