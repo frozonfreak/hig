@@ -8,15 +8,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { PUBLIC_DOC_PAGES, SITE, renderSitemapXml } from './doc-site.mjs';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const docs = path.join(root, 'docs');
 
-export const SITE = {
-  origin: 'https://frozonfreak.github.io/hig',
-  github: 'https://github.com/frozonfreak/hig',
-  title: 'The Web HIG — Pin how the web behaves',
-};
+export { SITE };
 
 const errors = [];
 
@@ -42,20 +39,7 @@ writeDocs(
   ['User-agent: *', 'Allow: /', '', `Sitemap: ${sitemapUrl}`, ''].join('\n'),
 );
 
-writeDocs(
-  'sitemap.xml',
-  [
-    '<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    '  <url>',
-    `    <loc>${home}</loc>`,
-    '    <changefreq>weekly</changefreq>',
-    '    <priority>1.0</priority>',
-    '  </url>',
-    '</urlset>',
-    '',
-  ].join('\n'),
-);
+writeDocs('sitemap.xml', renderSitemapXml(SITE.origin));
 
 writeDocs(
   '404.html',
@@ -110,6 +94,12 @@ if (!fs.existsSync(path.join(docs, 'social', 'og-image.png'))) {
 
 if (!fs.existsSync(path.join(docs, '.nojekyll'))) {
   fail('docs/.nojekyll is missing (required so GitHub Pages serves static files as-is)');
+}
+
+for (const page of PUBLIC_DOC_PAGES) {
+  if (!fs.existsSync(path.join(docs, page))) {
+    fail(`docs/${page} is missing (linked from docs/index.html navigation)`);
+  }
 }
 
 if (errors.length) {

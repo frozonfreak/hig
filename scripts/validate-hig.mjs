@@ -6,6 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { PUBLIC_DOC_PAGES, SITE, SITEMAP_PATHS } from './doc-site.mjs';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const errors = [];
@@ -370,6 +371,33 @@ if (docsIndex) {
       JSON.parse(jsonLd[1]);
     } catch {
       fail('docs/index.html JSON-LD is not valid JSON');
+    }
+  }
+  for (const page of PUBLIC_DOC_PAGES) {
+    if (!docsIndex.includes(`href="${page}"`)) {
+      fail(`docs/index.html must link to ${page}`);
+    }
+    const pagePath = `docs/${page}`;
+    if (!exists(pagePath)) {
+      fail(`missing ${pagePath}`);
+      continue;
+    }
+    const html = read(pagePath);
+    if (!html.includes(`class="version-badge">${docsVersionLabel}<`)) {
+      fail(`${pagePath} version-badge must show ${docsVersionLabel}`);
+    }
+    if (!html.includes(`The Web HIG ${docsVersionLabel}`)) {
+      fail(`${pagePath} footer must include "The Web HIG ${docsVersionLabel}"`);
+    }
+  }
+}
+
+const sitemapText = exists('docs/sitemap.xml') ? read('docs/sitemap.xml') : '';
+if (sitemapText) {
+  for (const { path: sitePath } of SITEMAP_PATHS) {
+    const loc = sitePath === '/' ? `${SITE.origin}/` : `${SITE.origin}${sitePath}`;
+    if (!sitemapText.includes(`<loc>${loc}</loc>`)) {
+      fail(`docs/sitemap.xml must include ${loc}`);
     }
   }
 }

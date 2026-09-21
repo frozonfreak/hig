@@ -8,6 +8,10 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ## [Unreleased]
 
+### Changed
+
+- Documentation site split into a hub home page plus **Understand**, **Adopt**, **AI & agents**, and **Reference** pages (mobile nav, share UI on Adopt).
+
 ---
 
 ## [1.12.4] - 2026-09-20

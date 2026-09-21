@@ -32,7 +32,7 @@ Keep `utm_medium` and `utm_campaign` fixed. Change only `utm_source` to match wh
 
 GitHub Traffic Insights reports referring *sites*, not UTM breakdowns. Keep these parameters anyway: they show up in any analytics you attach later, and they stay visible on the destination URL.
 
-Interactive copy UI: [documentation site — Share this HIG](https://frozonfreak.github.io/hig/#share).
+Interactive copy UI: [documentation site — Share this HIG](https://frozonfreak.github.io/hig/adopt.html#share).
 
 ---
 

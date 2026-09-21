@@ -167,7 +167,7 @@ Copy a badge into your README, blog, or docs. Every link points back to this rep
 [![The Web HIG](https://frozonfreak.github.io/hig/badge.svg)](https://github.com/frozonfreak/hig?utm_source=github_readme&utm_medium=badge&utm_campaign=share)
 ```
 
-More placements (docs, blog, social, HTML) and the UTM convention: [SHARE.md](./SHARE.md). Interactive copy: [documentation site](https://frozonfreak.github.io/hig/#share).
+More placements (docs, blog, social, HTML) and the UTM convention: [SHARE.md](./SHARE.md). Interactive copy: [documentation site — Share this HIG](https://frozonfreak.github.io/hig/adopt.html#share).
 
 ---
 

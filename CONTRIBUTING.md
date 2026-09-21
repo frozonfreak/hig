@@ -88,7 +88,7 @@ Roadmap context: [ROADMAP.md](./ROADMAP.md)
 
 ## Documentation site
 
-The public site is static HTML in [`docs/`](./docs/), deployed to [GitHub Pages](https://frozonfreak.github.io/hig/) on every push to `main` ([`.github/workflows/pages.yml`](./.github/workflows/pages.yml)).
+The public site is static HTML in [`docs/`](./docs/) — hub [`index.html`](./docs/index.html) plus [`understand.html`](./docs/understand.html), [`adopt.html`](./docs/adopt.html) (share UI), [`ai.html`](./docs/ai.html), and [`reference.html`](./docs/reference.html) — deployed to [GitHub Pages](https://frozonfreak.github.io/hig/) on every push to `main` ([`.github/workflows/pages.yml`](./.github/workflows/pages.yml)).
 
 ```bash
 npm run build:docs

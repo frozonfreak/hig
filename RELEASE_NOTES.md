@@ -12,7 +12,7 @@ Patch release: **documentation site npm discovery**. No normative rule was added
 
 ### Highlights
 
-- **[Documentation site](https://frozonfreak.github.io/hig/#npm-packages)** — **npm packages** section with links to `@web-hig/install`, `@web-hig/cli`, and `@web-hig/core` on npm; nav, hero, integration, and repo tree cross-links.
+- **[Documentation site — npm packages](https://frozonfreak.github.io/hig/adopt.html#npm-packages)** — table and links to `@web-hig/install`, `@web-hig/cli`, and `@web-hig/core` on npm; nav, integration, and repo tree cross-links.
 
 ### Upgrade from v1.12.3
 
