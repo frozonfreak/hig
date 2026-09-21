@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Adopt in your product — The Web HIG</title>
+  <meta name="description" content="Pin HIG-QUICK, use npm install tooling, share badges, and integrate The Web HIG into your repo in one afternoon.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://frozonfreak.github.io/hig/adopt.html">
+  <meta property="og:site_name" content="The Web HIG">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Adopt in your product — The Web HIG">
+  <meta property="og:description" content="Pin HIG-QUICK, use npm install tooling, share badges, and integrate The Web HIG into your repo in one afternoon.">
+  <meta property="og:url" content="https://frozonfreak.github.io/hig/adopt.html">
+  <meta property="og:image" content="https://frozonfreak.github.io/hig/social/og-image.png">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#top">Skip to main content</a>
+  <div class="layout">
+    <nav class="sidebar" aria-label="Documentation navigation">
+      <a class="brand" href="index.html">The Web HIG</a>
+      <span class="version-badge">v1.12.4</span>
+
+      <div class="nav-group">
+        <div class="nav-label">Documentation</div>
+        <ul>
+          <li><a href="index.html" class="">Home</a></li>
+          <li><a href="understand.html" class="">Understand</a></li>
+          <li><a href="adopt.html" class="nav-page-active">Adopt</a></li>
+          <li><a href="ai.html" class="">AI & agents</a></li>
+          <li><a href="reference.html" class="">Reference</a></li>
+        </ul>
+      </div>
+      <div class="nav-divider"></div>
+      <div class="nav-group">
+        <div class="nav-label">On this page</div>
+        <ul>
+          <li><a href="#start-here">Start here</a></li>
+          <li><a href="#how">Try it</a></li>
+          <li><a href="#npm-packages">npm packages</a></li>
+          <li><a href="#share">Share</a></li>
+          <li><a href="#integration">Integration</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <a class="github-link" href="https://hig.aruviflow.com/">Live demo →</a>
+      <a class="github-link" href="https://github.com/frozonfreak/hig">View on GitHub →</a>
+    </nav>
+
+    <main id="top" tabindex="-1">
+      <header class="page-header">
+        <p class="hero-eyebrow">The Web HIG</p>
+        <h1>Adopt in your product</h1>
+        <p class="lead">Pin the contract, map routes, wire agents, and add checks — most teams start here in one afternoon.</p>
+      </header>
+
+<div class="journey-landmark" id="adopt" aria-label="Section: Adopt it">
+        <span class="journey-num">2</span>
+        <span class="journey-title">Adopt it</span>
+      </div>
+
+<section id="start-here" class="section-block">
+        <h2>Start here</h2>
+        <p class="section-intro">One file is the whole onboarding path. Everything else is optional escalation.</p>
+
+        <div class="start-callout">
+          <h3>Pin HIG-QUICK.md</h3>
+          <p>
+            Ninety-eight rules, about five minutes. Copy it into <code>docs/hig/</code> with <code>VERSION</code>,
+            then tell agents: <em>Follow The Web HIG Quick Reference.</em>
+          </p>
+          <a class="btn btn-primary" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Open the Quick Reference</a>
+        </div>
+
+        <div class="start-grid">
+          <a class="start-card" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">
+            <h3>I'm a developer</h3>
+            <p>Read the Quick Reference, pin it, and use it in PR review.</p>
+            <span class="start-link">Open HIG-QUICK.md →</span>
+          </a>
+          <a class="start-card" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">
+            <h3>I'm a designer</h3>
+            <p>Same file — states, tokens, accessibility, and motion in one pass.</p>
+            <span class="start-link">Open HIG-QUICK.md →</span>
+          </a>
+          <a class="start-card" href="#npm-packages">
+            <h3>I'm building with AI</h3>
+            <p>Run <code>npx @web-hig/install</code> or <code>npx web-hig init</code>, then <code>web-hig check</code> for structured findings.</p>
+            <span class="start-link">npm tooling →</span>
+          </a>
+          <a class="start-card" href="#integration">
+            <h3>I want to adopt the standard</h3>
+            <p>Pin the contract, map your routes, wire your tools — one afternoon.</p>
+            <span class="start-link">Integration guide →</span>
+          </a>
+        </div>
+      </section>
+
+<section id="how" class="section-block">
+        <h2>Try it in one afternoon</h2>
+        <p class="section-intro">
+          Run <code>npx @web-hig/install</code> to pin the contract under <code>docs/hig/</code>,
+          map routes in <code>docs/hig-scope.md</code> (archetype plus <strong>surface</strong> for content pages),
+          and install agent rules plus skills. Use the Quick Reference in PR review.
+        </p>
+        <p>
+          Step-by-step checklist (pin → scope → agents → CI):
+          <a href="#integration">Integration into your product →</a>
+          ·
+          <a href="https://github.com/frozonfreak/hig/blob/main/examples/conformance-checklist.md">PR checklist template →</a>
+        </p>
+      </section>
+
+<section id="npm-packages" class="section-block">
+        <h2>npm packages</h2>
+        <p class="section-intro">
+          Executable conformance tooling for the pinned HIG contract — install, check, and explain rules in product repos and CI.
+          Not a component library; use your existing stack and design system.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Package</th>
+                <th scope="col">Role</th>
+                <th scope="col">Install</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="https://www.npmjs.com/package/@web-hig/install"><code>@web-hig/install</code></a></td>
+                <td>Pin <code>docs/hig/</code>, agent rules, and skills (<code>npx @web-hig/install</code>)</td>
+                <td><code>npx @web-hig/install</code></td>
+              </tr>
+              <tr>
+                <td><a href="https://www.npmjs.com/package/@web-hig/cli"><code>@web-hig/cli</code></a></td>
+                <td><code>web-hig init</code>, <code>check</code>, <code>explain</code> — static conformance reports</td>
+                <td><code>npm i -D @web-hig/cli</code></td>
+              </tr>
+              <tr>
+                <td><a href="https://www.npmjs.com/package/@web-hig/core"><code>@web-hig/core</code></a></td>
+                <td>Registry loader, <code>web-hig.yaml</code> parsing, evaluator report model (for custom CI/tools)</td>
+                <td><code>npm i @web-hig/core</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Typical flow: <code>npx web-hig init --profile practical</code> → set <code>WEB_HIG_ROOT=docs/hig</code> →
+          add <a href="https://github.com/frozonfreak/hig/blob/main/examples/web-hig.example.yaml"><code>web-hig.yaml</code></a> →
+          <code>npx web-hig check</code>.
+        </p>
+        <p>
+          Architecture:
+          <a href="https://github.com/frozonfreak/hig/blob/main/NPM-TOOLING.md">NPM-TOOLING.md</a>
+          · Maintainer publish guide:
+          <a href="https://github.com/frozonfreak/hig/blob/main/packages/PUBLISHING.md">packages/PUBLISHING.md</a>
+          ·
+          <a href="https://www.npmjs.com/settings/web-hig/packages">npm org packages (maintainers)</a>
+        </p>
+      </section>
+
+<section id="share" class="section-block">
+        <h2>Share this HIG</h2>
+        <p class="section-intro">
+          Add a badge to your README, blog, or docs. Each snippet links to the GitHub repo
+          with UTM parameters so inbound clicks can be attributed by source.
+        </p>
+
+        <div class="share-panel">
+          <div class="share-panel-inner">
+            <div class="share-preview">
+              <p class="share-preview-label" id="share-preview-caption">Badge preview</p>
+              <a id="share-preview-link" href="https://github.com/frozonfreak/hig?utm_source=github_readme&amp;utm_medium=badge&amp;utm_campaign=share">
+                <img src="badge.svg" width="204" height="20" alt="The Web HIG — open behavioral standard">
+              </a>
+            </div>
+
+            <fieldset class="share-fields">
+              <legend>Copy a tracked snippet</legend>
+
+              <div class="share-field">
+                <label for="share-source">Where will you post this?</label>
+                <select class="share-select" id="share-source">
+                  <option value="github_readme" selected>GitHub README</option>
+                  <option value="docs">Docs site</option>
+                  <option value="blog">Blog or article</option>
+                  <option value="social">Social post</option>
+                  <option value="newsletter">Newsletter</option>
+                  <option value="website">Website</option>
+                  <option value="custom">Custom source…</option>
+                </select>
+              </div>
+
+              <div class="share-field" id="share-custom-wrap" hidden>
+                <label for="share-custom">Custom source slug</label>
+                <input class="share-input" id="share-custom" type="text" maxlength="40" autocomplete="off" spellcheck="false" placeholder="meetup_slides" aria-describedby="share-custom-help">
+                <p class="share-help" id="share-custom-help">Letters, numbers, and underscores. Becomes <code>utm_source</code>.</p>
+              </div>
+
+              <fieldset class="share-radios">
+                <legend class="share-radios-legend">Snippet format</legend>
+                <label>
+                  <input type="radio" name="share-format" value="markdown" checked>
+                  Markdown
+                </label>
+                <label>
+                  <input type="radio" name="share-format" value="html">
+                  HTML
+                </label>
+              </fieldset>
+
+              <div class="share-field">
+                <label for="share-snippet">Snippet</label>
+                <textarea class="share-snippet" id="share-snippet" readonly rows="4" spellcheck="false">[![The Web HIG](https://frozonfreak.github.io/hig/badge.svg)](https://github.com/frozonfreak/hig?utm_source=github_readme&amp;utm_medium=badge&amp;utm_campaign=share)</textarea>
+              </div>
+
+              <div class="share-actions">
+                <button class="btn btn-primary" type="button" id="share-copy">Copy markdown</button>
+                <p class="share-status" id="share-status" role="status" aria-live="polite"></p>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
+        <p>
+          Full snippets and UTM convention:
+          <a href="https://github.com/frozonfreak/hig/blob/main/SHARE.md">SHARE.md</a>.
+          For a pinned-semver conformance line, see
+          <a href="https://github.com/frozonfreak/hig/blob/main/PROFILES.md">PROFILES.md</a>.
+        </p>
+      </section>
+
+<section id="integration" class="section-block">
+        <h2>Integration into your product</h2>
+        <p class="section-intro">Adopt gradually — most teams start in one afternoon.</p>
+        <ol class="steps">
+          <li>
+            <strong>Pin the contract</strong> — <code>npx @web-hig/install</code> (or copy HIG-QUICK, VERSION, and rules into <code>docs/hig/</code>)
+            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/blob/main/packages/install/README.md">Installer →</a> · ~1 minute</span>
+          </li>
+          <li>
+            <strong>Map your routes</strong> — create <code>docs/hig-scope.md</code> with archetype per route and <strong>surface</strong> for content (<code>document</code> · <code>hybrid</code> · <code>experience</code>)
+            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/blob/main/examples/hig-scope.example.md">Example →</a> · ~15 minutes</span>
+          </li>
+          <li>
+            <strong>Add agent rules</strong> — installer copies Cursor, Claude Code, Copilot, and Windsurf rules plus skills; or copy templates manually
+            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/tree/main/skills">Skills →</a> · ~5 minutes</span>
+          </li>
+          <li>
+            <strong>PR checklist</strong> — copy the conformance checklist for human review until linters exist
+            <span class="step-meta"><a href="https://github.com/frozonfreak/hig/blob/main/examples/conformance-checklist.md">Template →</a> · ~10 minutes</span>
+          </li>
+          <li>
+            <strong>Lint &amp; CI</strong> — run <code>web-hig check</code> in PR pipelines; expand with ESLint/Stylelint plugins over time
+            <span class="step-meta"><a href="#npm-packages">npm packages →</a> · <a href="https://github.com/frozonfreak/hig/blob/main/INTEGRATION.md">INTEGRATION.md</a></span>
+          </li>
+        </ol>
+        <p>
+          Full guide:
+          <a href="https://github.com/frozonfreak/hig/blob/main/INTEGRATION.md">INTEGRATION.md</a>
+        </p>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="https://hig.aruviflow.com/">Live demo</a>
+          <a href="https://github.com/frozonfreak/hig">GitHub</a>
+          <a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Quick Reference</a>
+          <a href="adopt.html#share">Share this HIG</a>
+        </div>
+        <p>The Web HIG v1.12.4 — an open standard for AI-native web development.</p>
+      </footer>
+    </main>
+  </div>
+  <script src="js/site.js"></script>
+  <script src="js/share.js"></script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reference — The Web HIG</title>
+  <meta name="description" content="Page archetypes, rule ID prefixes, validation, governance documents, glossary, and FAQ for The Web HIG.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://frozonfreak.github.io/hig/reference.html">
+  <meta property="og:site_name" content="The Web HIG">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Reference — The Web HIG">
+  <meta property="og:description" content="Page archetypes, rule ID prefixes, validation, governance documents, glossary, and FAQ for The Web HIG.">
+  <meta property="og:url" content="https://frozonfreak.github.io/hig/reference.html">
+  <meta property="og:image" content="https://frozonfreak.github.io/hig/social/og-image.png">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#top">Skip to main content</a>
+  <div class="layout">
+    <nav class="sidebar" aria-label="Documentation navigation">
+      <a class="brand" href="index.html">The Web HIG</a>
+      <span class="version-badge">v1.12.4</span>
+
+      <div class="nav-group">
+        <div class="nav-label">Documentation</div>
+        <ul>
+          <li><a href="index.html" class="">Home</a></li>
+          <li><a href="understand.html" class="">Understand</a></li>
+          <li><a href="adopt.html" class="">Adopt</a></li>
+          <li><a href="ai.html" class="">AI & agents</a></li>
+          <li><a href="reference.html" class="nav-page-active">Reference</a></li>
+        </ul>
+      </div>
+      <div class="nav-divider"></div>
+      <div class="nav-group">
+        <div class="nav-label">On this page</div>
+        <ul>
+          <li><a href="#archetypes">Archetypes</a></li>
+          <li><a href="#rule-ids">Rule IDs</a></li>
+          <li><a href="#validation">Validation</a></li>
+          <li><a href="#standard-docs">Governance</a></li>
+          <li><a href="#documents">All documents</a></li>
+          <li><a href="#glossary">Glossary</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <a class="github-link" href="https://hig.aruviflow.com/">Live demo →</a>
+      <a class="github-link" href="https://github.com/frozonfreak/hig">View on GitHub →</a>
+    </nav>
+
+    <main id="top" tabindex="-1">
+      <header class="page-header">
+        <p class="hero-eyebrow">The Web HIG</p>
+        <h1>Reference</h1>
+        <p class="lead">Look up archetypes, rule IDs, spec documents, and terminology — keep this page bookmarked.</p>
+      </header>
+
+<div class="journey-landmark" id="go-deeper" aria-label="Section: Go deeper">
+        <span class="journey-num">4</span>
+        <span class="journey-title">Go deeper</span>
+      </div>
+
+<section id="archetypes" class="section-block">
+        <h2>Page archetypes</h2>
+        <p class="section-intro">
+          Identify your page type first. Each archetype pack lists which topic modules to preload.
+          Accessibility, tokens, performance, and security are universal — never optional.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Archetype</th>
+                <th scope="col">Examples</th>
+                <th scope="col">Default modules</th>
+                <th scope="col">Pack</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Content / Marketing</strong></td>
+                <td>Landing pages, blogs, docs, portfolios</td>
+                <td>7+</td>
+                <td><a href="https://github.com/frozonfreak/hig/blob/main/rules/archetypes/content.md">content.md</a></td>
+              </tr>
+              <tr>
+                <td><strong>Commerce</strong></td>
+                <td>Product pages, cart, checkout</td>
+                <td>13</td>
+                <td><a href="https://github.com/frozonfreak/hig/blob/main/rules/archetypes/commerce.md">commerce.md</a></td>
+              </tr>
+              <tr>
+                <td><strong>Application</strong></td>
+                <td>Dashboards, admin tools, workflows</td>
+                <td>15</td>
+                <td><a href="https://github.com/frozonfreak/hig/blob/main/rules/archetypes/application.md">application.md</a></td>
+              </tr>
+              <tr>
+                <td><strong>Auth / Account</strong></td>
+                <td>Login, signup, settings</td>
+                <td>12</td>
+                <td><a href="https://github.com/frozonfreak/hig/blob/main/rules/archetypes/auth.md">auth.md</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>
+          Content routes declare a <strong>surface</strong> (<code>document</code> · <code>hybrid</code> · <code>experience</code>).
+          Hybrid and experience pages preload
+          <a href="https://github.com/frozonfreak/hig/blob/main/rules/expressive-surface.md">expressive-surface.md</a>
+          (<code>HIG-EXP-001</code>–<code>014</code>).
+        </p>
+        <p>
+          17 topic modules · 4 archetypes ·
+          Framework adapters: React, Next.js, Vue, Nuxt, Astro —
+          <a href="https://github.com/frozonfreak/hig/tree/main/framework">framework/</a>
+        </p>
+      </section>
+
+<section id="rule-ids" class="section-block">
+        <h2>Rule ID system</h2>
+        <p class="section-intro">
+          Every machine-enforceable rule has a stable ID for code review, AI citations, and future lint rules.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Prefix</th>
+                <th scope="col">Domain</th>
+                <th scope="col">Example</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>HIG-A11Y-*</code></td><td>Accessibility</td><td><code>HIG-A11Y-003</code> — native HTML over ARIA</td></tr>
+              <tr><td><code>HIG-TOK-*</code></td><td>Design tokens</td><td><code>HIG-TOK-001</code> — no raw hex outside token files</td></tr>
+              <tr><td><code>HIG-MOT-*</code></td><td>Motion</td><td><code>HIG-MOT-001</code> — no <code>transition: all</code></td></tr>
+              <tr><td><code>HIG-EXP-*</code></td><td>Expressive content surfaces</td><td><code>HIG-EXP-001</code> — declare surface in scope</td></tr>
+              <tr><td><code>HIG-CQ-*</code></td><td>Container queries</td><td><code>HIG-CQ-001</code> (SHOULD) · <code>HIG-CQ-002</code> (MUST) for multi-context reuse</td></tr>
+              <tr><td><code>HIG-SSR-*</code></td><td>Server rendering</td><td><code>HIG-SSR-001</code> — default to server rendering</td></tr>
+              <tr><td><code>HIG-MUT-*</code></td><td>Mutations</td><td><code>HIG-MUT-001</code> — no optimistic destructive confirmation</td></tr>
+              <tr><td><code>HIG-SEC-*</code></td><td>Security</td><td><code>HIG-SEC-002</code> — CSP configured</td></tr>
+              <tr><td><code>HIG-SIM-001</code></td><td>Simplicity</td><td>Prefer simplest compliant implementation</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Full registry:
+          <a href="https://github.com/frozonfreak/hig/blob/main/rules/INDEX.md">rules/INDEX.md</a>
+        </p>
+      </section>
+
+<section id="validation" class="section-block">
+        <h2>Validation &amp; CI</h2>
+        <p class="section-intro">Keep VERSION, manifest, and modules synchronized when upgrading pins. Layer 8 tools emit multidimensional reports — not a single score alone.</p>
+        <pre><code>npm run validate
+# or: node scripts/validate-hig.mjs</code></pre>
+        <p>
+          Contract validation checks version sync, file references, archetype packs, rule ID consistency, documentation site version strings, and adopter pins.
+          Runs on every PR via GitHub Actions.
+        </p>
+        <p>
+          Product CI evaluators should follow
+          <a href="https://github.com/frozonfreak/hig/blob/main/EVALUATOR.md">EVALUATOR.md</a>
+          (blocking / warnings / observations plus eight dimensions).
+          Schema:
+          <a href="https://github.com/frozonfreak/hig/blob/main/schema/evaluator-report.schema.json">evaluator-report.schema.json</a>
+        </p>
+      </section>
+
+<section id="standard-docs" class="section-block">
+        <h2>Governance &amp; specification</h2>
+        <p>The Web HIG is published as an open standard: rationale, semver, changelog, conformance profiles, and a path to machine-readable rules.</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Document</th><th scope="col">Purpose</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/RATIONALE.md">RATIONALE.md</a></td><td>Why the standard exists; goals and non-goals</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/SPECIFICATION.md">SPECIFICATION.md</a></td><td>Index to normative layers and modules</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/PROFILES.md">PROFILES.md</a></td><td>Quick Reference vs Practical vs Full conformance</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/VERSIONING.md">VERSIONING.md</a></td><td>Semver and pinning in product repos</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/CHANGELOG.md">CHANGELOG.md</a></td><td>Keep a Changelog release history</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/ROADMAP.md">ROADMAP.md</a></td><td>Contract and tooling direction</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/MACHINE_READABLE.md">MACHINE_READABLE.md</a></td><td>Manifest, rule registry, linters</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/NPM-TOOLING.md">NPM-TOOLING.md</a></td><td>npm CLI, profiles, <code>web-hig.yaml</code></td></tr>
+              <tr><td><a href="https://www.npmjs.com/settings/web-hig/packages">npm — @web-hig packages</a></td><td>Published packages (maintainer settings on npmjs.com)</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/ADOPTERS.md">ADOPTERS.md</a></td><td>Projects pinning the contract</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+<section id="documents" class="section-block">
+        <h2>All documents</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Document</th>
+                <th scope="col">Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md"><strong>HIG-QUICK.md</strong></a></td><td>Quick Reference — read first (~5 min, 98 rules)</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-LITE.md"><strong>HIG-LITE.md</strong></a></td><td>Practical guide with rule IDs and checklists (Layer 2)</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/HIG.md"><strong>HIG.md</strong></a></td><td>Complete normative specification</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/HIG-CORE.md">HIG-CORE.md</a></td><td>Philosophy, vocabulary, archetypes</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/INTEGRATION.md">INTEGRATION.md</a></td><td>Product repo adoption guide</td></tr>
+              <tr><td><a href="adopt.html#npm-packages">npm packages</a></td><td><code>@web-hig/install</code>, <code>@web-hig/cli</code>, <code>@web-hig/core</code></td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/SHARE.md">SHARE.md</a></td><td>Share badge and copy-paste markdown with UTM parameters</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/tree/main/examples">examples/</a></td><td>Scope templates, agent rules, adoption walkthrough</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/rules/INDEX.md">rules/INDEX.md</a></td><td>Topic index &amp; rule ID registry</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/RELEASE_NOTES.md">RELEASE_NOTES.md</a></td><td>Adoption-focused release notes</td></tr>
+              <tr><td><a href="https://github.com/frozonfreak/hig/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a></td><td>Proposing spec changes</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+<section id="glossary" class="section-block">
+        <h2>Glossary</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Term</th><th scope="col">Meaning</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Archetype</strong></td><td>Page category (marketing, shop, app, login) that determines required rules</td></tr>
+              <tr><td><strong>Design token</strong></td><td>Named design value (e.g. <code>--color-primary</code>) instead of hard-coded values</td></tr>
+              <tr><td><strong>HIG-QUICK</strong></td><td>98-rule Quick Reference — default context for daily work and AI agents</td></tr>
+              <tr><td><strong>HIG-LITE</strong></td><td>Practical guide with rule IDs — Layer 2 documentation</td></tr>
+              <tr><td><strong>Rule ID</strong></td><td>Stable code like <code>HIG-A11Y-003</code> identifying one specific requirement</td></tr>
+              <tr><td><strong>WCAG 2.2 AA</strong></td><td>International accessibility standard — our compliance target</td></tr>
+              <tr><td><strong>Core Web Vitals</strong></td><td>Google metrics: load speed (LCP), responsiveness (INP), stability (CLS)</td></tr>
+              <tr><td><strong>Progressive loading</strong></td><td>Opening only the docs needed for the current task</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+<section id="faq" class="section-block">
+        <h2>FAQ</h2>
+        <details>
+          <summary>Where do I start?</summary>
+          <p><a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">HIG-QUICK.md</a> is the whole onboarding path — about five minutes. Pin that file, then tell agents: <em>Follow The Web HIG Quick Reference.</em></p>
+        </details>
+        <details>
+          <summary>Is this a component library?</summary>
+          <p>No. It is a <strong>rulebook and engineering contract</strong>, not a component library. You keep your design system, framework, and components; the HIG defines how they should work together.</p>
+        </details>
+        <details>
+          <summary>Do I need to follow every rule?</summary>
+          <p>Follow rules for your page type and feature. Accessibility, tokens, performance, and security are always required. Use archetype packs to see what's mandatory for your case.</p>
+        </details>
+        <details>
+          <summary>I'm not using AI — is this still for me?</summary>
+          <p>Yes. The HIG is written for human developers and designers first. AI-related sections are optional extras for teams using Cursor, Copilot, or Claude Code.</p>
+        </details>
+        <details>
+          <summary>How is this different from a style guide?</summary>
+          <p>A style guide covers look and feel. This also covers behavior: error handling, delete flows, performance targets, accessibility compliance, and security requirements.</p>
+        </details>
+        <details>
+          <summary>Is this competing with WCAG, Material, or Lighthouse?</summary>
+          <p>No. WCAG is the accessibility target. Material, Fluent, Carbon, and GOV.UK are visual or domain design systems. Lighthouse measures. WAI-ARIA APG and Open UI cover widgets and platform primitives. The Web HIG is the behavioral contract that sits in the gap between them — see the <a href="understand.html#landscape">competitive landscape</a>.</p>
+        </details>
+        <details>
+          <summary>Can I customize rules for my product?</summary>
+          <p>Documented exceptions are allowed with justification. Security, accessibility, and data-protection rules cannot be skipped.</p>
+        </details>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="https://hig.aruviflow.com/">Live demo</a>
+          <a href="https://github.com/frozonfreak/hig">GitHub</a>
+          <a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Quick Reference</a>
+          <a href="adopt.html#share">Share this HIG</a>
+        </div>
+        <p>The Web HIG v1.12.4 — an open standard for AI-native web development.</p>
+      </footer>
+    </main>
+  </div>
+  <script src="js/site.js"></script>
+</body>
+</html>

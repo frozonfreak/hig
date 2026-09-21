@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI & coding agents — The Web HIG</title>
+  <meta name="description" content="How to load The Web HIG for Cursor, Copilot, and Claude Code — progressive disclosure, rule IDs, and repository layout.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://frozonfreak.github.io/hig/ai.html">
+  <meta property="og:site_name" content="The Web HIG">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI & coding agents — The Web HIG">
+  <meta property="og:description" content="How to load The Web HIG for Cursor, Copilot, and Claude Code — progressive disclosure, rule IDs, and repository layout.">
+  <meta property="og:url" content="https://frozonfreak.github.io/hig/ai.html">
+  <meta property="og:image" content="https://frozonfreak.github.io/hig/social/og-image.png">
+  <link rel="stylesheet" href="css/site.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a class="skip-link" href="#top">Skip to main content</a>
+  <div class="layout">
+    <nav class="sidebar" aria-label="Documentation navigation">
+      <a class="brand" href="index.html">The Web HIG</a>
+      <span class="version-badge">v1.12.4</span>
+
+      <div class="nav-group">
+        <div class="nav-label">Documentation</div>
+        <ul>
+          <li><a href="index.html" class="">Home</a></li>
+          <li><a href="understand.html" class="">Understand</a></li>
+          <li><a href="adopt.html" class="">Adopt</a></li>
+          <li><a href="ai.html" class="nav-page-active">AI & agents</a></li>
+          <li><a href="reference.html" class="">Reference</a></li>
+        </ul>
+      </div>
+      <div class="nav-divider"></div>
+      <div class="nav-group">
+        <div class="nav-label">On this page</div>
+        <ul>
+          <li><a href="#ai-workflow">Humans & AI</a></li>
+          <li><a href="#architecture">Architecture</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <a class="github-link" href="https://hig.aruviflow.com/">Live demo →</a>
+      <a class="github-link" href="https://github.com/frozonfreak/hig">View on GitHub →</a>
+    </nav>
+
+    <main id="top" tabindex="-1">
+      <header class="page-header">
+        <p class="hero-eyebrow">The Web HIG</p>
+        <h1>Use it with AI</h1>
+        <p class="lead">Pin HIG-QUICK instead of pasting the full spec. Stable rule IDs, manifest triggers, and agent templates.</p>
+      </header>
+
+<div class="journey-landmark" id="use-with-ai" aria-label="Section: Use it with AI">
+        <span class="journey-num">3</span>
+        <span class="journey-title">Use it with AI</span>
+      </div>
+
+<section id="ai-workflow" class="section-block">
+        <h2>Built for humans and AI agents</h2>
+        <p class="section-intro">
+          Do not paste the entire HIG into every prompt. Pin HIG-QUICK and say:
+          <em>"Follow The Web HIG Quick Reference."</em>
+        </p>
+
+        <ol class="pipeline" aria-label="HIG adoption workflow">
+          <li class="pipeline-item"><span class="pipeline-step">Developer</span></li>
+          <li class="pipeline-item"><span class="pipeline-step pipeline-step-accent">HIG</span></li>
+          <li class="pipeline-item"><span class="pipeline-step">AI agent</span></li>
+          <li class="pipeline-item"><span class="pipeline-step">Code</span></li>
+          <li class="pipeline-item"><span class="pipeline-step">Validation</span></li>
+          <li class="pipeline-item"><span class="pipeline-step">CI</span></li>
+        </ol>
+
+        <div class="two-col">
+          <div class="card">
+            <h3>For developers &amp; designers</h3>
+            <p>Shared standards for UX, accessibility, tokens, and performance. Written for humans first — AI sections are optional extras.</p>
+          </div>
+          <div class="card">
+            <h3>For AI coding agents</h3>
+            <p>Token-efficient three-layer model. Stable rule IDs agents can cite. YAML guardrails and skills for Cursor, Copilot, Claude Code, and Windsurf.</p>
+          </div>
+        </div>
+      </section>
+
+<section id="architecture" class="section-block">
+        <h2>Architecture</h2>
+        <p class="section-intro">
+          Tell an AI: <em>"Follow The Web HIG Quick Reference."</em> — pin HIG-QUICK instead of the 20,000-token full document.
+        </p>
+
+        <pre><code>                         THE WEB HIG
+                             │
+          ┌──────────────────┼──────────────────┐
+          │                  │                  │
+    HIG-QUICK.md       HIG-LITE.md           HIG.md
+      Layer 1            Layer 2             Layer 3
+    ~5 minutes         Practical           Full
+    98 rules           documentation       specification
+          │                  │
+          │            rules/ + framework/
+          │            archetype packs
+          └──────────────────┴──► All rules map to HIG.md</code></pre>
+
+        <ol class="flow" aria-label="Documentation loading workflow">
+          <li class="flow-item"><span class="flow-step">Resolve archetype</span></li>
+          <li class="flow-item"><span class="flow-step">HIG-QUICK</span></li>
+          <li class="flow-item"><span class="flow-step">HIG-LITE + pack</span></li>
+          <li class="flow-item"><span class="flow-step">Topic module</span></li>
+          <li class="flow-item"><span class="flow-step">HIG.md (if needed)</span></li>
+        </ol>
+
+        <p>
+          Topic loading: <a href="https://github.com/frozonfreak/hig/blob/main/rules/manifest.yaml">rules/manifest.yaml</a>
+          · Session preamble: <a href="https://github.com/frozonfreak/hig/blob/main/HIG-CORE.md">HIG-CORE.md</a>
+        </p>
+
+        <h3>Repository structure</h3>
+        <pre><code>web-hig/
+├── HIG-QUICK.md             Layer 1 — Quick Reference (98 rules, ~5 min)
+├── HIG-LITE.md              Layer 2 — practical guide with rule IDs
+├── HIG-CORE.md              Session preamble — philosophy + archetypes
+├── HIG.md                   Layer 3 — complete specification
+├── VERSION                  Single version pin
+├── rules/
+│   ├── manifest.yaml        Machine-readable load triggers
+│   ├── INDEX.md             Rule ID registry
+│   ├── applicability.md     Layer 0 matrix
+│   ├── accessibility.md …   17 topic modules (incl. expressive-surface)
+│   └── archetypes/          content, commerce, application, auth
+├── framework/               React, Next, Vue, Nuxt, Astro
+├── skills/web-hig/          Ready-to-copy Agent Skill (SKILL.md)
+├── examples/agent-rules/    Cursor, Claude, Copilot, Windsurf templates
+├── packages/
+│   ├── install/             @web-hig/install — npx @web-hig/install
+│   ├── cli/                 @web-hig/cli — web-hig check · explain · init
+│   └── core/                @web-hig/core — registry &amp; evaluator engine
+├── scripts/validate-hig.mjs Contract validation
+├── NPM-TOOLING.md           npm CLI architecture
+└── INTEGRATION.md           Product repo adoption guide</code></pre>
+        <p>
+          Published on npm under scope <code>@web-hig</code>:
+          <a href="https://www.npmjs.com/package/@web-hig/install">install</a>,
+          <a href="https://www.npmjs.com/package/@web-hig/cli">cli</a>,
+          <a href="https://www.npmjs.com/package/@web-hig/core">core</a>
+          ·
+          <a href="https://www.npmjs.com/settings/web-hig/packages">Org package settings</a>
+        </p>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="https://hig.aruviflow.com/">Live demo</a>
+          <a href="https://github.com/frozonfreak/hig">GitHub</a>
+          <a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Quick Reference</a>
+          <a href="adopt.html#share">Share this HIG</a>
+        </div>
+        <p>The Web HIG v1.12.4 — an open standard for AI-native web development.</p>
+      </footer>
+    </main>
+  </div>
+  <script src="js/site.js"></script>
+</body>
+</html>
