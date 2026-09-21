@@ -6,6 +6,27 @@ Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
 ---
 
+## [v1.12.5](./HIG.md) — 2026-09-21
+
+Patch release: **contract clarity, validation, and adoption fixtures**. No normative rule was added, removed, or retightened.
+
+### Highlights
+
+- **98 Quick imperatives vs 76 `HIG-*` IDs** — documented everywhere agents look; [rules/quick-rule-map.yaml](./rules/quick-rule-map.yaml) validated in CI.
+- **Stronger `npm run validate`** — manifest JSON Schema, Quick map, registry drift checks.
+- **[examples/golden-path](./examples/golden-path/)** — copyable consumer layout; `npm test` ensures `web-hig check` fails on a planted violation.
+- **Monorepo hygiene** — npm workspaces, ESLint/Prettier on `scripts/` and `packages/`, Node 20+ engines.
+- **`web-hig upgrade`** pin report; **`web-hig audit`** marked experimental (use `check`).
+- **Roadmap/README honesty** — what ships today vs deferred ESLint plugin / full evaluator / runtime audit.
+
+### Upgrade from v1.12.4
+
+1. Pin **[VERSION](./VERSION)** (`1.12.5`) or run `npx @web-hig/install` when you next refresh docs.
+2. No rule ID changes — optional upgrade for tooling and agent clarity.
+3. Run `npm run validate` (or `npm test` if you vendor the full repo tooling).
+
+---
+
 ## [v1.12.4](./HIG.md) — 2026-09-20
 
 Patch release: **documentation site npm discovery**. No normative rule was added, removed, or retightened.

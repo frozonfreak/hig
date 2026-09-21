@@ -33,6 +33,14 @@ let count = 0;
 for (const filePath of walk(root)) {
   const rel = path.relative(root, filePath).split(path.sep).join('/');
   if (skipFiles.has(rel)) continue;
+  if (rel === 'VERSION' || rel.endsWith('/VERSION')) {
+    if (text.includes(from)) {
+      text = text.split(from).join(to);
+      fs.writeFileSync(filePath, text, 'utf8');
+      count += 1;
+    }
+    continue;
+  }
   if (!/\.(md|yaml|yml|json|html|mjs)$/i.test(rel)) continue;
   if (rel.includes('node_modules')) continue;
   let text = fs.readFileSync(filePath, 'utf8');

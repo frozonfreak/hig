@@ -9,7 +9,7 @@ description: >-
 
 # The Web HIG
 
-Pinned contract: The Web HIG v1.12.4  
+Pinned contract: The Web HIG v1.12.5  
 Read `docs/hig/HIG-QUICK.md` (or repo `HIG-QUICK.md`) — do not paste the Quick Reference into replies.
 
 ### How Quick counts relate to rule IDs

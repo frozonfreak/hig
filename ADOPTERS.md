@@ -8,9 +8,9 @@ Products and repositories that **pin** The Web HIG (semver + profile) and use it
 
 | Project | Version / profile | Stack | Notes |
 | --- | --- | --- | --- |
-| [HIG documentation site](https://frozonfreak.github.io/hig/) | v1.12.4 · Full | Static docs | Hosts the standard’s public documentation |
-| [Live demo (Aruvi Flow)](https://hig.aruviflow.com/) | v1.12.4 · Practical | Web app | Demonstrates archetypes, surfaces, states, and HIG-aligned UX patterns |
-| [This repository](https://github.com/frozonfreak/hig) | v1.12.4 · Full | Markdown, CI | Source of truth; `examples/agent-rules/` consumed by downstream repos |
+| [HIG documentation site](https://frozonfreak.github.io/hig/) | v1.12.5 · Full | Static docs | Hosts the standard’s public documentation |
+| [Live demo (Aruvi Flow)](https://hig.aruviflow.com/) | v1.12.5 · Practical | Web app | Demonstrates archetypes, surfaces, states, and HIG-aligned UX patterns |
+| [This repository](https://github.com/frozonfreak/hig) | v1.12.5 · Full | Markdown, CI | Source of truth; `examples/agent-rules/` consumed by downstream repos |
 
 ---
 
@@ -26,7 +26,7 @@ _No community entries yet — be the first._
 ### Table row template
 
 ```markdown
-| [Project name](https://example.com) | v1.12.4 · Practical | Application, Auth | Cursor rule + `docs/hig-scope.md` | [repo](https://github.com/example/project) |
+| [Project name](https://example.com) | v1.12.5 · Practical | Application, Auth | Cursor rule + `docs/hig-scope.md` | [repo](https://github.com/example/project) |
 ```
 
 ---

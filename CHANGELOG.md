@@ -8,9 +8,23 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ## [Unreleased]
 
+---
+
+## [1.12.5] - 2026-09-21
+
+### Added
+
+- Layer 1 ↔ rule ID map ([rules/quick-rule-map.yaml](./rules/quick-rule-map.yaml), `npm run sync:quick-map`) and **How Quick counts relate** guidance for agents.
+- [examples/golden-path](./examples/golden-path/) consumer-layout fixture (pin, skill, planted `web-hig check` violation) with CI test.
+- Manifest JSON Schema enforcement ([scripts/validate-manifest-schema.mjs](./scripts/validate-manifest-schema.mjs)) in `npm run validate`.
+- Root npm **workspaces**, shared **ESLint** / **Prettier**, and Node **`>=20`** engines across `@web-hig/*`.
+- `web-hig upgrade` pin comparison and `--dry-run` checklist; explicit experimental status for `web-hig audit`.
+
 ### Changed
 
+- Contract validation expanded (Quick map, registry ↔ INDEX ↔ manifest drift).
 - Documentation site split into a hub home page plus **Understand**, **Adopt**, **AI & agents**, and **Reference** pages (mobile nav, share UI on Adopt).
+- [ROADMAP.md](./ROADMAP.md) and [README.md](./README.md) **Tooling today** table — shipped vs deferred (`eslint-plugin-hig`, full evaluator, runtime audit).
 
 ---
 
@@ -221,7 +235,8 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.12.4...HEAD
+[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.12.5...HEAD
+[1.12.5]: https://github.com/frozonfreak/hig/compare/v1.12.4...v1.12.5
 [1.12.4]: https://github.com/frozonfreak/hig/compare/v1.12.3...v1.12.4
 [1.12.3]: https://github.com/frozonfreak/hig/compare/v1.12.2...v1.12.3
 [1.12.2]: https://github.com/frozonfreak/hig/compare/v1.12.1...v1.12.2

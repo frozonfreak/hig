@@ -14,7 +14,7 @@ That writes:
 
 ```
 docs/hig/
-  VERSION                 # 1.12.4
+  VERSION                 # 1.12.5
   HIG-CORE.md
   HIG-QUICK.md
 docs/hig-scope.md

@@ -1,8 +1,8 @@
-# The Web HIG & Product Engine Contract — v1.12.4
+# The Web HIG & Product Engine Contract — v1.12.5
 
 ## Executive Summary
 
-The Web HIG v1.12.4 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+The Web HIG v1.12.5 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
 This release adds a three-layer consumption model and archetype rule packs:
 
@@ -1374,6 +1374,7 @@ Logs MUST include timestamp, actor, action, and resource — but MUST NOT includ
 
 **Release documentation:** [CHANGELOG.md](./CHANGELOG.md) (Keep a Changelog) · [RELEASE_NOTES.md](./RELEASE_NOTES.md) (adoption notes) · [VERSIONING.md](./VERSIONING.md) (semver policy).
 
+* **v1.12.5 (2026-09-21):** Patch release. Quick ↔ rule ID map and agent-facing count guidance; expanded contract validation (manifest JSON Schema, Quick map); [examples/golden-path](./examples/golden-path/); npm workspaces and shared lint; `web-hig upgrade` pin report; roadmap/README tooling honesty. No normative rule IDs added, removed, or retightened.
 * **v1.12.4 (2026-09-20):** Patch release. Documentation site **npm packages** section with links to `@web-hig/install`, `@web-hig/cli`, and `@web-hig/core` on npm. No normative rule IDs added, removed, or retightened.
 * **v1.12.3 (2026-09-20):** Patch release. Detailed npm package READMEs for `@web-hig/core`, `@web-hig/cli`, and `@web-hig/install`. No normative rule IDs added, removed, or retightened.
 * **v1.12.2 (2026-09-20):** Patch release. Documented npm **`EOTP`** failures in CI and required **Automation / granular bypass** tokens for `NPM_TOKEN`. No normative rule IDs added, removed, or retightened.
