@@ -20,6 +20,8 @@ Before writing or changing UI, CSS, or front-end architecture:
 11. Prefer the simplest implementation that satisfies applicable HIG requirements (HIG-SIM-001).
 12. Cite rule IDs when declining conflicting requests (e.g. `HIG-A11Y-003`).
 
+**Quick counts:** 98 numbered imperatives in HIG-QUICK (Layer 1) ≠ 76 canonical `HIG-*` IDs in `rules/registry.yaml`. Bullets without inline **`HIG-*`** are Quick-only heuristics — not missing coverage. Map: `rules/quick-rule-map.yaml`.
+
 ```yaml
 agent_enforcement_rules:
   scope:

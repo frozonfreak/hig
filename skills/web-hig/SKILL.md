@@ -12,6 +12,12 @@ description: >-
 Pinned contract: The Web HIG v1.12.4  
 Read `docs/hig/HIG-QUICK.md` (or repo `HIG-QUICK.md`) — do not paste the Quick Reference into replies.
 
+### How Quick counts relate to rule IDs
+
+- **98** numbered imperatives in HIG-QUICK (Layer 1 default context).
+- **76** stable **`HIG-*` IDs** in `docs/hig/rules/registry.yaml` (or repo `rules/registry.yaml`) — cite these in PRs and when declining requests.
+- **98 ≠ 76:** Quick bullets are heuristics; the registry is the canonical ID set. Bullets without inline **`HIG-*`** are **Quick-only** — escalate to HIG-LITE / INDEX for IDs. Optional map: `rules/quick-rule-map.yaml`.
+
 ## When to apply
 
 Any UI, CSS, layout, component, form, or front-end architecture change.

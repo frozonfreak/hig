@@ -38,7 +38,7 @@ This roadmap describes **contract and tooling** direction for the standard repos
 | --- | --- |
 | **Rule registry (`rules/registry.yaml`)** | [x] Initial registry + CI drift checks — [NPM-TOOLING.md](./NPM-TOOLING.md) |
 | **`@web-hig/cli` / `@web-hig/core`** | [x] Initial `check`, `explain`, `init` — expand static rules and `audit` |
-| **`eslint-plugin-hig` (reference)** | Implements Layer 7 rules listed in [rules/ai-enforcement.md](./rules/ai-enforcement.md) |
+| **`eslint-plugin-hig` (reference)** | **Deferred / not in this repo** — use `web-hig check` static subset + project ESLint/a11y plugins until a separate plugin ships ([MACHINE_READABLE.md](./MACHINE_READABLE.md)) |
 | **HIG evaluator report** | Multidimensional CI output per [EVALUATOR.md](./EVALUATOR.md) (not a single-score metric) |
 | **Archetype conformance packs** | Checklists generated from Layer 0 matrix per archetype |
 | **Third-party adapter templates** | Svelte, Solid, Angular community adapters under `framework/` |
@@ -49,7 +49,7 @@ This roadmap describes **contract and tooling** direction for the standard repos
 
 | Item | Outcome |
 | --- | --- |
-| **Automated rule ID drift detection** | Registry ↔ HIG.md ↔ modules synced in validate script |
+| **Automated rule ID drift detection** | [x] Registry ↔ INDEX ↔ manifest ↔ modules ↔ Quick map in `npm run validate` |
 | **Policy-as-code for agents** | Export registry to MCP/tool schemas for deterministic agent loading |
 | **Field performance SLO templates** | RUM dashboards aligned with Layer 6 SLO definitions |
 | **Formal working group** | Maintainers + adopters for major semver proposals |

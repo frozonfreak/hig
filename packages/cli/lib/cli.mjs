@@ -8,10 +8,10 @@ const HELP = `Usage: web-hig <command> [options]
 
 Commands:
   init       Initialize HIG in the current project (wraps @web-hig/install)
-  check      Static evaluation against web-hig.yaml
-  audit      Runtime evaluation (Playwright — not yet available)
+  check      Static evaluation against web-hig.yaml (primary conformance command)
+  audit      Runtime evaluation (experimental — not shipped; use check)
   explain    Show documentation for a rule ID
-  upgrade    Upgrade pinned HIG version (planned)
+  upgrade    Report outdated pins; use --dry-run for upgrade checklist
 
 Options:
   --help     Show help

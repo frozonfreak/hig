@@ -1,0 +1,32 @@
+# Optional template — copy to .github/workflows/web-hig-check.yml in your product repo.
+# Requires @web-hig/cli (or WEB_HIG_ROOT pointing at a vendored HIG checkout).
+
+name: Web HIG check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  hig-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install CLI
+        run: npm install -D @web-hig/cli
+
+      - name: Static conformance (Layer 8)
+        run: npx web-hig check --json > hig-report.json
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-hig-report
+          path: hig-report.json

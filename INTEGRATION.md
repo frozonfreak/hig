@@ -243,3 +243,21 @@ npm run validate
 ```
 
 The HIG repository runs this automatically via GitHub Actions on every PR to `main`.
+
+---
+
+## npm packages (consumer vs maintainer)
+
+**Consumers** install published tools when the `@web-hig` scope is on npm:
+
+```bash
+npm install -D @web-hig/cli
+npx web-hig init
+npx web-hig check
+```
+
+Keep **`web-hig.yaml` `version`** and **`docs/hig/VERSION`** aligned with the vendored contract. Preview bumps with `web-hig upgrade --dry-run`.
+
+**Maintainers** publishing from this monorepo: [packages/PUBLISHING.md](./packages/PUBLISHING.md). On release, CI runs `npm run validate` and tests, publishes `@web-hig/core`, rewrites `@web-hig/cli` to depend on the released core semver (not monorepo `file:../core`), then publishes CLI and install.
+
+Optional consumer CI: [examples/github/workflows/web-hig-check.yml](./examples/github/workflows/web-hig-check.yml). Full Layer 8 report shape: [schema/evaluator-report.schema.json](./schema/evaluator-report.schema.json) and [examples/evaluator-report.example.json](./examples/evaluator-report.example.json).

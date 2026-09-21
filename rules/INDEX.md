@@ -16,6 +16,15 @@ This index maps rule IDs to standalone Layer 2 modules and tells agents **when**
 6. Open the **Module file** for normative detail on that topic.
 7. Escalate to full [HIG.md](../HIG.md) only for edge cases or conflicts.
 
+### How Quick counts relate to rule IDs
+
+| Count | Artifact |
+| --- | --- |
+| **98** | [HIG-QUICK.md](../HIG-QUICK.md) numbered imperatives (Layer 1) |
+| **76** | Rows in the **Complete rule ID registry** below (Layer 2+ citation) |
+
+The registry is the authoritative ID list for CI, `web-hig explain`, and normative disputes. Quick bullets without inline **`HIG-*`** IDs are **Quick-only** heuristics — not missing registry rows. Mapped links: [quick-rule-map.yaml](./quick-rule-map.yaml).
+
 ---
 
 ## Applicability

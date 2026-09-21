@@ -70,9 +70,11 @@ Progressive disclosure — load only what you need.
 
 | Level | Document | When |
 | --- | --- | --- |
-| **Quick** | [HIG-QUICK.md](./HIG-QUICK.md) — 98 rules | Daily work, agents, PR review |
-| **Practical** | [HIG-LITE.md](./HIG-LITE.md) + [rules/](./rules/) | Features — IDs, modules, archetypes |
+| **Quick** | [HIG-QUICK.md](./HIG-QUICK.md) — 98 numbered imperatives | Daily work, agents, PR review |
+| **Practical** | [HIG-LITE.md](./HIG-LITE.md) + [rules/](./rules/) — **76** canonical `HIG-*` IDs | Features — IDs, modules, archetypes |
 | **Full** | [HIG.md](./HIG.md) | Edge cases, CI gates, disputes |
+
+**How counts relate:** 98 Quick bullets ≠ 76 rule IDs. Quick is Layer 1 heuristics; IDs are the citeable registry ([rules/registry.yaml](./rules/registry.yaml)). Many Quick bullets are **Quick-only** (no single ID); others inline **`HIG-*`** or map via [rules/quick-rule-map.yaml](./rules/quick-rule-map.yaml). Details: [HIG-QUICK.md § How Quick counts relate](./HIG-QUICK.md#how-quick-counts-relate-to-rule-ids).
 
 Preamble: [HIG-CORE.md](./HIG-CORE.md) · Topic loading: [rules/manifest.yaml](./rules/manifest.yaml)
 
@@ -138,7 +140,7 @@ Manual copy: [PROFILES.md](./PROFILES.md) · Walkthrough: [examples/adoption/qui
 
 ## Specification contents (summary)
 
-98 quick rules · 17 topic modules · 4 page archetypes · Layers 0–9
+98 Quick imperatives · 76 rule IDs · 17 topic modules · 4 page archetypes · Layers 0–9
 
 | Layer | Focus |
 | --- | --- |

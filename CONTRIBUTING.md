@@ -15,6 +15,7 @@ Good contributions:
 - Layer 0 matrix updates for archetypes
 - Synchronized updates across [HIG.md](./HIG.md), [HIG-QUICK.md](./HIG-QUICK.md), [HIG-LITE.md](./HIG-LITE.md), and [rules/*.md](./rules/)
 - [rules/INDEX.md](./rules/INDEX.md) and [rules/manifest.yaml](./rules/manifest.yaml) registry entries
+- After changing numbered rules in [HIG-QUICK.md](./HIG-QUICK.md), run **`npm run sync:quick-map`** (updates [rules/quick-rule-map.yaml](./rules/quick-rule-map.yaml))
 - [framework/*.md](./framework/) adapter improvements
 - Machine-readable artifacts ([MACHINE_READABLE.md](./MACHINE_READABLE.md), [schema/](./schema/))
 - [INTEGRATION.md](./INTEGRATION.md), [examples/](./examples/), [skills/](./skills/), and agent templates
@@ -101,7 +102,7 @@ regenerates `docs/robots.txt`, `docs/sitemap.xml`, and `docs/404.html`. Commit t
 | Check | How |
 | --- | --- |
 | Local Markdown links and anchors | `npm run validate` |
-| Rule ID consistency (INDEX, manifest, HIG.md, modules) | `npm run validate` |
+| Rule ID consistency (INDEX, manifest, HIG.md, modules, registry, Quick map) | `npm run validate` |
 | Version header sync | `npm run validate` |
 | Version bump rules | `npm run check:version-bump` |
 | Offline Markdown/HTML link targets | GitHub Actions `lychee --offline` |

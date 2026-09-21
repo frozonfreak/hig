@@ -98,8 +98,8 @@ npx web-hig explain HIG-A11Y-004
 | `web-hig init [options]` | Pin HIG docs and agent rules (delegates to `@web-hig/install`) |
 | `web-hig check [options]` | Static evaluation against `web-hig.yaml` |
 | `web-hig explain <rule-id>` | Print registry metadata for a `HIG-*` rule |
-| `web-hig audit [url]` | Runtime evaluation (**planned** — Playwright / axe) |
-| `web-hig upgrade` | Bump pinned HIG version (**planned**) |
+| `web-hig audit [url]` | Runtime evaluation (**experimental** — not shipped; use `check`) |
+| `web-hig upgrade` | Compare pins to registry; `--dry-run` prints upgrade checklist |
 
 ### `web-hig check`
 

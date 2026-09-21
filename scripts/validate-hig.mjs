@@ -7,6 +7,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PUBLIC_DOC_PAGES, SITE, SITEMAP_PATHS } from './doc-site.mjs';
+import {
+  extractIndexRegistry,
+  extractQuickNumberedRules,
+  extractRuleIds,
+  parseQuickRuleMapYaml,
+} from './lib/contract-parse.mjs';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const errors = [];
@@ -34,10 +40,6 @@ function extractManifestFiles(yaml) {
     files.add(match[1].replace(/#.*$/, '').trim());
   }
   return files;
-}
-
-function extractRuleIds(text) {
-  return new Set([...text.matchAll(/HIG-[A-Z0-9]+-\d+/g)].map((m) => m[0]));
 }
 
 function extractVersionFromTitle(md) {
@@ -200,26 +202,13 @@ const indexText = read('rules/INDEX.md');
 const higText = read('HIG.md');
 const manifestRuleIds = extractRuleIds(manifestYaml);
 
-function extractIndexRegistry(text) {
-  const block = text.split('## Complete rule ID registry')[1]?.split('## Archetype applicability')[0] ?? '';
-  const rows = [];
-  const seen = new Set();
-  for (const line of block.split(/\r?\n/)) {
-    const match = line.match(
-      /^\|\s*(HIG-[A-Z0-9]+-\d+)\s*\|\s*([^|]+)\|\s*([^|]+)\|\s*([^|]+)\|/,
-    );
-    if (!match) continue;
-    const id = match[1];
-    const module = match[3].trim();
-    const hig_section = match[4].trim();
-    if (seen.has(id)) fail(`INDEX.md duplicate rule ID: ${id}`);
-    seen.add(id);
-    rows.push({ id, module, hig_section });
-  }
-  return rows;
+let registry;
+try {
+  registry = extractIndexRegistry(indexText);
+} catch (err) {
+  fail(err.message);
+  registry = [];
 }
-
-const registry = extractIndexRegistry(indexText);
 if (!registry.length) fail('INDEX.md complete rule ID registry is missing or empty');
 
 const registryIds = new Set(registry.map((row) => row.id));
@@ -332,6 +321,53 @@ if (!exists(registryPath)) {
     if (row.hig_section !== indexRow.hig_section) {
       fail(`${id}: registry hig_section (${row.hig_section}) !== INDEX (${indexRow.hig_section})`);
     }
+  }
+}
+
+// --- Layer 1 Quick rules ↔ quick-rule-map.yaml ---
+const quickText = read('HIG-QUICK.md');
+const quickNumbered = extractQuickNumberedRules(quickText);
+if (quickNumbered.length !== 98) {
+  fail(`HIG-QUICK.md must contain exactly 98 numbered rules (found ${quickNumbered.length})`);
+}
+const quickNumbers = new Set(quickNumbered.map((row) => row.number));
+for (let n = 1; n <= 98; n += 1) {
+  if (!quickNumbers.has(n)) fail(`HIG-QUICK.md missing numbered rule ${n}`);
+}
+
+const quickMapPath = 'rules/quick-rule-map.yaml';
+if (!exists(quickMapPath)) {
+  fail(`missing ${quickMapPath}`);
+} else {
+  const quickMapYaml = read(quickMapPath);
+  const { version: quickMapVersion, entries: quickMapEntries } = parseQuickRuleMapYaml(quickMapYaml);
+  if (!quickMapVersion) fail('quick-rule-map.yaml: missing version field');
+  if (quickMapVersion !== versionFile) {
+    fail(`quick-rule-map.yaml (${quickMapVersion}) !== VERSION (${versionFile})`);
+  }
+  if (quickMapEntries.length !== 98) {
+    fail(`quick-rule-map.yaml must list 98 entries (found ${quickMapEntries.length})`);
+  }
+  const mapNumbers = new Set();
+  for (const entry of quickMapEntries) {
+    if (mapNumbers.has(entry.number)) {
+      fail(`quick-rule-map.yaml duplicate Quick number: ${entry.number}`);
+    }
+    mapNumbers.add(entry.number);
+    if (entry.quick_only && entry.ids.length) {
+      fail(`quick-rule-map.yaml #${entry.number}: quick_only cannot list ids`);
+    }
+    if (!entry.quick_only && !entry.ids.length) {
+      fail(`quick-rule-map.yaml #${entry.number}: must list ids or set quick_only: true`);
+    }
+    for (const id of entry.ids) {
+      if (!registryIds.has(id)) {
+        fail(`quick-rule-map.yaml #${entry.number}: unknown rule ID ${id}`);
+      }
+    }
+  }
+  for (let n = 1; n <= 98; n += 1) {
+    if (!mapNumbers.has(n)) fail(`quick-rule-map.yaml missing Quick number ${n}`);
   }
 }
 
@@ -533,4 +569,6 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`✓ The Web HIG v${versionFile} validation passed (${moduleFiles.length} modules, ${archetypeIds.length} archetype packs)`);
+console.log(
+  `✓ The Web HIG v${versionFile} validation passed (${quickNumbered.length} Quick rules, ${registryIds.size} rule IDs, ${moduleFiles.length} modules, ${archetypeIds.length} archetype packs)`,
+);

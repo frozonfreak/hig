@@ -6,6 +6,7 @@ version: "1.12.4"
 
 registries:
   - rules/registry.yaml
+  - rules/quick-rule-map.yaml
   - rules/motion-tiers.yaml
   - rules/evaluator-dimensions.yaml
 

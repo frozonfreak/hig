@@ -14,6 +14,17 @@ Ninety-eight imperative rules. For practical detail, open [HIG-LITE.md](./HIG-LI
 
 > **Not a UI component library.** A governance contract for your existing design system.
 
+### How Quick counts relate to rule IDs
+
+| Count | What it is |
+| --- | --- |
+| **98** | Numbered imperatives in this file (Layer 1) — default agent context |
+| **76** | Stable **`HIG-*` rule IDs** in [rules/registry.yaml](./rules/registry.yaml) — cite in PRs, CI, and disputes |
+
+These counts measure **different layers**. Quick bullets are readable heuristics; many summarize several normative requirements or archetype-specific detail from Layer 2–3. A bullet **without** an inline **`HIG-*`** ID is **Quick-only guidance** at Layer 1 — still apply it, then escalate to [HIG-LITE.md](./HIG-LITE.md) or [rules/INDEX.md](./rules/INDEX.md) for canonical IDs and evaluation methods.
+
+Bullets that name **`HIG-*` inline** use the canonical ID. Machine-readable Quick ↔ ID links: [rules/quick-rule-map.yaml](./rules/quick-rule-map.yaml) (validated by `npm run validate` in this repository).
+
 ---
 
 ## Before you start

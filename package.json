@@ -5,10 +5,11 @@
   "scripts": {
     "validate": "node scripts/validate-hig.mjs",
     "sync:registry": "node scripts/sync-registry.mjs",
+    "sync:quick-map": "node scripts/sync-quick-map.mjs",
     "check:version-bump": "node scripts/check-version-bump.mjs",
     "release:notes": "node scripts/release-notes.mjs",
     "build:docs": "node scripts/build-docs.mjs",
     "pretest": "npm ci --prefix packages/cli --omit=dev",
-    "test": "node packages/install/test/install.test.mjs && node packages/cli/test/check.test.mjs"
+    "test": "node scripts/test/validate-hig.test.mjs && node packages/install/test/install.test.mjs && node packages/cli/test/check.test.mjs && node packages/cli/test/evaluator-report.test.mjs"
   }
 }

@@ -9,7 +9,7 @@
 | --- | --- | --- |
 | 1 — Rule registry | [rules/registry.yaml](./rules/registry.yaml), [scripts/sync-registry.mjs](./scripts/sync-registry.mjs), CI validation in [scripts/validate-hig.mjs](./scripts/validate-hig.mjs) | **Shipped (initial)** |
 | 2 — Core engine | [@web-hig/core](./packages/core/) — config, registry, report model | **Initial** |
-| 3 — Unified CLI | [@web-hig/cli](./packages/cli/) — `init`, `check`, `explain`; `audit` / `upgrade` stubbed | **Initial** |
+| 3 — Unified CLI | [@web-hig/cli](./packages/cli/) — `init`, `check`, `explain`, `upgrade` (pin report); `audit` experimental | **Initial** |
 | 4 — Static rules | Built-in checks in CLI; ESLint/Stylelint plugins | **Partial** (2 CSS checks) |
 | 5 — Runtime audit | Playwright + axe orchestration | Planned |
 | 6 — CI reporting | JSON via `web-hig check --json` | **Initial** |
@@ -71,7 +71,8 @@ gates:
 ```
 
 - `web-hig check` — static evaluation against this contract.  
-- `web-hig audit` — runtime evaluation (planned).  
+- `web-hig audit` — runtime evaluation (**experimental / not shipped** — use `check`).  
+- `web-hig upgrade` — compare pinned `web-hig.yaml` / `docs/hig/VERSION` to registry (`--dry-run` checklist).  
 - Flags may override config for one-off runs.
 
 ---
@@ -84,9 +85,9 @@ Package: **`@web-hig/cli`** · Executable: **`web-hig`**
 | --- | --- |
 | `web-hig init` | Onboard project (wraps `@web-hig/install` today) |
 | `web-hig check` | Static analysis |
-| `web-hig audit` | Runtime analysis (planned) |
+| `web-hig audit` | Runtime analysis (**experimental** — not shipped) |
 | `web-hig explain <rule-id>` | Rule documentation from [registry.yaml](./rules/registry.yaml) |
-| `web-hig upgrade` | Version migration (planned) |
+| `web-hig upgrade` | Outdated pin report + `--dry-run` upgrade checklist |
 
 **Developer workflow (target):**
 
@@ -180,3 +181,17 @@ Concrete expression:
 2. `web-hig audit` for runtime behavioural verification (next major tooling milestone).
 
 This document is the architecture contract for npm tooling evolution; normative behaviour remains in [HIG.md](./HIG.md).
+
+---
+
+## 11. Publishing `@web-hig/*` (maintainers)
+
+Happy path (automated in [`.github/workflows/npm-publish-github-packages.yml`](./.github/workflows/npm-publish-github-packages.yml)):
+
+1. Tag release `vX.Y.Z` with `VERSION` and all package.json files aligned (`npm run validate`).
+2. Publish GitHub Release (triggers workflow).
+3. Workflow runs `npm run validate` + `npm test`.
+4. Publish `@web-hig/core`, then `@web-hig/cli` with `dependencies.@web-hig/core` set to the release version (replacing monorepo `file:../core`).
+5. Publish `@web-hig/install`.
+
+Token, scope, and first-publish 404 troubleshooting: [packages/PUBLISHING.md](./packages/PUBLISHING.md). Consumer install path: [INTEGRATION.md](./INTEGRATION.md#npm-packages-consumer-vs-maintainer).

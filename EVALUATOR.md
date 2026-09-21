@@ -136,7 +136,9 @@ Only rules **applicable** to that archetype/surface (see [applicability.md](./ru
 
 ## Implementation status
 
-No reference evaluator CLI ships in this repository yet. [ROADMAP.md](./ROADMAP.md) tracks `eslint-plugin-hig`, `rules/registry.yaml`, and evaluator tooling. Until then, adopt this contract in custom CI aggregators (ESLint + axe + custom HIG checks).
+- **`web-hig check --json`** emits a **minimal** report (`hig_version`, `severity_counts`, `findings`) for static checks today — validate consumer pipelines against this subset first.
+- The **full** multidimensional shape in [schema/evaluator-report.schema.json](./schema/evaluator-report.schema.json) is the Layer 8 target (see [examples/evaluator-report.example.json](./examples/evaluator-report.example.json)). CI template: [examples/github/workflows/web-hig-check.yml](./examples/github/workflows/web-hig-check.yml).
+- **`eslint-plugin-hig`** is deferred ([MACHINE_READABLE.md](./MACHINE_READABLE.md)); runtime **`web-hig audit`** is experimental / not shipped.
 
 ---
 

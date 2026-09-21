@@ -17,7 +17,8 @@ Layer 7 defines how requirements become **deterministic** for linters, CI, and A
 | Installer | [packages/install](./packages/install/) | `npx @web-hig/install` pins HIG-QUICK + rules/skills |
 | Rule IDs in prose | `HIG-*` in HIG.md and `rules/*.md` | Human and agent citation |
 | [rules/registry.yaml](./rules/registry.yaml) | YAML | Rule registry: severity, profiles, archetypes, evaluation, autofix, module, HIG section |
-| [scripts/validate-hig.mjs](./scripts/validate-hig.mjs) | JavaScript | VERSION sync, file existence, rule ID cross-checks, registry ↔ INDEX, docs/adopter pins |
+| [rules/quick-rule-map.yaml](./rules/quick-rule-map.yaml) | YAML | Layer 1 Quick # ↔ `HIG-*` ID links (`npm run sync:quick-map`) |
+| [scripts/validate-hig.mjs](./scripts/validate-hig.mjs) | JavaScript | Single source of truth: VERSION sync, registry ↔ INDEX ↔ manifest ↔ Quick map, docs/adopter pins |
 | [@web-hig/core](./packages/core/) | JavaScript | Config + registry loader + evaluator report helpers |
 | [@web-hig/cli](./packages/cli/) | JavaScript | `web-hig` — `init`, `check`, `explain` (audit/upgrade planned) |
 | [rules/evaluator-dimensions.yaml](./rules/evaluator-dimensions.yaml) | YAML | Evaluator dimension ↔ rule prefix map |
@@ -62,7 +63,18 @@ Export formats (ESLint metadata, PR bots, MCP) remain on the [ROADMAP.md](./ROAD
 
 ---
 
-## Intended linter surface
+## `eslint-plugin-hig` — deferred
+
+**Not shipped in this repository.** ROADMAP and HIG §7.2 describe a reference ESLint plugin; today enforcement is:
+
+- Layer 7 guardrails in agent templates and `web-hig check` (static CSS subset)
+- Full multidimensional reporting via [EVALUATOR.md](./EVALUATOR.md) + [schema/evaluator-report.schema.json](./schema/evaluator-report.schema.json)
+
+A future `eslint-plugin-hig` would implement only a **static subset** of the contract — not a substitute for runtime audit or manual WCAG review.
+
+---
+
+## Intended linter surface (future plugin)
 
 Reference list from [rules/ai-enforcement.md](./rules/ai-enforcement.md):
 

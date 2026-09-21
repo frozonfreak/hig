@@ -1,0 +1,249 @@
+# The Web HIG — Layer 1 Quick rule ↔ rule ID map
+# Version: 1.12.4
+# Normative Quick prose: HIG-QUICK.md · IDs: rules/registry.yaml
+# Regenerate: npm run sync:quick-map
+
+version: "1.12.4"
+
+entries:
+  - number: 1
+    ids:
+      - HIG-EXP-001
+  - number: 2
+    quick_only: true
+  - number: 3
+    quick_only: true
+  - number: 4
+    ids:
+      - HIG-SIM-001
+  - number: 5
+    quick_only: true
+  - number: 6
+    quick_only: true
+  - number: 7
+    quick_only: true
+  - number: 8
+    quick_only: true
+  - number: 9
+    quick_only: true
+  - number: 10
+    quick_only: true
+  - number: 11
+    quick_only: true
+  - number: 12
+    quick_only: true
+  - number: 13
+    quick_only: true
+  - number: 14
+    quick_only: true
+  - number: 15
+    quick_only: true
+  - number: 16
+    quick_only: true
+  - number: 17
+    quick_only: true
+  - number: 18
+    quick_only: true
+  - number: 19
+    quick_only: true
+  - number: 20
+    quick_only: true
+  - number: 21
+    ids:
+      - HIG-DOC-005
+  - number: 22
+    ids:
+      - HIG-DOC-006
+  - number: 23
+    quick_only: true
+  - number: 24
+    quick_only: true
+  - number: 25
+    ids:
+      - HIG-DOC-002
+  - number: 26
+    ids:
+      - HIG-DOC-001
+  - number: 27
+    ids:
+      - HIG-DOC-003
+  - number: 28
+    quick_only: true
+  - number: 29
+    ids:
+      - HIG-SEO-001
+  - number: 30
+    ids:
+      - HIG-SRCH-003
+  - number: 31
+    ids:
+      - HIG-LOD-001
+  - number: 32
+    ids:
+      - HIG-LOD-001
+  - number: 33
+    ids:
+      - HIG-EMP-001
+  - number: 34
+    ids:
+      - HIG-ERR-001
+  - number: 35
+    quick_only: true
+  - number: 36
+    quick_only: true
+  - number: 37
+    quick_only: true
+  - number: 38
+    quick_only: true
+  - number: 39
+    ids:
+      - HIG-NTF-001
+  - number: 40
+    quick_only: true
+  - number: 41
+    ids:
+      - HIG-MUT-001
+  - number: 42
+    quick_only: true
+  - number: 43
+    ids:
+      - HIG-MUT-001
+  - number: 44
+    quick_only: true
+  - number: 45
+    ids:
+      - HIG-SSR-003
+  - number: 46
+    ids:
+      - HIG-MUT-002
+  - number: 47
+    quick_only: true
+  - number: 48
+    quick_only: true
+  - number: 49
+    quick_only: true
+  - number: 50
+    ids:
+      - HIG-FRM-001
+  - number: 51
+    quick_only: true
+  - number: 52
+    quick_only: true
+  - number: 53
+    quick_only: true
+  - number: 54
+    quick_only: true
+  - number: 55
+    quick_only: true
+  - number: 56
+    quick_only: true
+  - number: 57
+    quick_only: true
+  - number: 58
+    ids:
+      - HIG-TOK-001
+  - number: 59
+    ids:
+      - HIG-TOK-002
+  - number: 60
+    quick_only: true
+  - number: 61
+    quick_only: true
+  - number: 62
+    quick_only: true
+  - number: 63
+    quick_only: true
+  - number: 64
+    quick_only: true
+  - number: 65
+    ids:
+      - HIG-CQ-001
+      - HIG-CQ-002
+      - HIG-SIM-001
+  - number: 66
+    ids:
+      - HIG-A11Y-002
+  - number: 67
+    ids:
+      - HIG-A11Y-003
+  - number: 68
+    ids:
+      - HIG-A11Y-003
+  - number: 69
+    ids:
+      - HIG-A11Y-004
+  - number: 70
+    ids:
+      - HIG-A11Y-005
+  - number: 71
+    quick_only: true
+  - number: 72
+    ids:
+      - HIG-A11Y-006
+  - number: 73
+    ids:
+      - HIG-A11Y-008
+  - number: 74
+    quick_only: true
+  - number: 75
+    ids:
+      - HIG-A11Y-007
+  - number: 76
+    ids:
+      - HIG-A11Y-001
+  - number: 77
+    quick_only: true
+  - number: 78
+    quick_only: true
+  - number: 79
+    quick_only: true
+  - number: 80
+    quick_only: true
+  - number: 81
+    ids:
+      - HIG-SSR-001
+  - number: 82
+    ids:
+      - HIG-PERF-001
+      - HIG-PERF-002
+  - number: 83
+    quick_only: true
+  - number: 84
+    quick_only: true
+  - number: 85
+    ids:
+      - HIG-MOT-001
+  - number: 86
+    ids:
+      - HIG-MOT-004
+  - number: 87
+    ids:
+      - HIG-MOT-002
+  - number: 88
+    ids:
+      - HIG-DEN-007
+      - HIG-DEN-008
+  - number: 89
+    quick_only: true
+  - number: 90
+    quick_only: true
+  - number: 91
+    ids:
+      - HIG-SEC-001
+  - number: 92
+    ids:
+      - HIG-SEC-002
+  - number: 93
+    ids:
+      - HIG-SEC-003
+  - number: 94
+    ids:
+      - HIG-SEC-004
+  - number: 95
+    quick_only: true
+  - number: 96
+    quick_only: true
+  - number: 97
+    quick_only: true
+  - number: 98
+    quick_only: true
