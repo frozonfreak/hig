@@ -20,8 +20,8 @@ Add your project with a pull request. Copy a row from the template below into th
 
 | Project | Version / profile | Archetypes | How you use it | Link |
 | --- | --- | --- | --- | --- |
-
-_No community entries yet — be the first._
+| [AruviFlow](https://aruviflow.com/) | v1.12.5 · Practical | Content | Landing / studio site; HIG surface and motion rules | [site](https://aruviflow.com/) |
+| [NilamFlow](https://nilamflow.com/) | v1.12.5 · Practical | Content | Product site pinned to The Web HIG | [site](https://nilamflow.com/) |
 
 ### Table row template
 
