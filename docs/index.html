@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>The Web HIG — Pin how the web behaves</title>
-  <meta name="description" content="Pin a versioned behavioral contract for the modern web. Keep your design system — The Web HIG defines testable UX, accessibility, and AI-agent rules.">
+  <title>The Web HIG — A practical standard for web interface behavior</title>
+  <meta name="description" content="First-time friendly guide to The Web HIG: keep your design system, then add testable rules for UX behavior, accessibility, performance, and AI-assisted development.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://frozonfreak.github.io/hig/">
   <link rel="sitemap" type="application/xml" href="https://frozonfreak.github.io/hig/sitemap.xml">
   <meta property="og:site_name" content="The Web HIG">
   <meta property="og:locale" content="en_US">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="The Web HIG — Pin how the web behaves">
-  <meta property="og:description" content="Keep your design system. Pin testable UX, accessibility (WCAG 2.2), and AI-agent rules.">
+  <meta property="og:title" content="The Web HIG — A practical standard for web interface behavior">
+  <meta property="og:description" content="Keep your design system. Add testable rules for UX behavior, accessibility, performance, safety, and AI-assisted development.">
   <meta property="og:url" content="https://frozonfreak.github.io/hig/">
   <meta property="og:image" content="https://frozonfreak.github.io/hig/social/og-image.png">
   <meta property="og:image:type" content="image/png">
@@ -20,8 +20,8 @@
   <meta property="og:image:height" content="720">
   <meta property="og:image:alt" content="The Web HIG — Pin how the web behaves. Keep your design system. Testable UX, accessibility, and AI-agent rules.">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="The Web HIG — Pin how the web behaves">
-  <meta name="twitter:description" content="Keep your design system. Pin testable UX, accessibility, and AI-agent rules.">
+  <meta name="twitter:title" content="The Web HIG — A practical standard for web interface behavior">
+  <meta name="twitter:description" content="Keep your design system. Add testable rules for UX behavior, accessibility, performance, and safety.">
   <meta name="twitter:image" content="https://frozonfreak.github.io/hig/social/og-image.png">
   <meta name="twitter:image:alt" content="The Web HIG — Pin how the web behaves.">
   <script type="application/ld+json">
@@ -41,14 +41,14 @@
         "@id": "https://frozonfreak.github.io/hig/#website",
         "name": "The Web HIG",
         "url": "https://frozonfreak.github.io/hig/",
-        "description": "Pin a versioned behavioral contract for the modern web. Keep your design system — The Web HIG defines testable UX, accessibility, and AI-agent rules.",
+        "description": "First-time friendly guide to The Web HIG: keep your design system, then add testable rules for UX behavior, accessibility, performance, and AI-assisted development.",
         "inLanguage": "en",
         "publisher": { "@id": "https://frozonfreak.github.io/hig/#organization" }
       },
       {
         "@type": "TechArticle",
         "@id": "https://frozonfreak.github.io/hig/#article",
-        "headline": "The Web HIG — AI-native behavioral standard for the modern web",
+        "headline": "The Web HIG — A practical standard for web interface behavior",
         "description": "Versioned behavioral contract for interaction, states, accessibility, performance, and security UX.",
         "url": "https://frozonfreak.github.io/hig/",
         "version": "1.12.5",
@@ -78,7 +78,7 @@
             "name": "Where do I start?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "HIG-QUICK.md is the whole onboarding path — about five minutes. Pin that file, then tell agents: Follow The Web HIG Quick Reference."
+              "text": "Start with HIG-QUICK.md. It explains the practical rules most teams and AI coding agents need in about five minutes."
             }
           },
           {
@@ -162,6 +162,7 @@
       <div class="nav-group">
         <div class="nav-label">Quick links</div>
         <ul>
+          <li><a href="#first-time">First-time guide</a></li>
           <li><a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Quick Reference</a></li>
           <li><a href="adopt.html#npm-packages">npm packages</a></li>
           <li><a href="reference.html#faq">FAQ</a></li>
@@ -175,10 +176,10 @@
     <main id="top" tabindex="-1">
       <header class="hero">
         <p class="hero-eyebrow">The Web HIG</p>
-        <h1>AI-native behavioral standard for the modern web.</h1>
+        <h1>A practical standard for how web interfaces should behave.</h1>
         <p class="lead">
-          An open, vendor-neutral standard for how web interfaces should behave —
-          for your team, your design system, and your AI coding tools.
+          The Web HIG gives teams a shared set of rules for usable, accessible,
+          responsive, performant, predictable, and safe web applications.
         </p>
 
         <div class="hero-proposition">
@@ -187,38 +188,83 @@
         </div>
 
         <p class="hero-sub">
-          Not a component library — a <strong>rulebook and engineering contract</strong> you can pin, cite in PRs, and validate in CI.
+          It is not a component library, CSS framework, or visual theme. Keep your existing stack and use HIG as a practical behavior and quality contract.
           <a href="understand.html#why">Why it exists →</a>
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn-primary" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Read the 5-minute Quick Reference</a>
+          <a class="btn btn-primary" href="#first-time">Start here</a>
+          <a class="btn btn-secondary" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Read the 5-minute Quick Reference</a>
           <a class="btn btn-secondary" href="adopt.html">Adopt in your repo</a>
-          <a class="btn btn-ghost" href="https://github.com/frozonfreak/hig">View on GitHub</a>
         </div>
       </header>
 
+      <section id="first-time" class="section-block first-time-section" aria-labelledby="first-time-heading">
+        <h2 id="first-time-heading">New to The Web HIG?</h2>
+        <p class="section-intro">
+          Start here if you are seeing the project for the first time. The short version:
+          HIG helps you decide what should happen around your components when real users load,
+          navigate, submit, search, fail, recover, resize, or delete something.
+        </p>
+
+        <div class="explain-grid">
+          <div class="explain-card">
+            <h3>What it is</h3>
+            <p>A vendor-neutral, versioned web interface standard for behavior, interface states, accessibility, performance, security UX, and AI-assisted implementation.</p>
+          </div>
+          <div class="explain-card">
+            <h3>What it is not</h3>
+            <p>Not a component library, Figma kit, CSS framework, brand system, or replacement for WCAG, HTML, CSS, ARIA, or your design system.</p>
+          </div>
+          <div class="explain-card">
+            <h3>When to use it</h3>
+            <p>Use it while building, reviewing, auditing, or asking an AI coding agent to change a web interface consistently.</p>
+          </div>
+        </div>
+
+        <div class="pathway-panel" aria-labelledby="pathway-heading">
+          <h3 id="pathway-heading">Choose your first step</h3>
+          <div class="pathway-grid">
+            <a class="pathway-card" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">
+              <span class="pathway-label">I just want to understand it</span>
+              <strong>Read HIG-QUICK</strong>
+              <span>About five minutes, with the everyday rules most people need.</span>
+            </a>
+            <a class="pathway-card" href="adopt.html#start-here">
+              <span class="pathway-label">I want to use it in a project</span>
+              <strong>Adopt gradually</strong>
+              <span>Pin the Quick Reference, map routes, then add checks when ready.</span>
+            </a>
+            <a class="pathway-card" href="https://hig.aruviflow.com/">
+              <span class="pathway-label">I already have a website</span>
+              <strong>Open HIG Audit</strong>
+              <span>Evaluate an existing site against the standard.</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section class="section-compact" aria-labelledby="explore-heading">
         <h2 id="explore-heading">Explore the documentation</h2>
-        <p class="section-intro">The site is split into focused pages so you can read one topic at a time — same content, less scrolling.</p>
+        <p class="section-intro">The site is split into focused pages so first-time visitors can start small and go deeper only when they need more detail.</p>
 
         <div class="hub-grid">
           <a class="hub-card" href="understand.html">
             <p class="hub-card-kicker">Step 1</p>
             <h2>Understand</h2>
-            <p>Why a behavioral standard, competitive landscape, essential rules, documentation levels, and governance layers.</p>
+            <p>Plain-language overview: what HIG is, what it is not, why it exists, and where it fits in your stack.</p>
             <span class="hub-card-cta">Open Understand →</span>
           </a>
           <a class="hub-card hub-card-accent" href="adopt.html">
             <p class="hub-card-kicker">Step 2</p>
             <h2>Adopt</h2>
-            <p>Pin HIG-QUICK, run the npm installer, map routes, share badges, and integrate in one afternoon.</p>
+            <p>Start with one file, then pin the standard, run the installer, map routes, and add checks when your team is ready.</p>
             <span class="hub-card-cta">Start adopting →</span>
           </a>
           <a class="hub-card" href="ai.html">
             <p class="hub-card-kicker">Step 3</p>
             <h2>AI &amp; agents</h2>
-            <p>Progressive loading for Cursor, Copilot, and Claude — rule IDs, manifest, and repo layout.</p>
+            <p>Tell Cursor, Copilot, Claude, or another coding agent which HIG layer to follow without loading the full spec every time.</p>
             <span class="hub-card-cta">Use with AI →</span>
           </a>
           <a class="hub-card" href="reference.html">
@@ -267,7 +313,7 @@
         <h2>Common questions</h2>
         <details>
           <summary>Where do I start?</summary>
-          <p><a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">HIG-QUICK.md</a> is the whole onboarding path — about five minutes. Pin that file, then tell agents: <em>Follow The Web HIG Quick Reference.</em> Step-by-step: <a href="adopt.html">Adopt</a>.</p>
+          <p>Start with <a href="#first-time">New to The Web HIG?</a>, then read <a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">HIG-QUICK.md</a>. It is the everyday onboarding path and takes about five minutes.</p>
         </details>
         <details>
           <summary>Is this a component library?</summary>

@@ -883,6 +883,135 @@ main {
   align-items: center;
 }
 
+/* First-time onboarding */
+.first-time-section {
+  scroll-margin-top: 1.5rem;
+}
+
+.explain-grid,
+.adoption-options,
+.pathway-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: var(--content-wide);
+}
+
+.explain-card,
+.option-card,
+.pathway-card {
+  padding: 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.explain-card h3,
+.option-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.0625rem;
+  color: var(--text);
+}
+
+.explain-card p,
+.option-card p {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+}
+
+.pathway-panel {
+  max-width: var(--content-wide);
+  margin-block-start: 1.25rem;
+  padding: 1.375rem;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-muted);
+  border-radius: var(--radius);
+}
+
+.pathway-panel h3 {
+  margin: 0 0 1rem;
+  font-size: 1.125rem;
+}
+
+.pathway-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow var(--duration-base) var(--ease-out-momentum),
+    border-color var(--duration-base) var(--ease-out-momentum);
+}
+
+.pathway-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+}
+
+.pathway-label,
+.option-kicker {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.pathway-card strong {
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.pathway-card span:last-child {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.option-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.option-card p:not(.option-kicker) {
+  flex: 1;
+  margin-block-end: 0.875rem;
+}
+
+.option-card a {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.option-card a:hover {
+  text-decoration: underline;
+}
+
+.audit-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  max-width: var(--content-max);
+  margin-block: 1rem;
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.audit-flow span {
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.audit-flow span[aria-hidden="true"] {
+  color: var(--accent);
+}
+
 /* Journey landmarks */
 .journey-landmark {
   display: flex;
@@ -2199,6 +2328,12 @@ nav.sidebar a.nav-page-active {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .explain-grid,
+  .adoption-options,
+  .pathway-grid {
+    grid-template-columns: 1fr;
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -2275,6 +2410,10 @@ nav.sidebar a.nav-page-active {
 
   .start-grid {
     grid-template-columns: 1fr;
+  }
+
+  .pathway-panel {
+    padding: 1.125rem;
   }
 
   .comparison-grid {

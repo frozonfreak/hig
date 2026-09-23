@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Adopt in your product — The Web HIG</title>
-  <meta name="description" content="Pin HIG-QUICK, use npm install tooling, share badges, and integrate The Web HIG into your repo in one afternoon.">
+  <meta name="description" content="First-time adoption guide for The Web HIG: start with HIG-QUICK, copy the files or use npm tooling, then add agents and CI gradually.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://frozonfreak.github.io/hig/adopt.html">
   <meta property="og:site_name" content="The Web HIG">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Adopt in your product — The Web HIG">
-  <meta property="og:description" content="Pin HIG-QUICK, use npm install tooling, share badges, and integrate The Web HIG into your repo in one afternoon.">
+  <meta property="og:description" content="Start with HIG-QUICK, copy the files or use npm tooling, then add agents and CI gradually.">
   <meta property="og:url" content="https://frozonfreak.github.io/hig/adopt.html">
   <meta property="og:image" content="https://frozonfreak.github.io/hig/social/og-image.png">
   <link rel="stylesheet" href="css/site.css">
@@ -40,6 +40,7 @@
         <div class="nav-label">On this page</div>
         <ul>
           <li><a href="#start-here">Start here</a></li>
+          <li><a href="#choose-path">Choose a path</a></li>
           <li><a href="#how">Try it</a></li>
           <li><a href="#npm-packages">npm packages</a></li>
           <li><a href="#share">Share</a></li>
@@ -57,7 +58,7 @@
       <header class="page-header">
         <p class="hero-eyebrow">The Web HIG</p>
         <h1>Adopt in your product</h1>
-        <p class="lead">Pin the contract, map routes, wire agents, and add checks — most teams start here in one afternoon.</p>
+        <p class="lead">A gentle path from “what is this?” to “our repo follows it.” Start with one short document, then add tooling only when it helps.</p>
       </header>
 
 <div class="journey-landmark" id="adopt" aria-label="Section: Adopt it">
@@ -67,39 +68,87 @@
 
 <section id="start-here" class="section-block">
         <h2>Start here</h2>
-        <p class="section-intro">One file is the whole onboarding path. Everything else is optional escalation.</p>
+        <p class="section-intro">
+          You do not need to read the complete specification or change your design system.
+          Start with the Quick Reference, then decide how deeply to integrate.
+        </p>
 
         <div class="start-callout">
-          <h3>Pin HIG-QUICK.md</h3>
+          <h3>First: read HIG-QUICK.md</h3>
           <p>
-            Ninety-eight rules, about five minutes. Copy it into <code>docs/hig/</code> with <code>VERSION</code>,
-            then tell agents: <em>Follow The Web HIG Quick Reference.</em>
+            It contains the practical rules most developers, designers, reviewers, and AI coding agents need during everyday work.
+            If it fits your project, copy it into <code>docs/hig/</code> with <code>VERSION</code>.
           </p>
           <a class="btn btn-primary" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Open the Quick Reference</a>
         </div>
 
         <div class="start-grid">
           <a class="start-card" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">
-            <h3>I'm a developer</h3>
-            <p>Read the Quick Reference, pin it, and use it in PR review.</p>
+            <h3>I am a developer</h3>
+            <p>Read the Quick Reference, pin it in your repo, and cite it during PR review.</p>
             <span class="start-link">Open HIG-QUICK.md →</span>
           </a>
           <a class="start-card" href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">
-            <h3>I'm a designer</h3>
-            <p>Same file — states, tokens, accessibility, and motion in one pass.</p>
+            <h3>I am a designer</h3>
+            <p>Use the same file to check states, accessibility, responsive behavior, tokens, and motion.</p>
             <span class="start-link">Open HIG-QUICK.md →</span>
           </a>
           <a class="start-card" href="#npm-packages">
-            <h3>I'm building with AI</h3>
-            <p>Run <code>npx @web-hig/install</code> or <code>npx web-hig init</code>, then <code>web-hig check</code> for structured findings.</p>
+            <h3>I am using an AI coding agent</h3>
+            <p>Install or copy the standard, then tell the agent: <em>Follow The Web HIG Quick Reference.</em></p>
             <span class="start-link">npm tooling →</span>
           </a>
-          <a class="start-card" href="#integration">
-            <h3>I want to adopt the standard</h3>
-            <p>Pin the contract, map your routes, wire your tools — one afternoon.</p>
-            <span class="start-link">Integration guide →</span>
+          <a class="start-card" href="https://hig.aruviflow.com/">
+            <h3>I already have a website</h3>
+            <p>Use HIG Audit to evaluate the existing implementation before changing the repo.</p>
+            <span class="start-link">Open HIG Audit →</span>
           </a>
         </div>
+      </section>
+
+<section id="choose-path" class="section-block">
+        <h2>Choose an adoption path</h2>
+        <p class="section-intro">Pick the lightest path that matches what you need today. You can always move to a deeper layer later.</p>
+
+        <div class="adoption-options">
+          <article class="option-card">
+            <p class="option-kicker">Lightest</p>
+            <h3>Read and cite</h3>
+            <p>Use HIG-QUICK during planning, design review, and PR review. Good for evaluating whether the standard fits your team.</p>
+            <a href="https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md">Read HIG-QUICK.md →</a>
+          </article>
+          <article class="option-card">
+            <p class="option-kicker">Recommended</p>
+            <h3>Pin in your repo</h3>
+            <p>Copy <code>HIG-QUICK.md</code> and <code>VERSION</code> into <code>docs/hig/</code> so humans and agents share the same version.</p>
+            <a href="#integration">See the manual steps →</a>
+          </article>
+          <article class="option-card">
+            <p class="option-kicker">Tooling</p>
+            <h3>Install with npm</h3>
+            <p>Use the installer when you want agent rules, skills, route scope examples, and future checks set up together.</p>
+            <a href="#npm-packages">Use npm packages →</a>
+          </article>
+        </div>
+      </section>
+
+<section id="already-have-site" class="section-block">
+        <h2>Already have a website?</h2>
+        <p class="section-intro">
+          The Web HIG is the standard. HIG Audit is a separate tool that applies the standard to an existing implementation.
+        </p>
+
+        <div class="audit-flow" aria-label="The Web HIG defines rules; your application can be evaluated with HIG Audit">
+          <span>The Web HIG</span>
+          <span aria-hidden="true">→</span>
+          <span>Your application</span>
+          <span aria-hidden="true">→</span>
+          <span>HIG Audit</span>
+        </div>
+
+        <p>
+          <a class="btn btn-secondary" href="https://hig.aruviflow.com/">Open HIG Audit</a>
+        </p>
       </section>
 
 <section id="how" class="section-block">
@@ -108,6 +157,10 @@
           Run <code>npx @web-hig/install</code> to pin the contract under <code>docs/hig/</code>,
           map routes in <code>docs/hig-scope.md</code> (archetype plus <strong>surface</strong> for content pages),
           and install agent rules plus skills. Use the Quick Reference in PR review.
+        </p>
+        <p>
+          Prefer a manual start? Copy <code>HIG-QUICK.md</code> and <code>VERSION</code> into <code>docs/hig/</code>,
+          then add route scope and CI checks when the team is ready.
         </p>
         <p>
           Step-by-step checklist (pin → scope → agents → CI):
