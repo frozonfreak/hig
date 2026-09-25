@@ -6,11 +6,11 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning policy: [VERSIONING.md](./VERSIONING.md).  
 Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
-## [Unreleased]
+## Unreleased
 
 ---
 
-## [1.12.5] - 2026-09-21
+## 1.12.5 - 2026-09-21
 
 ### Added
 
@@ -28,7 +28,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.12.4] - 2026-09-20
+## 1.12.4 - 2026-09-20
 
 ### Added
 
@@ -36,7 +36,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.12.3] - 2026-09-20
+## 1.12.3 - 2026-09-20
 
 ### Added
 
@@ -44,7 +44,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.12.2] - 2026-09-20
+## 1.12.2 - 2026-09-20
 
 ### Fixed
 
@@ -52,7 +52,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.12.1] - 2026-09-20
+## 1.12.1 - 2026-09-20
 
 ### Fixed
 
@@ -65,7 +65,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.12.0] - 2026-09-20
+## 1.12.0 - 2026-09-20
 
 ### Added
 
@@ -75,7 +75,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.11.1] - 2026-09-19
+## 1.11.1 - 2026-09-19
 
 ### Fixed
 
@@ -84,7 +84,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.11.0] - 2026-09-19
+## 1.11.0 - 2026-09-19
 
 ### Added
 
@@ -97,7 +97,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.10.1] - 2026-09-15
+## 1.10.1 - 2026-09-15
 
 ### Fixed
 
@@ -112,7 +112,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.10.0] - 2026-09-12
+## 1.10.0 - 2026-09-12
 
 ### Added
 
@@ -129,7 +129,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.9.0] - 2026-09-09
+## 1.9.0 - 2026-09-09
 
 ### Added
 
@@ -145,7 +145,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.8.0] - 2026-09-09
+## 1.8.0 - 2026-09-09
 
 ### Added
 
@@ -158,7 +158,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.7.0] - 2026-09-09
+## 1.7.0 - 2026-09-09
 
 ### Added
 
@@ -166,7 +166,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.6.0] - 2026-09-09
+## 1.6.0 - 2026-09-09
 
 ### Added
 
@@ -175,7 +175,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.5.1] - 2026-09-09
+## 1.5.1 - 2026-09-09
 
 ### Fixed
 
@@ -187,7 +187,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.5.0] - 2026-09-08
+## 1.5.0 - 2026-09-08
 
 ### Added
 
@@ -195,7 +195,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.4.0] - 2026-09-07
+## 1.4.0 - 2026-09-07
 
 ### Added
 
@@ -203,7 +203,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.3.0] - 2026-09-07
+## 1.3.0 - 2026-09-07
 
 ### Added
 
@@ -211,7 +211,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.2.0] - 2026-09-07
+## 1.2.0 - 2026-09-07
 
 ### Changed
 
@@ -219,7 +219,7 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.1.0] - 2026-09-07
+## 1.1.0 - 2026-09-07
 
 ### Added
 
@@ -227,33 +227,9 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
-## [1.0.0] - 2026-09-07
+## 1.0.0 - 2026-09-07
 
 ### Added
 
 - Initial base HIG release.
 
----
-
-[Unreleased]: https://github.com/frozonfreak/hig/compare/v1.12.5...HEAD
-[1.12.5]: https://github.com/frozonfreak/hig/compare/v1.12.4...v1.12.5
-[1.12.4]: https://github.com/frozonfreak/hig/compare/v1.12.3...v1.12.4
-[1.12.3]: https://github.com/frozonfreak/hig/compare/v1.12.2...v1.12.3
-[1.12.2]: https://github.com/frozonfreak/hig/compare/v1.12.1...v1.12.2
-[1.12.1]: https://github.com/frozonfreak/hig/compare/v1.12.0...v1.12.1
-[1.12.0]: https://github.com/frozonfreak/hig/compare/v1.11.1...v1.12.0
-[1.11.1]: https://github.com/frozonfreak/hig/compare/v1.11.0...v1.11.1
-[1.11.0]: https://github.com/frozonfreak/hig/compare/v1.10.1...v1.11.0
-[1.10.1]: https://github.com/frozonfreak/hig/compare/v1.10.0...v1.10.1
-[1.10.0]: https://github.com/frozonfreak/hig/compare/v1.9.0...v1.10.0
-[1.9.0]: https://github.com/frozonfreak/hig/compare/v1.8.0...v1.9.0
-[1.8.0]: https://github.com/frozonfreak/hig/compare/v1.7.0...v1.8.0
-[1.7.0]: https://github.com/frozonfreak/hig/compare/v1.6.0...v1.7.0
-[1.6.0]: https://github.com/frozonfreak/hig/compare/v1.5.1...v1.6.0
-[1.5.1]: https://github.com/frozonfreak/hig/compare/v1.5.0...v1.5.1
-[1.5.0]: https://github.com/frozonfreak/hig/compare/v1.4.0...v1.5.0
-[1.4.0]: https://github.com/frozonfreak/hig/compare/v1.3.0...v1.4.0
-[1.3.0]: https://github.com/frozonfreak/hig/compare/v1.2.0...v1.3.0
-[1.2.0]: https://github.com/frozonfreak/hig/compare/v1.1.0...v1.2.0
-[1.1.0]: https://github.com/frozonfreak/hig/compare/v1.0.0...v1.1.0
-[1.0.0]: https://github.com/frozonfreak/hig/releases/tag/v1.0.0

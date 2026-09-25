@@ -79,6 +79,6 @@ This roadmap describes **contract and tooling** direction for the standard repos
 
 ## How to influence the roadmap
 
-1. Open a **[Spec change proposal](https://github.com/frozonfreak/hig/issues/new?template=spec-change.yml)** for normative changes.
+1. Open a **[Spec change proposal](./.github/ISSUE_TEMPLATE/spec-change.yml)** for normative changes.
 2. Open a **feature issue** for tooling (validate script, schema, eslint rules).
 3. Send a PR to [ADOPTERS.md](./ADOPTERS.md) when your product pins the contract (see template there).

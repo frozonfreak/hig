@@ -33,7 +33,7 @@ Out of scope:
 ## How to propose a spec change
 
 1. **Search [issues](https://github.com/frozonfreak/hig/issues)** for duplicates.
-2. Open a **[Spec change proposal](https://github.com/frozonfreak/hig/issues/new?template=spec-change.yml)** — describe problem, affected layers, and backward compatibility.
+2. Open a **[Spec change proposal](./.github/ISSUE_TEMPLATE/spec-change.yml)** — describe problem, affected layers, and backward compatibility.
 3. Fork, branch from `main`, implement focused edits.
 4. Run **`npm install`** (root workspaces), then **`npm run validate`**, **`npm run lint`**, and **`npm test`** — CI rejects contract integrity failures (Markdown links, rule ID consistency, manifest schema, version headers).
 5. Open a PR using [.github/PULL_REQUEST_TEMPLATE.md](./.github/PULL_REQUEST_TEMPLATE.md). Contract file changes must bump [VERSION](./VERSION) (see [VERSIONING.md](./VERSIONING.md)).

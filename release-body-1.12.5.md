@@ -39,4 +39,4 @@ Patch release: **contract clarity, validation, and adoption fixtures**. No norma
 
 ---
 
-Pin: [HIG-QUICK.md](https://github.com/frozonfreak/hig/blob/v1.12.5/HIG-QUICK.md) · Contract: [VERSION](https://github.com/frozonfreak/hig/blob/v1.12.5/VERSION)
+Pin: [HIG-QUICK.md](https://github.com/frozonfreak/hig/blob/main/HIG-QUICK.md) · Contract: [VERSION](https://github.com/frozonfreak/hig/blob/main/VERSION)

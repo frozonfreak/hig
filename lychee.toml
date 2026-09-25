@@ -15,6 +15,7 @@ exclude = [
   '^https://x\.com/',
   '^https://linkedin\.com/',
   '^https://www\.linkedin\.com/',
+  '^https://www\.npmjs\.com/',
   '^https://example\.com',
   '^https://…',
 ]
