@@ -150,10 +150,10 @@ Minimal PR checklist once the HIG is pinned:
 - [ ] Destructive actions use proportional confirmation, not optimistic delete  
 - [ ] Visible focus on interactive controls  
 
-## What’s inside (v1.9.0 snapshot)
+## What’s inside (v1.16.0)
 
 - **98** quick rules  
-- **16** topic modules (forms, mutations, performance, security UX, …)  
+- **17** topic modules (forms, mutations, performance, security UX, …)  
 - **4** page archetypes  
 - Layers covering applicability, UX, IA, tokens, server-driven UI, a11y, perf, CI gates, and security UX  
 
