@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Safari 27.3 — no color scheme declared</title>
+    <style>
+      :root {
+        --surface: #ffffff;
+        --ink: #1a1a1a;
+        --mark: #1a1a1a;
+        --control: #1d4ed8;
+        --control-ink: #ffffff;
+        font-family: "Segoe UI", system-ui, sans-serif;
+        line-height: 1.45;
+        background: var(--surface);
+        color: var(--ink);
+      }
+
+      body {
+        margin-block: 1.5rem;
+        margin-inline: auto;
+        max-inline-size: 42rem;
+        padding-inline: 1rem;
+      }
+
+      h1 {
+        font-size: 1.25rem;
+        margin-block: 0 0.5rem;
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        margin-block: 1rem;
+      }
+
+      button {
+        min-block-size: 2.75rem;
+        min-inline-size: 2.75rem;
+        padding-block: 0.5rem;
+        padding-inline: 0.75rem;
+        background: var(--control);
+        color: var(--control-ink);
+        border: 2px solid transparent;
+      }
+
+      button:hover {
+        border-color: var(--ink);
+      }
+
+      button:focus-visible {
+        outline: 3px solid var(--ink);
+        outline-offset: 2px;
+      }
+
+      .logo {
+        inline-size: 3rem;
+        block-size: 3rem;
+        color: var(--mark);
+      }
+
+      img,
+      canvas {
+        inline-size: 4rem;
+        block-size: 4rem;
+        background: transparent;
+      }
+
+      .blend {
+        padding: 0.5rem;
+        background: var(--control);
+        color: var(--control-ink);
+        mix-blend-mode: multiply;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>No color scheme declared</h1>
+      <p>
+        This page is authored light and does not declare <code>color-scheme</code>. With the
+        system appearance dark, Safari 27.3 may offer Adaptive Dark Mode. Screenshot the text,
+        the focused and hovered button, the SVG logo, the transparent bitmap, and the canvas.
+        Script and computed style still return these light colors. The canvas drawing should
+        stay as painted.
+      </p>
+      <p class="blend">Blend sample. Record if a mask or blend effect disappears.</p>
+      <div class="row">
+        <button type="button">Focus and hover</button>
+        <svg class="logo" viewBox="0 0 32 32" role="img" aria-label="Mark">
+          <circle cx="16" cy="16" r="12" fill="currentColor" />
+        </svg>
+        <img
+          alt="Black square on a transparent bitmap"
+          width="16"
+          height="16"
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAF0lEQVR4nGNgGAXYwH8CeNSAkWHASAMAKf8/wT4euD8AAAAASUVORK5CYII="
+        />
+        <canvas id="chart" width="64" height="64">A short bar chart</canvas>
+      </div>
+    </main>
+    <script>
+      const canvas = document.getElementById("chart");
+      const context = canvas.getContext("2d");
+      context.fillStyle = "#1a1a1a";
+      context.fillRect(8, 28, 12, 28);
+      context.fillRect(26, 16, 12, 40);
+      context.fillRect(44, 36, 12, 20);
+    </script>
+  </body>
+</html>

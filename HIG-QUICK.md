@@ -1,6 +1,6 @@
 # The Web HIG — Quick Reference
 
-**Layer 1** · ~5 minutes · **Version:** v1.16.0
+**Layer 1** · ~5 minutes · **Version:** v1.17.0
 
 **Pin this file — that is the whole onboarding path.** You do not need the rest of the repository to start.
 
@@ -121,10 +121,10 @@ Route/feature chunk failures are error states too: keep meaningful error text an
 58. Use design tokens for color, spacing, typography, and motion — no raw hex in component code.
 59. UI surfaces must use semantic or component tokens, not primitive palette values directly.
 60. Never rely on color alone to communicate meaning — pair with icon, text, or pattern.
-61. Text contrast: ≥4.5:1 for body text, ≥3:1 for large text and non-text UI elements.
+61. Text contrast: ≥4.5:1 for body text, ≥3:1 for large text and non-text UI elements. Measure authored colors. A browser repaint that computed styles cannot see, including Safari Adaptive Dark Mode, is not this result, and a browser’s 4.5:1 aim is not WCAG conformance.
 62. Focus indicators must have sufficient contrast and must never be removed without a replacement.
 63. Typography and spacing must come from the token system — no one-off pixel values.
-64. Dark mode must re-verify contrast for every semantic token combination used.
+64. Dark mode must re-verify contrast for every semantic token combination used. Declare supported color schemes in the document head or the initial CSS, before JavaScript. `light dark` is the usual declaration when both schemes are supported. `light only` is a narrow opt-out, not the default.
 65. Component-internal layout should use container queries when layout depends on parent width; must use them for multi-context reusable components where viewport breakpoints would lie (**HIG-CQ-001**, **HIG-CQ-002**). Do not add containers only to satisfy the rule (**HIG-SIM-001**).
 
 ---
@@ -132,7 +132,7 @@ Route/feature chunk failures are error states too: keep meaningful error text an
 ## Accessibility
 
 66. Target WCAG 2.2 Level AA — refer to the official spec; do not redefine criteria.
-67. Use native HTML elements before reaching for ARIA — `<button>`, `<a>`, `<input>`, `<select>`.
+67. Use native HTML elements before reaching for ARIA — `<button>`, `<a>`, `<input>`, `<select>`. Keep that preference when content is drawn into a canvas. HTML-in-Canvas is not a general replacement and not an audit rule.
 68. Never use `<div onClick>` or `<span onClick>` for interactive controls.
 69. Every control must have an accessible name — especially icon-only buttons. Prefer visible/`<label>` text; verify names against the browser accessibility tree (platform AccName), not a simplified attribute checklist — especially for web components, slots, and hidden ID refs.
 70. Every informative image must have meaningful `alt` text; decorative images use `alt=""`.
@@ -152,7 +152,7 @@ Route/feature chunk failures are error states too: keep meaningful error text an
 ## Performance & engineering
 
 81. Default to server rendering — add client JavaScript only when interaction requires it.
-82. Protect Core Web Vitals: LCP ≤2.5 s, INP ≤200 ms (field), CLS ≤0.1 (**HIG-PERF-001**, **HIG-PERF-002**). Report experimental CrUX soft-navigation variants separately, with the dataset month and an experimental label, and do not merge their pass/fail with these stable thresholds.
+82. Protect Core Web Vitals: LCP ≤2.5 s, INP ≤200 ms (field), CLS ≤0.1 (**HIG-PERF-001**, **HIG-PERF-002**). Report experimental CrUX soft-navigation variants separately, with the dataset month and an experimental label, and do not merge their pass/fail with these stable thresholds. When Long Animation Frames expose separate style and layout durations, use them only to diagnose INP. Feature-detect those fields, keep combined style-and-layout timing as the fallback, and do not add a pass/fail from them.
 83. Images must declare dimensions or aspect ratio to prevent layout shift. Choose formats by measured transfer cost and LCP; offer emerging formats (e.g. JPEG XL) only via `<picture>` progressive enhancement with a broadly supported fallback.
 84. Lazy-load below-the-fold media; never lazy-load the LCP candidate.
 85. Application CSS must not use `transition: all` — enumerate animated properties explicitly.

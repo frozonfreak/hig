@@ -1,6 +1,6 @@
 # The Web HIG
 
-[![Version](https://img.shields.io/badge/version-1.16.0-1d4ed8)](./VERSION)
+[![Version](https://img.shields.io/badge/version-1.17.0-1d4ed8)](./VERSION)
 [![License: MIT](https://img.shields.io/github/license/frozonfreak/webhig)](./LICENSE)
 [![Try HIG Audit](https://img.shields.io/badge/Try_HIG_Audit-0f766e)](https://hig.aruviflow.com)
 [![Validate HIG](https://github.com/frozonfreak/webhig/actions/workflows/validate.yml/badge.svg)](https://github.com/frozonfreak/webhig/actions/workflows/validate.yml)
@@ -166,7 +166,11 @@ Most people only need **HIG-QUICK**.
 | I want to understand why HIG exists         | [RATIONALE.md](./RATIONALE.md)          |
 | I want to audit an existing website         | [HIG Audit](https://hig.aruviflow.com/) |
 
-**Current release:** [v1.16.0](./VERSION) · [Changelog](./CHANGELOG.md) · [Release notes](./RELEASE_NOTES.md)
+**Current release:** [v1.17.0](./VERSION) · [Changelog](./CHANGELOG.md) · [Release notes](./RELEASE_NOTES.md)
+
+### New in v1.17.0: authored color schemes and frame diagnostics
+
+Declare supported color schemes in the initial document, before JavaScript. `light dark` is the usual declaration; `light only` is an opt-out, not the default. Safari 27.3 Adaptive Dark Mode can repaint an undeclared light page, and computed styles still show the authored colors, so contrast checks need a screenshot. Long Animation Frames style and layout durations diagnose INP when the browser exposes them and do not add a pass/fail. HTML-in-Canvas stays informative. Still **98 Quick imperatives and 76 stable rule IDs**. See the [release notes](./RELEASE_NOTES.md).
 
 ### New in v1.16.0: field metrics and scroll-driven motion
 

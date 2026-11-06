@@ -4,6 +4,20 @@ User-facing notes for each published version of The Web HIG. The brief machine-o
 
 Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
+## [v1.17.0](./HIG.md) — 2026-11-06
+
+Minor guidance update for authored color schemes and interaction diagnostics. Stable Core Web Vitals thresholds do not change.
+
+- Declare `color-scheme` in the document head or the initial CSS, before JavaScript. Use `light dark` when the page supports both, and author the dark tokens. `light only` is an opt-out for a surface that must stay light, not the default. Safari 27.3 beta 1 did not honor `only`.
+- Review Safari Adaptive Dark Mode with a screenshot when Safari is in the support matrix. Text, focus, hover, SVG logos, transparent images, and canvas can look wrong while computed-style contrast stays green. Safari’s 4.5:1 aim is not a WCAG pass.
+- When Long Animation Frames expose separate style and layout durations, use them to tell selector and invalidation cost from forced style or forced layout. Feature-detect the fields. Where they are missing, keep the combined style-and-layout timing. Do not add a threshold.
+- HTML-in-Canvas in Chrome 157 stays informative. Prefer the semantic DOM. Do not treat the feature as qualified, and do not add an audit rule, until another engine ships it and independent assistive-technology testing exists.
+- Safari Technology Preview 256 fixes generated list markers, nested-iframe VoiceOver entry, and doubled text zoom on font-relative units. Keep current guidance until those fixes reach stable Safari.
+
+Upgrade by refreshing the contract pin and reviewing the [research disposition](./docs/research/2026-11-06-brief.md). No new stable IDs, severity changes, WCAG baseline, or Core Web Vitals thresholds. The separate audit site is not deployed by this update. Quick remains 98 imperatives and the registry remains 76 stable IDs.
+
+---
+
 ## [v1.16.0](./HIG.md) — 2026-10-30
 
 Minor guidance update for field performance reporting and scroll-driven motion. Stable Core Web Vitals thresholds do not change.

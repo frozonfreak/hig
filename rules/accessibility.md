@@ -1,6 +1,6 @@
 # Accessibility — Level 2 Module
 
-**Version:** v1.16.0 · **Canonical spec:** [HIG.md §5](../HIG.md#layer-5-accessibility-a11y--keyboard-navigation) · **Rule IDs:** HIG-A11Y-001–008
+**Version:** v1.17.0 · **Canonical spec:** [HIG.md §5](../HIG.md#layer-5-accessibility-a11y--keyboard-navigation) · **Rule IDs:** HIG-A11Y-001–008
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 
@@ -9,8 +9,8 @@
 ## 5.1 Standards Baseline
 
 * **Conformance:** WCAG 2.2 Level AA mandatory (**HIG-A11Y-002**). Refer to the [official WCAG 2.2 specification](https://www.w3.org/TR/WCAG22/) — do not redefine criteria. AAA targeted where practical (e.g. reduced motion).
-* **Text Contrast:** Standard text ≥4.5:1; large text ≥3:1. Non-text UI ≥3:1.
-* **Zoom & reflow:** Usable at 200% text zoom; support 400% reflow without horizontal scrolling where applicable.
+* **Text Contrast:** Standard text ≥4.5:1; large text ≥3:1. Non-text UI ≥3:1. Measure authored colors. Safari Adaptive Dark Mode’s displayed colors, and its 4.5:1 aim, are not this result ([§3.1](../HIG.md#supported-color-schemes)).
+* **Zoom & reflow:** Usable at 200% text zoom; support 400% reflow without horizontal scrolling where applicable. Verify zoom and reflow in supported browsers. A Technology Preview fix does not change the stable-browser expectation.
 
 ## 5.2 Native HTML Over ARIA
 
@@ -26,6 +26,12 @@ Native semantic HTML MUST be preferred over ARIA when equivalent semantics exist
 4. Descriptions via `aria-describedby` (prefer) or `aria-description` where supported — verify in the accessibility tree
 
 Watch divergence for shadow roots/slots, CSS-generated content, hidden ID references, embedded controls, and roles that prohibit naming. Prefer the browser accessibility tree in audits.
+
+Essential meaning still does not belong only in CSS-generated content. A frame that contains needed content still keeps its semantics. Safari Technology Preview 256 does not change those expectations until the fixes reach stable Safari ([6 November brief](../docs/research/2026-11-06-brief.md)).
+
+### HTML in canvas (informative)
+
+Prefer the semantic DOM (**HIG-A11Y-003**). Chrome 157 HTML-in-Canvas can keep drawn DOM in the accessibility tree, but it is a WICG proposal and Chromium-only. It may qualify only when an implementation shows accessible names, roles, states, and geometry; keyboard and screen-reader operation; text zoom, reflow, and forced colors; synchronized DOM and pixel geometry; and a usable fallback where the feature is absent. Do not add an audit rule until another engine implements it and independent assistive-technology testing exists. See [HIG.md §5.2](../HIG.md#html-in-canvas-informative).
 
 Icon buttons MUST have accessible names (**HIG-A11Y-004**). Images MUST have `alt` (**HIG-A11Y-005**).
 

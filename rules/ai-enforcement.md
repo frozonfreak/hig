@@ -1,6 +1,6 @@
 # AI & Agent Enforcement — Level 2 Module
 
-**Version:** v1.16.0 · **Canonical spec:** [HIG.md §7–8](../HIG.md#layer-7-ai--agent-enforcement-contract) · **Rule ID:** HIG-SIM-001 + all Layer 7 IDs
+**Version:** v1.17.0 · **Canonical spec:** [HIG.md §7–8](../HIG.md#layer-7-ai--agent-enforcement-contract) · **Rule ID:** HIG-SIM-001 + all Layer 7 IDs
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 
@@ -82,7 +82,7 @@ Test interface drift with renamed/removed tools, distractor candidates, schema c
 * CLS > 0.10
 * TTFB > 800 ms
 
-Field INP is an SLO — not a deterministic CI gate from synthetic tests. Experimental soft-navigation LCP, INP, and CLS variants are observation-only and stay separate from the stable SLO.
+Field INP is an SLO — not a deterministic CI gate from synthetic tests. Experimental soft-navigation LCP, INP, and CLS variants are observation-only and stay separate from the stable SLO. Long Animation Frames style and layout durations, when the browser exposes them, are diagnostic detail for that INP. They are not an additional threshold.
 
 See [HIG.md §8](../HIG.md#layer-8-quality-assurance--cicd-gates) for the full CI pipeline diagram.
 

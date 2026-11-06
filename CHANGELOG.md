@@ -17,6 +17,25 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
+## [1.17.0] - 2026-11-06
+
+### Changed
+
+- Supported color schemes must be declared in the document head or initial CSS, before JavaScript. `light dark` is the usual declaration when both schemes are supported. `light only` is a narrow opt-out, not the default. Safari 27.3 Adaptive Dark Mode can repaint an undeclared light page, and computed styles still return authored colors. That repaint, and Safari’s 4.5:1 aim, are not WCAG conformance (**HIG-A11Y-002**).
+- Long Animation Frames `styleDuration`, `layoutDuration`, `forcedStyleDuration`, and `forcedLayoutDuration` diagnose style cost separately from layout cost when the browser exposes them. Combined style-and-layout timing stays the fallback. No new pass/fail and no Core Web Vitals threshold change (**HIG-PERF-001**, **HIG-PERF-002**).
+- [6 November research disposition](./docs/research/2026-11-06-brief.md).
+
+### Added
+
+- Informative HTML-in-Canvas note. Semantic DOM remains the preference. The Chromium feature may qualify only after names, roles, states, geometry, keyboard and screen-reader operation, zoom, reflow, forced colors, geometry sync, and a non-supporting-browser fallback are shown. No audit rule.
+- [Safari 27.3 Adaptive Dark Mode matrix](./examples/audit-fixtures/safari-27-3-adaptive-dark-mode.md) for text, focus, hover, SVG logos, transparent bitmaps, and canvas, with and without a declared scheme. Execution pending.
+
+### Unchanged
+
+- Core Web Vitals thresholds, rule IDs, and severities. Safari Technology Preview 256 list-marker, nested-iframe, and text-zoom fixes do not change stable compatibility expectations. WCAG 3, ARIA 1.3, and WCAG2Mobile stay deferred until the announced documents are published. No new AI/agent-interface requirement.
+
+---
+
 ## [1.16.0] - 2026-10-30
 
 ### Changed

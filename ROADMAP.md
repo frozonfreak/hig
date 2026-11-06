@@ -71,14 +71,19 @@ This roadmap describes **contract and tooling** direction for the standard repos
 
 ---
 
-## Research watchlist (2026-10-30)
+## Research watchlist (2026-11-06)
 
 Informational — not commitments. From the weekly Web HIG research briefs:
 
 | Topic | Status |
 | --- | --- |
+| Adaptive Dark Mode | Safari 27.3 beta can repaint an undeclared light page. Declare `light dark` in the initial document when both schemes are supported. `light only` is an opt-out. Screenshot review; computed color is authored color. The browser’s 4.5:1 aim is not WCAG conformance. Beta 1 did not support `only`. |
+| Long Animation Frames | Chrome 157 can report `styleDuration`, `layoutDuration`, `forcedStyleDuration`, and `forcedLayoutDuration`. Feature-detect them. Combined style-and-layout timing is the fallback. Diagnostic only; Core Web Vitals thresholds are unchanged. |
+| HTML-in-Canvas | Chrome 157, WICG proposal, Chromium-only. Semantic DOM stays the preference. No audit rule until another engine implements it and independent assistive-technology testing exists. |
+| Safari Technology Preview 256 | List-marker text, nested-iframe VoiceOver entry, and doubled text zoom on font-relative sizes are fixed in the preview. Do not change stable compatibility expectations yet. |
 | Core Web Vitals | Stable LCP, INP, and CLS thresholds are unchanged. Experimental CrUX soft-navigation variants (September 2026 dataset, published 13 October 2026) are a separate labeled series and must not share a pass/fail. Possible Chrome graduation in May 2027 is not a HIG date. |
-| AI/agent interfaces | No new primary research strong enough to alter guidance; keep visible agent state, confirmation for consequential actions, reversibility, provenance, accessible status. Safari 27.2 live-region behavior is a manual AT retest, not a new author rule. |
+| AI/agent interfaces | No new primary research in the 31 October–6 November interval strong enough to alter guidance; keep visible agent state, confirmation for consequential actions, reversibility, provenance, accessible status. Safari 27.2 live-region behavior is a manual AT retest, not a new author rule. |
+| W3C drafts | WCAG 3 remains years out and is expected to change substantially ([WAI, 4 November 2026](https://www.w3.org/WAI/update/)). ARIA 1.3 Candidate Recommendation Snapshot and an updated WCAG2Mobile Working Draft are planned for November or December. Defer until those documents are published. The WCAG 2.2 Editor’s Draft is not a new Recommendation. |
 | Scroll-driven animations | Firefox 159 enables them by default. Still limited availability, not Baseline. Guard with reduced motion; do not treat duration shortening as sufficient. Necessity stays manual. |
 | Grid Lanes | Safari 27.2 renames `flow-tolerance` to `fit-tolerance` (`flow-tolerance` remains a deprecated alias). No HIG examples use the old name. Not a universal implementation requirement and not an audit rule. DOM order stays logical if examples are added later. |
 | Modern CSS (Safari TP experiments) | Track `interpolate-size`, `calc-size()`, `symbols()`, linked parameters — no HIG recommendation or automated rule yet |

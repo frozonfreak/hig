@@ -1,6 +1,6 @@
 # Performance & Web Vitals — Level 2 Module
 
-**Version:** v1.16.0 · **Canonical spec:** [HIG.md §6](../HIG.md#layer-6-performance--web-vitals) · **Rule IDs:** HIG-PERF-001–004 · **Archetypes:** Universal
+**Version:** v1.17.0 · **Canonical spec:** [HIG.md §6](../HIG.md#layer-6-performance--web-vitals) · **Rule IDs:** HIG-PERF-001–004 · **Archetypes:** Universal
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 
@@ -32,6 +32,19 @@ TTFB is **not** a Core Web Vital.
 ## 6.2 Lab Performance (CI)
 
 Lab/CI gates SHOULD enforce synthetic interaction latency (not field INP), LCP, CLS, TTFB (synthetic), JS execution time, and bundle size budgets (**HIG-PERF-002**).
+
+### Long animation frame diagnostics
+
+Chrome 157 can separate style time from layout time on Long Animation Frames. The fields are not in every major browser. Feature-detect them, and do not treat a missing field as zero.
+
+| Field | What a high value suggests |
+| --- | --- |
+| `styleDuration` | Rendering-phase style. Inspect selector complexity, invalidation scope, and frequent class or custom-property changes. |
+| `layoutDuration` | Rendering-phase layout. Inspect geometry, DOM size, and containment. |
+| `forcedStyleDuration` | Synchronous style after a DOM or style write, such as `getComputedStyle()`. |
+| `forcedLayoutDuration` | Synchronous layout after a DOM or style write, such as `getBoundingClientRect()` or `offsetWidth`. |
+
+If the separate fields are absent, keep combined style-and-layout timing (`forcedStyleAndLayoutDuration` and the frame’s combined style-and-layout duration). Do not invent a split. This explains a poor INP. It does not add a pass/fail and does not change §6.1 or **HIG-PERF-001**. See [HIG.md §6.2](../HIG.md#long-animation-frame-diagnostics).
 
 ## 6.3 Field Performance (RUM)
 

@@ -1,6 +1,6 @@
 # Expressive Surface Baseline — Level 2 Module
 
-**Version:** v1.16.0 · **Canonical spec:** [HIG.md §0.3, §1.5](../HIG.md#15-expressive-surface-baseline) · **Rule IDs:** HIG-EXP-001–014 · **Registry:** [motion-tiers.yaml](./motion-tiers.yaml)
+**Version:** v1.17.0 · **Canonical spec:** [HIG.md §0.3, §1.5](../HIG.md#15-expressive-surface-baseline) · **Rule IDs:** HIG-EXP-001–014 · **Registry:** [motion-tiers.yaml](./motion-tiers.yaml)
 
 > Standalone extract for progressive loading. Covers fluid, scroll-driven, and motion-forward **content** surfaces (~60–70% of public marketing and portfolio web). Not a visual pattern library — behavioral obligations only.
 
@@ -102,7 +102,7 @@ Scroll-jacking and parallax that violate **HIG-EXP-005** or **limited** spatial 
 
 ### Semantics & kinetic type
 
-**HIG-EXP-007:** Information required to understand offerings, projects, pricing, or contact MUST appear in the HTML document in logical reading order — not only in canvas, WebGL, or video frames.
+**HIG-EXP-007:** Information required to understand offerings, projects, pricing, or contact MUST appear in the HTML document in logical reading order — not only in canvas, WebGL, or video frames. Drawing that HTML into a canvas with HTML-in-Canvas does not replace this requirement. The Chromium feature stays informative until another engine implements it and independent assistive-technology testing exists ([HIG.md §5.2](../HIG.md#html-in-canvas-informative)).
 
 **HIG-EXP-011:** Duplicated or marquee text used for visual effect MUST expose **one canonical** text instance in document order. Purely decorative repetitions MUST be hidden from assistive technologies (`aria-hidden="true"`). The canonical instance MUST satisfy contrast and readability requirements.
 

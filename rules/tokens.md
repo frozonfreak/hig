@@ -1,6 +1,6 @@
 # Design Tokens — Level 2 Module
 
-**Version:** v1.16.0 · **Canonical spec:** [HIG.md §3.1](../HIG.md#31-design-token-architecture) · **Rule IDs:** HIG-TOK-001, HIG-TOK-002, HIG-MOT-002
+**Version:** v1.17.0 · **Canonical spec:** [HIG.md §3.1](../HIG.md#31-design-token-architecture) · **Rule IDs:** HIG-TOK-001, HIG-TOK-002, HIG-MOT-002
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 
@@ -47,3 +47,13 @@ Tokens follow a **true three-tier structure**: **Global (Raw) → Semantic → C
 Motion tokens (**HIG-MOT-002**): reference `--duration-*` and `--ease-out-momentum` — do not invent per-component millisecond values.
 
 Applications SHOULD support system preference by default, with application-level theme selection (`system` / `light` / `dark`) where appropriate. See [HIG.md §3.1](../HIG.md#31-design-token-architecture) for the full token reference including dark mode overrides.
+
+### Supported color schemes
+
+Declare supported schemes in the initial document, before JavaScript. Use a `color-scheme` meta element, `color-scheme` on `:root` or `body` in first-paint CSS, or both. When both appearances are supported, declare `light dark` and author the dark tokens. That declaration is what keeps Safari 27.3 Adaptive Dark Mode from repainting the page.
+
+`color-scheme: light only` is a narrow opt-out, not the default. Safari 27.3 beta 1 did not support the `only` keyword.
+
+Adaptive Dark Mode can change CSS colors, gradients, some SVG and simple bitmap logos, and some masks or blend effects. It leaves canvas content unchanged, and computed styles keep the authored colors. Automated contrast can stay green while the screenshot fails. When Safari is in the matrix, reviewers MUST capture text, focus, hover, SVG logos, transparent images, and canvas content visually. The procedure is the [Safari 27.3 fixture](../examples/audit-fixtures/safari-27-3-adaptive-dark-mode.md).
+
+Safari’s 4.5:1 aim after transformation is not WCAG conformance and does not satisfy **HIG-A11Y-002**. Re-verify authored combinations, including focus and hover. Detail: [HIG.md §3.1](../HIG.md#supported-color-schemes).

@@ -1,8 +1,8 @@
-# The Web HIG & Product Engine Contract — v1.16.0
+# The Web HIG & Product Engine Contract — v1.17.0
 
 ## Executive Summary
 
-The Web HIG v1.16.0 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+The Web HIG v1.17.0 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
 This release adds a three-layer consumption model and archetype rule packs:
 
@@ -637,6 +637,20 @@ Tokens follow a **true three-tier structure**: **Global (Raw) → Semantic → C
 
 Applications SHOULD support system preference by default, while allowing application-level theme selection (`system` / `light` / `dark`) where appropriate.
 
+#### Supported color schemes
+
+Pages that support light and dark appearances MUST declare those schemes in the initial document, before any JavaScript runs. Declare them with a `color-scheme` meta element in the document head, with the `color-scheme` property on `:root` or `body` in CSS that applies on first paint, or with both.
+
+When both schemes are supported, declare `light dark`. Author the dark appearance with semantic tokens and `prefers-color-scheme` or an explicit theme, then re-verify contrast for every semantic combination in that appearance. A `light dark` declaration is what tells Safari 27.3 Adaptive Dark Mode to leave the page alone ([WebKit, 3 November 2026](https://webkit.org/blog/18541/introducing-adaptive-dark-mode/)).
+
+`color-scheme: light only`, and the matching meta value, is a narrow opt-out for a surface that must stay light. It is not the default. Safari 27.3 beta 1 did not support the `only` keyword. Do not rely on it until a build in the supported browser matrix honors it.
+
+Safari Adaptive Dark Mode can repaint a light page that does not declare supported schemes. It may change CSS colors and gradients, recolor some SVG images and simple bitmap logos, and turn off some masks or `mix-blend-mode` effects. Canvas content is left unchanged. The page cannot observe the repaint: script-visible and computed colors remain the authored values.
+
+Contrast checks, including automated checks, therefore measure authored colors. They do not measure what Safari displays. Text, focus, hover, SVG logos, transparent images, and canvas content can fail visually while those checks stay green. When Safari is in the supported matrix, reviewers MUST capture those cases with a screenshot or other visual record. The [manual fixture](./examples/audit-fixtures/safari-27-3-adaptive-dark-mode.md) is the procedure. Results are not established by this repository.
+
+Safari’s aim of 4.5:1 text contrast after transformation is not WCAG conformance and does not satisfy **HIG-A11Y-002**. Judge contrast on the authored interface, including focus, hover, and non-text UI, in each supported scheme.
+
 ### 3.2 Container Queries Engine
 
 **HIG-CQ-001 (SHOULD):** Component-internal layout adaptation SHOULD use `@container` when layout depends on the space allocated by the parent — not the viewport width alone.
@@ -829,8 +843,8 @@ Applications that support offline operation MUST define sync, conflict resolutio
 ### 5.1 Standards Baseline
 
 * **Conformance:** WCAG 2.2 Level AA conformance is mandatory across all public and internal interfaces. The HIG does not redefine individual success criteria — refer to the [official WCAG 2.2 specification](https://www.w3.org/TR/WCAG22/) and [Understanding documents](https://www.w3.org/WAI/WCAG22/Understanding/). AAA is targeted where practical (e.g. reduced motion per §1.3).
-* **Text Contrast:** Standard text ≥4.5:1; large text (≥24px, or ≥18.66px bold) ≥3:1. Non-text UI (icons, borders, focus indicators, status fills) ≥3:1.
-* **Zoom & reflow:** Content MUST remain usable at 200% text zoom. Where applicable, support 400% reflow without horizontal scrolling for standard content layouts. Text MUST be resizable without loss of content or functionality.
+* **Text Contrast:** Standard text ≥4.5:1; large text (≥24px, or ≥18.66px bold) ≥3:1. Non-text UI (icons, borders, focus indicators, status fills) ≥3:1. Measure authored colors. A browser repaint that computed styles cannot see, including Safari Adaptive Dark Mode (§3.1), is not this measurement. A browser’s stated 4.5:1 target is not evidence that the page conforms.
+* **Zoom & reflow:** Content MUST remain usable at 200% text zoom. Where applicable, support 400% reflow without horizontal scrolling for standard content layouts. Text MUST be resizable without loss of content or functionality. Verify zoom and reflow in the supported browsers. An engine fix in a Technology Preview does not change that requirement for stable releases.
 
 ### 5.2 Native HTML Over ARIA
 
@@ -848,6 +862,22 @@ Native semantic HTML MUST be preferred over ARIA when equivalent native semantic
 Pay special attention when light-DOM or attribute heuristics diverge from browsers: shadow roots and slots, CSS-generated content and whitespace normalization, hidden referenced subtrees, embedded controls, and roles that prohibit naming. Prefer inspecting the browser accessibility tree for audits. AccName 1.2 remains a Working Draft — do **not** treat its newer wording as an independent HIG conformance requirement beyond what user agents already expose.
 
 Avoid unnecessary ARIA.
+
+Essential meaning still does not belong only in CSS-generated content, and a frame that contains content a person needs to reach still keeps its semantics. Safari Technology Preview 256 fixes generated list-marker text missing from the accessibility tree, and VoiceOver failing to enter an iframe nested inside a frame with `role="none"` or `role="presentation"`. It also fixes text zoom being applied twice to font-relative sizes. Those are Technology Preview notes, not stable Safari behavior. Do not change compatibility expectations until the fixes ship in stable Safari. See the [6 November research disposition](./docs/research/2026-11-06-brief.md).
+
+#### HTML in canvas (informative)
+
+Prefer a semantic DOM interface (**HIG-A11Y-003**, and **HIG-EXP-007** where that rule applies). Chrome 157 ships HTML-in-Canvas after an origin trial. DOM children drawn into a 2D, WebGL, or WebGPU canvas can remain exposed to the accessibility tree and can support selection, forms, find-in-page, translation, and indexing. The feature is a [WICG proposal](https://github.com/WICG/html-in-canvas/) and, at this release, Chromium-only. Chrome documents [feature detection and a fallback](https://developer.chrome.com/blog/html-in-canvas).
+
+HTML-in-Canvas does not by itself meet this standard. It may qualify for a product only when that implementation is shown to provide all of the following:
+
+* Accessible names, roles, states, and geometry
+* Keyboard operation and screen-reader operation
+* Text zoom, reflow, and forced-colors behavior
+* DOM geometry and pixel geometry that stay synchronized
+* A usable fallback in browsers that do not support the feature
+
+Do not add an audit rule until another engine implements HTML-in-Canvas and independent assistive-technology testing exists. Pixel-only controls remain insufficient for an essential task.
 
 ### 5.3 Keyboard Focus & Interaction
 
@@ -936,6 +966,21 @@ Lab/CI gates SHOULD enforce (**HIG-PERF-002**):
 * LCP, CLS, TTFB (synthetic)
 * JS execution time
 * Bundle size budgets
+
+#### Long animation frame diagnostics
+
+Chrome 157 can report style time separately from layout time on the Long Animation Frames API ([Chrome 157 release notes](https://chromestatus.com/release-notes/157)). The split is not available in every major browser. Feature-detect it. When the fields exist, use them to explain a poor Interaction to Next Paint. Do not treat a missing field as zero.
+
+| Field | What a high value suggests |
+| --- | --- |
+| `styleDuration` | Rendering-phase style cost. Inspect selector complexity, how widely a change invalidates style, and frequent class or custom-property updates. |
+| `layoutDuration` | Rendering-phase layout cost. Inspect geometry work, DOM size, and containment. |
+| `forcedStyleDuration` | A script forced style synchronously, for example `getComputedStyle()` after a DOM or style write. |
+| `forcedLayoutDuration` | A script forced layout synchronously, for example `getBoundingClientRect()` or `offsetWidth` after a DOM or style write. |
+
+When those fields are absent, keep the combined style-and-layout timing (`forcedStyleAndLayoutDuration`, and the frame’s combined style-and-layout duration). Do not invent a split. [Chrome’s INP guidance](https://developer.chrome.com/docs/modern-web-guidance/guides/performance/identify-inp-causes) uses that same fallback.
+
+This is diagnostic data under **HIG-PERF-002**. It MUST NOT add a pass/fail threshold, and it MUST NOT change Core Web Vitals scoring or the §6.1 targets.
 
 ### 6.3 Field Performance (RUM)
 
@@ -1322,7 +1367,7 @@ CI gates are classified by enforcement level:
                ├── 4. Visual Regression (Playwright screenshots) ── WARNING
                │      ├── Layout regression
                │      ├── Responsive breakpoint regression
-               │      └── Dark-mode regression
+               │      └── Dark-mode regression (Safari Adaptive Dark Mode needs a capture; computed color is authored only)
                │
                ├── 5. Cross-Browser Testing ── WARNING
                │      ├── Chromium, Safari/WebKit, Firefox
@@ -1430,6 +1475,7 @@ Logs MUST include timestamp, actor, action, and resource — but MUST NOT includ
 
 **Release documentation:** [CHANGELOG.md](./CHANGELOG.md) (Keep a Changelog) · [RELEASE_NOTES.md](./RELEASE_NOTES.md) (adoption notes) · [VERSIONING.md](./VERSIONING.md) (semver policy).
 
+* **v1.17.0 (2026-11-06):** Minor guidance release. Supported color schemes MUST be declared in the initial document; `light only` is an opt-out, not the default. Safari Adaptive Dark Mode does not count as WCAG contrast. Long Animation Frames style and layout durations are diagnostic only and do not change **HIG-PERF-001**. HTML-in-Canvas stays informative, with no audit rule. Safari Technology Preview 256 accessibility fixes do not change stable compatibility expectations. No new rule IDs or severity changes.
 * **v1.16.0 (2026-10-30):** Minor guidance release. Stable Core Web Vitals stay the **HIG-PERF-001** gate; experimental CrUX soft-navigation LCP, INP, and CLS variants are a separate labeled series and MUST NOT share a pass/fail. Scroll-driven animations (`animation-timeline`, `scroll()`, `view()`) are motion under **HIG-A11Y-001**; duration shortening does not stop them. Safari 27.2 VoiceOver fixtures are manual review only. No new rule IDs, severity changes, WCAG baseline, or Core Web Vitals threshold changes.
 * **v1.15.0 (2026-10-24):** Minor informative guidance release. Content/Marketing applied examples, scoped manual worksheet and document/hybrid fixtures. No new rule IDs, requirement meaning, severity, applicability, WCAG or Core Web Vitals threshold changes.
 * **v1.14.0 (2026-10-23):** Minor guidance release. Clarifies module-load recovery under §2.5; adds informative §7.4 tool-schema review and runtime/AT fixtures. No new IDs, severity changes, WCAG or Core Web Vitals threshold changes.

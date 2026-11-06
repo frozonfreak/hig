@@ -1,6 +1,6 @@
 # The Web HIG — Practical Guide (Layer 2)
 
-**Version:** v1.16.0 · **Quick Reference:** [HIG-QUICK.md](./HIG-QUICK.md) · **Core:** [HIG-CORE.md](./HIG-CORE.md) · **Full spec:** [HIG.md](./HIG.md) · **Topic index:** [rules/INDEX.md](./rules/INDEX.md)
+**Version:** v1.17.0 · **Quick Reference:** [HIG-QUICK.md](./HIG-QUICK.md) · **Core:** [HIG-CORE.md](./HIG-CORE.md) · **Full spec:** [HIG.md](./HIG.md) · **Topic index:** [rules/INDEX.md](./rules/INDEX.md)
 
 Practical documentation with rule IDs and checklists. Start with [HIG-QUICK.md](./HIG-QUICK.md) (Layer 1, ~5 min); open this file when you need rule ID links and archetype guidance. Load [rules/manifest.yaml](./rules/manifest.yaml) topic modules when the task requires depth beyond this summary.
 
@@ -32,8 +32,8 @@ Practical documentation with rule IDs and checklists. Start with [HIG-QUICK.md](
 
 ## 2. Accessibility
 
-- WCAG 2.2 AA target — refer to official spec, do not redefine criteria (**HIG-A11Y-002** → [§5.1](./HIG.md#51-standards-baseline))
-- Semantic HTML first; native elements over ARIA (**HIG-A11Y-003** → [§5.2](./HIG.md#52-native-html-over-aria))
+- WCAG 2.2 AA target — refer to official spec, do not redefine criteria (**HIG-A11Y-002** → [§5.1](./HIG.md#51-standards-baseline)). Judge contrast on authored colors. Safari Adaptive Dark Mode’s displayed colors, and its 4.5:1 aim, are not that result ([supported color schemes](./HIG.md#supported-color-schemes))
+- Semantic HTML first; native elements over ARIA (**HIG-A11Y-003** → [§5.2](./HIG.md#52-native-html-over-aria)). HTML-in-Canvas does not replace that preference and is not an audit rule ([HTML in canvas](./HIG.md#html-in-canvas-informative))
 - Keyboard accessible; follow platform widget patterns ([§5.3](./HIG.md#53-keyboard-focus--interaction))
 - Visible focus indicator with sufficient contrast (**HIG-A11Y-006** → [§5.3](./HIG.md#53-keyboard-focus--interaction))
 - Accessible names on all controls; icon buttons and images included — match the platform AccName computation / browser accessibility tree, not a simplified attribute order (**HIG-A11Y-004**, **HIG-A11Y-005** → [§5.2](./HIG.md#52-native-html-over-aria))
@@ -46,6 +46,7 @@ Practical documentation with rule IDs and checklists. Start with [HIG-QUICK.md](
 - Use design tokens; no raw hex outside token files (**HIG-TOK-001** → [§3.1](./HIG.md#31-design-token-architecture))
 - Semantic or component tokens for UI surfaces (**HIG-TOK-002** → [§3.1](./HIG.md#31-design-token-architecture))
 - Consistent spacing and typography from token system ([§3.1](./HIG.md#31-design-token-architecture))
+- Declare supported color schemes (`light dark` when both are supported) in the document head or initial CSS, before JavaScript. `light only` is an opt-out, not the default ([supported color schemes](./HIG.md#supported-color-schemes))
 - Avoid unnecessary decoration; use existing components before creating new ones
 - Logical CSS properties for layout (**HIG-UX-001**, **HIG-I18N-001** → [§2.8](./HIG.md#28-internationalization--localization))
 
@@ -107,6 +108,7 @@ Load [rules/expressive-surface.md](./rules/expressive-surface.md) when scope dec
 - Lazy-load appropriate resources; optimize images ([§6.4](./HIG.md#64-performance-budgets))
 - Avoid blocking critical rendering path ([§6.1](./HIG.md#61-core-web-vitals--supporting-performance-metrics))
 - Protect stable Core Web Vitals: LCP, INP (field SLO), CLS ([§6.1](./HIG.md#61-core-web-vitals--supporting-performance-metrics)). Experimental CrUX soft-navigation variants stay a separate labeled series with the dataset month and MUST NOT share that pass/fail ([§6.3](./HIG.md#63-field-performance-rum))
+- When present, Long Animation Frames `styleDuration`, `layoutDuration`, `forcedStyleDuration`, and `forcedLayoutDuration` diagnose style cost separately from layout cost. Feature-detect them. Combined style-and-layout timing is the fallback. They do not change **HIG-PERF-001** ([long animation frame diagnostics](./HIG.md#long-animation-frame-diagnostics))
 - Slow async server regions need streaming boundaries + skeleton (**HIG-SSR-002** → [§4.1](./HIG.md#41-server-driven--progressive-rendering-architecture))
 
 ## 6b. Search and data density
