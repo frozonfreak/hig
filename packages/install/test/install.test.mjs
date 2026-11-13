@@ -4,8 +4,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { run } from '../lib/install.mjs';
 import { MARKER_START, MARKER_END } from '../lib/files.mjs';
+import { resolvePayload } from '../lib/payload.mjs';
 
 const packageRoot = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
+const payloadVersion = resolvePayload(packageRoot).version;
 
 function assert(condition, message) {
   if (!condition) throw new Error(message);
@@ -74,7 +76,7 @@ const tests = [
         }
         assert(!exists(dir, 'docs/hig/HIG-LITE.md'), 'quick profile should not copy HIG-LITE.md');
         assert(!exists(dir, 'docs/hig/HIG.md'), 'quick profile should not copy HIG.md');
-        assert(read(dir, 'docs/hig/VERSION').trim() === '1.16.0', 'VERSION pin mismatch');
+        assert(read(dir, 'docs/hig/VERSION').trim() === payloadVersion, 'VERSION pin mismatch');
         assert(read(dir, '.cursor/skills/web-hig/SKILL.md').includes('name: web-hig'), 'skill missing name');
         assert(read(dir, '.windsurf/rules/hig.md').includes('trigger: always_on'), 'windsurf rule missing trigger');
         assert(read(dir, 'CLAUDE.md').includes(MARKER_START), 'CLAUDE.md missing merge markers');
