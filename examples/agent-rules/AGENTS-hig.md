@@ -1,6 +1,6 @@
 # Agent instructions — The Web HIG
 
-Pinned contract: The Web HIG v1.17.0
+Pinned contract: The Web HIG v1.18.0
 Default context: `docs/hig/HIG-QUICK.md` — *Follow The Web HIG Quick Reference.*  
 Practical guide: `docs/hig/HIG-LITE.md`  
 Topic index: `docs/hig/rules/manifest.yaml`  
@@ -19,6 +19,7 @@ Archetype map: `docs/hig-scope.md`
 8. **Layer 3** — open full `HIG.md` only for edge cases or spec conflicts
 9. **Simplicity** — prefer the simplest implementation that satisfies applicable requirements (HIG-SIM-001)
 10. **Cite rule IDs** when declining conflicting requests
+11. **Consumption metadata** — for accessibility, forms, motion, or performance, read `rules/agent-consumption.yaml` with the rule. A modern API is not a pass.
 
 ```yaml
 agent_enforcement_rules:

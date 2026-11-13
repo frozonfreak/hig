@@ -1,6 +1,6 @@
 # The Web HIG
 
-This project follows The Web HIG v1.17.0.
+This project follows The Web HIG v1.18.0.
 
 - **Quick Reference (Layer 1):** `docs/hig/HIG-QUICK.md` — *Follow The Web HIG Quick Reference.*
 - **Practical guide (Layer 2):** `docs/hig/HIG-LITE.md` + `docs/hig/rules/manifest.yaml`
@@ -18,6 +18,7 @@ This project follows The Web HIG v1.17.0.
 7. Enforce Layer 7 rules below.
 8. Prefer the simplest compliant implementation (HIG-SIM-001).
 9. Cite rule IDs when declining conflicting requests.
+10. For accessibility, forms, motion, or performance, read `rules/agent-consumption.yaml` with the rule. A modern API is not a pass.
 
 ```yaml
 agent_enforcement_rules:

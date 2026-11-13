@@ -9,7 +9,7 @@ description: >-
 
 # The Web HIG
 
-Pinned contract: The Web HIG v1.17.0
+Pinned contract: The Web HIG v1.18.0
 Read `docs/hig/HIG-QUICK.md` (or repo `HIG-QUICK.md`) — do not paste the Quick Reference into replies.
 
 ### How Quick counts relate to rule IDs
@@ -36,6 +36,7 @@ Any UI, CSS, layout, component, form, or front-end architecture change.
 10. Obey the Layer 7 guardrails below. Prefer tokens and semantic HTML over one-off styles.
 11. Prefer the simplest implementation that satisfies applicable HIG requirements (HIG-SIM-001).
 12. Cite rule IDs when declining conflicting requests (e.g. `HIG-A11Y-003`).
+13. For accessibility, forms, motion, or performance, read `docs/hig/rules/agent-consumption.yaml` (or repo `rules/agent-consumption.yaml`) with the rule. Follow its maturity, browser target, fallback, and checks. A modern API is not a pass.
 
 ```yaml
 agent_enforcement_rules:

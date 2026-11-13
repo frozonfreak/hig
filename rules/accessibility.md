@@ -1,6 +1,6 @@
 # Accessibility — Level 2 Module
 
-**Version:** v1.17.0 · **Canonical spec:** [HIG.md §5](../HIG.md#layer-5-accessibility-a11y--keyboard-navigation) · **Rule IDs:** HIG-A11Y-001–008
+**Version:** v1.18.0 · **Canonical spec:** [HIG.md §5](../HIG.md#layer-5-accessibility-a11y--keyboard-navigation) · **Rule IDs:** HIG-A11Y-001–008
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 
@@ -8,7 +8,7 @@
 
 ## 5.1 Standards Baseline
 
-* **Conformance:** WCAG 2.2 Level AA mandatory (**HIG-A11Y-002**). Refer to the [official WCAG 2.2 specification](https://www.w3.org/TR/WCAG22/) — do not redefine criteria. AAA targeted where practical (e.g. reduced motion).
+* **Conformance:** WCAG 2.2 Level AA mandatory (**HIG-A11Y-002**). Refer to the [official WCAG 2.2 specification](https://www.w3.org/TR/WCAG22/) — do not redefine criteria. AAA targeted where practical (e.g. reduced motion). Judge the observable result. A modern API is not conformance. Focus behavior and assistive-technology announcements stay manual ([consumption metadata](./agent-consumption.yaml)).
 * **Text Contrast:** Standard text ≥4.5:1; large text ≥3:1. Non-text UI ≥3:1. Measure authored colors. Safari Adaptive Dark Mode’s displayed colors, and its 4.5:1 aim, are not this result ([§3.1](../HIG.md#supported-color-schemes)).
 * **Zoom & reflow:** Usable at 200% text zoom; support 400% reflow without horizontal scrolling where applicable. Verify zoom and reflow in supported browsers. A Technology Preview fix does not change the stable-browser expectation.
 

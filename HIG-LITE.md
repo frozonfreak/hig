@@ -1,6 +1,6 @@
 # The Web HIG — Practical Guide (Layer 2)
 
-**Version:** v1.17.0 · **Quick Reference:** [HIG-QUICK.md](./HIG-QUICK.md) · **Core:** [HIG-CORE.md](./HIG-CORE.md) · **Full spec:** [HIG.md](./HIG.md) · **Topic index:** [rules/INDEX.md](./rules/INDEX.md)
+**Version:** v1.18.0 · **Quick Reference:** [HIG-QUICK.md](./HIG-QUICK.md) · **Core:** [HIG-CORE.md](./HIG-CORE.md) · **Full spec:** [HIG.md](./HIG.md) · **Topic index:** [rules/INDEX.md](./rules/INDEX.md)
 
 Practical documentation with rule IDs and checklists. Start with [HIG-QUICK.md](./HIG-QUICK.md) (Layer 1, ~5 min); open this file when you need rule ID links and archetype guidance. Load [rules/manifest.yaml](./rules/manifest.yaml) topic modules when the task requires depth beyond this summary.
 
@@ -28,7 +28,7 @@ Practical documentation with rule IDs and checklists. Start with [HIG-QUICK.md](
 - SEO/shareable content uses metadata, canonical URLs, social metadata, and structured data where warranted (**HIG-SEO-001**, **HIG-SEO-002**, **HIG-SEO-003**)
 - Immediate local feedback on every interaction ([§1.1](./HIG.md#11-direct-manipulation--motion-ergonomics))
 - Functional micro-animations only; ≤300 ms for micro-feedback (**HIG-MOT-004** → [§1.4](./HIG.md#14-functional-micro-animations))
-- Respect reduced motion — mandatory, not optional (**HIG-A11Y-001** → [§1.3](./HIG.md#13-reduced-motion--animation-safety)). Scroll-driven animations (`animation-timeline`, `scroll()`, `view()`) are motion; reset the timeline or disable the animation. Limited availability is not an exemption. Necessity and distraction are manual review.
+- Respect reduced motion — mandatory, not optional (**HIG-A11Y-001** → [§1.3](./HIG.md#13-reduced-motion--animation-safety)). Scroll-driven animations (`animation-timeline`, `scroll()`, `view()`) are motion; reset the timeline or disable the animation. Limited availability is not an exemption. Necessity and distraction are manual review. `image-animation` (Working Draft, 7 November 2026) is an experimental technique for declarative images only. It is not a pass, and it does not cover video, canvas, or inline SVG ([animated images](./HIG.md#animated-images-informative)).
 
 ## 2. Accessibility
 
@@ -65,7 +65,7 @@ Every interactive feature MUST handle applicable states:
 
 Server mutations MUST show pending UI (**HIG-SSR-003** → [§4.2](./HIG.md#42-async-mutation--server-action-state-model)).
 
-Forms MUST have labels and error summary (**HIG-FRM-001** → [§2.11](./HIG.md#211-forms-contract)). Notifications MUST use taxonomy (**HIG-NTF-001** → [§2.10](./HIG.md#210-notifications-taxonomy)).
+Forms MUST have labels and error summary (**HIG-FRM-001** → [§2.11](./HIG.md#211-forms-contract)). Error timing and the assistive-technology announcement stay manual. A validation API is not the pass. Notifications MUST use taxonomy (**HIG-NTF-001** → [§2.10](./HIG.md#210-notifications-taxonomy)).
 
 Code-split route/feature load failures follow the same error recovery contract: meaningful text, a visible keyboard-operable recovery action and preserved input. Keep recovery outside the failed module; choose a strategy that works across supported browsers ([§2.5](./HIG.md#25-error-ux-taxonomy)).
 
@@ -107,7 +107,7 @@ Load [rules/expressive-surface.md](./rules/expressive-surface.md) when scope dec
 - Avoid unnecessary JavaScript; default to server rendering (**HIG-SSR-001** → [§4.1](./HIG.md#41-server-driven--progressive-rendering-architecture))
 - Lazy-load appropriate resources; optimize images ([§6.4](./HIG.md#64-performance-budgets))
 - Avoid blocking critical rendering path ([§6.1](./HIG.md#61-core-web-vitals--supporting-performance-metrics))
-- Protect stable Core Web Vitals: LCP, INP (field SLO), CLS ([§6.1](./HIG.md#61-core-web-vitals--supporting-performance-metrics)). Experimental CrUX soft-navigation variants stay a separate labeled series with the dataset month and MUST NOT share that pass/fail ([§6.3](./HIG.md#63-field-performance-rum))
+- Protect stable Core Web Vitals: LCP, INP (field SLO), CLS ([§6.1](./HIG.md#61-core-web-vitals--supporting-performance-metrics)). Experimental CrUX soft-navigation variants stay a separate labeled series with the dataset month and MUST NOT share that pass/fail ([§6.3](./HIG.md#63-field-performance-rum)). A loading or scheduling API is not a pass, and a vendor 50 ms main-thread example is not an extra threshold.
 - When present, Long Animation Frames `styleDuration`, `layoutDuration`, `forcedStyleDuration`, and `forcedLayoutDuration` diagnose style cost separately from layout cost. Feature-detect them. Combined style-and-layout timing is the fallback. They do not change **HIG-PERF-001** ([long animation frame diagnostics](./HIG.md#long-animation-frame-diagnostics))
 - Slow async server regions need streaming boundaries + skeleton (**HIG-SSR-002** → [§4.1](./HIG.md#41-server-driven--progressive-rendering-architecture))
 
@@ -134,6 +134,7 @@ Load [rules/expressive-surface.md](./rules/expressive-surface.md) when scope dec
 - Don't duplicate existing functionality
 - Don't introduce dependencies without justification
 - Don't over-engineer to satisfy the HIG
+- For accessibility, forms, motion, or performance, read [rules/agent-consumption.yaml](./rules/agent-consumption.yaml) with the rule. Follow its maturity, browser target, fallback, and checks. A modern API is not a pass ([§7.1](./HIG.md#agent-consumption-metadata)).
 - For agent tool execution, review current-schema validation, rejection of unknown tools, constrained repair and redacted audit trails ([§7.4](./HIG.md#74-agent-tool-schema-review-informative), informative; no automated website audit rule).
 - Critical mutations SHOULD be idempotent (**HIG-MUT-002** → [§4.5](./HIG.md#45-concurrency-conflict--idempotency))
 

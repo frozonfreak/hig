@@ -6,7 +6,7 @@ Layer 7 defines how requirements become **deterministic** for linters, CI, and A
 
 ---
 
-## Today (v1.17.0)
+## Today (v1.18.0)
 
 | Artifact | Format | Purpose |
 | --- | --- | --- |
@@ -24,6 +24,7 @@ Layer 7 defines how requirements become **deterministic** for linters, CI, and A
 | [rules/evaluator-dimensions.yaml](./rules/evaluator-dimensions.yaml) | YAML | Evaluator dimension ↔ rule prefix map |
 | [schema/evaluator-report.schema.json](./schema/evaluator-report.schema.json) | JSON Schema | Multidimensional evaluator report shape |
 | [EVALUATOR.md](./EVALUATOR.md) | Markdown | Evaluator contract (Layer 8 §8.2) |
+| [rules/agent-consumption.yaml](./rules/agent-consumption.yaml) | YAML | Maturity, browser target, fallback, automated checks, manual checks, and source date for accessibility, forms, motion, and performance rules |
 
 ### Manifest schema (draft)
 
@@ -45,7 +46,15 @@ exceptions:
   - documented_in: hig_exception_registry
 hig_section: "§5.2"
 module: rules/accessibility.md
+maturity: stable          # stable | experimental | informative
+minimum_browser_target: "Project supported browser matrix"
+fallback: "What still works when the preferred technique is absent"
+automated_checks: "What a static or runtime check may flag"
+manual_checks: "What a person still confirms"
+source_date: "2026-11-13"
 ```
+
+The six consumption fields are required in [rules/agent-consumption.yaml](./rules/agent-consumption.yaml) for the accessibility, forms, motion, and performance IDs. They are packaging for agents and auditors. They do not change severity, WCAG mappings, or conformance scores. Other IDs keep the fields above as the normative intent until a later review fills them.
 
 Agent guardrails in product repos are **projections** of this schema — not a second standard.
 

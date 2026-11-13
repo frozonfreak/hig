@@ -1,0 +1,161 @@
+# The Web HIG — agent consumption metadata
+# Version: 1.18.0
+# Packaging for agents and auditors. Not a conformance score.
+# Intentional differences from Modern Web Guidance 1.0: docs/research/2026-11-13-brief.md
+# Regenerate is manual. npm run validate checks this file.
+
+version: "1.18.0"
+reviewed: "2026-11-13"
+
+rules:
+  HIG-A11Y-001:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix. prefers-reduced-motion is the requirement. Scroll-driven timelines and image-animation are not."
+    fallback: "Instant state change or a minimal opacity fade. Scroll-driven motion keeps a static equivalent. Animated images keep a static image, video controls, or a script control until image-animation is stable across engines."
+    automated_checks: "A static check may flag a missing reduced-motion guard, including a scroll-driven timeline that is not reset. Presence of image-animation is not a pass."
+    manual_checks: "Whether the motion is essential, whether a visible keyboard pause or stop exists when WCAG 2.2.2 applies, duration, and any assistive-technology announcement."
+    source_date: "2026-11-13"
+
+  HIG-A11Y-002:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix. WCAG 2.2 AA is the requirement, not an API."
+    fallback: "Meet the success criterion with whatever technique the supported engines actually expose. Do not swap in an unsupported API and drop the outcome."
+    automated_checks: "Partial automated accessibility checks are evidence. A vendor agent pass rate is not this result."
+    manual_checks: "Focus behavior, zoom and reflow, and assistive-technology announcements that automation did not observe."
+    source_date: "2026-11-13"
+
+  HIG-A11Y-003:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix. Native HTML is the preference. HTML-in-Canvas is not a qualified substitute."
+    fallback: "Semantic DOM controls. A custom widget has to expose the same name, role, and state."
+    automated_checks: "A static check may flag an obvious non-native control. It does not read the accessibility tree."
+    manual_checks: "Accessibility tree in each supported engine, including focus and state."
+    source_date: "2026-11-13"
+
+  HIG-A11Y-004:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix."
+    fallback: "Visible text on the control. aria-label only when visible text is insufficient."
+    automated_checks: "A static check may flag an icon-only button with no name."
+    manual_checks: "The name computed in the accessibility tree, including AccName edge cases."
+    source_date: "2026-11-13"
+
+  HIG-A11Y-005:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix."
+    fallback: "A text alternative that matches the image. Empty alt only when the image is decorative."
+    automated_checks: "A static check may flag a missing alt attribute. It cannot judge whether the text is accurate."
+    manual_checks: "Accuracy of the alternative, including images of text and complex images."
+    source_date: "2026-11-13"
+
+  HIG-A11Y-006:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix."
+    fallback: "The native focus ring when a custom ring is removed."
+    automated_checks: "A static check may flag outline none without a replacement. It often cannot judge contrast or occlusion."
+    manual_checks: "Keyboard focus is visible, not obscured, and contrasted in each supported engine."
+    source_date: "2026-11-13"
+
+  HIG-A11Y-007:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix. 24 CSS px is the floor. 44 CSS px touch sizing is a separate SHOULD and is not this rule."
+    fallback: "Enlarge the target or space it so the WCAG 2.5.8 floor is met. Exceptions stay those in the criterion."
+    automated_checks: "A size heuristic may flag an obvious undersized control. Spacing exceptions need a person."
+    manual_checks: "Inline exceptions, spacing, and targets that grow only on hover."
+    source_date: "2026-11-13"
+
+  HIG-A11Y-008:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix. Dialog and popover APIs are techniques, not the requirement."
+    fallback: "Focus moves into the dialog, stays inside while it is open, and returns to the trigger. The same outcome is required when the native API is absent."
+    automated_checks: "Presence of showModal, popover, or inert is not a pass."
+    manual_checks: "Keyboard containment, Escape, return focus, the inert background, and the assistive-technology announcement. Test the native branch and the fallback branch in different engines."
+    source_date: "2026-11-13"
+
+  HIG-FRM-001:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix. Constraint validation and autocomplete are techniques, not the pass."
+    fallback: "A visible associated label, field errors, an error summary on submit, and preserved input. Custom controls expose the same outcomes."
+    automated_checks: "A static check may flag a missing label or a summary that does not point at the invalid field."
+    manual_checks: "Error timing (not before interaction; blur versus submit), focus to the summary, preserved values, and the assistive-technology announcement."
+    source_date: "2026-11-13"
+
+  HIG-MOT-001:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix."
+    fallback: "List the properties that transition. Vendor stylesheets stay out of scope."
+    automated_checks: "Static detection of transition all in application CSS."
+    manual_checks: "The listed properties still communicate the state change."
+    source_date: "2026-11-13"
+
+  HIG-MOT-002:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix."
+    fallback: "Shared duration tokens. A raw millisecond value is not an alternate pass."
+    automated_checks: "A static check may flag a raw duration outside the token files."
+    manual_checks: "Token values still match the allowlist for that interaction."
+    source_date: "2026-11-13"
+
+  HIG-MOT-003:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix."
+    fallback: "No decorative motion. The static state is the path."
+    automated_checks: "A stylesheet cannot prove that motion is decorative."
+    manual_checks: "Whether the motion is essential or decorative, on document surfaces and on controls."
+    source_date: "2026-11-13"
+
+  HIG-MOT-004:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix."
+    fallback: "Shorten or remove micro-feedback over 300 ms. Page transitions and large overlays are outside this cap."
+    automated_checks: "A duration over 300 ms may be flagged only when the check can tell that the animation is micro-feedback."
+    manual_checks: "Whether the animation is micro-feedback or a longer transition."
+    source_date: "2026-11-13"
+
+  HIG-MOT-005:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix."
+    fallback: "Prefer transform and opacity. Layout properties need an explicit justification."
+    automated_checks: "A warning may flag layout properties on a micro-feedback selector when the selector is recognizable."
+    manual_checks: "The justification, and whether the animation shifts layout."
+    source_date: "2026-11-13"
+
+  HIG-VT-001:
+    maturity: stable
+    minimum_browser_target: "Feature-detect View Transitions. Do not require the API outside browsers that support it in the project matrix."
+    fallback: "The route still completes with no view transition. A cross-fade is enhancement."
+    automated_checks: "A static check cannot see every duplicate name inside one capture."
+    manual_checks: "Reduced motion disables the morph. Supporting and non-supporting engines both complete the route."
+    source_date: "2026-11-13"
+
+  HIG-PERF-001:
+    maturity: stable
+    minimum_browser_target: "Field and lab data for the project matrix. No new performance API is required."
+    fallback: "The thresholds stand when a diagnostic API is missing. Combined long-frame timing remains the diagnostic fallback."
+    automated_checks: "Lab LCP and CLS may gate. Field INP is not a synthetic CI pass. Using a loading, scheduling, or image API is not a pass."
+    manual_checks: "The measured route is one people use. A vendor 50 ms main-thread example is not an extra threshold."
+    source_date: "2026-11-13"
+
+  HIG-PERF-002:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix."
+    fallback: "Report lab and field separately. Missing field data stays missing."
+    automated_checks: "A report that merges lab and field, or merges experimental soft-navigation variants into the stable series, fails this rule."
+    manual_checks: "Dataset month and experimental labels are present when those series are shown."
+    source_date: "2026-11-13"
+
+  HIG-PERF-003:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix."
+    fallback: "Budgets still exist when a particular API is absent."
+    automated_checks: "A budget file can be checked for presence. Presence is not the user-perceived outcome."
+    manual_checks: "The budgets match the product and the routes that matter."
+    source_date: "2026-11-13"
+
+  HIG-PERF-004:
+    maturity: stable
+    minimum_browser_target: "Project supported browser matrix."
+    fallback: "Compare with the project's baseline build when an absolute budget is not the gate."
+    automated_checks: "Size or metric regression against the configured threshold."
+    manual_checks: "Whether a reported regression is acceptable for that change."
+    source_date: "2026-11-13"

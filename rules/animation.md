@@ -1,6 +1,6 @@
 # Animation & Motion — Level 2 Module
 
-**Version:** v1.17.0 · **Canonical spec:** [HIG.md §1](../HIG.md#layer-1-universal-ux-principles) · **Rule IDs:** HIG-MOT-001–005, HIG-VT-001, HIG-A11Y-001
+**Version:** v1.18.0 · **Canonical spec:** [HIG.md §1](../HIG.md#layer-1-universal-ux-principles) · **Rule IDs:** HIG-MOT-001–005, HIG-VT-001, HIG-A11Y-001
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 
@@ -64,6 +64,10 @@ A very small `animation-duration` does **not** stop scroll-linked progress. `ani
 The browser does not decide whether the movement is decorative or necessary. On document surfaces and on controls, **HIG-MOT-003** still applies. On hybrid or experience surfaces, classify page-level effects with **HIG-EXP-006**, **HIG-EXP-013**, and **HIG-EXP-014**.
 
 Under `prefers-reduced-motion: reduce`, disable the animation or set `animation-timeline` to `auto` or `none`, and keep the same information and actions. A `no-preference` wrapper around the scroll-driven rule meets the same obligation. Verify keyboard scrolling, 200% zoom, and programmatic scrolling. A static check MAY flag a missing timeline reset; it does not judge necessity or distraction, and it does not see Web Animations API timelines.
+
+#### Animated images (informative)
+
+The outcome covers every animation technology, including GIF, animated PNG, animated WebP, external SVG, video, canvas, and inline SVG. The duration override above does not pause a declarative image. When WCAG 2.2.2 applies, the pause or stop control is visible and keyboard-operable. [CSS Image Animation Level 1](https://www.w3.org/TR/css-image-animation-1/) (Working Draft, 7 November 2026) is an experimental technique for declarative images only. `image-animation` is supporting evidence, never a pass. Do not copy the draft’s example that leaves `img` animations running under reduced motion. Until cross-engine support is stable, keep a static image, video controls, or a script control. See [HIG.md](../HIG.md#animated-images-informative).
 
 * Replace transform/momentum animations with instant state changes or a minimal opacity fade.
 * Disable parallax, auto-playing carousels, native View Transitions morphing, decorative looping motion, and unguarded scroll-driven animation.

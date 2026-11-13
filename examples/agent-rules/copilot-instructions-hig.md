@@ -1,6 +1,6 @@
 # The Web HIG — Copilot instructions
 
-Follow The Web HIG v1.17.0.
+Follow The Web HIG v1.18.0.
 
 - **Quick Reference:** `docs/hig/HIG-QUICK.md` (Layer 1) — *Follow The Web HIG Quick Reference.* Do not load full HIG unless needed.
 - **Practical guide:** `docs/hig/HIG-LITE.md` + `docs/hig/rules/manifest.yaml` (Layer 2) — load matching `rules/*.md` on topic match; `framework/*.md` when stack-specific
@@ -13,6 +13,7 @@ Follow The Web HIG v1.17.0.
 2. Read HIG-QUICK for the 98-rule Quick Reference; open HIG-LITE when you need rule IDs; cite rule IDs on conflicts.
 3. Load archetype pack (`rules/archetypes/<archetype>.md`) → preload default modules.
 4. Match task keywords against manifest.yaml → open referenced `rules/*.md` module.
+5. For accessibility, forms, motion, or performance, read `rules/agent-consumption.yaml` with the rule. A modern API is not a pass.
 
 ## Essential rules (from HIG-LITE)
 

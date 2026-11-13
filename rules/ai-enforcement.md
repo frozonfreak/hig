@@ -1,6 +1,6 @@
 # AI & Agent Enforcement — Level 2 Module
 
-**Version:** v1.17.0 · **Canonical spec:** [HIG.md §7–8](../HIG.md#layer-7-ai--agent-enforcement-contract) · **Rule ID:** HIG-SIM-001 + all Layer 7 IDs
+**Version:** v1.18.0 · **Canonical spec:** [HIG.md §7–8](../HIG.md#layer-7-ai--agent-enforcement-contract) · **Rule ID:** HIG-SIM-001 + all Layer 7 IDs
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 
@@ -16,6 +16,8 @@
 ## 7.1 Rule Schema
 
 Every machine rule MUST include id, severity, requirement, archetypes, autofix safety, and exceptions.
+
+Accessibility, forms, motion, and performance rules also carry consumption metadata: maturity, minimum browser target, fallback, automated checks, manual checks, and source date ([agent-consumption.yaml](./agent-consumption.yaml)). That record is packaging. It does not add a rule ID or a conformance score. A modern API is not a pass. See [HIG.md §7.1](../HIG.md#agent-consumption-metadata).
 
 | Severity | CI behavior |
 | --- | --- |

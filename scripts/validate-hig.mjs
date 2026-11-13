@@ -14,6 +14,7 @@ import {
   parseQuickRuleMapYaml,
 } from './lib/contract-parse.mjs';
 import { checkQuickMapSections } from './lib/quick-map.mjs';
+import YAML from 'yaml';
 
 const root = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const errors = [];
@@ -118,7 +119,11 @@ if (!exists('HIG-QUICK.md')) {
   fail('missing HIG-QUICK.md (Layer 1 Quick Reference)');
 }
 
-for (const pkgRel of ['packages/install/package.json', 'packages/core/package.json', 'packages/cli/package.json']) {
+for (const pkgRel of [
+  'packages/install/package.json',
+  'packages/core/package.json',
+  'packages/cli/package.json',
+]) {
   if (!exists(pkgRel)) continue;
   const pkg = JSON.parse(read(pkgRel));
   if (pkg.version !== versionFile) {
@@ -146,7 +151,11 @@ for (const file of extractManifestFiles(manifestYaml)) {
 
 for (const match of manifestYaml.matchAll(/^\s+-\s+(rules\/[^\s#]+)/gm)) {
   const registryFile = match[1].trim();
-  if (registryFile.startsWith('rules/') && registryFile.endsWith('.yaml') && !exists(registryFile)) {
+  if (
+    registryFile.startsWith('rules/') &&
+    registryFile.endsWith('.yaml') &&
+    !exists(registryFile)
+  ) {
     fail(`manifest registries references missing file: ${registryFile}`);
   }
 }
@@ -325,6 +334,76 @@ if (!exists(registryPath)) {
   }
 }
 
+const consumptionPath = 'rules/agent-consumption.yaml';
+const consumptionFields = [
+  'maturity',
+  'minimum_browser_target',
+  'fallback',
+  'automated_checks',
+  'manual_checks',
+  'source_date',
+];
+const consumptionIds = [
+  'HIG-A11Y-001',
+  'HIG-A11Y-002',
+  'HIG-A11Y-003',
+  'HIG-A11Y-004',
+  'HIG-A11Y-005',
+  'HIG-A11Y-006',
+  'HIG-A11Y-007',
+  'HIG-A11Y-008',
+  'HIG-FRM-001',
+  'HIG-MOT-001',
+  'HIG-MOT-002',
+  'HIG-MOT-003',
+  'HIG-MOT-004',
+  'HIG-MOT-005',
+  'HIG-VT-001',
+  'HIG-PERF-001',
+  'HIG-PERF-002',
+  'HIG-PERF-003',
+  'HIG-PERF-004',
+];
+const allowedMaturity = new Set(['stable', 'experimental', 'informative']);
+
+if (!exists(consumptionPath)) {
+  fail(`missing ${consumptionPath}`);
+} else {
+  let consumption;
+  try {
+    consumption = YAML.parse(read(consumptionPath));
+  } catch (err) {
+    fail(`agent-consumption.yaml: ${err.message}`);
+  }
+  if (consumption) {
+    if (consumption.version !== versionFile) {
+      fail(`agent-consumption.yaml (${consumption.version}) !== VERSION (${versionFile})`);
+    }
+    const consumptionRules = consumption.rules ?? {};
+    for (const id of consumptionIds) {
+      if (!consumptionRules[id]) fail(`agent-consumption.yaml missing ${id}`);
+    }
+    for (const [id, row] of Object.entries(consumptionRules)) {
+      if (!registryIds.has(id)) fail(`agent-consumption.yaml unknown rule ID: ${id}`);
+      if (!row || typeof row !== 'object') {
+        fail(`${id}: agent consumption record missing`);
+        continue;
+      }
+      if (!allowedMaturity.has(row.maturity)) {
+        fail(`${id}: agent consumption maturity must be stable, experimental, or informative`);
+      }
+      for (const field of consumptionFields) {
+        if (typeof row[field] !== 'string' || !row[field].trim()) {
+          fail(`${id}: agent consumption missing ${field}`);
+        }
+      }
+      if (row.source_date && !/^\d{4}-\d{2}-\d{2}$/.test(row.source_date)) {
+        fail(`${id}: agent consumption source_date must be YYYY-MM-DD`);
+      }
+    }
+  }
+}
+
 // --- Layer 1 Quick rules ↔ quick-rule-map.yaml ---
 const quickText = read('HIG-QUICK.md');
 const quickNumbered = extractQuickNumberedRules(quickText);
@@ -455,7 +534,12 @@ if (sitemapText) {
   }
 }
 
-for (const file of ['docs/robots.txt', 'docs/sitemap.xml', 'docs/404.html', 'docs/social/og-image.png']) {
+for (const file of [
+  'docs/robots.txt',
+  'docs/sitemap.xml',
+  'docs/404.html',
+  'docs/social/og-image.png',
+]) {
   if (!exists(file)) fail(`missing ${file}`);
 }
 

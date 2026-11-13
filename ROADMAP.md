@@ -71,12 +71,16 @@ This roadmap describes **contract and tooling** direction for the standard repos
 
 ---
 
-## Research watchlist (2026-11-06)
+## Research watchlist (2026-11-13)
 
 Informational — not commitments. From the weekly Web HIG research briefs:
 
 | Topic | Status |
 | --- | --- |
+| Agent consumption | Modern Web Guidance 1.0 (10 November 2026) is a vendor skill set, not a web standard. Accessibility, forms, motion, and performance rules carry maturity, browser target, fallback, automated checks, manual checks, and a source date. Audits judge outcomes. A modern API is not a pass. Vendor check rates do not change HIG scores. |
+| CSS `image-animation` | Working Draft, 7 November 2026. Experimental technique for declarative images only. Not a pass. Does not cover video, canvas, or inline SVG. Keep a static image, video controls, or a script control until cross-engine support is stable. |
+| ATAG and AI authoring | WAI restated the two-part model on 10 November 2026. No normative draft. Apply the existing principle to HIG Audit’s interface and remediation text. Do not add a scanned-site rule yet. |
+| Firefox 160 | Placeholder alias and WebTransport headers, 10 November 2026. No HIG change. |
 | Adaptive Dark Mode | Safari 27.3 beta can repaint an undeclared light page. Declare `light dark` in the initial document when both schemes are supported. `light only` is an opt-out. Screenshot review; computed color is authored color. The browser’s 4.5:1 aim is not WCAG conformance. Beta 1 did not support `only`. |
 | Long Animation Frames | Chrome 157 can report `styleDuration`, `layoutDuration`, `forcedStyleDuration`, and `forcedLayoutDuration`. Feature-detect them. Combined style-and-layout timing is the fallback. Diagnostic only; Core Web Vitals thresholds are unchanged. |
 | HTML-in-Canvas | Chrome 157, WICG proposal, Chromium-only. Semantic DOM stays the preference. No audit rule until another engine implements it and independent assistive-technology testing exists. |

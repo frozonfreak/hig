@@ -1,6 +1,6 @@
 # The Web HIG
 
-[![Version](https://img.shields.io/badge/version-1.17.0-1d4ed8)](./VERSION)
+[![Version](https://img.shields.io/badge/version-1.18.0-1d4ed8)](./VERSION)
 [![License: MIT](https://img.shields.io/github/license/frozonfreak/webhig)](./LICENSE)
 [![Try HIG Audit](https://img.shields.io/badge/Try_HIG_Audit-0f766e)](https://hig.aruviflow.com)
 [![Validate HIG](https://github.com/frozonfreak/webhig/actions/workflows/validate.yml/badge.svg)](https://github.com/frozonfreak/webhig/actions/workflows/validate.yml)
@@ -166,7 +166,11 @@ Most people only need **HIG-QUICK**.
 | I want to understand why HIG exists         | [RATIONALE.md](./RATIONALE.md)          |
 | I want to audit an existing website         | [HIG Audit](https://hig.aruviflow.com/) |
 
-**Current release:** [v1.17.0](./VERSION) · [Changelog](./CHANGELOG.md) · [Release notes](./RELEASE_NOTES.md)
+**Current release:** [v1.18.0](./VERSION) · [Changelog](./CHANGELOG.md) · [Release notes](./RELEASE_NOTES.md)
+
+### New in v1.18.0: agent consumption metadata
+
+Accessibility, forms, motion, and performance rules now carry maturity, browser target, fallback, automated checks, manual checks, and a source date. Audits judge the outcome. A modern API is not a pass. `image-animation` stays an experimental technique and is not a conformance result. Core Web Vitals thresholds, WCAG mappings, and the rule count are unchanged. Still **98 Quick imperatives and 76 stable rule IDs**. See the [release notes](./RELEASE_NOTES.md).
 
 ### New in v1.17.0: authored color schemes and frame diagnostics
 

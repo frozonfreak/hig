@@ -4,6 +4,19 @@ User-facing notes for each published version of The Web HIG. The brief machine-o
 
 Versions follow [Semantic Versioning](https://semver.org/). Newest first.
 
+## [v1.18.0](./HIG.md) — 2026-11-13
+
+Minor packaging update for how coding agents and auditors consume the contract. Stable Core Web Vitals thresholds, WCAG mappings, and conformance scores do not change.
+
+- Read [rules/agent-consumption.yaml](./rules/agent-consumption.yaml) with an accessibility, forms, motion, or performance rule. Use its maturity, browser target, fallback, automated checks, manual checks, and source date. Do not replace the rule with Modern Web Guidance. Where the two differ, the reason is in the [research disposition](./docs/research/2026-11-13-brief.md).
+- Judge the outcome. A modern API is not a pass. When the rule has a fallback, test that branch in an engine that does not run the native path. Keep a person on focus, whether motion is essential, form-error timing, and assistive-technology announcements.
+- Keep pause, stop, and hide as an outcome for every animation technology. `image-animation` may support a finding for a GIF, animated PNG, animated WebP, or external SVG. It does not pass the finding, and it does not cover video, canvas, or inline SVG. Keep a static image, video controls, or a script control until cross-engine support is stable.
+- Apply the existing authoring-tool principle to HIG Audit’s own interface and to the remediation it generates. Wait for a published ATAG draft before adding an AI-authoring requirement.
+
+Upgrade by refreshing the contract pin and reviewing the [research disposition](./docs/research/2026-11-13-brief.md). No new stable IDs, severity changes, WCAG baseline, or Core Web Vitals thresholds. The separate audit site is not deployed by this update. Quick remains 98 imperatives and the registry remains 76 stable IDs.
+
+---
+
 ## [v1.17.0](./HIG.md) — 2026-11-06
 
 Minor guidance update for authored color schemes and interaction diagnostics. Stable Core Web Vitals thresholds do not change.

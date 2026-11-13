@@ -1,6 +1,6 @@
 # Forms — Level 2 Module
 
-**Version:** v1.17.0 · **Canonical spec:** [HIG.md §2.11](../HIG.md#211-forms-contract) · **Rule ID:** HIG-FRM-001
+**Version:** v1.18.0 · **Canonical spec:** [HIG.md §2.11](../HIG.md#211-forms-contract) · **Rule ID:** HIG-FRM-001
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 
@@ -26,3 +26,5 @@ Forms MUST follow these standards (**HIG-FRM-001**):
 | **Error summary** | On submit failure, focus error summary linking to first invalid field |
 
 Server mutation forms MUST expose pending UI — see [architecture.md](./architecture.md) (HIG-SSR-003).
+
+Error timing and the assistive-technology announcement of an error stay manual. A validation API or a vendor form guide is not, by itself, a pass of **HIG-FRM-001**. See [agent-consumption.yaml](./agent-consumption.yaml).

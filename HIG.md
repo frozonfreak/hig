@@ -1,8 +1,8 @@
-# The Web HIG & Product Engine Contract — v1.17.0
+# The Web HIG & Product Engine Contract — v1.18.0
 
 ## Executive Summary
 
-The Web HIG v1.17.0 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
+The Web HIG v1.18.0 defines design principles, normative requirements, information architecture, state machines, interaction rules, accessibility standards, security & privacy standards, and programmatic execution constraints for modern web applications, content, commerce, and server-driven web platforms.
 
 This release adds a three-layer consumption model and archetype rule packs:
 
@@ -248,6 +248,14 @@ The browser does not infer whether scroll-linked movement is decorative or neces
 Under `prefers-reduced-motion: reduce`, scroll-driven animations MUST be disabled or returned to the document timeline (`animation: none`, or `animation-timeline: auto` or `none`) and replaced by a static equivalent that keeps the same information and actions. Declaring the scroll-driven rule only inside `@media (prefers-reduced-motion: no-preference)` meets the same obligation. Verify keyboard scrolling, 200% zoom, and programmatic scrolling (`scrollTo`, `scrollBy`, or focus movement). A pointer-wheel check is not sufficient. Movement that hides required content, or that is the only way to reach a destination, still fails **HIG-EXP-002** and **HIG-EXP-005**.
 
 A static check MAY flag scroll-driven CSS whose reduced-motion style does not reset `animation-timeline` or disable the animation. That flag does not decide necessity or distraction. Those judgments stay manual. The check does not see Web Animations API timelines.
+
+#### Animated images (informative)
+
+The outcome is the same for every animation technology. When [WCAG 2.2.2 Pause, Stop, Hide](https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html) applies, provide a visible, keyboard-operable pause or stop, keep the duration inside that criterion, and decide whether the movement is essential. CSS, script, video, canvas, declarative images, and inline SVG are all in scope. The duration override in the reduced-motion block above does not pause a GIF, animated PNG, animated WebP, or SVG image.
+
+[CSS Image Animation Module Level 1](https://www.w3.org/TR/css-image-animation-1/) (Working Draft, 7 November 2026) proposes `image-animation: normal | paused | stopped | running` and `:animated-image`. The pseudo-class matches an element that represents a declarative image only when that image is actually animated. The draft covers GIF, animated PNG, animated WebP, and SVG loaded as a separate image resource. It does not apply to video, canvas, or an `svg` element inlined in HTML. It is not a W3C Recommendation, not Baseline, and not an endorsed technique. A non-normative example in the draft pauses some CSS images under `prefers-reduced-motion` while leaving `img` animations running. Do not copy that example.
+
+Where an implementation sets the property, that is supporting evidence only. The audit still checks the user control, the duration, and whether the movement is essential. Absence of the property is not a failure. Presence of the property is not a pass. Until stable cross-engine support exists, keep a static image, video controls, or a script control that works in the supported matrix. See the [13 November research disposition](./docs/research/2026-11-13-brief.md) and the [animated-image fixture](./examples/audit-fixtures/animated-images/README.md).
 
 ### 1.4 Functional Micro-Animations
 
@@ -1070,6 +1078,21 @@ rules:
 | `warning` | Advisory — reported, does not block |
 | `info` | Observation — logged for tracking |
 
+#### Agent consumption metadata
+
+Accessibility, forms, motion, and performance rules carry consumption metadata in [rules/agent-consumption.yaml](./rules/agent-consumption.yaml). Agents load that record with the rule. Each reviewed record has:
+
+| Field | Meaning |
+| --- | --- |
+| `maturity` | `stable` for a current requirement. An experimental technique is not given a record here. |
+| `minimum_browser_target` | The project’s supported matrix, and any feature that must not be required outside it. |
+| `fallback` | What still has to work when the preferred technique is absent. |
+| `automated_checks` | What a static or runtime check may flag. A flag is not the whole requirement. |
+| `manual_checks` | What a person still has to confirm. |
+| `source_date` | The date that record was reviewed. |
+
+This metadata is packaging. It does not add a rule ID, change a severity, or change a conformance score. Where Web HIG and Modern Web Guidance 1.0 differ, the reason is in the [13 November disposition](./docs/research/2026-11-13-brief.md). Do not import that vendor guidance in place of these requirements. A modern API is not a pass.
+
 ### 7.2 AI Coding Agent Guardrails
 
 ```yaml
@@ -1402,6 +1425,14 @@ Machine-readable contract: [EVALUATOR.md](./EVALUATOR.md) · [schema/evaluator-r
 
 **Supported browser policy:** Projects MUST define a supported browser matrix. At minimum, test representative viewports: mobile, tablet, desktop, wide desktop. Do not use viewport breakpoints as the primary adaptation mechanism for multi-context reusable components — use container queries when **HIG-CQ-002** applies (§3.2).
 
+### 8.3 Audit outcomes (informative)
+
+HIG Audit and any other conformance review judge the observable result. Using a particular modern API is not a pass, and omitting one is not a failure when the outcome is already met. When a requirement defines a fallback, test the native branch and the fallback branch in different engines in the supported matrix. Written guidance may name a technique. Runtime verification still has to confirm performance, reduced-motion behavior, focus management, and the fallback path.
+
+Focus behavior, whether motion is essential, form-error timing, and assistive-technology announcements stay manual. A vendor agent-evaluation pass rate is not a HIG conformance score and does not change a WCAG mapping.
+
+HIG Audit’s own interface is covered by the same accessibility requirements as other product UI. Remediation text it generates should help authors meet WCAG 2.2 AA and should not recommend a technique that fails an applicable requirement. On 10 November 2026, WAI restated [ATAG](https://www.w3.org/WAI/standards-guidelines/atag/)’s two-part model: an authoring tool is itself accessible, and it helps people produce WCAG-conforming content. WAI said ATAG needs updating for current WCAG, emerging technology, and AI authoring. No updated normative draft is published. Do not add a new AI-authoring requirement or a scanned-site rule until that draft exists. See the [13 November research disposition](./docs/research/2026-11-13-brief.md).
+
 ---
 
 ## Layer 9: Security & Privacy
@@ -1475,6 +1506,7 @@ Logs MUST include timestamp, actor, action, and resource — but MUST NOT includ
 
 **Release documentation:** [CHANGELOG.md](./CHANGELOG.md) (Keep a Changelog) · [RELEASE_NOTES.md](./RELEASE_NOTES.md) (adoption notes) · [VERSIONING.md](./VERSIONING.md) (semver policy).
 
+* **v1.18.0 (2026-11-13):** Minor packaging release for agent consumption. Accessibility, forms, motion, and performance rules carry maturity, browser target, fallback, automated checks, manual checks, and a source date. Audits judge outcomes and test both branches when a fallback exists. `image-animation` stays an experimental technique and is not a pass. No new rule IDs, severity changes, WCAG mapping changes, or Core Web Vitals threshold changes. The ATAG update is tracked and not yet a requirement.
 * **v1.17.0 (2026-11-06):** Minor guidance release. Supported color schemes MUST be declared in the initial document; `light only` is an opt-out, not the default. Safari Adaptive Dark Mode does not count as WCAG contrast. Long Animation Frames style and layout durations are diagnostic only and do not change **HIG-PERF-001**. HTML-in-Canvas stays informative, with no audit rule. Safari Technology Preview 256 accessibility fixes do not change stable compatibility expectations. No new rule IDs or severity changes.
 * **v1.16.0 (2026-10-30):** Minor guidance release. Stable Core Web Vitals stay the **HIG-PERF-001** gate; experimental CrUX soft-navigation LCP, INP, and CLS variants are a separate labeled series and MUST NOT share a pass/fail. Scroll-driven animations (`animation-timeline`, `scroll()`, `view()`) are motion under **HIG-A11Y-001**; duration shortening does not stop them. Safari 27.2 VoiceOver fixtures are manual review only. No new rule IDs, severity changes, WCAG baseline, or Core Web Vitals threshold changes.
 * **v1.15.0 (2026-10-24):** Minor informative guidance release. Content/Marketing applied examples, scoped manual worksheet and document/hybrid fixtures. No new rule IDs, requirement meaning, severity, applicability, WCAG or Core Web Vitals threshold changes.

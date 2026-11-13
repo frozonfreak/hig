@@ -1,12 +1,14 @@
 # Performance & Web Vitals — Level 2 Module
 
-**Version:** v1.17.0 · **Canonical spec:** [HIG.md §6](../HIG.md#layer-6-performance--web-vitals) · **Rule IDs:** HIG-PERF-001–004 · **Archetypes:** Universal
+**Version:** v1.18.0 · **Canonical spec:** [HIG.md §6](../HIG.md#layer-6-performance--web-vitals) · **Rule IDs:** HIG-PERF-001–004 · **Archetypes:** Universal
 
 > Standalone extract for progressive loading. The complete normative contract remains in [HIG.md](../HIG.md).
 
 ---
 
 Performance requirements split into **lab (CI)** and **field (RUM)** contexts (**HIG-PERF-002**). Synthetic lab tests are **not equivalent** to field Interaction to Next Paint (INP).
+
+**HIG-PERF-001** is the measured LCP, INP, and CLS result. A loading, scheduling, or image API is not that result. A vendor 50 ms main-thread example is not an extra threshold. See [agent-consumption.yaml](./agent-consumption.yaml).
 
 ## 6.1 Core Web Vitals & Supporting Metrics
 

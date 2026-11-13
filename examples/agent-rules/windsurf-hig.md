@@ -19,6 +19,7 @@ Before writing or changing UI, CSS, or front-end architecture:
 10. Obey the Layer 7 guardrails below. Prefer tokens and semantic HTML over one-off styles.
 11. Prefer the simplest implementation that satisfies applicable HIG requirements (HIG-SIM-001).
 12. Cite rule IDs when declining conflicting requests (e.g. `HIG-A11Y-003`).
+13. For accessibility, forms, motion, or performance, read `rules/agent-consumption.yaml` with the rule. Follow its maturity, browser target, fallback, and checks. A modern API is not a pass.
 
 ```yaml
 agent_enforcement_rules:

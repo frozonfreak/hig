@@ -17,6 +17,20 @@ Expanded adoption notes: [RELEASE_NOTES.md](./RELEASE_NOTES.md).
 
 ---
 
+## [1.18.0] - 2026-11-13
+
+### Changed
+
+- Accessibility, forms, motion, and performance rules now carry agent consumption metadata: maturity, minimum browser target, fallback, automated checks, manual checks, and source date ([rules/agent-consumption.yaml](./rules/agent-consumption.yaml)). Audits judge the observable result. A modern API is not a pass. When a rule defines a fallback, test the native branch and the fallback branch in different engines. Focus behavior, motion necessity, form-error timing, and assistive-technology announcements stay manual.
+- Animated images stay on the existing outcome for every animation technology. `image-animation` from the 7 November 2026 Working Draft is an experimental technique for declarative images only. Presence of the property is not a pass. Static-image, video, or script fallbacks remain until cross-engine support is stable (**HIG-A11Y-001**).
+- [13 November research disposition](./docs/research/2026-11-13-brief.md).
+
+### Unchanged
+
+- WCAG mappings, HIG conformance scores, Core Web Vitals thresholds, rule IDs, and severities. WAI’s 10 November ATAG note is tracked and does not add an AI-authoring requirement. Firefox 160 and the 9 November Media Session draft do not change guidance.
+
+---
+
 ## [1.17.0] - 2026-11-06
 
 ### Changed
